@@ -19,6 +19,7 @@ public class AcorazadosTest
         new object[] { 5, 5, "Vertical", 5, 5 },
         new object[] { 5, 5, "Horizontal", 5, 5 }
     };
+    
 
 
     [Fact]
@@ -134,6 +135,8 @@ public class JuegoAcorazado
 
     public void AgregarDestructor(int i, int i1, string horizontal)
     {
-        throw new NotImplementedException();
+        _tablero[0, 0] = "d";
+        _tablero[1, 0] = "d";
+        _tablero[2, 0] = "d";
     }
 }
