@@ -32,8 +32,9 @@ public class Acorazado
         
     }
 
-    public void PosicionarNave(int posicionX, int posicionY)
+    public void PosicionarNave(int posicionX, int posicionY, TiposNave nave)
     {
+        
         _posicionY = posicionY;
         _posicionX = posicionX;
         _tablero[posicionX, posicionY]="c";
