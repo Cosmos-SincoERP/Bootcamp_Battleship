@@ -19,12 +19,13 @@ public class AcorazadosTest
         new object[] { 5, 5, "Vertical", 5, 5 },
         new object[] { 5, 5, "Horizontal", 5, 5 }
     };
-    
+
     public static IEnumerable<object[]> DatosDestructores => new List<object[]>
     {
         new object[] { 2, 2, "Vertical", new[] { new[] { 2, 2 }, new[] { 2, 3 }, new[] { 2, 4 } } },
         new object[] { 2, 2, "Horizontal", new[] { new[] { 2, 2 }, new[] { 3, 2 }, new[] { 4, 2 } } },
         new object[] { 5, 6, "Vertical", new[] { new[] { 5, 6 }, new[] { 5, 7 }, new[] { 5, 8 } } },
+        new object[] { 3, 8, "Horizontal", new[] { new[] { 3, 8 }, new[] { 4, 8 }, new[] { 5, 8 } } }
     };
 
     [Fact]
@@ -93,6 +94,7 @@ public class AcorazadosTest
         {
             juegoAcorazadoEsperado[posicionEsperada[0], posicionEsperada[1]] = "d";
         }
+
         var juegoAcorazado = new JuegoAcorazado(10, 10);
 
 
@@ -156,6 +158,5 @@ public class JuegoAcorazado
             _tablero[3, 2] = "d";
             _tablero[4, 2] = "d";
         }
-        
     }
 }
