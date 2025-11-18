@@ -25,10 +25,11 @@ public class AcorazadosTests
 public class Jugador
 {
     public string Nombre { get; private set; }
-    public string[][] Tablero { get; set; }
+    public string[,] Tablero { get; set; }
 
     public Jugador(string player)
     {
        Nombre = player;
+       Tablero = new string[10,10];
     }
 }
