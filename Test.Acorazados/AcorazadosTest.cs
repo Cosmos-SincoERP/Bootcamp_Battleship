@@ -143,24 +143,19 @@ public class JuegoAcorazado
             throw new ArgumentOutOfRangeException();
         _tablero = new string[tamañoEnX, tamañoEnY];
     }
-
-
+    
     public void AgregarPortaAviones(int posicionX, int posicionY, string direccion)
     {
         for (var i = 0; i < 4; i++)
         {
             if (direccion == "Vertical")
             {
-                if(posicionY + i > _tablero.GetLength(1) - 1)
-                    throw new Exception("La posicion del Portaviones debe estar dentro del tablero");
-                
+                ValidarPosicionDelPortaAviones(posicionY, i,0 );
                 _tablero[posicionX, posicionY + i] = "c";
             }
             else
             {
-                if(posicionX + i > _tablero.GetLength(0) - 1)
-                    throw new Exception("La posicion del Portaviones debe estar dentro del tablero");
-                
+                ValidarPosicionDelPortaAviones(posicionX, i, 1);
                 _tablero[posicionX + i, posicionY] = "c";
             }
         }
@@ -170,4 +165,13 @@ public class JuegoAcorazado
     {
         return _tablero;
     }
+    
+    private void ValidarPosicionDelPortaAviones(int posicion, int i, int dimension)
+    {
+        if(posicion + i > _tablero.GetLength(dimension) - 1)
+            throw new Exception("La posicion del Portaviones debe estar dentro del tablero");
+    }
+
+
+    
 }
