@@ -29,7 +29,7 @@ public class AcorazadosTest
     }
 
     [Fact]
-    public void Si_SeUnPortaAvionesEnLaPosicionInicial0_0DeFormaVertical_Debe_LaPosicionFinalSer0_3()
+    public void Si_SeAgregaUnPortaAvionesEnLaPosicionInicial0_0DeFormaVertical_Debe_LaPosicionFinalSer0_3()
     {
         var tableroExperado = new string[10, 10];
         tableroExperado[0, 0] = "c";
@@ -90,6 +90,15 @@ public class AcorazadosTest
         var tableroActual = tablero.Mostrar();
 
         tableroActual.Should().BeEquivalentTo(tableroExperado);
+    }
+    
+    [Fact]
+    public void Si_SeAgregaUnPortaAvionesEnLaPosicionInicial9_9DeFormaVertical_Debe_LanzarExcepcionPorFueraDeRango()
+    {
+        var tablero = new JuegoAcorazado(10, 10);
+        var agregarPortaAviones = () => tablero.AgregarPortaAviones(9, 9, "Vertical");
+
+        agregarPortaAviones.Should().Throw<ArgumentOutOfRangeException>().WithMessage("La posicion del Portaviones debe estar dentro del tablero");
     }
 }
 
