@@ -20,6 +20,16 @@ public class AcorazadosTests
         jugador.Tablero.GetLength(0).Should().Be(10);
         jugador.Tablero.GetLength(1).Should().Be(10);
     }
+
+    [Fact]
+    public void Si_CreoUnCañoneroEnLaPosicion11_Debe_LaCasilla11Tenerg()
+    {
+        var jugador = new Jugador("Jugador 1");
+
+        jugador.AgregarAcorazado("Cañonero", 1, 1);
+
+        jugador.ObtenerCasilla(1, 1).Should().Be("g");
+    }
 }
 
 public class Jugador
@@ -31,5 +41,15 @@ public class Jugador
     {
        Nombre = player;
        Tablero = new string[10,10];
+    }
+
+    public void AgregarAcorazado(string cañonero, int x, int y)
+    {
+        throw new NotImplementedException();
+    }
+
+    public object ObtenerCasilla(int x, int y)
+    {
+        throw new NotImplementedException();
     }
 }
