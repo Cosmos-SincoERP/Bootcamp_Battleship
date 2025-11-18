@@ -47,7 +47,7 @@ public class AcorazadosTests
     {
         Action act =()=>  jugador.AgregarAcorazado(Acorazado.Cañonero, 11, 11);
         
-        act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*La posicion no existe en el tablero*");
+        act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible ubicar el acorazado en esa direccion*");
     }
     
     [Fact]
@@ -55,7 +55,7 @@ public class AcorazadosTests
     {
         Action act =()=>  jugador.AgregarAcorazado(Acorazado.Cañonero, -1, -1);
         
-        act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*La posicion no existe en el tablero*");
+        act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible ubicar el acorazado en esa direccion*");
     }
 
     [Fact]
@@ -102,6 +102,6 @@ public class AcorazadosTests
     public void Si_CreoUnDestructorEnLaPosicion00ConDireccionArriba_Debe_LanzarUnaExcepcionDeFueraDeRango()
     {
         Action act = ()=> jugador.AgregarAcorazado(Acorazado.Destructor, 0, 0, Direccion.Arriba);
-        act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible ubicar el acorzado en esa direccion*");
+        act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible ubicar el acorazado en esa direccion*");
     }
 }

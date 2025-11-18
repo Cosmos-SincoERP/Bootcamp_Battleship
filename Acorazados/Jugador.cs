@@ -52,7 +52,9 @@ public class Jugador
             else
             {
                 Tablero[fila, columna] = "d";
+                ValidacionesTablero(fila-1, columna);
                 Tablero[fila-1, columna] = "d";
+                ValidacionesTablero(fila - 2, columna);
                 Tablero[fila-2, columna] = "d";
             }
         }
@@ -62,7 +64,7 @@ public class Jugador
     {
         if (ObtenerLongitudTablero(0) < x || ObtenerLongitudTablero(1) < y || x < 0 || y < 0)
         {
-            throw new ArgumentOutOfRangeException("La posicion no existe en el tablero");
+            throw new ArgumentOutOfRangeException("No es posible ubicar el acorazado en esa direccion");
         }
 
         if (!string.IsNullOrEmpty(ObtenerCasilla(x, y)))
