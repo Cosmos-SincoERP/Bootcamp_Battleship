@@ -113,6 +113,7 @@ public class AcorazadosTests
     [InlineData(1, 0, Direccion.Arriba)]
     [InlineData(0, 8, Direccion.Derecha)]
     [InlineData(8, 8, Direccion.Abajo)]
+    [InlineData(5, 1, Direccion.Izquierda)]
     public void Si_CreoUnDestructorEnAlgunaPosicionFueraDelTablero_Debe_LanzarUnaExcepcionDeFueraDeRango(int fila, int columna, Direccion direccion)
     {
         Action act = () => jugador.AgregarAcorazado(Acorazado.Destructor, fila, columna, direccion);
