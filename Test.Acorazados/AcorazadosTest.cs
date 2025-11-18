@@ -45,7 +45,7 @@ public class AcorazadosTest
     }
 
     [Fact]
-    public void Si_SeUnPortaAvionesEnLaPosicionInicial0_0DeFormaHorizontal_Debe_LaPosicionFinalSer3_0()
+    public void Si_SeAgregaUnPortaAvionesEnLaPosicionInicial0_0DeFormaHorizontal_Debe_LaPosicionFinalSer3_0()
     {
         var tableroExperado = new string[10, 10];
         tableroExperado[0, 0] = "c";
@@ -61,7 +61,7 @@ public class AcorazadosTest
     }
 
     [Fact]
-    public void Si_SeUnPortaAvionesEnLaPosicionInicial3_4DeFormaVertical_Debe_LaPosicionFinalSer3_7()
+    public void Si_SeAgregaUnPortaAvionesEnLaPosicionInicial3_4DeFormaVertical_Debe_LaPosicionFinalSer3_7()
     {
         var tableroExperado = new string[10, 10];
         tableroExperado[3, 4] = "c";
@@ -77,7 +77,7 @@ public class AcorazadosTest
     }
 
     [Fact]
-    public void Si_SeUnPortaAvionesEnLaPosicionInicial6_2DeFormaHorizontal_Debe_LaPosicionFinalSer9_2()
+    public void Si_SeAgregaUnPortaAvionesEnLaPosicionInicial6_2DeFormaHorizontal_Debe_LaPosicionFinalSer9_2()
     {
         var tableroExperado = new string[10, 10];
         tableroExperado[6, 2] = "c";
@@ -95,7 +95,7 @@ public class AcorazadosTest
 
 public class JuegoAcorazado
 {
-    private string[,] _tablero;
+    private readonly string[,] _tablero;
 
     public JuegoAcorazado(int tamañoEnX, int tamañoEnY)
     {
@@ -107,19 +107,12 @@ public class JuegoAcorazado
 
     public void AgregarPortaAviones(int posicionX, int posicionY, string direccion)
     {
-        if (direccion == "Vertical")
+        for (var i = 0; i < 4; i++)
         {
-            for (int i = 0; i < 4; i++)
-            {
+            if (direccion == "Vertical")
                 _tablero[posicionX, posicionY + i] = "c";
-            }
-        }
-        else
-        {
-            for (int i = 0; i < 4; i++)
-            {
+            else
                 _tablero[posicionX + i, posicionY] = "c";
-            }
         }
     }
 
