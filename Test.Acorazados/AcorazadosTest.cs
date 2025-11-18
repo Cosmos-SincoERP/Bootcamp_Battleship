@@ -23,6 +23,7 @@ public class AcorazadosTest
     public static IEnumerable<object[]> DatosDestructores => new List<object[]>
     {
         new object[] { 2, 2, "Vertical", new[] { new[] { 2, 2 }, new[] { 2, 3 }, new[] { 2, 4 } } },
+        new object[] { 2, 2, "Horizontal", new[] { new[] { 2, 2 }, new[] { 3, 2 }, new[] { 4, 2 } } },
     };
 
     [Fact]
