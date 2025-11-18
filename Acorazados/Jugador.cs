@@ -1,5 +1,16 @@
 namespace Acorazados;
 
+public enum Acorazado
+{
+    Cañonero,
+    Destructor
+}
+
+public enum Direccion
+{
+    Arriba, 
+    Derecha
+}
 public class Jugador
 {
     public string Nombre { get; private set; }
@@ -11,14 +22,14 @@ public class Jugador
         Tablero = new string[10,10];
     }
 
-    public void AgregarAcorazado(string tipoBarco, int x, int y, string direccion = null)
+    public void AgregarAcorazado(Acorazado tipoAcorazado, int x, int y, Direccion? direccion = null)
     {
         ValidacionesTablero(x, y);
-        if(tipoBarco == "Cañonero")
+        if(tipoAcorazado.Equals(Acorazado.Cañonero))
             Tablero[x, y] = "g";
         else
         {
-            if (direccion == "Derecha")
+            if (direccion.Equals(Direccion.Derecha))
             {
                 Tablero[x, y] = "d";
                 Tablero[x+1, y] = "d";
