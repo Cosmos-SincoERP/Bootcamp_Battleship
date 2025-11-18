@@ -30,4 +30,14 @@ public class AcorazadosTests
 
         jugador.ObtenerCasilla(1, 1).Should().Be("g");
     }
+
+    [Fact]
+    public void Si_CreoUnCañoneroEnLaPosicion11YvueloAcrearuncañoneroenlaMismaPosicion_Debe_LanzarUnaExcepcion()
+    {
+        var jugador = new Jugador("Jugador 1");
+        jugador.AgregarAcorazado("Cañonero", 1, 1);
+        
+        Action act =()=> jugador.AgregarAcorazado("Cañonero", 1, 1);
+        act.Should().Throw<ArgumentException>().WithMessage("*ya existe un acorazado en esa posicion*");
+    }
 }
