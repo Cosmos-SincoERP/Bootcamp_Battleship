@@ -11,7 +11,7 @@ public class Jugador
         Tablero = new string[10,10];
     }
 
-    public void AgregarAcorazado(string tipoBarco, int x, int y)
+    public void AgregarAcorazado(string tipoBarco, int x, int y, string direccion = null)
     {
         ValidacionesTablero(x, y);
         if(tipoBarco == "Cañonero")
