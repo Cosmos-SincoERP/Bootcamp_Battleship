@@ -96,6 +96,7 @@ public class AcorazadosTest
     public void Si_SeAgregaUnPortaAvionesEnLaPosicionInicial9_9DeFormaVertical_Debe_LanzarExcepcionPorFueraDeRango()
     {
         var tablero = new JuegoAcorazado(10, 10);
+        
         var agregarPortaAviones = () => tablero.AgregarPortaAviones(9, 9, "Vertical");
 
         agregarPortaAviones.Should().Throw<Exception>().WithMessage("La posicion del Portaviones debe estar dentro del tablero");
@@ -105,6 +106,7 @@ public class AcorazadosTest
     public void Si_SeAgregaUnPortaAvionesEnLaPosicionInicial9_9DeFormaHorizontal_Debe_LanzarExcepcionPorFueraDeRango()
     {
         var tablero = new JuegoAcorazado(10, 10);
+        
         var agregarPortaAviones = () => tablero.AgregarPortaAviones(9, 9, "Horizontal");
 
         agregarPortaAviones.Should().Throw<Exception>().WithMessage("La posicion del Portaviones debe estar dentro del tablero");
@@ -114,7 +116,18 @@ public class AcorazadosTest
     public void Si_SeAgregaUnPortaAvionesEnLaPosicionInicial5_5DeFormaVertical_Debe_LanzarExcepcionPorFueraDeRango()
     {
         var tablero = new JuegoAcorazado(5, 5);
+        
         var agregarPortaAviones = () => tablero.AgregarPortaAviones(5, 5, "Vertical");
+
+        agregarPortaAviones.Should().Throw<Exception>().WithMessage("La posicion del Portaviones debe estar dentro del tablero");
+    }
+    
+    [Fact]
+    public void Si_SeAgregaUnPortaAvionesEnLaPosicionInicial5_5DeFormaHorizontal_Debe_LanzarExcepcionPorFueraDeRango()
+    {
+        var tablero = new JuegoAcorazado(5, 5);
+        
+        var agregarPortaAviones = () => tablero.AgregarPortaAviones(5, 5, "Horizontal");
 
         agregarPortaAviones.Should().Throw<Exception>().WithMessage("La posicion del Portaviones debe estar dentro del tablero");
     }
@@ -145,7 +158,7 @@ public class JuegoAcorazado
             }
             else
             {
-                if(posicionX + i > 9)
+                if(posicionX + i > _tablero.GetLength(0) - 1)
                     throw new Exception("La posicion del Portaviones debe estar dentro del tablero");
                 
                 _tablero[posicionX + i, posicionY] = "c";
