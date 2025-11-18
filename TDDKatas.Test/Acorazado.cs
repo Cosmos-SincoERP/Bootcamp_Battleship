@@ -5,7 +5,7 @@ public class Acorazado
     private string _barco = " ";
     private int _posicionX;
     private int _posicionY;
-    private string [,] _tablero = new string[10,10];
+    private string[,] _tablero = new string[10, 10];
 
     public string Imprimir()
     {
@@ -15,28 +15,35 @@ public class Acorazado
         {
             resultado += $"{separador}\n";
             resultado += $"{i} |";
-            
+
             for (int j = 0; j < _tablero.GetLength(1); j++)
             {
                 if (!string.IsNullOrEmpty(_tablero[i, j]))
-                    resultado += $" {_tablero[i,j]} |";
-                else   
+                    resultado += $" {_tablero[i, j]} |";
+                else
                     resultado += "   |";
             }
+
             resultado += "\n";
-            
         }
+
         resultado += separador;
-        
+
         return resultado;
-        
     }
 
     public void PosicionarNave(int posicionX, int posicionY, TiposNave nave)
     {
-        
         _posicionY = posicionY;
         _posicionX = posicionX;
-        _tablero[posicionX, posicionY]="c";
+        _tablero[posicionX, posicionY] = ((char)nave).ToString();
+
+        if (nave == TiposNave.Destructor)
+        {
+            _tablero[posicionX, posicionY+1] = ((char)nave).ToString();
+            _tablero[posicionX, posicionY+2] = ((char)nave).ToString();
+
+        }
+            
     }
 }

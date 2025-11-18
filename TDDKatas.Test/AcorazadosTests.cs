@@ -38,13 +38,13 @@ public class AcorazadosTests
     public void Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0()
     {
         var acorazado = new Acorazado();
-        acorazado.PosicionarNave(0,0, TiposNave.Destructor);
-            
+        acorazado.PosicionarNave(0, 0, TiposNave.Canionero);
+
         var imprimir = acorazado.Imprimir();
 
         imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
-                             "0 | c |   |   |   |   |   |   |   |   |   |\n" +
+                             "0 | g |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
                              "1 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
@@ -65,20 +65,20 @@ public class AcorazadosTests
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
     }
-    
+
     [Fact]
     public void Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1()
     {
         var acorazado = new Acorazado();
-        acorazado.PosicionarNave(1,1, TiposNave.Destructor);
-            
+        acorazado.PosicionarNave(1, 1, TiposNave.Canionero);
+
         var imprimir = acorazado.Imprimir();
 
         imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
                              "0 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
-                             "1 |   | c |   |   |   |   |   |   |   |   |\n" +
+                             "1 |   | g |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
                              "2 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
@@ -102,8 +102,8 @@ public class AcorazadosTests
     public void Si_InicioElJuegoYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarDestructorPosicionadoEn0_0()
     {
         var acorazado = new Acorazado();
-        acorazado.PosicionarNave(0,0, TiposNave.Destructor);
-            
+        acorazado.PosicionarNave(0, 0, TiposNave.Destructor);
+
         var imprimir = acorazado.Imprimir();
 
         imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
@@ -129,10 +129,10 @@ public class AcorazadosTests
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
     }
-    
 }
 
 public enum TiposNave
 {
-    Destructor
+    Destructor = 'd',
+    Canionero = 'g'
 }
