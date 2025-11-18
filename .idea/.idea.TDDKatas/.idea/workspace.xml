@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="inicial">
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
-    </list>
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="🔴Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +35,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/de8a243f75215d958afa80cf80a41b4981a44efea7db93bffcdaf7bd6ba378c0/Number.Parsing.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f9878f643c2ecf1b4ce73234de56c9754a451c835620eae85ca8babbcb5889c4/LateBoundTestFramework.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/AcorazadosTests.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -159,7 +158,7 @@
       <updated>1762827924642</updated>
       <workItem from="1762827924643" duration="25950000" />
       <workItem from="1763135552154" duration="18182000" />
-      <workItem from="1763165952569" duration="3570000" />
+      <workItem from="1763165952569" duration="4781000" />
     </task>
     <task id="LOCAL-00012" summary="delete PalindromosTest.cs">
       <option name="closed" value="true" />
@@ -441,7 +440,31 @@
       <option name="project" value="LOCAL" />
       <updated>1763477661794</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="🔴 Si_InicioElJuego_debe_ImprimirElTableroEnVacio">
+      <option name="closed" value="true" />
+      <created>1763479505327</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1763479505327</updated>
+    </task>
+    <task id="LOCAL-00048" summary="🔴🟢🔵 Si_InicioElJuego_debe_ImprimirElTableroEnVacio">
+      <option name="closed" value="true" />
+      <created>1763479824849</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1763479824849</updated>
+    </task>
+    <task id="LOCAL-00049" summary="🔴Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0">
+      <option name="closed" value="true" />
+      <created>1763480665382</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1763480665382</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,9 +484,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=" SiComproUnKiloDeManzanasYUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_2_98" />
-    <MESSAGE value=" SiComproUnKiloDeManzanasYUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_2_98" />
-    <MESSAGE value=" SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion" />
     <MESSAGE value=" SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion" />
     <MESSAGE value=" SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion" />
     <MESSAGE value="SiComproUnSacoDeArroz_ElPrecioTotalDelRecibo_DEBE_ser_2_49" />
@@ -486,6 +506,9 @@
     <MESSAGE value=" refactor" />
     <MESSAGE value=" refactor - create class Wrap" />
     <MESSAGE value="inicial" />
-    <option name="LAST_COMMIT_MESSAGE" value="inicial" />
+    <MESSAGE value=" Si_InicioElJuego_debe_ImprimirElTableroEnVacio" />
+    <MESSAGE value=" Si_InicioElJuego_debe_ImprimirElTableroEnVacio" />
+    <MESSAGE value="Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
   </component>
 </project>
