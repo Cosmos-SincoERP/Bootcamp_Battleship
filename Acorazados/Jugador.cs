@@ -18,9 +18,18 @@ public class Jugador
             Tablero[x, y] = "g";
         else
         {
-            Tablero[x, y] = "d";
-            Tablero[x, y+1] = "d";
-            Tablero[x, y+2] = "d";
+            if (direccion == "Derecha")
+            {
+                Tablero[x, y] = "d";
+                Tablero[x+1, y] = "d";
+                Tablero[x+2, y] = "d";
+            }
+            else
+            {
+                Tablero[x, y] = "d";
+                Tablero[x, y+1] = "d";
+                Tablero[x, y+2] = "d";
+            }
         }
     }
 
