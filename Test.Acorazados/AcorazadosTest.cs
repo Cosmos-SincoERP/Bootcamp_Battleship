@@ -100,6 +100,15 @@ public class AcorazadosTest
 
         agregarPortaAviones.Should().Throw<Exception>().WithMessage("La posicion del Portaviones debe estar dentro del tablero");
     }
+    
+    [Fact]
+    public void Si_SeAgregaUnPortaAvionesEnLaPosicionInicial9_9DeFormaHorizontal_Debe_LanzarExcepcionPorFueraDeRango()
+    {
+        var tablero = new JuegoAcorazado(10, 10);
+        var agregarPortaAviones = () => tablero.AgregarPortaAviones(9, 9, "Horizontal");
+
+        agregarPortaAviones.Should().Throw<Exception>().WithMessage("La posicion del Portaviones debe estar dentro del tablero");
+    }
 }
 
 public class JuegoAcorazado
