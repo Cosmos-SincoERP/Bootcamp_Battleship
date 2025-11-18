@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="🔵 refactor - create class Wrap">
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Palindromos/PalindromosTest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/TDDKatas.Test.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/TDDKatas.Test.csproj" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="WordWrapper" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;fanovoa&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/fanovoa/TDDKatas.git&quot;,
+    &quot;accountId&quot;: &quot;8239d683-c138-40b9-a562-6fd4209d22a2&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5e14a4e27990972fa4ae94975603bd298aaf328ee083c03b10569ee4724d57/TestInvoker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/de8a243f75215d958afa80cf80a41b4981a44efea7db93bffcdaf7bd6ba378c0/Number.Parsing.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f9878f643c2ecf1b4ce73234de56c9754a451c835620eae85ca8babbcb5889c4/LateBoundTestFramework.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TDDKatas.Test/WordWrapTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/WordWrapTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/WordWrapTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/WordWrapTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/WordWrapTests.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="359hzekbcQKesGlgZwHnSyFHh8n" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "244b7420-c203-42fb-b944-ec09ca0c9ae4.executor": "Debug",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Acorazados",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task id="LOCAL-00001" summary="🔴Si_LaHoraEs6_Debe_RetornarHacerEjercicio">
+      <option name="closed" value="true" />
+      <created>1762530509230</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762530509230</updated>
+    </task>
+    <task id="LOCAL-00002" summary="💚Si_LaHoraEs6_Debe_RetornarHacerEjercicio">
+      <option name="closed" value="true" />
+      <created>1762531120128</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762531120128</updated>
+    </task>
+    <task id="LOCAL-00003" summary="🔴 Si_LaHoraEs7_Debe_RetornarHacerLeerYEstudar">
+      <option name="closed" value="true" />
+      <created>1762533721456</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1762533721456</updated>
+    </task>
+    <task id="LOCAL-00004" summary="💚 Si_LaHoraEs7_Debe_RetornarHacerLeerYEstudar">
+      <option name="closed" value="true" />
+      <created>1762533744943</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1762533744943</updated>
+    </task>
+    <task id="LOCAL-00005" summary="🔵 Si_LaHoraEs7_Debe_RetornarHacerLeerYEstudar">
+      <option name="closed" value="true" />
+      <created>1762533799175</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1762533799175</updated>
+    </task>
+    <task id="LOCAL-00006" summary="💚 SiLaHoraEs8_Debe_RetornarDesayunar">
+      <option name="closed" value="true" />
+      <created>1762534805099</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1762534805099</updated>
+    </task>
+    <task id="LOCAL-00007" summary="🔴 SiLaHoraEs8_Debe_RetornarDesayunar">
+      <option name="closed" value="true" />
+      <created>1762534820537</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1762534820537</updated>
+    </task>
+    <task id="LOCAL-00008" summary="💚 SiLaHoraEs8_Debe_RetornarDesayunar">
+      <option name="closed" value="true" />
+      <created>1762535371500</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1762535371500</updated>
+    </task>
+    <task id="LOCAL-00009" summary="🔴💚🔵SiLaHoraEstaFueraDeLas9_Debe_RetornarSinActividad">
+      <option name="closed" value="true" />
+      <created>1762538448029</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1762538448029</updated>
+    </task>
+    <task id="LOCAL-00010" summary="🔵 Extension de metodo">
+      <option name="closed" value="true" />
+      <created>1762547908867</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1762547908867</updated>
+    </task>
+    <task id="LOCAL-00011" summary="🔴💚🔵 Si_AgregoUnaActividadALas8Y20yTengoUnaActividadaALas8_Debe_GenerarError">
+      <option name="closed" value="true" />
+      <created>1762554837336</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1762554837336</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="🔴💚🔵 Si_AgregoUnaActividadALas8Y20yTengoUnaActividadaALas8_Debe_GenerarError" />
+      <created>1762827924642</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1762827924642</updated>
+      <workItem from="1762827924643" duration="25950000" />
+      <workItem from="1763135552154" duration="18182000" />
+      <workItem from="1763165952569" duration="1667000" />
+    </task>
+    <task id="LOCAL-00012" summary="delete PalindromosTest.cs">
+      <option name="closed" value="true" />
+      <created>1762827959480</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1762827959480</updated>
+    </task>
+    <task id="LOCAL-00013" summary="preparacion del proyecto">
+      <option name="closed" value="true" />
+      <created>1762828087034</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1762828087034</updated>
+    </task>
+    <task id="LOCAL-00014" summary="🔴SiComproSoloUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_0_99">
+      <option name="closed" value="true" />
+      <created>1762830608793</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1762830608793</updated>
+    </task>
+    <task id="LOCAL-00015" summary="💚SiComproSoloUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_0_99">
+      <option name="closed" value="true" />
+      <created>1762830998479</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1762830998479</updated>
+    </task>
+    <task id="LOCAL-00016" summary="🔵 SiComproSoloUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_0_99">
+      <option name="closed" value="true" />
+      <created>1762831067342</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1762831067342</updated>
+    </task>
+    <task id="LOCAL-00017" summary="🔴SiComproUnKiloDeManzanasElPrecioTotalDelRecibo_DEBE_ser_1_99">
+      <option name="closed" value="true" />
+      <created>1762831618801</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1762831618801</updated>
+    </task>
+    <task id="LOCAL-00018" summary="💚 SiComproUnKiloDeManzanasElPrecioTotalDelRecibo_DEBE_ser_1_99">
+      <option name="closed" value="true" />
+      <created>1762832884611</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1762832884611</updated>
+    </task>
+    <task id="LOCAL-00019" summary="🔵 SiComproUnKiloDeManzanasElPrecioTotalDelRecibo_DEBE_ser_1_99">
+      <option name="closed" value="true" />
+      <created>1762834306417</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1762834306417</updated>
+    </task>
+    <task id="LOCAL-00020" summary="🔴 SiComproUnKiloDeManzanasYUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_2_98">
+      <option name="closed" value="true" />
+      <created>1762834914642</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1762834914642</updated>
+    </task>
+    <task id="LOCAL-00021" summary="💚 SiComproUnKiloDeManzanasYUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_2_98">
+      <option name="closed" value="true" />
+      <created>1762835509661</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1762835509661</updated>
+    </task>
+    <task id="LOCAL-00022" summary="🔵 SiComproUnKiloDeManzanasYUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_2_98">
+      <option name="closed" value="true" />
+      <created>1762835529588</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1762835529588</updated>
+    </task>
+    <task id="LOCAL-00023" summary="🔴 SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion">
+      <option name="closed" value="true" />
+      <created>1762835863874</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1762835863874</updated>
+    </task>
+    <task id="LOCAL-00024" summary="💚 SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion">
+      <option name="closed" value="true" />
+      <created>1762836041141</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1762836041141</updated>
+    </task>
+    <task id="LOCAL-00025" summary="🔵 SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion">
+      <option name="closed" value="true" />
+      <created>1762836445759</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1762836445759</updated>
+    </task>
+    <task id="LOCAL-00026" summary="🔴SiComproUnSacoDeArroz_ElPrecioTotalDelRecibo_DEBE_ser_2_49">
+      <option name="closed" value="true" />
+      <created>1762836532347</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1762836532348</updated>
+    </task>
+    <task id="LOCAL-00027" summary="💚SiComproUnSacoDeArroz_ElPrecioTotalDelRecibo_DEBE_ser_2_49">
+      <option name="closed" value="true" />
+      <created>1762836625201</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1762836625201</updated>
+    </task>
+    <task id="LOCAL-00028" summary="🔵 (triangulacion) SiComproUnaSolaCifraDeAlgunProductoDelCatalogoElPrecioTotalDelRecibo_DEBE_ser_SuValorPor1Cifra">
+      <option name="closed" value="true" />
+      <created>1762837122733</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1762837122733</updated>
+    </task>
+    <task id="LOCAL-00029" summary="🔵 (triangulacion) SiComproUnaSolaCifraDeAlgunProductoDelCatalogoElPrecioTotalDelRecibo_DEBE_ser_SuValorPor1Cifra">
+      <option name="closed" value="true" />
+      <created>1762837153084</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1762837153084</updated>
+    </task>
+    <task id="LOCAL-00030" summary="🔴 SiCompro2KilosDeManzanas1CepilloDeDientesTodoAPrecioNormalElRecibo_DEBE_DevolverElDetalleDeLosArticulosYElPrecioTotalDeLos2">
+      <option name="closed" value="true" />
+      <created>1762839999933</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1762839999933</updated>
+    </task>
+    <task id="LOCAL-00031" summary="💚SiCompro2KilosDeManzanas1CepilloDeDientesTodoAPrecioNormalElRecibo_DEBE_DevolverElDetalleDeLosArticulosYElPrecioTotalDeLos2">
+      <option name="closed" value="true" />
+      <created>1762840482186</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1762840482186</updated>
+    </task>
+    <task id="LOCAL-00032" summary="🔴SiCompro1KiloDeManzanasConDescuentoElRecibo_DEBE_AplicarElDescuentoYDevolverElValorTotalConElDescuento">
+      <option name="closed" value="true" />
+      <created>1762842973580</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1762842973580</updated>
+    </task>
+    <task id="LOCAL-00033" summary="😒 descuentos">
+      <option name="closed" value="true" />
+      <created>1763135622269</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1763135622269</updated>
+    </task>
+    <task id="LOCAL-00034" summary="👌 preparación del entorno">
+      <option name="closed" value="true" />
+      <created>1763135855494</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1763135855494</updated>
+    </task>
+    <task id="LOCAL-00035" summary="🫡 plantilla del archivo para dar inicio a la implementación">
+      <option name="closed" value="true" />
+      <created>1763135974545</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1763135974545</updated>
+    </task>
+    <task id="LOCAL-00036" summary="1️⃣ OK">
+      <option name="closed" value="true" />
+      <created>1763136708735</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1763136708735</updated>
+    </task>
+    <task id="LOCAL-00037" summary="2️⃣ OK">
+      <option name="closed" value="true" />
+      <created>1763136836208</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1763136836208</updated>
+    </task>
+    <task id="LOCAL-00038" summary="3️⃣4️⃣ OK">
+      <option name="closed" value="true" />
+      <created>1763138863413</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1763138863413</updated>
+    </task>
+    <task id="LOCAL-00039" summary="🔵 3️⃣4️⃣ (little refactor)">
+      <option name="closed" value="true" />
+      <created>1763139286628</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1763139286628</updated>
+    </task>
+    <task id="LOCAL-00040" summary="🔵 5️⃣6️⃣7️⃣8️⃣ OK">
+      <option name="closed" value="true" />
+      <created>1763140322300</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1763140322300</updated>
+    </task>
+    <task id="LOCAL-00041" summary="🔵 5️⃣6️⃣7️⃣8️⃣ (first refactor)">
+      <option name="closed" value="true" />
+      <created>1763140755333</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1763140755333</updated>
+    </task>
+    <task id="LOCAL-00042" summary="🔵 5️⃣6️⃣7️⃣8️⃣ (second refactor)">
+      <option name="closed" value="true" />
+      <created>1763141128405</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1763141128405</updated>
+    </task>
+    <task id="LOCAL-00043" summary="9️⃣ OK">
+      <option name="closed" value="true" />
+      <created>1763143686529</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1763143686529</updated>
+    </task>
+    <task id="LOCAL-00044" summary="🔵 refactor">
+      <option name="closed" value="true" />
+      <created>1763158903017</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1763158903017</updated>
+    </task>
+    <task id="LOCAL-00045" summary="🔵 refactor - create class Wrap">
+      <option name="closed" value="true" />
+      <created>1763159600998</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1763159600998</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=" SiComproUnKiloDeManzanasYUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_2_98" />
+    <MESSAGE value=" SiComproUnKiloDeManzanasYUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_2_98" />
+    <MESSAGE value=" SiComproUnKiloDeManzanasYUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_2_98" />
+    <MESSAGE value=" SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion" />
+    <MESSAGE value=" SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion" />
+    <MESSAGE value=" SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion" />
+    <MESSAGE value="SiComproUnSacoDeArroz_ElPrecioTotalDelRecibo_DEBE_ser_2_49" />
+    <MESSAGE value="SiComproUnSacoDeArroz_ElPrecioTotalDelRecibo_DEBE_ser_2_49" />
+    <MESSAGE value=" (triangulacion) SiComproUnaSolaCifraDeAlgunProductoDelCatalogoElPrecioTotalDelRecibo_DEBE_ser_SuValorPor1Cifra" />
+    <MESSAGE value=" SiCompro2KilosDeManzanas1CepilloDeDientesTodoAPrecioNormalElRecibo_DEBE_DevolverElDetalleDeLosArticulosYElPrecioTotalDeLos2" />
+    <MESSAGE value="SiCompro2KilosDeManzanas1CepilloDeDientesTodoAPrecioNormalElRecibo_DEBE_DevolverElDetalleDeLosArticulosYElPrecioTotalDeLos2" />
+    <MESSAGE value="SiCompro1KiloDeManzanasConDescuentoElRecibo_DEBE_AplicarElDescuentoYDevolverElValorTotalConElDescuento" />
+    <MESSAGE value=" descuentos" />
+    <MESSAGE value=" preparación del entorno" />
+    <MESSAGE value=" plantilla del archivo para dar inicio a la implementación" />
+    <MESSAGE value="1️⃣ OK" />
+    <MESSAGE value="2️⃣ OK" />
+    <MESSAGE value="3️⃣4️⃣ OK" />
+    <MESSAGE value=" 3️⃣4️⃣ (little refactor)" />
+    <MESSAGE value=" 5️⃣6️⃣7️⃣8️⃣ OK" />
+    <MESSAGE value=" 5️⃣6️⃣7️⃣8️⃣ (first refactor)" />
+    <MESSAGE value=" 5️⃣6️⃣7️⃣8️⃣ (second refactor)" />
+    <MESSAGE value="9️⃣ OK" />
+    <MESSAGE value=" refactor" />
+    <MESSAGE value=" refactor - create class Wrap" />
+    <option name="LAST_COMMIT_MESSAGE" value=" refactor - create class Wrap" />
+  </component>
+</project>

@@ -3,3 +3,10 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+
+.user
+*.user
+user/
+/TDDKatas.sln.DotSettings.user
+/.xml
+/.patch
