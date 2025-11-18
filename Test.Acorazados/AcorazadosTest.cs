@@ -107,7 +107,7 @@ public class AcorazadosTest
 
         juegoAcorazado.Mostrar().Should().BeEquivalentTo(juegoAcorazadoEsperado);
     }
-    
+
     [Theory]
     [MemberData(nameof(DatosIncorrectosDestructores))]
     public void Si_AgregoUnDestructorEnUnPosicionIncorrecta_Debe_LanzarExcepcion(int posicionXInicial,
@@ -158,6 +158,8 @@ public class JuegoAcorazado
         {
             for (int i = 0; i < 3; i++)
             {
+                if (posicionEnY + i > _tablero.GetLength(1) - 1)
+                    throw new Exception("La posicion del destructor debe estar dentro del tablero");
                 _tablero[posicionEnX, posicionEnY + i] = "d";
             }
         }
