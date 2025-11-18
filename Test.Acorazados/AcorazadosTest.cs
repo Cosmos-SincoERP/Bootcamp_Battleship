@@ -178,16 +178,17 @@ public class JuegoAcorazado
         {
             if (direccion == "Vertical")
             {
-                ValidarPosicionDeLaNave(posicionY, i, 1, "Portaviones");
-                _tablero[posicionX, posicionY + i] = "c";
+                ValidarPosicionDeLaNave(posicionY + i, 1, "Portaviones");
+                AsignarElValorDeLaNaveALaPosicion(posicionX, posicionY + i, "c");
             }
             else
             {
-                ValidarPosicionDeLaNave(posicionX, i, 0, "Portaviones");
-                _tablero[posicionX + i, posicionY] = "c";
+                ValidarPosicionDeLaNave(posicionX + i, 0, "Portaviones");
+                AsignarElValorDeLaNaveALaPosicion(posicionX + i, posicionY, "c");
             }
         }
     }
+
 
     public void AgregarDestructor(int posicionEnX, int posicionEnY, string direccion)
     {
@@ -195,18 +196,25 @@ public class JuegoAcorazado
         {
             for (int i = 0; i < 3; i++)
             {
-                ValidarPosicionDeLaNave(posicionEnY, i, 1, "Destructor");
-                _tablero[posicionEnX, posicionEnY + i] = "d";
+                ValidarPosicionDeLaNave(posicionEnY + i, 1, "Destructor");
+                AsignarElValorDeLaNaveALaPosicion(posicionEnX, posicionEnY + i, "d");
             }
         }
         else
         {
             for (int i = 0; i < 3; i++)
             {
-                ValidarPosicionDeLaNave(posicionEnX, i, 0, "Destructor");
-                _tablero[posicionEnX + i, posicionEnY] = "d";
+                ValidarPosicionDeLaNave(posicionEnX + i, 0, "Destructor");
+                AsignarElValorDeLaNaveALaPosicion(posicionEnX + i, posicionEnY, "d");
             }
         }
+    }
+
+    public void AgregarCañonero(int posicionEnX, int posicionEnY)
+    {
+        ValidarPosicionDeLaNave(posicionEnX, 0, "Cañonero");
+        ValidarPosicionDeLaNave(posicionEnY, 1, "Cañonero");
+        AsignarElValorDeLaNaveALaPosicion(posicionEnX, posicionEnY, "g");
     }
 
     public string[,] Mostrar()
@@ -214,17 +222,14 @@ public class JuegoAcorazado
         return _tablero;
     }
 
-    private void ValidarPosicionDeLaNave(int posicion, int i, int dimension, string nave)
+    private void ValidarPosicionDeLaNave(int posicion, int dimension, string nave)
     {
-        if (posicion + i > _tablero.GetLength(dimension) - 1)
+        if (posicion > _tablero.GetLength(dimension) - 1)
             throw new Exception($"La posicion del {nave} debe estar dentro del tablero");
     }
 
-    public void AgregarCañonero(int posicionEnX, int posicionEnY)
+    private void AsignarElValorDeLaNaveALaPosicion(int posicionX, int posicionY, string valorNave)
     {
-        if (posicionEnX > _tablero.GetLength(0) - 1 || posicionEnY > _tablero.GetLength(1) - 1)
-            throw new Exception("La posicion del Cañonero debe estar dentro del tablero");
-
-        _tablero[posicionEnX, posicionEnY] = "g";
+        _tablero[posicionX, posicionY] = valorNave;
     }
 }
