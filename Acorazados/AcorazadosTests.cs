@@ -120,4 +120,14 @@ public class AcorazadosTests
         
         act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible ubicar el acorazado en esa direccion*");
     }
+
+    [Fact]
+    public void Si_CreoUnDestructorEnPosicion11DireccionDerechayCreoOtroEnPosicion01DireccionAbajo_Debe_LanzarUnaArgumentException()
+    {
+        jugador.AgregarAcorazado(Acorazado.Destructor, 1, 1, Direccion.Derecha);
+        Action act = () => jugador.AgregarAcorazado(Acorazado.Destructor, 0, 1, Direccion.Abajo);
+
+        act.Should().Throw<ArgumentException>().WithMessage("*Ya existe un acorazado en esa posicion*");
+    }
+    
 }
