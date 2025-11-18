@@ -149,6 +149,16 @@ public class AcorazadosTest
 
         juegoAcorazado.Mostrar().Should().BeEquivalentTo(juegoAcorazadoEsperado);
     }
+
+    [Fact]
+    public void Si_AgregoUnCañoneroEnLaPosicion_11_11_Debe_LanzarExcepcion()
+    {
+        var juegoAcorazado = new JuegoAcorazado(10, 10);
+
+        var cañonero = () => juegoAcorazado.AgregarCañonero(11, 11);
+
+        cañonero.Should().Throw<Exception>().WithMessage("La posicion del Cañonero debe estar dentro del tablero");
+    }
 }
 
 public class JuegoAcorazado
