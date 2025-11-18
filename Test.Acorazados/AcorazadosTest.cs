@@ -75,6 +75,22 @@ public class AcorazadosTest
 
         tableroActual.Should().BeEquivalentTo(tableroExperado);
     }
+
+    [Fact]
+    public void Si_SeUnPortaAvionesEnLaPosicionInicial6_2DeFormaHorizontal_Debe_LaPosicionFinalSer9_2()
+    {
+        var tableroExperado = new string[10, 10];
+        tableroExperado[6, 2] = "c";
+        tableroExperado[7, 2] = "c";
+        tableroExperado[8, 2] = "c";
+        tableroExperado[9, 2] = "c";
+        var tablero = new JuegoAcorazado(10, 10);
+        tablero.AgregarPortaAviones(6, 2, "Horizontal");
+
+        var tableroActual = tablero.Mostrar();
+
+        tableroActual.Should().BeEquivalentTo(tableroExperado);
+    }
 }
 
 public class JuegoAcorazado
