@@ -76,6 +76,21 @@ public class AcorazadosTest
         agregarPortaviones.Should().Throw<Exception>()
             .WithMessage("La posicion del Portaviones debe estar dentro del tablero");
     }
+
+    [Fact]
+    public void Si_AgregoUnDestructorEnLaPosicion0_0_Horizontal_Debe_LaPosicionFinaEstarEn2_0()
+    {
+        var tableroEsperado = new string[10, 10];
+        tableroEsperado[0, 0] = "d";
+        tableroEsperado[1, 0] = "d";
+        tableroEsperado[2, 0] = "d";
+
+        var juegoAcorazado = new JuegoAcorazado(10, 10);
+
+        juegoAcorazado.AgregarDestructor(0, 0, "Horizontal");
+
+        juegoAcorazado.Mostrar().Should().BeEquivalentTo(tableroEsperado);
+    }
 }
 
 public class JuegoAcorazado
@@ -115,5 +130,10 @@ public class JuegoAcorazado
     {
         if (posicion + i > _tablero.GetLength(dimension) - 1)
             throw new Exception("La posicion del Portaviones debe estar dentro del tablero");
+    }
+
+    public void AgregarDestructor(int i, int i1, string horizontal)
+    {
+        throw new NotImplementedException();
     }
 }
