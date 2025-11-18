@@ -26,42 +26,44 @@ public class Jugador
 
     public void AgregarAcorazado(Acorazado tipoAcorazado, int fila, int columna, Direccion? direccion = null)
     {
-        ValidacionesTablero(fila, columna);
-        if(tipoAcorazado.Equals(Acorazado.Cañonero))
+        if (tipoAcorazado.Equals(Acorazado.Cañonero))
+        {
+            ValidacionesTablero(fila, columna);
             Tablero[fila, columna] = "g";
+        }
         else
         {
             if (direccion.Equals(Direccion.Derecha))
             {
-                Tablero[fila, columna] = "d";
-                ValidacionesTablero(fila, columna+1);
-                Tablero[fila, columna+1] = "d";
-                ValidacionesTablero(fila, columna+2);
-                Tablero[fila, columna+2] = "d";
+                for (int i = 0; i < 3; i++)
+                {
+                    ValidacionesTablero(fila, columna+i);
+                    Tablero[fila, columna+i] = "d";
+                }
             }
             else if (direccion.Equals(Direccion.Izquierda))
             {
-                Tablero[fila, columna] = "d";
-                ValidacionesTablero(fila, columna-1);
-                Tablero[fila, columna-1] = "d";
-                ValidacionesTablero(fila, columna-2);
-                Tablero[fila, columna-2] = "d";
+                for (int i = 0; i < 3; i++)
+                {
+                    ValidacionesTablero(fila, columna-i);
+                    Tablero[fila, columna-i] = "d";
+                }
             }
             else if (direccion.Equals(Direccion.Abajo))
             {
-                Tablero[fila, columna] = "d";
-                ValidacionesTablero(fila+1, columna);
-                Tablero[fila+1, columna] = "d";
-                ValidacionesTablero(fila+2, columna);
-                Tablero[fila+2, columna] = "d";
+                for (int i = 0; i < 3; i++)
+                {
+                    ValidacionesTablero(fila+i, columna);
+                    Tablero[fila+i, columna] = "d";
+                }
             }
             else
             {
-                Tablero[fila, columna] = "d";
-                ValidacionesTablero(fila-1, columna);
-                Tablero[fila-1, columna] = "d";
-                ValidacionesTablero(fila-2, columna);
-                Tablero[fila-2, columna] = "d";
+                for (int i = 0; i < 3; i++)
+                {
+                    ValidacionesTablero(fila-i, columna);
+                    Tablero[fila-i, columna] = "d";
+                }
             }
         }
     }
