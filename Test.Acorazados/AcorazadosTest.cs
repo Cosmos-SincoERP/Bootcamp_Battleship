@@ -141,8 +141,8 @@ public class JuegoAcorazado
 
     public void AgregarDestructor(int i, int i1, string horizontal)
     {
-        _tablero[0, 0] = "d";
-        _tablero[1, 0] = "d";
-        _tablero[2, 0] = "d";
+        _tablero[2, 2] = "d";
+        _tablero[2, 3] = "d";
+        _tablero[2, 4] = "d";
     }
 }
