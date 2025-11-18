@@ -13,15 +13,21 @@ public class Jugador
 
     public void AgregarAcorazado(string tipoBarco, int x, int y)
     {
+        ValidacionesTablero(x, y);
+        Tablero[x, y] = "g";
+    }
+
+    private void ValidacionesTablero(int x, int y)
+    {
         if (ObtenerLongitudTablero(0) < x || ObtenerLongitudTablero(1) < y || x < 0 || y < 0)
         {
             throw new ArgumentOutOfRangeException("La posicion no existe en el tablero");
         }
+
         if (!string.IsNullOrEmpty(ObtenerCasilla(x, y)))
         {
             throw new ArgumentException("Ya existe un acorazado en esa posicion");
         }
-        Tablero[x, y] = "g";
     }
 
     public string ObtenerCasilla(int x, int y)
