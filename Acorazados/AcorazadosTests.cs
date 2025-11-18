@@ -99,30 +99,20 @@ public class AcorazadosTests
     }
 
     [Fact]
-    public void Si_CreoUnDestructorEnLaPosicion00ConDireccionArriba_Debe_LanzarUnaExcepcionDeFueraDeRango()
-    {
-        Action act = ()=> jugador.AgregarAcorazado(Acorazado.Destructor, 0, 0, Direccion.Arriba);
-        act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible ubicar el acorazado en esa direccion*");
-    }
-    
-    [Fact]
     public void Si_CreoUnDestructorEnLaPosicion99ConDireccionDerecha_Debe_LanzarUnaExcepcionDeFueraDeRango()
     {
         Action act = ()=> jugador.AgregarAcorazado(Acorazado.Destructor, 9, 9, Direccion.Derecha);
         act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible ubicar el acorazado en esa direccion*");
     }
     
-    [Fact]
-    public void Si_CreoUnDestructorEnLaPosicion99ConDireccionAbajo_Debe_LanzarUnaExcepcionDeFueraDeRango()
+    [Theory]
+    [InlineData(0, 0, Direccion.Arriba)]
+    [InlineData(9, 9, Direccion.Derecha)]
+    [InlineData(9, 9, Direccion.Abajo)]
+    [InlineData(0, 0, Direccion.Izquierda)]
+    public void Si_CreoUnDestructorEnAlgunaPosicionFueraDelTablero_Debe_LanzarUnaExcepcionDeFueraDeRango(int fila, int columna, Direccion direccion)
     {
-        Action act = ()=> jugador.AgregarAcorazado(Acorazado.Destructor, 9, 9, Direccion.Abajo);
-        act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible ubicar el acorazado en esa direccion*");
-    }
-
-    [Fact]
-    public void Si_CreoUnDestructorEnLaPosicion00ConDireccionIzquierda_Debe_LanzarUnaExcepcionDeFueraDeRango()
-    {
-        Action act = () => jugador.AgregarAcorazado(Acorazado.Destructor, 0, 0, Direccion.Izquierda);
+        Action act = () => jugador.AgregarAcorazado(Acorazado.Destructor, fila, columna, direccion);
         
         act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible ubicar el acorazado en esa direccion*");
     }
