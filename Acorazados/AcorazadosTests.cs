@@ -87,4 +87,14 @@ public class AcorazadosTests
         jugador.ObtenerCasilla(1, 1).Should().Be("d");
         jugador.ObtenerCasilla(2, 1).Should().Be("d");
     }
+
+    [Fact]
+    public void Si_CreoUnDestructorEnLaPosicion13ConDireccionAbajo_Debe_LasCasillas13_12_11_Tenerd()
+    {
+        jugador.AgregarAcorazado(Acorazado.Destructor, 1, 3, Direccion.Abajo);
+
+        jugador.ObtenerCasilla(1, 3).Should().Be("d");
+        jugador.ObtenerCasilla(1, 2).Should().Be("d");
+        jugador.ObtenerCasilla(1, 1).Should().Be("d");
+    }
 }

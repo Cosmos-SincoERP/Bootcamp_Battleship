@@ -10,7 +10,8 @@ public enum Direccion
 {
     Arriba, 
     Derecha,
-    Izquierda
+    Izquierda,
+    Abajo
 }
 public class Jugador
 {
