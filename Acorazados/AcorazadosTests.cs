@@ -129,5 +129,10 @@ public class AcorazadosTests
 
         act.Should().Throw<ArgumentException>().WithMessage("*Ya existe un acorazado en esa posicion*");
     }
-    
+
+    [Fact]
+    public void Si_CreoUnPortaavionesEnPosicion11DireccionDerecha()
+    {
+        
+    }
 }
