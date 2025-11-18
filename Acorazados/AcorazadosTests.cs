@@ -43,13 +43,13 @@ public class Jugador
        Tablero = new string[10,10];
     }
 
-    public void AgregarAcorazado(string cañonero, int x, int y)
+    public void AgregarAcorazado(string tipoBarco, int x, int y)
     {
-        throw new NotImplementedException();
+        Tablero[x, y] = "g";
     }
 
     public object ObtenerCasilla(int x, int y)
     {
-        throw new NotImplementedException();
+        return  Tablero[x, y];
     }
 }
