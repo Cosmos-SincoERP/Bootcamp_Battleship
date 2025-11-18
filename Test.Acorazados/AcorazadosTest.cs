@@ -141,13 +141,14 @@ public class JuegoAcorazado
             throw new Exception("La posicion del Portaviones debe estar dentro del tablero");
     }
 
-    public void AgregarDestructor(int i, int i1, string direccion)
+    public void AgregarDestructor(int posicionEnX, int posicionEnY, string direccion)
     {
         if (direccion == "Vertical")
         {
-            _tablero[2, 2] = "d";
-            _tablero[2, 3] = "d";
-            _tablero[2, 4] = "d";
+            for (int i = 0; i < 3; i++)
+            {
+                _tablero[posicionEnX, posicionEnY + i] = "d";
+            }
         }
         else
         {
