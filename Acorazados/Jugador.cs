@@ -43,6 +43,12 @@ public class Jugador
                 Tablero[x-1, y] = "d";
                 Tablero[x-2, y] = "d";
             }
+            else if (direccion.Equals(Direccion.Abajo))
+            {
+                Tablero[x, y] = "d";
+                Tablero[x, y-1] = "d";
+                Tablero[x, y-2] = "d";
+            }
             else
             {
                 Tablero[x, y] = "d";
