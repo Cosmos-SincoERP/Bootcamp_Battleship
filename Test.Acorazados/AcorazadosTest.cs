@@ -210,8 +210,8 @@ public class JuegoAcorazado
             throw new Exception($"La posicion del {nave} debe estar dentro del tablero");
     }
 
-    public void AgregarCañonero(int i, int i1)
+    public void AgregarCañonero(int posicionEnX, int posicionEnY)
     {
-        _tablero[7, 6] = "g";
+        _tablero[posicionEnX, posicionEnY] = "g";
     }
 }
