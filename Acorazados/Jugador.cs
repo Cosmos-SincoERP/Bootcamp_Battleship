@@ -48,7 +48,9 @@ public class Jugador
             else if (direccion.Equals(Direccion.Abajo))
             {
                 Tablero[fila, columna] = "d";
+                ValidacionesTablero(fila+1, columna);
                 Tablero[fila+1, columna] = "d";
+                ValidacionesTablero(fila+2, columna);
                 Tablero[fila+2, columna] = "d";
             }
             else
