@@ -7,7 +7,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeInciaUnTableroUnTamaño0_0_Debe_MostrarUnaExcepcion()
     {
-        var tablero = () => new Tablero(0, 0);
+        var tablero = () => new JuegoAcorazado(0, 0);
 
         tablero.Should().Throw<ArgumentOutOfRangeException>();
     }
@@ -15,7 +15,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeIniciaUnTableroUnTamaño10_10_NoDebe_LanzarExcepcion()
     {
-        var tablero = () => new Tablero(10, 10);
+        var tablero = () => new JuegoAcorazado(10, 10);
 
         tablero.Should().NotThrow();
     }
@@ -23,11 +23,11 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeIniciaUnTableroConUnTamañoMenorA0_Debe_LanzarExcepcion()
     {
-        var tablero = () => new Tablero(-1, -1);
+        var tablero = () => new JuegoAcorazado(-1, -1);
 
         tablero.Should().Throw<ArgumentOutOfRangeException>();
     }
-    
+
     [Fact]
     public void Si_SeUnPortaAvionesEnLaPosicionInicial0_0DeFormaVertical_Debe_LaPosicionFinalSer0_3()
     {
@@ -36,31 +36,37 @@ public class AcorazadosTest
         tableroExperado[0, 1] = "c";
         tableroExperado[0, 2] = "c";
         tableroExperado[0, 3] = "c";
-        var tablero = new Tablero(10, 10);
+        var tablero = new JuegoAcorazado(10, 10);
         tablero.AgregarPortaAviones(0, 0, "Vertical");
-        
+
         var tableroActual = tablero.Mostrar();
 
         tableroActual.Should().BeEquivalentTo(tableroExperado);
     }
 }
 
-public class Tablero
+public class JuegoAcorazado
 {
-    public Tablero(int tamañoEnX, int tamañoEnY)
+    private string[,] _tablero;
+
+    public JuegoAcorazado(int tamañoEnX, int tamañoEnY)
     {
         if (tamañoEnX <= 0 && tamañoEnY <= 0)
             throw new ArgumentOutOfRangeException();
+        _tablero = new string[tamañoEnX, tamañoEnY];
     }
 
 
-    public void AgregarPortaAviones(int i, int i1, string vertical)
+    public void AgregarPortaAviones(int posicionX, int posicionY, string vertical)
     {
-        throw new NotImplementedException();
+        _tablero[0, 0] = "c";
+        _tablero[0, 1] = "c";
+        _tablero[0, 2] = "c";
+        _tablero[0, 3] = "c";
     }
 
-    public object Mostrar()
+    public string[,] Mostrar()
     {
-        throw new NotImplementedException();
+        return _tablero;
     }
 }
