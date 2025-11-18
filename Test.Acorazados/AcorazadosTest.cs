@@ -69,7 +69,7 @@ public class AcorazadosTest
         tableroExperado[3, 6] = "c";
         tableroExperado[3, 7] = "c";
         var tablero = new JuegoAcorazado(10, 10);
-        tablero.AgregarPortaAviones(0, 0, "Vertical");
+        tablero.AgregarPortaAviones(3, 4, "Vertical");
 
         var tableroActual = tablero.Mostrar();
 
@@ -93,10 +93,10 @@ public class JuegoAcorazado
     {
         if (direccion == "Vertical")
         {
-            _tablero[0, 0] = "c";
-            _tablero[0, 1] = "c";
-            _tablero[0, 2] = "c";
-            _tablero[0, 3] = "c";
+            for (int i = 0; i < 4; i++)
+            {
+                _tablero[posicionX, posicionY + i] = "c";
+            }
         }
         else
         {
