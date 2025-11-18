@@ -49,6 +49,15 @@ public class AcorazadosTests
         Action act =()=>  jugador.AgregarAcorazado("Cañonero", 11, 11);
         
         act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*La posicion no existe en el tablero*");
-
+    }
+    
+    [Fact]
+    public void Si_CreoUnCañoneroEnLaPosicionmenos1menos1_Debe_LanzarUnaExcepcionDeFueraDeRango()
+    {
+        var jugador = new Jugador("Jugador 1");
+        
+        Action act =()=>  jugador.AgregarAcorazado("Cañonero", -1, -1);
+        
+        act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*La posicion no existe en el tablero*");
     }
 }
