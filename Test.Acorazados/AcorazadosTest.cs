@@ -125,6 +125,18 @@ public class AcorazadosTest
         agregarDestructores.Should().Throw<Exception>()
             .WithMessage("La posicion del Destructor debe estar dentro del tablero");
     }
+
+    [Fact]
+    public void Si_AgregoUnCañoneroEnPosicion_7_6_Debe_PosicionarseEn_7_6()
+    {
+        var juegoAcorazadoEsperado = new string[10, 10];
+        juegoAcorazadoEsperado[7, 6] = "g";
+
+        var juegoAcorazado = new JuegoAcorazado(10, 10);
+        juegoAcorazado.AgregarCañonero(7, 6);
+
+        juegoAcorazado.Mostrar().Should().BeEquivalentTo(juegoAcorazadoEsperado);
+    }
 }
 
 public class JuegoAcorazado
@@ -184,5 +196,10 @@ public class JuegoAcorazado
     {
         if (posicion + i > _tablero.GetLength(dimension) - 1)
             throw new Exception($"La posicion del {nave} debe estar dentro del tablero");
+    }
+
+    public void AgregarCañonero(int i, int i1)
+    {
+        throw new NotImplementedException();
     }
 }
