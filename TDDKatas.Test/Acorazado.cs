@@ -42,43 +42,47 @@ public class Acorazado
         {
             if (orientacion == Orientacion.Derecha)
             {
-                _tablero[posicionX, posicionY+1] = ((char)nave).ToString();    
-                _tablero[posicionX, posicionY+2] = ((char)nave).ToString();
-                
+                _tablero[posicionX, posicionY + 1] = ((char)nave).ToString();
+                _tablero[posicionX, posicionY + 2] = ((char)nave).ToString();
             }
             else if (orientacion == Orientacion.Arriba)
             {
-                _tablero[posicionX-1, posicionY] = ((char)nave).ToString();    
-                _tablero[posicionX-2, posicionY] = ((char)nave).ToString();
+                _tablero[posicionX - 1, posicionY] = ((char)nave).ToString();
+                _tablero[posicionX - 2, posicionY] = ((char)nave).ToString();
             }
             else if (orientacion == Orientacion.Abajo)
             {
-                _tablero[posicionX+1, posicionY] = ((char)nave).ToString();    
-                _tablero[posicionX+2, posicionY] = ((char)nave).ToString();
+                _tablero[posicionX + 1, posicionY] = ((char)nave).ToString();
+                _tablero[posicionX + 2, posicionY] = ((char)nave).ToString();
             }
             else
             {
-                _tablero[posicionX, posicionY-1] = ((char)nave).ToString();    
-                _tablero[posicionX, posicionY-2] = ((char)nave).ToString();
+                _tablero[posicionX, posicionY - 1] = ((char)nave).ToString();
+                _tablero[posicionX, posicionY - 2] = ((char)nave).ToString();
             }
-            
         }
 
         if (nave == TiposNave.PortaAviones)
         {
             if (orientacion == Orientacion.Derecha)
             {
-                _tablero[posicionX, posicionY+1] = ((char)nave).ToString();
-                _tablero[posicionX, posicionY+2] = ((char)nave).ToString();
-                _tablero[posicionX, posicionY+3] = ((char)nave).ToString();
+                _tablero[posicionX, posicionY + 1] = ((char)nave).ToString();
+                _tablero[posicionX, posicionY + 2] = ((char)nave).ToString();
+                _tablero[posicionX, posicionY + 3] = ((char)nave).ToString();
             }
+            else if (orientacion == Orientacion.Arriba)
+            {
+                _tablero[posicionX - 1, posicionY] = ((char)nave).ToString();
+                _tablero[posicionX - 2, posicionY] = ((char)nave).ToString();
+                _tablero[posicionX - 3, posicionY] = ((char)nave).ToString();
+            }
+
             else
             {
-                _tablero[posicionX, posicionY-1] = ((char)nave).ToString();
-                _tablero[posicionX, posicionY-2] = ((char)nave).ToString();
-                _tablero[posicionX, posicionY-3] = ((char)nave).ToString();
+                _tablero[posicionX, posicionY - 1] = ((char)nave).ToString();
+                _tablero[posicionX, posicionY - 2] = ((char)nave).ToString();
+                _tablero[posicionX, posicionY - 3] = ((char)nave).ToString();
             }
         }
-            
     }
 }
