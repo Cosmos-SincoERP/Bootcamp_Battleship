@@ -59,13 +59,13 @@ public class AcorazadosTests
     }
 
     [Fact]
-    public void Si_CreoUnDestructorEnLaPosicion11_Debe_LasCasilla11_12_13_Tenerd()
+    public void Si_CreoUnDestructorEnLaPosicion21_Debe_LasCasilla11_12_13_Tenerd()
     {
-        jugador.AgregarAcorazado(Acorazado.Destructor, 1, 1);
+        jugador.AgregarAcorazado(Acorazado.Destructor, 2, 1, Direccion.Arriba);
 
+        jugador.ObtenerCasilla(2, 1).Should().Be("d");
         jugador.ObtenerCasilla(1, 1).Should().Be("d");
-        jugador.ObtenerCasilla(1, 2).Should().Be("d");
-        jugador.ObtenerCasilla(1, 3).Should().Be("d");
+        jugador.ObtenerCasilla(0, 1).Should().Be("d");
     }
 
     [Fact]
@@ -74,27 +74,34 @@ public class AcorazadosTests
         jugador.AgregarAcorazado(Acorazado.Destructor, 1, 1, Direccion.Derecha);
 
         jugador.ObtenerCasilla(1, 1).Should().Be("d");
-        jugador.ObtenerCasilla(2, 1).Should().Be("d");
-        jugador.ObtenerCasilla(3, 1).Should().Be("d");
+        jugador.ObtenerCasilla(1, 2).Should().Be("d");
+        jugador.ObtenerCasilla(1, 3).Should().Be("d");
     }
 
     [Fact]
-    public void Si_CreoUnDestructorEnLaPosicion21ConDireccionIzquierda_Debe_LasCasillas21_11_01_Tenerd()
+    public void Si_CreoUnDestructorEnLaPosicion21ConDireccionIzquierda_Debe_LasCasillas12_11_10_Tenerd()
     {
-        jugador.AgregarAcorazado(Acorazado.Destructor, 2, 1, Direccion.Izquierda);
+        jugador.AgregarAcorazado(Acorazado.Destructor, 1, 2, Direccion.Izquierda);
 
-        jugador.ObtenerCasilla(0, 1).Should().Be("d");
+        jugador.ObtenerCasilla(1, 2).Should().Be("d");
         jugador.ObtenerCasilla(1, 1).Should().Be("d");
-        jugador.ObtenerCasilla(2, 1).Should().Be("d");
+        jugador.ObtenerCasilla(1, 0).Should().Be("d");
     }
 
     [Fact]
-    public void Si_CreoUnDestructorEnLaPosicion13ConDireccionAbajo_Debe_LasCasillas13_12_11_Tenerd()
+    public void Si_CreoUnDestructorEnLaPosicion13ConDireccionAbajo_Debe_LasCasillas13_23_33_Tenerd()
     {
         jugador.AgregarAcorazado(Acorazado.Destructor, 1, 3, Direccion.Abajo);
 
         jugador.ObtenerCasilla(1, 3).Should().Be("d");
-        jugador.ObtenerCasilla(1, 2).Should().Be("d");
-        jugador.ObtenerCasilla(1, 1).Should().Be("d");
+        jugador.ObtenerCasilla(2, 3).Should().Be("d");
+        jugador.ObtenerCasilla(3, 3).Should().Be("d");
+    }
+
+    [Fact]
+    public void Si_CreoUnDestructorEnLaPosicion00ConDireccionArriba_Debe_LanzarUnaExcepcionDeFueraDeRango()
+    {
+        Action act = ()=> jugador.AgregarAcorazado(Acorazado.Destructor, 0, 0, Direccion.Arriba);
+        act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible ubicar el acorzado en esa direccion*");
     }
 }

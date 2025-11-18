@@ -24,36 +24,36 @@ public class Jugador
         Tablero = new string[10,10];
     }
 
-    public void AgregarAcorazado(Acorazado tipoAcorazado, int x, int y, Direccion? direccion = null)
+    public void AgregarAcorazado(Acorazado tipoAcorazado, int fila, int columna, Direccion? direccion = null)
     {
-        ValidacionesTablero(x, y);
+        ValidacionesTablero(fila, columna);
         if(tipoAcorazado.Equals(Acorazado.Cañonero))
-            Tablero[x, y] = "g";
+            Tablero[fila, columna] = "g";
         else
         {
             if (direccion.Equals(Direccion.Derecha))
             {
-                Tablero[x, y] = "d";
-                Tablero[x+1, y] = "d";
-                Tablero[x+2, y] = "d";
+                Tablero[fila, columna] = "d";
+                Tablero[fila, columna+1] = "d";
+                Tablero[fila, columna+2] = "d";
             }
             else if (direccion.Equals(Direccion.Izquierda))
             {
-                Tablero[x, y] = "d";
-                Tablero[x-1, y] = "d";
-                Tablero[x-2, y] = "d";
+                Tablero[fila, columna] = "d";
+                Tablero[fila, columna-1] = "d";
+                Tablero[fila, columna-2] = "d";
             }
             else if (direccion.Equals(Direccion.Abajo))
             {
-                Tablero[x, y] = "d";
-                Tablero[x, y-1] = "d";
-                Tablero[x, y-2] = "d";
+                Tablero[fila, columna] = "d";
+                Tablero[fila+1, columna] = "d";
+                Tablero[fila+2, columna] = "d";
             }
             else
             {
-                Tablero[x, y] = "d";
-                Tablero[x, y+1] = "d";
-                Tablero[x, y+2] = "d";
+                Tablero[fila, columna] = "d";
+                Tablero[fila-1, columna] = "d";
+                Tablero[fila-2, columna] = "d";
             }
         }
     }
