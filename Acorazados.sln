@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acorazados", "Acorazados\Acorazados.csproj", "{0C282F85-8D44-49A2-A79E-F43112A02103}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C282F85-8D44-49A2-A79E-F43112A02103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C282F85-8D44-49A2-A79E-F43112A02103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C282F85-8D44-49A2-A79E-F43112A02103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C282F85-8D44-49A2-A79E-F43112A02103}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
