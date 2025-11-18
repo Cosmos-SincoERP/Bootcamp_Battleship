@@ -161,14 +161,14 @@ public class AcorazadosTests
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
     }
-    
-    
+
 
     [Fact]
-    public void Si_InicioElJuegoYUbicoDestructorEnPosicion1_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn1_3OrientadoALaIzquierda()
+    public void
+        Si_InicioElJuegoYUbicoDestructorEnPosicion1_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn1_3OrientadoALaIzquierda()
     {
         var acorazado = new Acorazado();
-        acorazado.PosicionarNave(1, 3, TiposNave.Destructor,Orientacion.Izquierda);
+        acorazado.PosicionarNave(1, 3, TiposNave.Destructor, Orientacion.Izquierda);
 
         var imprimir = acorazado.Imprimir();
 
@@ -195,12 +195,13 @@ public class AcorazadosTests
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
     }
-    
+
     [Fact]
-    public void Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaArriba()
+    public void
+        Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaArriba()
     {
         var acorazado = new Acorazado();
-        acorazado.PosicionarNave(2, 3, TiposNave.Destructor,Orientacion.Arriba);
+        acorazado.PosicionarNave(2, 3, TiposNave.Destructor, Orientacion.Arriba);
 
         var imprimir = acorazado.Imprimir();
 
@@ -227,12 +228,13 @@ public class AcorazadosTests
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
     }
-    
-       [Fact]
-    public void Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaAbajo()
+
+    [Fact]
+    public void
+        Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaAbajo()
     {
         var acorazado = new Acorazado();
-        acorazado.PosicionarNave(2, 3, TiposNave.Destructor,Orientacion.Abajo);
+        acorazado.PosicionarNave(2, 3, TiposNave.Destructor, Orientacion.Abajo);
 
         var imprimir = acorazado.Imprimir();
 
@@ -259,7 +261,39 @@ public class AcorazadosTests
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
     }
-    
+
+    [Fact]
+    public void
+        Si_InicioElJuegoYUbicoPortaAvionesEnPosicion2_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaLaIzquierda()
+    {
+        var acorazado = new Acorazado();
+        acorazado.PosicionarNave(2, 3, TiposNave.PortaAviones, Orientacion.Izquierda);
+
+        var imprimir = acorazado.Imprimir();
+
+        imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "0 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "1 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "2 | c | c | c | c |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "3 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "4 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "5 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "6 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "7 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "8 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "9 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+");
+    }
 }
 
 public enum Orientacion
