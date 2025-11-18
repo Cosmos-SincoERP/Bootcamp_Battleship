@@ -15,10 +15,9 @@ public class AcorazadosTests
 
 public class Jugador
 {
+    public string Nombre { get; private set; }
     public Jugador(string player)
     {
-        throw new NotImplementedException();
+       Nombre = player;
     }
-
-    public object Nombre { get; set; }
 }
