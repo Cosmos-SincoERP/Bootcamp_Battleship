@@ -195,12 +195,46 @@ public class AcorazadosTests
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
     }
+    
+    [Fact]
+    public void Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaArriba()
+    {
+        var acorazado = new Acorazado();
+        acorazado.PosicionarNave(2, 3, TiposNave.Destructor,Orientacion.Arriba);
+
+        var imprimir = acorazado.Imprimir();
+
+        imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "0 |   |   |   | d |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "1 |   |   |   | d |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "2 |   |   |   | d |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "3 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "4 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "5 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "6 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "7 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "8 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "9 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+");
+    }
+    
 }
 
 public enum Orientacion
 {
     Izquierda,
-    Derecha
+    Derecha,
+    Arriba
 }
 
 public enum TiposNave
