@@ -168,6 +168,8 @@ public class JuegoAcorazado
         {
             for (int i = 0; i < 3; i++)
             {
+                if (posicionEnX + i > _tablero.GetLength(0) - 1)
+                    throw new Exception("La posicion del destructor debe estar dentro del tablero");
                 _tablero[posicionEnX + i, posicionEnY] = "d";
             }
         }
