@@ -3,37 +3,40 @@
 public class Acorazado
 {
     private string _barco = " ";
-    
+    private int _posicionX;
+    private int _posicionY;
+    private string [,] _tablero = new string[10,10];
+
     public string Imprimir()
     {
-        return
-            "    0   1   2   3   4   5   6   7   8   9\n" +
-            "  +---+---+---+---+---+---+---+---+---+---+\n" +
-            $"0 | {_barco} |   |   |   |   |   |   |   |   |   |\n" +
-            "  +---+---+---+---+---+---+---+---+---+---+\n" +
-            "1 |   |   |   |   |   |   |   |   |   |   |\n" +
-            "  +---+---+---+---+---+---+---+---+---+---+\n" +
-            "2 |   |   |   |   |   |   |   |   |   |   |\n " +
-            "  +---+---+---+---+---+---+---+---+---+---+\n" +
-            "3 |   |   |   |   |   |   |   |   |   |   |\n" +
-            "  +---+---+---+---+---+---+---+---+---+---+\n" +
-            "4 |   |   |   |   |   |   |   |   |   |   |\n " +
-            "  +---+---+---+---+---+---+---+---+---+---+\n" +
-            "5 |   |   |   |   |   |   |   |   |   |   |\n" +
-            "  +---+---+---+---+---+---+---+---+---+---+\n" +
-            "6 |   |   |   |   |   |   |   |   |   |   |\n " +
-            "  +---+---+---+---+---+---+---+---+---+---+\n" +
-            "7 |   |   |   |   |   |   |   |   |   |   |\n " +
-            "  +---+---+---+---+---+---+---+---+---+---+\n" +
-            "8 |   |   |   |   |   |   |   |   |   |   |\n " +
-            "  +---+---+---+---+---+---+---+---+---+---+\n" +
-            "9 |   |   |   |   |   |   |   |   |   |   |\n" +
-            "  +---+---+---+---+---+---+---+---+---+---+";
+
+        string resultado = "    0   1   2   3   4   5   6   7   8   9\n";
+        for (int i = 0; i < _tablero.GetLength(0); i++)
+        {
+            resultado += "  +---+---+---+---+---+---+---+---+---+---+\n";
+            
+            resultado += $"{i} |";
+            
+            for (int j = 0; j < _tablero.GetLength(1); j++)
+            {
+                if (_tablero[i, j] == "" || _tablero[i,j] == null) _tablero[i, j] = " ";
+                resultado += $" {_tablero[i,j]} |";
+                
+            }
+            resultado += "\n";
+            
+        }
+
+        resultado += "  +---+---+---+---+---+---+---+---+---+---+";
+        
+        return resultado;
+        
     }
 
-    public void PosicionarNave(int i, int i1)
+    public void PosicionarNave(int posicionX, int posicionY)
     {
-
-        _barco = "c";
+        _posicionY = posicionY;
+        _posicionX = posicionX;
+        _tablero[posicionX, posicionY]="c";
     }
 }

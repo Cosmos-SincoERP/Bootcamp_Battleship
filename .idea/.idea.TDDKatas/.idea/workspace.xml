@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="🔴Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️ Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1">
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +39,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f9878f643c2ecf1b4ce73234de56c9754a451c835620eae85ca8babbcb5889c4/LateBoundTestFramework.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/AcorazadosTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/AcorazadosTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/AcorazadosTests.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -62,30 +67,6 @@
   }
 }]]></component>
   <component name="TaskManager">
-    <task id="LOCAL-00001" summary="🔴Si_LaHoraEs6_Debe_RetornarHacerEjercicio">
-      <option name="closed" value="true" />
-      <created>1762530509230</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1762530509230</updated>
-    </task>
-    <task id="LOCAL-00002" summary="💚Si_LaHoraEs6_Debe_RetornarHacerEjercicio">
-      <option name="closed" value="true" />
-      <created>1762531120128</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1762531120128</updated>
-    </task>
-    <task id="LOCAL-00003" summary="🔴 Si_LaHoraEs7_Debe_RetornarHacerLeerYEstudar">
-      <option name="closed" value="true" />
-      <created>1762533721456</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1762533721456</updated>
-    </task>
     <task id="LOCAL-00004" summary="💚 Si_LaHoraEs7_Debe_RetornarHacerLeerYEstudar">
       <option name="closed" value="true" />
       <created>1762533744943</created>
@@ -158,7 +139,7 @@
       <updated>1762827924642</updated>
       <workItem from="1762827924643" duration="25950000" />
       <workItem from="1763135552154" duration="18182000" />
-      <workItem from="1763165952569" duration="4781000" />
+      <workItem from="1763165952569" duration="7358000" />
     </task>
     <task id="LOCAL-00012" summary="delete PalindromosTest.cs">
       <option name="closed" value="true" />
@@ -464,7 +445,31 @@
       <option name="project" value="LOCAL" />
       <updated>1763480665382</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="💚 Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0">
+      <option name="closed" value="true" />
+      <created>1763481025640</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1763481025640</updated>
+    </task>
+    <task id="LOCAL-00051" summary="💙 Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0">
+      <option name="closed" value="true" />
+      <created>1763481237309</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1763481237309</updated>
+    </task>
+    <task id="LOCAL-00052" summary="❤️ Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1">
+      <option name="closed" value="true" />
+      <created>1763481339534</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1763481339534</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,9 +489,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=" SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion" />
-    <MESSAGE value=" SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion" />
-    <MESSAGE value="SiComproUnSacoDeArroz_ElPrecioTotalDelRecibo_DEBE_ser_2_49" />
     <MESSAGE value="SiComproUnSacoDeArroz_ElPrecioTotalDelRecibo_DEBE_ser_2_49" />
     <MESSAGE value=" (triangulacion) SiComproUnaSolaCifraDeAlgunProductoDelCatalogoElPrecioTotalDelRecibo_DEBE_ser_SuValorPor1Cifra" />
     <MESSAGE value=" SiCompro2KilosDeManzanas1CepilloDeDientesTodoAPrecioNormalElRecibo_DEBE_DevolverElDetalleDeLosArticulosYElPrecioTotalDeLos2" />
@@ -509,6 +511,9 @@
     <MESSAGE value=" Si_InicioElJuego_debe_ImprimirElTableroEnVacio" />
     <MESSAGE value=" Si_InicioElJuego_debe_ImprimirElTableroEnVacio" />
     <MESSAGE value="Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
+    <MESSAGE value=" Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
+    <MESSAGE value=" Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
+    <MESSAGE value="❤️ Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="❤️ Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1" />
   </component>
 </project>
