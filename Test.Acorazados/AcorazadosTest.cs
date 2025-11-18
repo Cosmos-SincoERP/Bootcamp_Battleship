@@ -200,6 +200,6 @@ public class JuegoAcorazado
 
     public void AgregarCañonero(int i, int i1)
     {
-        throw new NotImplementedException();
+        _tablero[7, 6] = "g";
     }
 }
