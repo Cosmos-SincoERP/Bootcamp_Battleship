@@ -137,6 +137,18 @@ public class AcorazadosTest
 
         juegoAcorazado.Mostrar().Should().BeEquivalentTo(juegoAcorazadoEsperado);
     }
+
+    [Fact]
+    public void Si_AgregoUnCañoneroEnPosicion_8_1_Debe_PosicionarseEn_8_1()
+    {
+        var juegoAcorazadoEsperado = new string[10, 10];
+        juegoAcorazadoEsperado[8, 1] = "g";
+
+        var juegoAcorazado = new JuegoAcorazado(10, 10);
+        juegoAcorazado.AgregarCañonero(8, 1);
+
+        juegoAcorazado.Mostrar().Should().BeEquivalentTo(juegoAcorazadoEsperado);
+    }
 }
 
 public class JuegoAcorazado
