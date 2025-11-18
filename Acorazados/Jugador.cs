@@ -13,10 +13,14 @@ public class Jugador
 
     public void AgregarAcorazado(string tipoBarco, int x, int y)
     {
+        if (!string.IsNullOrEmpty(ObtenerCasilla(x, y)))
+        {
+            throw new ArgumentException("Ya existe un acorazado en esa posicion");
+        }
         Tablero[x, y] = "g";
     }
 
-    public object ObtenerCasilla(int x, int y)
+    public string ObtenerCasilla(int x, int y)
     {
         return  Tablero[x, y];
     }

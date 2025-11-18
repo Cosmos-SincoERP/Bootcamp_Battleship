@@ -38,6 +38,6 @@ public class AcorazadosTests
         jugador.AgregarAcorazado("Cañonero", 1, 1);
         
         Action act =()=> jugador.AgregarAcorazado("Cañonero", 1, 1);
-        act.Should().Throw<ArgumentException>().WithMessage("*ya existe un acorazado en esa posicion*");
+        act.Should().Throw<ArgumentException>().WithMessage("*Ya existe un acorazado en esa posicion*");
     }
 }
