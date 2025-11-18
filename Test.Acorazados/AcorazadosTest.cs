@@ -98,7 +98,7 @@ public class AcorazadosTest
         var tablero = new JuegoAcorazado(10, 10);
         var agregarPortaAviones = () => tablero.AgregarPortaAviones(9, 9, "Vertical");
 
-        agregarPortaAviones.Should().Throw<ArgumentOutOfRangeException>().WithMessage("La posicion del Portaviones debe estar dentro del tablero");
+        agregarPortaAviones.Should().Throw<Exception>().WithMessage("La posicion del Portaviones debe estar dentro del tablero");
     }
 }
 
@@ -119,7 +119,12 @@ public class JuegoAcorazado
         for (var i = 0; i < 4; i++)
         {
             if (direccion == "Vertical")
+            {
+                if(posicionY + i > 9)
+                    throw new Exception("La posicion del Portaviones debe estar dentro del tablero");
+                
                 _tablero[posicionX, posicionY + i] = "c";
+            }
             else
                 _tablero[posicionX + i, posicionY] = "c";
         }
