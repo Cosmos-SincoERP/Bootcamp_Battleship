@@ -43,6 +43,22 @@ public class AcorazadosTest
 
         tableroActual.Should().BeEquivalentTo(tableroExperado);
     }
+    
+    [Fact]
+    public void Si_SeUnPortaAvionesEnLaPosicionInicial0_0DeFormaHorizontal_Debe_LaPosicionFinalSer3_0()
+    {
+        var tableroExperado = new string[10, 10];
+        tableroExperado[0, 0] = "c";
+        tableroExperado[1, 0] = "c";
+        tableroExperado[2, 0] = "c";
+        tableroExperado[3, 0] = "c";
+        var tablero = new JuegoAcorazado(10, 10);
+        tablero.AgregarPortaAviones(0, 0, "Horizontal");
+
+        var tableroActual = tablero.Mostrar();
+
+        tableroActual.Should().BeEquivalentTo(tableroExperado);
+    }
 }
 
 public class JuegoAcorazado
@@ -57,12 +73,22 @@ public class JuegoAcorazado
     }
 
 
-    public void AgregarPortaAviones(int posicionX, int posicionY, string vertical)
+    public void AgregarPortaAviones(int posicionX, int posicionY, string direccion)
     {
-        _tablero[0, 0] = "c";
-        _tablero[0, 1] = "c";
-        _tablero[0, 2] = "c";
-        _tablero[0, 3] = "c";
+        if (direccion == "Vertical")
+        {
+            _tablero[0, 0] = "c";
+            _tablero[0, 1] = "c";
+            _tablero[0, 2] = "c";
+            _tablero[0, 3] = "c";
+        }
+        else
+        {
+            _tablero[0, 0] = "c";
+            _tablero[1, 0] = "c";
+            _tablero[2, 0] = "c";
+            _tablero[3, 0] = "c";
+        }
     }
 
     public string[,] Mostrar()
