@@ -76,6 +76,12 @@ public class Acorazado
                 _tablero[posicionX - 2, posicionY] = ((char)nave).ToString();
                 _tablero[posicionX - 3, posicionY] = ((char)nave).ToString();
             }
+            else if (orientacion == Orientacion.Abajo)
+            {
+                _tablero[posicionX + 1, posicionY] = ((char)nave).ToString();
+                _tablero[posicionX + 2, posicionY] = ((char)nave).ToString();
+                _tablero[posicionX + 3, posicionY] = ((char)nave).ToString();
+            }
 
             else
             {
