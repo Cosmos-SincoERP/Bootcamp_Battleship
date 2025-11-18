@@ -81,7 +81,7 @@ public class AcorazadosTests
     [Fact]
     public void Si_CreoUnDestructorEnLaPosicion21ConDireccionIzquierda_Debe_LasCasillas21_11_01_Tenerd()
     {
-        jugador.AgregarAcorazado(Acorazado.Destructor, 1, 1, Direccion.Izquierda);
+        jugador.AgregarAcorazado(Acorazado.Destructor, 2, 1, Direccion.Izquierda);
 
         jugador.ObtenerCasilla(0, 1).Should().Be("d");
         jugador.ObtenerCasilla(1, 1).Should().Be("d");
