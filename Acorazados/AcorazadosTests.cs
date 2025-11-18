@@ -60,4 +60,16 @@ public class AcorazadosTests
         
         act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*La posicion no existe en el tablero*");
     }
+
+    [Fact]
+    public void Si_CreoUnDestructorEnLaPosicion11_Debe_LaCasilla11Tenerd()
+    {
+        var jugador = new Jugador("Jugador 1");
+
+        jugador.AgregarAcorazado("Destructor", 1, 1);
+
+        jugador.ObtenerCasilla(1, 1).Should().Be("d");
+        jugador.ObtenerCasilla(1, 2).Should().Be("d");
+        jugador.ObtenerCasilla(1, 3).Should().Be("d");
+    }
 }
