@@ -9,25 +9,24 @@ public class Acorazado
 
     public string Imprimir()
     {
-
+        const string separador = "  +---+---+---+---+---+---+---+---+---+---+";
         string resultado = "    0   1   2   3   4   5   6   7   8   9\n";
         for (int i = 0; i < _tablero.GetLength(0); i++)
         {
-            resultado += "  +---+---+---+---+---+---+---+---+---+---+\n";
-            
+            resultado += $"{separador}\n";
             resultado += $"{i} |";
             
             for (int j = 0; j < _tablero.GetLength(1); j++)
             {
-                if (_tablero[i, j] == "" || _tablero[i,j] == null) _tablero[i, j] = " ";
-                resultado += $" {_tablero[i,j]} |";
-                
+                if (!string.IsNullOrEmpty(_tablero[i, j]))
+                    resultado += $" {_tablero[i,j]} |";
+                else   
+                    resultado += "   |";
             }
             resultado += "\n";
             
         }
-
-        resultado += "  +---+---+---+---+---+---+---+---+---+---+";
+        resultado += separador;
         
         return resultado;
         
