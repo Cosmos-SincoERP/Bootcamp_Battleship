@@ -20,7 +20,10 @@ public class AcorazadosTest
         new object[] { 5, 5, "Horizontal", 5, 5 }
     };
     
-
+    public static IEnumerable<object[]> DatosDestructores => new List<object[]>
+    {
+        new object[] { 2, 2, "Vertical", new[] { new[] { 2, 2 }, new[] { 2, 3 }, new[] { 2, 4 } } },
+    };
 
     [Fact]
     public void Si_SeInciaUnTableroUnTamaño0_0_Debe_MostrarUnaExcepcion()
@@ -64,7 +67,7 @@ public class AcorazadosTest
     }
 
     [Theory]
-    [MemberData((nameof(DatosIncorrectosPortaAviones)))]
+    [MemberData(nameof(DatosIncorrectosPortaAviones))]
     public void Si_AgregoUnPortavionesEnUnPosicionIncorrecta_Debe_LanzarExcepcion(int posicionXInicial,
         int posicionYInicial,
         string orientacion, int tamañoX, int tamañoY)
@@ -78,19 +81,22 @@ public class AcorazadosTest
             .WithMessage("La posicion del Portaviones debe estar dentro del tablero");
     }
 
-    [Fact]
-    public void Si_AgregoUnDestructorEnLaPosicion0_0_Horizontal_Debe_LaPosicionFinaEstarEn2_0()
+    [Theory]
+    [MemberData(nameof(DatosDestructores))]
+    public void Si_AgregoUnDestructorEnElTablero_De_PodersePosicionar(int posicionXInicial, int posicionYInicial,
+        string orientacion, int[][] posicionesEsperadas)
     {
-        var tableroEsperado = new string[10, 10];
-        tableroEsperado[0, 0] = "d";
-        tableroEsperado[1, 0] = "d";
-        tableroEsperado[2, 0] = "d";
-
+        var juegoAcorazadoEsperado = new string[10, 10];
+        foreach (var posicionEsperada in posicionesEsperadas)
+        {
+            juegoAcorazadoEsperado[posicionEsperada[0], posicionEsperada[1]] = "d";
+        }
         var juegoAcorazado = new JuegoAcorazado(10, 10);
 
-        juegoAcorazado.AgregarDestructor(0, 0, "Horizontal");
 
-        juegoAcorazado.Mostrar().Should().BeEquivalentTo(tableroEsperado);
+        juegoAcorazado.AgregarDestructor(posicionXInicial, posicionYInicial, orientacion);
+
+        juegoAcorazado.Mostrar().Should().BeEquivalentTo(juegoAcorazadoEsperado);
     }
 }
 
