@@ -19,7 +19,7 @@ public class AcorazadosTest
 
         tablero.Should().NotThrow();
     }
-    
+
     [Fact]
     public void Si_SeIniciaUnTableroConUnTamañoMenorA0_Debe_LanzarExcepcion()
     {
@@ -33,7 +33,7 @@ public class Tablero
 {
     public Tablero(int tamañoEnX, int tamañoEnY)
     {
-        if (tamañoEnX == 0 && tamañoEnY == 0)
+        if (tamañoEnX <= 0 && tamañoEnY <= 0)
             throw new ArgumentOutOfRangeException();
     }
 }
