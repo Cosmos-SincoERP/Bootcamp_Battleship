@@ -69,12 +69,14 @@ public class AcorazadosTests
 
 public class Acorazado
 {
+    private string barco = " ";
+    
     public string Imprimir()
     {
         return
             "    0   1   2   3   4   5   6   7   8   9\n" +
             "  +---+---+---+---+---+---+---+---+---+---+\n" +
-            "0 |   |   |   |   |   |   |   |   |   |   |\n" +
+            $"0 | {barco} |   |   |   |   |   |   |   |   |   |\n" +
             "  +---+---+---+---+---+---+---+---+---+---+\n" +
             "1 |   |   |   |   |   |   |   |   |   |   |\n" +
             "  +---+---+---+---+---+---+---+---+---+---+\n" +
@@ -98,6 +100,7 @@ public class Acorazado
 
     public void PosicionarNave(int i, int i1)
     {
-        throw new NotImplementedException();
+
+        barco = "c";
     }
 }
