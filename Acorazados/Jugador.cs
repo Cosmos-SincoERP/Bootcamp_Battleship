@@ -9,7 +9,8 @@ public enum Acorazado
 public enum Direccion
 {
     Arriba, 
-    Derecha
+    Derecha,
+    Izquierda
 }
 public class Jugador
 {
