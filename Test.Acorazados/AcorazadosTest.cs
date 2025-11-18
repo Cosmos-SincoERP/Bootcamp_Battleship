@@ -222,6 +222,9 @@ public class JuegoAcorazado
 
     public void AgregarCañonero(int posicionEnX, int posicionEnY)
     {
+        if (posicionEnX > _tablero.GetLength(0) - 1 || posicionEnY > _tablero.GetLength(1) - 1)
+            throw new Exception("La posicion del Cañonero debe estar dentro del tablero");
+
         _tablero[posicionEnX, posicionEnY] = "g";
     }
 }
