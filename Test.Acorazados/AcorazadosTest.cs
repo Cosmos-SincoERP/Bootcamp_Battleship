@@ -24,6 +24,7 @@ public class AcorazadosTest
     {
         new object[] { 2, 2, "Vertical", new[] { new[] { 2, 2 }, new[] { 2, 3 }, new[] { 2, 4 } } },
         new object[] { 2, 2, "Horizontal", new[] { new[] { 2, 2 }, new[] { 3, 2 }, new[] { 4, 2 } } },
+        new object[] { 5, 6, "Vertical", new[] { new[] { 5, 6 }, new[] { 5, 7 }, new[] { 5, 8 } } },
     };
 
     [Fact]
