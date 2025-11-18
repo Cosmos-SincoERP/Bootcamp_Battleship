@@ -154,9 +154,10 @@ public class JuegoAcorazado
         }
         else
         {
-            _tablero[2, 2] = "d";
-            _tablero[3, 2] = "d";
-            _tablero[4, 2] = "d";
+            for (int i = 0; i < 3; i++)
+            {
+                _tablero[posicionEnX + i, posicionEnY] = "d";
+            }
         }
     }
 }
