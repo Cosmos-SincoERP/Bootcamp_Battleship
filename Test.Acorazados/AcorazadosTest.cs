@@ -24,25 +24,25 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeInciaUnTableroUnTamaño0_0_Debe_MostrarUnaExcepcion()
     {
-        var tablero = () => new JuegoAcorazado(0, 0);
+        var juegoAcorazado = () => new JuegoAcorazado(0, 0);
 
-        tablero.Should().Throw<ArgumentOutOfRangeException>();
+        juegoAcorazado.Should().Throw<ArgumentOutOfRangeException>();
     }
 
     [Fact]
     public void Si_SeIniciaUnTableroUnTamaño10_10_NoDebe_LanzarExcepcion()
     {
-        var tablero = () => new JuegoAcorazado(10, 10);
+        var juegoAcorazado = () => new JuegoAcorazado(10, 10);
 
-        tablero.Should().NotThrow();
+        juegoAcorazado.Should().NotThrow();
     }
 
     [Fact]
     public void Si_SeIniciaUnTableroConUnTamañoMenorA0_Debe_LanzarExcepcion()
     {
-        var tablero = () => new JuegoAcorazado(-1, -1);
+        var juegoAcorazado = () => new JuegoAcorazado(-1, -1);
 
-        tablero.Should().Throw<ArgumentOutOfRangeException>();
+        juegoAcorazado.Should().Throw<ArgumentOutOfRangeException>();
     }
 
     [Theory]
@@ -50,16 +50,16 @@ public class AcorazadosTest
     public void Si_SeAgregaUnPortaAvionEnElTablero_Debe_PodersePosicionar(int posicionXInicial, int posicionYInicial,
         string orientacion, int[][] posicionesEsperadas)
     {
-        var tableroEsperado = new string[10, 10];
+        var juegoAcorazadoEsperado = new string[10, 10];
         foreach (var posicionEsperada in posicionesEsperadas)
         {
-            tableroEsperado[posicionEsperada[0], posicionEsperada[1]] = "c";
+            juegoAcorazadoEsperado[posicionEsperada[0], posicionEsperada[1]] = "c";
         }
 
-        var tablero = new JuegoAcorazado(10, 10);
-        tablero.AgregarPortaAviones(posicionXInicial, posicionYInicial, orientacion);
+        var juegoAcorazado = new JuegoAcorazado(10, 10);
+        juegoAcorazado.AgregarPortaAviones(posicionXInicial, posicionYInicial, orientacion);
 
-        tablero.Mostrar().Should().BeEquivalentTo(tableroEsperado);
+        juegoAcorazado.Mostrar().Should().BeEquivalentTo(juegoAcorazadoEsperado);
     }
 
     [Theory]
