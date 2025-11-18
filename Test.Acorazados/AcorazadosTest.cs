@@ -138,7 +138,7 @@ public class JuegoAcorazado
         {
             if (direccion == "Vertical")
             {
-                if(posicionY + i > 9)
+                if(posicionY + i > _tablero.GetLength(1) - 1)
                     throw new Exception("La posicion del Portaviones debe estar dentro del tablero");
                 
                 _tablero[posicionX, posicionY + i] = "c";
