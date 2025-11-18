@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️ Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1">
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💚 Si_InicioElJuegoYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarDestructorPosicionadoEn0_0">
       <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +36,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5e14a4e27990972fa4ae94975603bd298aaf328ee083c03b10569ee4724d57/TestInvoker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/de8a243f75215d958afa80cf80a41b4981a44efea7db93bffcdaf7bd6ba378c0/Number.Parsing.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f9878f643c2ecf1b4ce73234de56c9754a451c835620eae85ca8babbcb5889c4/LateBoundTestFramework.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/Acorazado.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/AcorazadosTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/AcorazadosTests.cs" root0="SKIP_HIGHLIGHTING" />
@@ -67,38 +67,6 @@
   }
 }]]></component>
   <component name="TaskManager">
-    <task id="LOCAL-00004" summary="💚 Si_LaHoraEs7_Debe_RetornarHacerLeerYEstudar">
-      <option name="closed" value="true" />
-      <created>1762533744943</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1762533744943</updated>
-    </task>
-    <task id="LOCAL-00005" summary="🔵 Si_LaHoraEs7_Debe_RetornarHacerLeerYEstudar">
-      <option name="closed" value="true" />
-      <created>1762533799175</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1762533799175</updated>
-    </task>
-    <task id="LOCAL-00006" summary="💚 SiLaHoraEs8_Debe_RetornarDesayunar">
-      <option name="closed" value="true" />
-      <created>1762534805099</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1762534805099</updated>
-    </task>
-    <task id="LOCAL-00007" summary="🔴 SiLaHoraEs8_Debe_RetornarDesayunar">
-      <option name="closed" value="true" />
-      <created>1762534820537</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1762534820537</updated>
-    </task>
     <task id="LOCAL-00008" summary="💚 SiLaHoraEs8_Debe_RetornarDesayunar">
       <option name="closed" value="true" />
       <created>1762535371500</created>
@@ -139,7 +107,7 @@
       <updated>1762827924642</updated>
       <workItem from="1762827924643" duration="25950000" />
       <workItem from="1763135552154" duration="18182000" />
-      <workItem from="1763165952569" duration="7358000" />
+      <workItem from="1763165952569" duration="9964000" />
     </task>
     <task id="LOCAL-00012" summary="delete PalindromosTest.cs">
       <option name="closed" value="true" />
@@ -469,7 +437,39 @@
       <option name="project" value="LOCAL" />
       <updated>1763481339534</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="💚Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1">
+      <option name="closed" value="true" />
+      <created>1763483298553</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1763483298553</updated>
+    </task>
+    <task id="LOCAL-00054" summary="💙Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1">
+      <option name="closed" value="true" />
+      <created>1763483848263</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1763483848263</updated>
+    </task>
+    <task id="LOCAL-00055" summary="❤️Si_InicioElJuegoYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarDestructorPosicionadoEn0_0">
+      <option name="closed" value="true" />
+      <created>1763484506504</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1763484506504</updated>
+    </task>
+    <task id="LOCAL-00056" summary="💚 Si_InicioElJuegoYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarDestructorPosicionadoEn0_0">
+      <option name="closed" value="true" />
+      <created>1763485504649</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1763485504649</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,10 +489,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="SiComproUnSacoDeArroz_ElPrecioTotalDelRecibo_DEBE_ser_2_49" />
-    <MESSAGE value=" (triangulacion) SiComproUnaSolaCifraDeAlgunProductoDelCatalogoElPrecioTotalDelRecibo_DEBE_ser_SuValorPor1Cifra" />
-    <MESSAGE value=" SiCompro2KilosDeManzanas1CepilloDeDientesTodoAPrecioNormalElRecibo_DEBE_DevolverElDetalleDeLosArticulosYElPrecioTotalDeLos2" />
-    <MESSAGE value="SiCompro2KilosDeManzanas1CepilloDeDientesTodoAPrecioNormalElRecibo_DEBE_DevolverElDetalleDeLosArticulosYElPrecioTotalDeLos2" />
     <MESSAGE value="SiCompro1KiloDeManzanasConDescuentoElRecibo_DEBE_AplicarElDescuentoYDevolverElValorTotalConElDescuento" />
     <MESSAGE value=" descuentos" />
     <MESSAGE value=" preparación del entorno" />
@@ -514,6 +510,10 @@
     <MESSAGE value=" Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
     <MESSAGE value=" Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
     <MESSAGE value="❤️ Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="❤️ Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1" />
+    <MESSAGE value="Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1" />
+    <MESSAGE value="Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1" />
+    <MESSAGE value="❤️Si_InicioElJuegoYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarDestructorPosicionadoEn0_0" />
+    <MESSAGE value=" Si_InicioElJuegoYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarDestructorPosicionadoEn0_0" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Si_InicioElJuegoYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarDestructorPosicionadoEn0_0" />
   </component>
 </project>

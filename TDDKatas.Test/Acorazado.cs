@@ -32,7 +32,7 @@ public class Acorazado
         return resultado;
     }
 
-    public void PosicionarNave(int posicionX, int posicionY, TiposNave nave)
+    public void PosicionarNave(int posicionX, int posicionY, TiposNave nave, Orientacion orientacion)
     {
         _posicionY = posicionY;
         _posicionX = posicionX;
@@ -43,6 +43,13 @@ public class Acorazado
             _tablero[posicionX, posicionY+1] = ((char)nave).ToString();
             _tablero[posicionX, posicionY+2] = ((char)nave).ToString();
 
+        }
+
+        if (nave == TiposNave.PortaAviones)
+        {
+            _tablero[posicionX, posicionY+1] = ((char)nave).ToString();
+            _tablero[posicionX, posicionY+2] = ((char)nave).ToString();
+            _tablero[posicionX, posicionY+3] = ((char)nave).ToString();
         }
             
     }
