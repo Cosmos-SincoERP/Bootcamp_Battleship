@@ -135,7 +135,12 @@ public class JuegoAcorazado
                 _tablero[posicionX, posicionY + i] = "c";
             }
             else
+            {
+                if(posicionX + i > 9)
+                    throw new Exception("La posicion del Portaviones debe estar dentro del tablero");
+                
                 _tablero[posicionX + i, posicionY] = "c";
+            }
         }
     }
 
