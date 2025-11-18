@@ -14,7 +14,14 @@ public class Jugador
     public void AgregarAcorazado(string tipoBarco, int x, int y)
     {
         ValidacionesTablero(x, y);
-        Tablero[x, y] = "g";
+        if(tipoBarco == "Cañonero")
+            Tablero[x, y] = "g";
+        else
+        {
+            Tablero[x, y] = "d";
+            Tablero[x, y+1] = "d";
+            Tablero[x, y+2] = "d";
+        }
     }
 
     private void ValidacionesTablero(int x, int y)

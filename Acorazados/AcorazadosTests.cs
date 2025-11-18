@@ -62,7 +62,7 @@ public class AcorazadosTests
     }
 
     [Fact]
-    public void Si_CreoUnDestructorEnLaPosicion11_Debe_LaCasilla11Tenerd()
+    public void Si_CreoUnDestructorEnLaPosicion11_Debe_LasCasilla11_12_13_Tenerd()
     {
         var jugador = new Jugador("Jugador 1");
 
