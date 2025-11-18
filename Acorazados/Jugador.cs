@@ -34,7 +34,9 @@ public class Jugador
             if (direccion.Equals(Direccion.Derecha))
             {
                 Tablero[fila, columna] = "d";
+                ValidacionesTablero(fila, columna+1);
                 Tablero[fila, columna+1] = "d";
+                ValidacionesTablero(fila, columna+2);
                 Tablero[fila, columna+2] = "d";
             }
             else if (direccion.Equals(Direccion.Izquierda))
@@ -62,7 +64,7 @@ public class Jugador
 
     private void ValidacionesTablero(int x, int y)
     {
-        if (ObtenerLongitudTablero(0) < x || ObtenerLongitudTablero(1) < y || x < 0 || y < 0)
+        if (ObtenerLongitudTablero(0) - 1 < x || ObtenerLongitudTablero(1) - 1 < y || x < 0 || y < 0)
         {
             throw new ArgumentOutOfRangeException("No es posible ubicar el acorazado en esa direccion");
         }
