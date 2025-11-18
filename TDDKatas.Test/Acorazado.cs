@@ -66,9 +66,18 @@ public class Acorazado
 
         if (nave == TiposNave.PortaAviones)
         {
-            _tablero[posicionX, posicionY+1] = ((char)nave).ToString();
-            _tablero[posicionX, posicionY+2] = ((char)nave).ToString();
-            _tablero[posicionX, posicionY+3] = ((char)nave).ToString();
+            if (orientacion == Orientacion.Derecha)
+            {
+                _tablero[posicionX, posicionY+1] = ((char)nave).ToString();
+                _tablero[posicionX, posicionY+2] = ((char)nave).ToString();
+                _tablero[posicionX, posicionY+3] = ((char)nave).ToString();
+            }
+            else
+            {
+                _tablero[posicionX, posicionY-1] = ((char)nave).ToString();
+                _tablero[posicionX, posicionY-2] = ((char)nave).ToString();
+                _tablero[posicionX, posicionY-3] = ((char)nave).ToString();
+            }
         }
             
     }
