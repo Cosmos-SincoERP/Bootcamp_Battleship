@@ -116,10 +116,10 @@ public class JuegoAcorazado
         }
         else
         {
-            _tablero[0, 0] = "c";
-            _tablero[1, 0] = "c";
-            _tablero[2, 0] = "c";
-            _tablero[3, 0] = "c";
+            for (int i = 0; i < 4; i++)
+            {
+                _tablero[posicionX + i, posicionY] = "c";
+            }
         }
     }
 
