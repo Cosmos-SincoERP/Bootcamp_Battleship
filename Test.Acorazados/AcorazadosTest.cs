@@ -30,7 +30,8 @@ public class AcorazadosTest
 
     public static IEnumerable<object[]> DatosIncorrectosDestructores => new List<object[]>
     {
-        new object[] { 9, 8, "Vertical", 10, 10 }
+        new object[] { 9, 8, "Vertical", 10, 10 },
+        new object[] { 8, 5, "Horizontal", 10, 10 }
     };
 
     [Fact]
