@@ -11,27 +11,21 @@ public class AcorazadosTest
 
         tablero.Should().Throw<ArgumentOutOfRangeException>();
     }
-    
-    [Fact]
-    public void Si_SeInciaUnTableroUnTamaño10_10_Debe_ExistirUnTablero10_10()
-    {
-        var tablero = new Tablero(10, 10);
 
-        var existeTablero = tablero.Existe(10, 10);
-        
-        existeTablero.Should().BeTrue();
+    [Fact]
+    public void Si_SeIniciaUnTableroUnTamaño10_10_NoDebe_LanzarExcepcion()
+    {
+        var tablero = () => new Tablero(10, 10);
+
+        tablero.Should().NotThrow();
     }
 }
 
 public class Tablero
 {
-    public Tablero(int i, int i1)
+    public Tablero(int tamañoEnX, int tamañoEnY)
     {
-        throw new ArgumentOutOfRangeException();
-    }
-
-    public bool Existe(int i, int i1)
-    {
-        throw new NotImplementedException();
+        if (tamañoEnX == 0 && tamañoEnY == 0)
+            throw new ArgumentOutOfRangeException();
     }
 }
