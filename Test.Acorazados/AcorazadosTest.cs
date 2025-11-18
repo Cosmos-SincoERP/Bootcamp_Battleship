@@ -123,7 +123,7 @@ public class AcorazadosTest
             juegoAcorazado.AgregarDestructor(posicionXInicial, posicionYInicial, orientacion);
 
         agregarDestructores.Should().Throw<Exception>()
-            .WithMessage("La posicion del destructor debe estar dentro del tablero");
+            .WithMessage("La posicion del Destructor debe estar dentro del tablero");
     }
 }
 
@@ -144,12 +144,12 @@ public class JuegoAcorazado
         {
             if (direccion == "Vertical")
             {
-                ValidarPosicionDelPortaAviones(posicionY, i, 0);
+                ValidarPosicionDeLaNave(posicionY, i, 1, "Portaviones");
                 _tablero[posicionX, posicionY + i] = "c";
             }
             else
             {
-                ValidarPosicionDelPortaAviones(posicionX, i, 1);
+                ValidarPosicionDeLaNave(posicionX, i, 0, "Portaviones");
                 _tablero[posicionX + i, posicionY] = "c";
             }
         }
@@ -161,8 +161,7 @@ public class JuegoAcorazado
         {
             for (int i = 0; i < 3; i++)
             {
-                if (posicionEnY + i > _tablero.GetLength(1) - 1)
-                    throw new Exception("La posicion del destructor debe estar dentro del tablero");
+                ValidarPosicionDeLaNave(posicionEnY, i, 1, "Destructor");
                 _tablero[posicionEnX, posicionEnY + i] = "d";
             }
         }
@@ -170,8 +169,7 @@ public class JuegoAcorazado
         {
             for (int i = 0; i < 3; i++)
             {
-                if (posicionEnX + i > _tablero.GetLength(0) - 1)
-                    throw new Exception("La posicion del destructor debe estar dentro del tablero");
+                ValidarPosicionDeLaNave(posicionEnX, i, 0, "Destructor");
                 _tablero[posicionEnX + i, posicionEnY] = "d";
             }
         }
@@ -182,9 +180,9 @@ public class JuegoAcorazado
         return _tablero;
     }
 
-    private void ValidarPosicionDelPortaAviones(int posicion, int i, int dimension)
+    private void ValidarPosicionDeLaNave(int posicion, int i, int dimension, string nave)
     {
         if (posicion + i > _tablero.GetLength(dimension) - 1)
-            throw new Exception("La posicion del Portaviones debe estar dentro del tablero");
+            throw new Exception($"La posicion del {nave} debe estar dentro del tablero");
     }
 }
