@@ -36,12 +36,12 @@ public class Jugador
                 Tablero[fila, columna] = "d";
                 ValidacionesTablero(fila, columna+1);
                 Tablero[fila, columna+1] = "d";
-                ValidacionesTablero(fila, columna+2);
                 Tablero[fila, columna+2] = "d";
             }
             else if (direccion.Equals(Direccion.Izquierda))
             {
                 Tablero[fila, columna] = "d";
+                ValidacionesTablero(fila, columna-1);
                 Tablero[fila, columna-1] = "d";
                 Tablero[fila, columna-2] = "d";
             }
@@ -50,7 +50,6 @@ public class Jugador
                 Tablero[fila, columna] = "d";
                 ValidacionesTablero(fila+1, columna);
                 Tablero[fila+1, columna] = "d";
-                ValidacionesTablero(fila+2, columna);
                 Tablero[fila+2, columna] = "d";
             }
             else
@@ -58,7 +57,6 @@ public class Jugador
                 Tablero[fila, columna] = "d";
                 ValidacionesTablero(fila-1, columna);
                 Tablero[fila-1, columna] = "d";
-                ValidacionesTablero(fila - 2, columna);
                 Tablero[fila-2, columna] = "d";
             }
         }
