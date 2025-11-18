@@ -28,6 +28,11 @@ public class AcorazadosTest
         new object[] { 3, 8, "Horizontal", new[] { new[] { 3, 8 }, new[] { 4, 8 }, new[] { 5, 8 } } }
     };
 
+    public static IEnumerable<object[]> DatosIncorrectosDestructores => new List<object[]>
+    {
+        new object[] { 9, 8, "Vertical", 10, 10 }
+    };
+
     [Fact]
     public void Si_SeInciaUnTableroUnTamaño0_0_Debe_MostrarUnaExcepcion()
     {
@@ -102,6 +107,21 @@ public class AcorazadosTest
 
         juegoAcorazado.Mostrar().Should().BeEquivalentTo(juegoAcorazadoEsperado);
     }
+    
+    [Theory]
+    [MemberData(nameof(DatosIncorrectosDestructores))]
+    public void Si_AgregoUnDestructorEnUnPosicionIncorrecta_Debe_LanzarExcepcion(int posicionXInicial,
+        int posicionYInicial,
+        string orientacion, int tamañoX, int tamañoY)
+    {
+        var juegoAcorazado = new JuegoAcorazado(tamañoX, tamañoY);
+
+        var agregarDestructores = () =>
+            juegoAcorazado.AgregarDestructor(posicionXInicial, posicionYInicial, orientacion);
+
+        agregarDestructores.Should().Throw<Exception>()
+            .WithMessage("La posicion del destructor debe estar dentro del tablero");
+    }
 }
 
 public class JuegoAcorazado
@@ -132,17 +152,6 @@ public class JuegoAcorazado
         }
     }
 
-    public string[,] Mostrar()
-    {
-        return _tablero;
-    }
-
-    private void ValidarPosicionDelPortaAviones(int posicion, int i, int dimension)
-    {
-        if (posicion + i > _tablero.GetLength(dimension) - 1)
-            throw new Exception("La posicion del Portaviones debe estar dentro del tablero");
-    }
-
     public void AgregarDestructor(int posicionEnX, int posicionEnY, string direccion)
     {
         if (direccion == "Vertical")
@@ -159,5 +168,16 @@ public class JuegoAcorazado
                 _tablero[posicionEnX + i, posicionEnY] = "d";
             }
         }
+    }
+
+    public string[,] Mostrar()
+    {
+        return _tablero;
+    }
+
+    private void ValidarPosicionDelPortaAviones(int posicion, int i, int dimension)
+    {
+        if (posicion + i > _tablero.GetLength(dimension) - 1)
+            throw new Exception("La posicion del Portaviones debe estar dentro del tablero");
     }
 }
