@@ -113,4 +113,9 @@ public class Acorazado
         _jugadores.Add(player);
         _estrategia.Add(player, new List<TiposNave>());
     }
+
+    public object Disparar(int i, int i1)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -597,4 +597,34 @@ public class AcorazadosTests
         resultado.Should().Be("TURNO JUGADOR 1");
 
     }
+    
+     
+    [Fact]
+    public void Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletasYJugador1DisparaAUnCanioneroDelJugador2_Debe_RetornarBarcoHundido()
+    {
+        var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.AgregarJugador("Player 2");
+        acorazado.PosicionarNave(10, 10, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(10, 9, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(10, 8, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(10, 7, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.Iniciar();
+
+        
+        var resultado = acorazado.Disparar(10, 10);
+        
+        resultado.Should().Be("BARCO HUNDIDO");
+
+    }
 }
