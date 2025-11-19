@@ -11,21 +11,21 @@ public class JuegoAcorazado
             foreach (var nave in naves)
             {
                 if (nave.Tipo == "Cañonero")
-                    _tablero[nave.PosicionX, nave.PosicionY] = 'g';
+                    AsignarPosicionDeLaNave(nave.PosicionX, nave.PosicionY, 'g');
                 else if (nave.Tipo == "Portaviones")
                 {
                     if (nave.Orientacion == "Horizontal")
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            _tablero[nave.PosicionX + i, nave.PosicionY] = 'c';
+                            AsignarPosicionDeLaNave(nave.PosicionX + i, nave.PosicionY, 'c');
                         }
                     }
                     else
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            _tablero[nave.PosicionX, nave.PosicionY + i] = 'c';
+                            AsignarPosicionDeLaNave(nave.PosicionX, nave.PosicionY + i, 'c');
                         }
                     }
                 }
@@ -35,20 +35,25 @@ public class JuegoAcorazado
                     {
                         for (int i = 0; i < 3; i++)
                         {
-                            _tablero[nave.PosicionX, nave.PosicionY + i] = 'd';
+                            AsignarPosicionDeLaNave(nave.PosicionX, nave.PosicionY + i, 'd');
                         }
                     }
                     else
                     {
                         for (int i = 0; i < 3; i++)
                         {
-                            _tablero[nave.PosicionX + i, nave.PosicionY] = 'd';
+                            AsignarPosicionDeLaNave(nave.PosicionX + i, nave.PosicionY, 'd');
                         }
                     }
                 }
             }
 
         _jugadores.Add(_jugadores.Count == 1 ? "Jugador 2" : "Jugador 1");
+    }
+
+    private void AsignarPosicionDeLaNave(int posicionX, int posicionY, char valorNave)
+    {
+        _tablero[posicionX,posicionY] = valorNave;
     }
 
     public List<string> MostrarJugadores()

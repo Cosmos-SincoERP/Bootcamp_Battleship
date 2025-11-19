@@ -122,44 +122,6 @@ public class AcorazadosTest
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
 
-
-    [Fact]
-    public void Si_SeAgregaUnJugador_Debe_ColocarUnPortavionesEnLaPosicionInicial2_3()
-    {
-        var tamañoTablero = 10;
-        var tablero = new char[tamañoTablero, tamañoTablero];
-        tablero[2, 3] = 'c';
-
-        var tableroEsperado = TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
-        List<Nave> coordenadasPortaAvion = new()
-        {
-            new(2, 3, "Portaviones")
-        };
-
-        juegoAcorazado.AgregarJugador(coordenadasPortaAvion);
-
-        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
-    }
-
-    [Fact]
-    public void Si_SeAgregaUnJugador_Debe_ColocarUnDestructorEnLaPosicionInicial4_5()
-    {
-        var tamañoTablero = 10;
-        var tablero = new char[tamañoTablero, tamañoTablero];
-        tablero[4, 5] = 'd';
-        var tableroEsperado = TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
-        List<Nave> coordenadasDestructor = new()
-        {
-            new(4, 5, "Destructor")
-        };
-
-        juegoAcorazado.AgregarJugador(coordenadasDestructor);
-
-        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
-    }
-
     [Fact]
     public void
         Si_SeAgregaUnJugadoYColocaUnPortavionesConOrientacionHorizontalEnLaPosicionInicial2_3_Debe_LaPosicionFinalSer5_3()
@@ -175,7 +137,7 @@ public class AcorazadosTest
 
         List<Nave> coordenadasPortaAvion = new()
         {
-            new(2, 3, "Portaviones")
+            new(2, 3, "Portaviones", "Horizontal")
         };
 
         juegoAcorazado.AgregarJugador(coordenadasPortaAvion);
@@ -198,7 +160,7 @@ public class AcorazadosTest
 
         List<Nave> coordenadasPortaAvion = new()
         {
-            new(5, 2, "Portaviones")
+            new(5, 2, "Portaviones", "Horizontal")
         };
 
         juegoAcorazado.AgregarJugador(coordenadasPortaAvion);
