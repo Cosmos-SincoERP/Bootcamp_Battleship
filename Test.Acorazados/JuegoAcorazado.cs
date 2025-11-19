@@ -5,21 +5,8 @@ public class JuegoAcorazado
     private List<string> _jugadores = new();
     private char[,] _tablero = new char[10, 10];
 
-    public void AgregarJugador()
+    public void AgregarJugador(List<Nave>? naves = null)
     {
-        _jugadores.Add(_jugadores.Count == 1 ? "Jugador 2" : "Jugador 1");
-    }
-
-    public List<string> MostrarJugadores()
-    {
-        return _jugadores;
-    }
-
-    public void Iniciar(List<Nave>? naves = null)
-    {
-        if (_jugadores.Count != 2)
-            throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
-
         if (naves != null)
             foreach (var nave in naves)
             {
@@ -29,7 +16,22 @@ public class JuegoAcorazado
                     _tablero[nave.PosicionX, nave.PosicionY] = 'c';
                 else
                     _tablero[nave.PosicionX, nave.PosicionY] = 'd';
-            }
+            }   
+        
+        _jugadores.Add(_jugadores.Count == 1 ? "Jugador 2" : "Jugador 1");
+    }
+
+    public List<string> MostrarJugadores()
+    {
+        return _jugadores;
+    }
+
+    public void Iniciar()
+    {
+        if (_jugadores.Count != 2)
+            throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
+
+        
     }
 
     public string Imprimir()

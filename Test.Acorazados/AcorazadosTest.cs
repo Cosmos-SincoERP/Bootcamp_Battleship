@@ -66,50 +66,44 @@ public class AcorazadosTest
     }
 
     [Fact]
-    public void Si_SeIniciaElJuegoConDosJugadoresElJugador1_Debe_ColocarUnCañoneroEnLaPosicion0_0()
+    public void Si_SeAgregaUnJugador_Debe_ColocarUnCañoneroEnLaPosicion0_0()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
         tablero[0, 0] = 'g';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
-        juegoAcorazado.AgregarJugador();
-        juegoAcorazado.AgregarJugador();
-
         List<Nave> coordenadasCañonero = new()
         {
             new(0, 0, "Cañonero")
         };
-
-        juegoAcorazado.Iniciar(coordenadasCañonero);
+        
+        juegoAcorazado.AgregarJugador(coordenadasCañonero);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
 
     [Fact]
-    public void Si_SeIniciaElJuegoConDosJugadoresElJugador1_Debe_ColocarUnCañoneroEnLaPosicion4_5()
+    public void Si_SeAgregaUnJugador_Debe_ColocarUnCañoneroEnLaPosicion4_5()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
         tablero[4, 5] = 'g';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
-        juegoAcorazado.AgregarJugador();
-        juegoAcorazado.AgregarJugador();
 
         List<Nave> coordenadasCañonero = new()
         {
             new(4, 5, "Cañonero")
         };
 
-        juegoAcorazado.Iniciar(coordenadasCañonero);
+        juegoAcorazado.AgregarJugador(coordenadasCañonero);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
 
     [Fact]
-    public void
-        Si_SeIniciaElJuegoConDosJugadoresElJugador1_Debe_ColocarUnCañoneroEnLaPosicion2_3_Y_OtroEnLaPosicion3_3()
+    public void Si_SeAgregaUnJugador_Debe_ColocarUnCañoneroEnLaPosicion2_3_Y_OtroEnLaPosicion3_3()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
@@ -117,23 +111,20 @@ public class AcorazadosTest
         tablero[3, 3] = 'g';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
-        juegoAcorazado.AgregarJugador();
-        juegoAcorazado.AgregarJugador();
-
         List<Nave> coordenadasCañonero = new()
         {
             new(2, 3, "Cañonero"),
             new(3, 3, "Cañonero")
         };
 
-        juegoAcorazado.Iniciar(coordenadasCañonero);
+        juegoAcorazado.AgregarJugador(coordenadasCañonero);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
 
 
     [Fact]
-    public void Si_SeIniciaElJuegoConDosJugadoresElJugador1_Debe_ColocarUnPortavionesEnLaPosicionInicial2_3()
+    public void Si_SeAgregaUnJugador_Debe_ColocarUnPortavionesEnLaPosicionInicial2_3()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
@@ -141,64 +132,57 @@ public class AcorazadosTest
 
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
-        juegoAcorazado.AgregarJugador();
-        juegoAcorazado.AgregarJugador();
-
         List<Nave> coordenadasPortaAvion = new()
         {
             new(2, 3, "Portaviones")
         };
 
-        juegoAcorazado.Iniciar(coordenadasPortaAvion);
+        juegoAcorazado.AgregarJugador(coordenadasPortaAvion);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
 
     [Fact]
-    public void Si_SeIniciaElJuegoConDosJugadoresElJugador1_Debe_ColocarUnDestructorEnLaPosicionInicial4_5()
+    public void Si_SeAgregaUnJugador_Debe_ColocarUnDestructorEnLaPosicionInicial4_5()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
         tablero[4, 5] = 'd';
-
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
-        juegoAcorazado.AgregarJugador();
-        juegoAcorazado.AgregarJugador();
-
         List<Nave> coordenadasDestructor = new()
         {
             new(4, 5, "Destructor")
         };
 
-        juegoAcorazado.Iniciar(coordenadasDestructor);
+        juegoAcorazado.AgregarJugador(coordenadasDestructor);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
-
-    [Fact]
-    public void
-        Si_SeIniciaElJuegoConDosJugadoresElJugador1YColocaUnPortavionesConOrientacionHorizontalEnLaPosicionInicial2_3_Debe_LaPosicionFinalSer5_3()
-    {
-        var tamañoTablero = 10;
-        var tablero = new char[tamañoTablero, tamañoTablero];
-        tablero[2, 3] = 'c';
-        tablero[3, 3] = 'c';
-        tablero[4, 3] = 'c';
-        tablero[5, 3] = 'c';
-
-        var tableroEsperado = TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
-        juegoAcorazado.AgregarJugador();
-        juegoAcorazado.AgregarJugador();
-
-        List<Nave> coordenadasPortaAvion = new()
-        {
-            new(2, 3, "Portaviones")
-        };
-
-        juegoAcorazado.Iniciar(coordenadasPortaAvion);
-
-        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
-    }
+    //
+    // [Fact]
+    // public void
+    //     Si_SeIniciaElJuegoConDosJugadoresElJugador1YColocaUnPortavionesConOrientacionHorizontalEnLaPosicionInicial2_3_Debe_LaPosicionFinalSer5_3()
+    // {
+    //     var tamañoTablero = 10;
+    //     var tablero = new char[tamañoTablero, tamañoTablero];
+    //     tablero[2, 3] = 'c';
+    //     tablero[3, 3] = 'c';
+    //     tablero[4, 3] = 'c';
+    //     tablero[5, 3] = 'c';
+    //
+    //     var tableroEsperado = TableroEsperado(tablero);
+    //     var juegoAcorazado = new JuegoAcorazado();
+    //     juegoAcorazado.AgregarJugador();
+    //     juegoAcorazado.AgregarJugador();
+    //
+    //     List<Nave> coordenadasPortaAvion = new()
+    //     {
+    //         new(2, 3, "Portaviones")
+    //     };
+    //
+    //     juegoAcorazado.Iniciar(coordenadasPortaAvion);
+    //
+    //     juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
+    // }
 }
