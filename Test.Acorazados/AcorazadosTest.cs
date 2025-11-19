@@ -251,4 +251,27 @@ public class AcorazadosTest
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
+
+
+    [Fact]
+    public void
+        Si_SeAgregaUnJugadoYColocaUnDestructorConOrientacionHorizontalEnLaPosicionInicial_1_1_Debe_LaPosicionFinalSer4_1()
+    {
+        var tamañoTablero = 10;
+        var tablero = new char[tamañoTablero, tamañoTablero];
+        tablero[1, 1] = 'd';
+        tablero[2, 1] = 'd';
+        tablero[3, 1] = 'd';
+        var tableroEsperado = TableroEsperado(tablero);
+        var juegoAcorazado = new JuegoAcorazado();
+
+        List<Nave> coordenadasDetructor = new()
+        {
+            new(1, 1, "Destructor", "Horizontal")
+        };
+
+        juegoAcorazado.AgregarJugador(coordenadasDetructor);
+
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
+    }
 }
