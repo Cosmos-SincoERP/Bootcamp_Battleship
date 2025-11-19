@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaAbajo">
-      <change afterPath="$PROJECT_DIR$/TDDKatas.Test/Orientacion.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TDDKatas.Test/TiposNave.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
-    </list>
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +34,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5e14a4e27990972fa4ae94975603bd298aaf328ee083c03b10569ee4724d57/TestInvoker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/de8a243f75215d958afa80cf80a41b4981a44efea7db93bffcdaf7bd6ba378c0/Number.Parsing.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f9878f643c2ecf1b4ce73234de56c9754a451c835620eae85ca8babbcb5889c4/LateBoundTestFramework.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/Acorazado.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/Acorazado.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -77,23 +72,7 @@
       <workItem from="1762827924643" duration="25950000" />
       <workItem from="1763135552154" duration="18182000" />
       <workItem from="1763165952569" duration="12691000" />
-      <workItem from="1763563174982" duration="2930000" />
-    </task>
-    <task id="LOCAL-00020" summary="🔴 SiComproUnKiloDeManzanasYUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_2_98">
-      <option name="closed" value="true" />
-      <created>1762834914642</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1762834914642</updated>
-    </task>
-    <task id="LOCAL-00021" summary="💚 SiComproUnKiloDeManzanasYUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_2_98">
-      <option name="closed" value="true" />
-      <created>1762835509661</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1762835509661</updated>
+      <workItem from="1763563174982" duration="4079000" />
     </task>
     <task id="LOCAL-00022" summary="🔵 SiComproUnKiloDeManzanasYUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_2_98">
       <option name="closed" value="true" />
@@ -471,7 +450,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763488590125</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="💙️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaAbajo">
+      <option name="closed" value="true" />
+      <created>1763566149336</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1763566149336</updated>
+    </task>
+    <task id="LOCAL-00070" summary="❤️Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion">
+      <option name="closed" value="true" />
+      <created>1763566612042</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1763566612042</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,8 +486,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=" refactor" />
-    <MESSAGE value=" refactor - create class Wrap" />
     <MESSAGE value="inicial" />
     <MESSAGE value=" Si_InicioElJuego_debe_ImprimirElTableroEnVacio" />
     <MESSAGE value=" Si_InicioElJuego_debe_ImprimirElTableroEnVacio" />
@@ -516,6 +509,8 @@
     <MESSAGE value="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaArriba" />
     <MESSAGE value=" Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaArriba" />
     <MESSAGE value="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaAbajo" />
-    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaAbajo" />
+    <MESSAGE value="️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaAbajo" />
+    <MESSAGE value="❤️Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion" />
+    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion" />
   </component>
 </project>

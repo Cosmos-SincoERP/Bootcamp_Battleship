@@ -82,6 +82,8 @@ public class Acorazado
 
     public object Iniciar()
     {
-        throw new NotImplementedException();
+        throw new InvalidOperationException("Deben haber minimo 2 jugadores para iniciar la partida");
     }
+
+
 }

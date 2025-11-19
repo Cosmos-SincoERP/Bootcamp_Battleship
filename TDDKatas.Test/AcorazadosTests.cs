@@ -366,6 +366,7 @@ public class AcorazadosTests
     {
         var acorazado = new Acorazado();
 
+
         var resultado = () => acorazado.Iniciar();
 
         resultado.Should().ThrowExactly<InvalidOperationException>().WithMessage("*Deben haber minimo 2 jugadores para iniciar la partida");
