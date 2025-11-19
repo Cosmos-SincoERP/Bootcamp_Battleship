@@ -14,13 +14,10 @@ public class JuegoAcorazado
                     _tablero[nave.PosicionX, nave.PosicionY] = 'g';
                 else if (nave.Tipo == "Portaviones")
                 {
-                    
-                    _tablero[2, 3] = 'c';
-                    _tablero[3, 3] = 'c';
-                    _tablero[4, 3] = 'c';
-                    _tablero[5, 3] = 'c';
-                    
-                    _tablero[nave.PosicionX, nave.PosicionY] = 'c';
+                    for (int i = 0; i < 4; i++)
+                    {
+                        _tablero[nave.PosicionX + i, nave.PosicionY] = 'c';
+                    }
                 }
                 else
                     _tablero[nave.PosicionX, nave.PosicionY] = 'd';
