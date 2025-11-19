@@ -86,4 +86,8 @@ public class Acorazado
     }
 
 
+    public void AgregarJugador(string player)
+    {
+        throw new NotImplementedException();
+    }
 }

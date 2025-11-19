@@ -372,5 +372,18 @@ public class AcorazadosTests
         resultado.Should().ThrowExactly<InvalidOperationException>().WithMessage("*Deben haber minimo 2 jugadores para iniciar la partida");
         
     }
+
+    [Fact]
+    public void Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion()
+    {
+        var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        acorazado.AgregarJugador("Player 2");
+
+        var resultado = () => acorazado.Iniciar();
+
+        resultado.Should().ThrowExactly<InvalidOperationException>().WithMessage("*Jugador 1 no ha posicionado naves");
+        
+    }
     
 }
