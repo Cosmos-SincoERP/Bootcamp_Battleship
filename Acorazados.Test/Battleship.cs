@@ -130,4 +130,14 @@ public class Battleship
     }
 
     public string Imprimir() => string.Join("", _tablero);
+
+    public void Disparar(int i, int i1)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void TerminarTurno()
+    {
+        throw new NotImplementedException();
+    }
 }
