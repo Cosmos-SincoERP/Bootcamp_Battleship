@@ -74,11 +74,16 @@ public class Jugador
 
     public string[,] ObtenerTablero()
     {
-        return Tablero;
+        return (string[,])Tablero.Clone();
     }
 
     public int ObtenerLongitudTablero(int dimension)
     {
         return Tablero.GetLength(dimension);
+    }
+
+    public void RecibirDisparo(int fila, int columna)
+    {
+        Tablero[fila, columna] = "o";
     }
 }

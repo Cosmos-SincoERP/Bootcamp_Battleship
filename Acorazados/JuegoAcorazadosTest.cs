@@ -24,6 +24,9 @@ public class JuegoAcorazadosTest
             { null, null, null, null, null, null, null, null, null, null },
             { null, null, null, null, null, null, null, null, null, null },
         };
+        _cañonero = new Cañonero();
+        _destructor = new Destructor();
+        _portaAviones = new PortaAviones();
         _juego = new JuegoAcorazados();
         var acorazadosJugador1 = new List<AcorazadoAcuatizado>()
         {
@@ -49,7 +52,7 @@ public class JuegoAcorazadosTest
     {
         tableroDisparos[2, 2] = "o";
         
-        _juego.Disparar(3, 3);
+        _juego.Disparar(2, 2);
 
         _juego.ObtenerTableroContrincante().Should().BeEquivalentTo(tableroDisparos);
     }

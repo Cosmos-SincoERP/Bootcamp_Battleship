@@ -44,13 +44,26 @@ public class JuegoAcorazados
         _juegoIniciado = true;
     }
 
-    public void Disparar(int i, int i1)
+    public void Disparar(int fila, int columna)
     {
-        throw new NotImplementedException();
+        jugador2.RecibirDisparo(fila, columna);
     }
 
     public string[,] ObtenerTableroContrincante()
     {
-        throw new NotImplementedException();
+        var obtenerTableroContrincante = jugador2.ObtenerTablero();
+
+        for (int fila = 0; fila < jugador2.ObtenerLongitudTablero(0); fila++)
+        {
+            for (int columna = 0; columna < jugador2.ObtenerLongitudTablero(1); columna++)
+            {
+                if (obtenerTableroContrincante[fila, columna] != "o" && obtenerTableroContrincante[fila, columna] != null)
+                {
+                    obtenerTableroContrincante[fila, columna] = null;
+                }
+            }
+        }
+        
+        return obtenerTableroContrincante;
     }
 }
