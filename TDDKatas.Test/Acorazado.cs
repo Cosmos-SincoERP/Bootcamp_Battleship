@@ -11,7 +11,7 @@ public class Acorazado
     {
         { TiposNave.Canionero, 1 },
         { TiposNave.Destructor, 3 },
-        { TiposNave.PortaAviones, 4 },
+        { TiposNave.Portaviones, 4 },
     };
 
     private Dictionary<string, List<TiposNave>> _estrategia = new();
@@ -43,19 +43,11 @@ public class Acorazado
 
     public void PosicionarNave(int posicionX, int posicionY, TiposNave nave, Orientacion orientacion)
     {
-        if (_estrategia["Player 1"].Count(tipoNave => tipoNave == TiposNave.Canionero) == 4&&
-            nave == TiposNave.Canionero)
-            throw new InvalidOperationException("No es posible agregar mas de 4 cañoreros");
-
-        if (_estrategia["Player 1"].Count(tipoNave => tipoNave == TiposNave.Destructor) == 2 &&
-            nave == TiposNave.Destructor)
-            throw new InvalidOperationException("No es posible agregar mas de 2 destructores");
-
-        if (_estrategia["Player 1"].Count(tipoNave => tipoNave == TiposNave.PortaAviones) == 1 &&
-            nave == TiposNave.PortaAviones)
-            throw new InvalidOperationException("No es posible agregar mas de 1 portaavion");
-
-
+        var naveNueva = Nave.Instanciar(nave);
+        if (_estrategia["Player 1"].Count(tipoNave => tipoNave == naveNueva.Tipo) ==  naveNueva.CantidadPermitida &&
+              nave == naveNueva.Tipo)
+            throw new InvalidOperationException($"No es posible agregar mas de {naveNueva.CantidadPermitida} nave(s) de tipo {naveNueva.Descripcion}");
+     
         _estrategia[_jugadores[0]].Add(nave);
 
         if (orientacion == Orientacion.Derecha)

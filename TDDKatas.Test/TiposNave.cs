@@ -4,5 +4,5 @@ public enum TiposNave
 {
     Destructor = 'd',
     Canionero = 'g',
-    PortaAviones = 'c'
+    Portaviones = 'c'
 }

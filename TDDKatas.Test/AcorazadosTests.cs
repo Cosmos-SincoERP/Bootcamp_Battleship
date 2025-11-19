@@ -138,7 +138,7 @@ public class AcorazadosTests
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
-        acorazado.PosicionarNave(0, 0, TiposNave.PortaAviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 0, TiposNave.Portaviones, Orientacion.Derecha);
 
         var imprimir = acorazado.Imprimir();
 
@@ -275,7 +275,7 @@ public class AcorazadosTests
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
-        acorazado.PosicionarNave(2, 3, TiposNave.PortaAviones, Orientacion.Izquierda);
+        acorazado.PosicionarNave(2, 3, TiposNave.Portaviones, Orientacion.Izquierda);
 
         var imprimir = acorazado.Imprimir();
 
@@ -309,7 +309,7 @@ public class AcorazadosTests
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
-        acorazado.PosicionarNave(3, 3, TiposNave.PortaAviones, Orientacion.Arriba);
+        acorazado.PosicionarNave(3, 3, TiposNave.Portaviones, Orientacion.Arriba);
 
         var imprimir = acorazado.Imprimir();
 
@@ -343,7 +343,7 @@ public class AcorazadosTests
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
-        acorazado.PosicionarNave(3, 3, TiposNave.PortaAviones, Orientacion.Abajo);
+        acorazado.PosicionarNave(3, 3, TiposNave.Portaviones, Orientacion.Abajo);
 
         var imprimir = acorazado.Imprimir();
 
@@ -408,7 +408,7 @@ public class AcorazadosTests
         var resultado = () => acorazado.PosicionarNave(0, 4, TiposNave.Canionero, Orientacion.Abajo);
         
         resultado.Should().ThrowExactly<InvalidOperationException>()
-            .WithMessage("*No es posible agregar mas de 4 cañoreros");
+            .WithMessage("*No es posible agregar mas de 4 nave(s) de tipo Cañonero");
     }
 
     [Fact]
@@ -422,8 +422,7 @@ public class AcorazadosTests
         var resultado = () => acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
         
         resultado.Should().ThrowExactly<InvalidOperationException>()
-            .WithMessage("*No es posible agregar mas de 2 destructores");
-        
+            .WithMessage("*No es posible agregar mas de 2 nave(s) de tipo Destructor");
     }
     
     [Fact]
@@ -431,12 +430,12 @@ public class AcorazadosTests
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
-        acorazado.PosicionarNave(0, 0, TiposNave.PortaAviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 0, TiposNave.Portaviones, Orientacion.Derecha);
 
-        var resultado = () => acorazado.PosicionarNave(1, 0, TiposNave.PortaAviones, Orientacion.Derecha);
+        var resultado = () => acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
         
         resultado.Should().ThrowExactly<InvalidOperationException>()
-            .WithMessage("*No es posible agregar mas de 1 portaavion");
+            .WithMessage("No es posible agregar mas de 1 nave(s) de tipo Portaviones");
     }
 
     [Fact]
@@ -444,7 +443,7 @@ public class AcorazadosTests
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
-        acorazado.PosicionarNave(0, 0, TiposNave.PortaAviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 0, TiposNave.Portaviones, Orientacion.Derecha);
         acorazado.PosicionarNave(1, 0, TiposNave.Canionero, Orientacion.Derecha);
         
         var imprimir = acorazado.Imprimir();
@@ -523,7 +522,7 @@ public class AcorazadosTests
         acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Derecha);
         acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Derecha);
         acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Derecha);
-        acorazado.PosicionarNave(1, 0, TiposNave.PortaAviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
         
         var imprimir = acorazado.Imprimir();
 

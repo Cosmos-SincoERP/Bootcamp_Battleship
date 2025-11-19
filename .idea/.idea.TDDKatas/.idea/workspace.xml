@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️Si_Agrego1JugadorYPosiciono1Destructor1CanoneroImprimir_Debe_RetornarElTableroConCanoneroYDestructor()">
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💚️Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones">
+      <change afterPath="$PROJECT_DIR$/TDDKatas.Test/Nave.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/TiposNave.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/TiposNave.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +43,7 @@
     <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/Acorazado.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/Acorazado.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TDDKatas.Test/Nave.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -76,23 +79,7 @@
       <workItem from="1762827924643" duration="25950000" />
       <workItem from="1763135552154" duration="18182000" />
       <workItem from="1763165952569" duration="12691000" />
-      <workItem from="1763563174982" duration="10343000" />
-    </task>
-    <task id="LOCAL-00034" summary="👌 preparación del entorno">
-      <option name="closed" value="true" />
-      <created>1763135855494</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1763135855494</updated>
-    </task>
-    <task id="LOCAL-00035" summary="🫡 plantilla del archivo para dar inicio a la implementación">
-      <option name="closed" value="true" />
-      <created>1763135974545</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1763135974545</updated>
+      <workItem from="1763563174982" duration="11753000" />
     </task>
     <task id="LOCAL-00036" summary="1️⃣ OK">
       <option name="closed" value="true" />
@@ -470,7 +457,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763573294037</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="❤️Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones">
+      <option name="closed" value="true" />
+      <created>1763573609070</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1763573609070</updated>
+    </task>
+    <task id="LOCAL-00084" summary="💚️Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones">
+      <option name="closed" value="true" />
+      <created>1763573653226</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1763573653226</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -490,8 +493,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="❤️ Si_InicioElJuegoYUbicoPortaAvionesEnPosicion0_0Imprimir_Debe_RetornarPortaAvionesPosicionadoEn0_0" />
-    <MESSAGE value="❤️ Si_InicioElJuegoYUbicoDestructorEnPosicion1_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn1_3OrientadoALaIzquierda" />
     <MESSAGE value=" Si_InicioElJuegoYUbicoDestructorEnPosicion1_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn1_3OrientadoALaIzquierda" />
     <MESSAGE value="❤️ Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaArriba" />
     <MESSAGE value="️ Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaArriba" />
@@ -515,6 +516,8 @@
     <MESSAGE value="Si_InicioJuegoAgrego1JugadorYPosiciono2PortaAviones_Debe_LanzarExcepcion" />
     <MESSAGE value="❤️Si_Agrego1JugadorYPosiciono1Portaaviones1CanoneroImprimir_Debe_RetornarElTableroConCanoneroYPortaavionesPosicionado" />
     <MESSAGE value="❤️Si_Agrego1JugadorYPosiciono1Destructor1CanoneroImprimir_Debe_RetornarElTableroConCanoneroYDestructor()" />
-    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_Agrego1JugadorYPosiciono1Destructor1CanoneroImprimir_Debe_RetornarElTableroConCanoneroYDestructor()" />
+    <MESSAGE value="❤️Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones" />
+    <MESSAGE value="️Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones" />
+    <option name="LAST_COMMIT_MESSAGE" value="️Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones" />
   </component>
 </project>
