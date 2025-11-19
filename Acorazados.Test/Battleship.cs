@@ -29,17 +29,17 @@ public class Battleship
         {
             foreach (var nave in navesJugador1)
             {
-                var columnas = _tablero[nave.CoordenadaXInicial + 1].Split("|");
+                var columnas = _tablero[nave.FilaInicial + 1].Split("|");
 
-                columnas[nave.CoordenadaYInicial + 1] = " g ";
+                columnas[nave.ColumnaInicial + 1] = " g ";
 
-                _tablero[nave.CoordenadaXInicial + 1] = string.Join("|", columnas);
+                _tablero[nave.FilaInicial + 1] = string.Join("|", columnas);
             }
         }
         else
         {
 
-            if (navesJugador1[0].CoordenadaXInicial != navesJugador1[0].CoordenadaXFinal)
+            if (navesJugador1[0].FilaInicial != navesJugador1[0].FilaFinal)
             {
                 var columnaInicial = _tablero[4].Split("|");
                 columnaInicial[4] = " d ";
@@ -56,11 +56,11 @@ public class Battleship
             }
             else
             {
-                var columnas = _tablero[navesJugador1[0].CoordenadaXInicial + 1].Split("|");
-                columnas[navesJugador1[0].CoordenadaYInicial + 1] = " d ";
-                columnas[navesJugador1[0].CoordenadaYInicial + 2] = " d ";
-                columnas[navesJugador1[0].CoordenadaYInicial + 3] = " d ";
-                _tablero[navesJugador1[0].CoordenadaXInicial + 1] = string.Join("|", columnas);
+                var columnas = _tablero[navesJugador1[0].FilaInicial + 1].Split("|");
+                columnas[navesJugador1[0].ColumnaInicial + 1] = " d ";
+                columnas[navesJugador1[0].ColumnaInicial + 2] = " d ";
+                columnas[navesJugador1[0].ColumnaInicial + 3] = " d ";
+                _tablero[navesJugador1[0].FilaInicial + 1] = string.Join("|", columnas);
             }
         }
     }

@@ -2,16 +2,16 @@ namespace Acorazados.Test;
 
 public class Nave
 {
-    public int CoordenadaXInicial { get; set; }
-    public int CoordenadaYInicial { get; set; }
+    public int FilaInicial { get; set; }
+    public int ColumnaInicial { get; set; }
     public string Tipo { get; set; }
-    public int CoordenadaXFinal { get; set; }
+    public int FilaFinal { get; set; }
 
-    public Nave(int coordenadaXInicial, int coordenadaYInicial, int coordenadaXFinal, int coordenadaYFinal, string tipo)
+    public Nave(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal, string tipo)
     {
-        CoordenadaXInicial = coordenadaXInicial;
-        CoordenadaYInicial = coordenadaYInicial;
-        CoordenadaXFinal = coordenadaXFinal;
+        FilaInicial = filaInicial;
+        ColumnaInicial = columnaInicial;
+        FilaFinal = filaFinal;
         Tipo = tipo;
     }
 }
