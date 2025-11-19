@@ -52,7 +52,7 @@ public class AcorazadosTests
     {
         tableroInicial[1, 1] = "g";
 
-        jugador.AgregarAcorazado(new Cañonero(), 1, 1);
+        jugador.AgregarAcorazado(_cañonero, 1, 1);
 
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
     }
