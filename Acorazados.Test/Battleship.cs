@@ -33,22 +33,39 @@ public class Battleship
 
             _tablero[navesJugador1[0].CoordenadaXInicial + 1] = string.Join("|", columnas);
         }
+        else if (navesJugador1.Count == 2)
+        {
+            var columnas1 = _tablero[navesJugador1[0].CoordenadaXInicial + 1].Split("|");
+
+            columnas1[navesJugador1[0].CoordenadaYInicial + 1] = " g ";
+
+            _tablero[navesJugador1[0].CoordenadaXInicial + 1] = string.Join("|", columnas1);
+            
+            var columnas2 = _tablero[navesJugador1[1].CoordenadaXInicial + 1].Split("|");
+
+            columnas2[navesJugador1[1].CoordenadaYInicial + 1] = " g ";
+
+            _tablero[navesJugador1[1].CoordenadaXInicial + 1] = string.Join("|", columnas2);
+        }
         else
         {
-            _tablero =
-            [
-                "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
-                "0| | | | | | | | | | |",
-                "1| | | | | | | | | | |",
-                "2| | | | g | | | | | | |",
-                "3| | | | | | | | | | |",
-                "4| | | | | | | | | | |",
-                "5| | | | | | g | | | | |",
-                "6| | | | | | | | | | |",
-                "7| | | | | | | | | | |",
-                "8| | | | | | | | | | |",
-                "9| | | | | | | | | | |"
-            ];
+            var columnas1 = _tablero[navesJugador1[0].CoordenadaXInicial + 1].Split("|");
+
+            columnas1[navesJugador1[0].CoordenadaYInicial + 1] = " g ";
+
+            _tablero[navesJugador1[0].CoordenadaXInicial + 1] = string.Join("|", columnas1);
+            
+            var columnas2 = _tablero[navesJugador1[1].CoordenadaXInicial + 1].Split("|");
+
+            columnas2[navesJugador1[1].CoordenadaYInicial + 1] = " g ";
+
+            _tablero[navesJugador1[1].CoordenadaXInicial + 1] = string.Join("|", columnas2);
+            
+            var columnas3 = _tablero[navesJugador1[2].CoordenadaXInicial + 1].Split("|");
+
+            columnas3[navesJugador1[2].CoordenadaYInicial + 1] = " g ";
+
+            _tablero[navesJugador1[2].CoordenadaXInicial + 1] = string.Join("|", columnas3);
         }
     }
 
