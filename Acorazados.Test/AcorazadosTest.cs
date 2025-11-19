@@ -32,18 +32,28 @@ public class AcorazadosTest
 
 public class Battleship
 {
-    public void AddPlayer(string santi)
+    public void AddPlayer(string name)
     {
-        throw new NotImplementedException();
+        
     }
 
-    public void Iniciar(List<object> objects, List<object> list)
+    public void Iniciar(List<object> navesJugador1, List<object> navesJugador2)
     {
-        throw new NotImplementedException();
+        
     }
 
-    public object Imprimir()
+    public string Imprimir()
     {
-        throw new NotImplementedException();
+        return "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+               "0| | | | | | | | | | |" +
+               "1| | | | | | | | | | |" +
+               "2| | | | | | | | | | |" +
+               "3| | | | | | | | | | |" +
+               "4| | | | | | | | | | |" +
+               "5| | | | | | | | | | |" +
+               "6| | | | | | | | | | |" +
+               "7| | | | | | | | | | |" +
+               "8| | | | | | | | | | |" +
+               "9| | | | | | | | | | |";
     }
 }
