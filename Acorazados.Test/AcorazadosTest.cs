@@ -113,4 +113,33 @@ public class AcorazadosTest
 
         tablero.Should().Be(tableroEsperado);
     }
+    
+    [Fact]
+    public void SiInicioElJuegoConDosCanonerosEn5_5_Y_2_3DeJugador1DebeImprimirloBien()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Santi");
+        acorazados.AddPlayer("Ruben");
+
+        var canonero = new Nave(5, 5, 5, 5, "g");
+        var canonero2 = new Nave(2, 3, 2, 3, "g");
+
+        acorazados.Iniciar([canonero], [canonero2]);
+
+        var tablero = acorazados.Imprimir();
+        var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+                              "0| | | | | | | | | | |" +
+                              "1| | | | | | | | | | |" +
+                              "2| | | | g | | | | | | |" +
+                              "3| | | | | | | | | | |" +
+                              "4| | | | | | | | | | |" +
+                              "5| | | | | | g | | | | |" +
+                              "6| | | | | | | | | | |" +
+                              "7| | | | | | | | | | |" +
+                              "8| | | | | | | | | | |" +
+                              "9| | | | | | | | | | |";
+
+        tablero.Should().Be(tableroEsperado);
+    }
 }

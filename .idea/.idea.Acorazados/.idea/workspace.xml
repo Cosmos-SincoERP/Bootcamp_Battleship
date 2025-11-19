@@ -28,6 +28,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "master",
+    "settings.editor.selected.configurable": "settings.sync",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -39,7 +40,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763566358310</updated>
-      <workItem from="1763566364168" duration="2191000" />
+      <workItem from="1763566364168" duration="2401000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -113,7 +114,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763568438845</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="🔵 refactor para poder pintar un canonero en cualquier coordenada">
+      <option name="closed" value="true" />
+      <created>1763568615867</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1763568615867</updated>
+    </task>
+    <task id="LOCAL-00011" summary="🔵 Extraccion de clases">
+      <option name="closed" value="true" />
+      <created>1763568659453</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1763568659453</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,7 +149,9 @@
     <MESSAGE value=" SiInicioElJuegoConUnCanoneroEn2_3DeJugador1DebeImprimirloBien" />
     <MESSAGE value="SiInicioElJuegoConUnCanoneroEn5_5DeJugador1DebeImprimirloBien" />
     <MESSAGE value=" SiInicioElJuegoConUnCanoneroEn5_5DeJugador1DebeImprimirloBien" />
-    <option name="LAST_COMMIT_MESSAGE" value=" SiInicioElJuegoConUnCanoneroEn5_5DeJugador1DebeImprimirloBien" />
+    <MESSAGE value=" refactor para poder pintar un canonero en cualquier coordenada" />
+    <MESSAGE value=" Extraccion de clases" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Extraccion de clases" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
