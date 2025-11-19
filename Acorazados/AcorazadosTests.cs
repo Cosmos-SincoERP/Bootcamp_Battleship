@@ -1,4 +1,5 @@
 ﻿using AwesomeAssertions;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
 
 namespace Acorazados;
 
@@ -235,6 +236,17 @@ public class AcorazadosTests
         
         jugador.AgregarAcorazado(Acorazado.Cañonero,3, 1, Direccion.Derecha);
         
+        jugador.ObtenerCasilla(3, 1).Should().Be("g");
+    }
+
+    [Fact]
+    public void Si_CreoUnCañoneroYTengoDosDestructoresEnMiTablero_Debe_LaCasilla31Tener_g()
+    {
+        jugador.AgregarAcorazado(Acorazado.Destructor, 1,1,Direccion.Derecha);
+        jugador.AgregarAcorazado(Acorazado.Destructor, 2,1,Direccion.Derecha);
+        
+        jugador.AgregarAcorazado(Acorazado.Cañonero, 3,1,Direccion.Derecha);
+
         jugador.ObtenerCasilla(3, 1).Should().Be("g");
     }
 }
