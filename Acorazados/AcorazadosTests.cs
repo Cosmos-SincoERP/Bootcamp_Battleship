@@ -305,4 +305,25 @@ public class AcorazadosTests
 
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
     }
+
+    [Fact]
+    public void Si_CreoUnPortaavionesYTengoCuatroCañonerosEnMiTablero_Debe_LaCasilla31_Tener_c()
+    {
+        tableroInicial[1, 1] = "g";
+        tableroInicial[2, 1] = "g";
+        tableroInicial[4, 1] = "g";
+        tableroInicial[5, 1] = "g";
+        tableroInicial[3, 1] = "c";
+        tableroInicial[3, 2] = "c";
+        tableroInicial[3, 3] = "c";
+        tableroInicial[3, 4] = "c";
+        
+        jugador.AgregarAcorazado(Acorazado.Cañonero, 1, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(Acorazado.Cañonero, 2, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(Acorazado.Cañonero, 4, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(Acorazado.Cañonero, 5, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(Acorazado.Portaaviones, 3, 1, Direccion.Derecha);
+        
+        jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
+    }
 }
