@@ -124,7 +124,7 @@ public class AcorazadosTest
 
     [Fact]
     public void
-        Si_SeAgregaUnJugadoYColocaUnPortavionesConOrientacionHorizontalEnLaPosicionInicial2_3_Debe_LaPosicionFinalSer5_3()
+        Si_SeAgregaUnJugadorYColocaUnPortavionesConOrientacionHorizontalEnLaPosicionInicial2_3_Debe_LaPosicionFinalSer5_3()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
@@ -146,7 +146,7 @@ public class AcorazadosTest
 
     [Fact]
     public void
-        Si_SeAgregaUnJugadoYColocaUnPortavionesConOrientacionHorizontalEnLaPosicionInicial5_2_Debe_LaPosicionFinalSer8_2()
+        Si_SeAgregaUnJugadorYColocaUnPortavionesConOrientacionHorizontalEnLaPosicionInicial5_2_Debe_LaPosicionFinalSer8_2()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
@@ -168,7 +168,7 @@ public class AcorazadosTest
 
     [Fact]
     public void
-        Si_SeAgregaUnJugadoYColocaUnPortavionesConOrientacionVerticalEnLaPosicionInicial5_2_Debe_LaPosicionFinalSer5_5()
+        Si_SeAgregaUnJugadorYColocaUnPortavionesConOrientacionVerticalEnLaPosicionInicial5_2_Debe_LaPosicionFinalSer5_5()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
@@ -191,7 +191,7 @@ public class AcorazadosTest
 
     [Fact]
     public void
-        Si_SeAgregaUnJugadoYColocaUnDestructorConOrientacionHorizontalEnLaPosicionInicial_2_2_Debe_LaPosicionFinalSer4_2()
+        Si_SeAgregaUnJugadorYColocaUnDestructorConOrientacionHorizontalEnLaPosicionInicial_2_2_Debe_LaPosicionFinalSer4_2()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
@@ -214,7 +214,7 @@ public class AcorazadosTest
 
     [Fact]
     public void
-        Si_SeAgregaUnJugadoYColocaUnDestructorConOrientacionHorizontalEnLaPosicionInicial_1_1_Debe_LaPosicionFinalSer4_1()
+        Si_SeAgregaUnJugadorYColocaUnDestructorConOrientacionHorizontalEnLaPosicionInicial_1_1_Debe_LaPosicionFinalSer4_1()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
@@ -236,7 +236,7 @@ public class AcorazadosTest
 
     [Fact]
     public void
-        Si_SeAgregaUnJugadoYColocaUnDestructorConOrientacionVerticalEnLaPosicionInicial_1_1_Debe_LaPosicionFinalSer4_1()
+        Si_SeAgregaUnJugadorYColocaUnDestructorConOrientacionVerticalEnLaPosicionInicial_1_1_Debe_LaPosicionFinalSer4_1()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
@@ -252,6 +252,56 @@ public class AcorazadosTest
         };
 
         juegoAcorazado.AgregarJugador(coordenadasDetructor);
+
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
+    }
+
+    [Fact]
+    public void
+        Si_SeAgregaUnJugadorYColocaUnDestructorConOrientacionVerticalEnLaPosicionInicial_1_1_YColocaUnCañoneroEnLaPosicion1_2_Debe_()
+    {
+        var tamañoTablero = 10;
+        var tablero = new char[tamañoTablero, tamañoTablero];
+        tablero[1, 2] = 'd';
+        tablero[1, 3] = 'd';
+        tablero[1, 4] = 'd';
+        var tableroEsperado = TableroEsperado(tablero);
+        var juegoAcorazado = new JuegoAcorazado();
+
+        List<Coordenada> coordenadasDetructor = new()
+        {
+            new(1, 2, Nave.Destructor, "Vertical")
+        };
+
+        juegoAcorazado.AgregarJugador(coordenadasDetructor);
+
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
+    }
+
+    [Fact]
+    public void
+        Si_AgregoUnJugadorYColocoUnCañoneroEnLaPosicion0_0_LuegoAgregoJugador2ConCañoneroEnLaPosicion_1_1_Debe_MostrarElTableroDelJugador1ConElCañoneroAsignado()
+    {
+        var tamañoTablero = 10;
+        var tableroJugador1 = new char[tamañoTablero, tamañoTablero];
+        tableroJugador1[0, 0] = 'g';
+        var tableroEsperado = TableroEsperado(tableroJugador1);
+
+        var juegoAcorazado = new JuegoAcorazado();
+
+        List<Coordenada> coordenadasDetructorJugador1 = new()
+        {
+            new(0, 0, Nave.Cañonero, null)
+        };
+
+        juegoAcorazado.AgregarJugador(coordenadasDetructorJugador1);
+
+        List<Coordenada> coordenadasDetructorJugador2 = new()
+        {
+            new(1, 1, Nave.Cañonero, null)
+        };
+
+        juegoAcorazado.AgregarJugador(coordenadasDetructorJugador2);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
