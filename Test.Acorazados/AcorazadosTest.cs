@@ -42,6 +42,7 @@ public class AcorazadosTest
     {
         var juegoAcorazado =  new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
 
         var iniciarJuego = () => juegoAcorazado.Iniciar();
         
