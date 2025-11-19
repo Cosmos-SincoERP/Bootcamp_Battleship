@@ -5,6 +5,22 @@ namespace Test.BattleShip;
 public class AcorazadosTest
 {
     
+    private static string TableroEsperado(char[,] tablero)
+    {
+        var tableroEsperado = string.Empty;
+        for (var x = 0; x < tablero.GetLength(0); x++)
+        {
+            for (int y = 0; y <  tablero.GetLength(1); y++)
+            {
+                tableroEsperado += tablero[x,y];
+            }
+    
+            tableroEsperado += '\n';
+        }
+
+        return tableroEsperado;
+    }
+    
     [Fact]
     public void Si_SeAgregaJugador_Debe_ContenerJugador1()
     {
@@ -55,17 +71,7 @@ public class AcorazadosTest
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
         tablero[0, 0] = 'g';
-        var tableroEsperado = string.Empty;
-        for (var x = 0; x < tablero.GetLength(0); x++)
-        {
-            for (int y = 0; y <  tablero.GetLength(1); y++)
-            {
-                tableroEsperado += tablero[x,y];
-            }
-    
-            tableroEsperado += '\n';
-        }
-        
+        var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado =  new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
@@ -74,24 +80,14 @@ public class AcorazadosTest
         
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
-    
+
     [Fact]
     public void Si_SeIniciaElJuegoConDosJugadoresElJugador1_Debe_ColocarUnCañoneroEnLaPosicion4_5()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
         tablero[4, 5] = 'g';
-        var tableroEsperado = string.Empty;
-        for (var x = 0; x < tablero.GetLength(0); x++)
-        {
-            for (int y = 0; y <  tablero.GetLength(1); y++)
-            {
-                tableroEsperado += tablero[x,y];
-            }
-    
-            tableroEsperado += '\n';
-        }
-        
+        var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado =  new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
