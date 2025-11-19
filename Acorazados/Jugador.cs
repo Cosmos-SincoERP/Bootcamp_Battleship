@@ -38,6 +38,7 @@ public class Jugador
             {
                 for (int i = 0; i < 4; i++)
                 {
+                    ValidacionesTablero(fila, columna+i);
                     Tablero[fila, columna+i] = "c";
                 }
             } 
@@ -45,6 +46,7 @@ public class Jugador
             {
                 for (int i = 0; i < 4; i++)
                 {
+                    ValidacionesTablero(fila+i, columna);
                     Tablero[fila+i, columna] = "c";
                 }
             }
@@ -52,6 +54,7 @@ public class Jugador
             {
                 for (int i = 0; i < 4; i++)
                 {
+                    ValidacionesTablero(fila, columna-i);
                     Tablero[fila, columna-i] = "c";
                 }
             }
@@ -59,6 +62,7 @@ public class Jugador
             {
                 for (int i = 0; i < 4; i++)
                 {
+                    ValidacionesTablero(fila-i, columna);
                     Tablero[fila-i, columna] = "c";
                 }
             }
