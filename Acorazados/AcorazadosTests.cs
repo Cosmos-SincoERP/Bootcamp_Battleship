@@ -153,7 +153,7 @@ public class AcorazadosTests
     }
     
     [Fact]
-    public void Si_CreoUnPortaavionesEnPosicion13DireccionAbajo_Debe_LasCasillas13_12_11_10_TenercC()
+    public void Si_CreoUnPortaavionesEnPosicion13DireccionIzquierda_Debe_LasCasillas13_12_11_10_TenercC()
     {
         jugador.AgregarAcorazado(Acorazado.Portaaviones, 1,3,Direccion.Izquierda);
         
