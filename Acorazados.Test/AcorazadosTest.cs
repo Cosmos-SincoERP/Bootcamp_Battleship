@@ -355,9 +355,10 @@ public class AcorazadosTest
         acorazados.AddPlayer("Santi");
         acorazados.AddPlayer("Ruben");
 
-        var destructor = new Nave(3, 5,5,5 , "d");
+        var destructor = new Nave(1, 0,1,3 , "d");
+        var destructor2 = new Nave(3, 7,3,9 , "d");
 
-        acorazados.Iniciar([destructor],[]);
+        acorazados.Iniciar([destructor, destructor2],[]);
 
         var tablero = acorazados.Imprimir();
 

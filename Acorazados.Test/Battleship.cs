@@ -64,6 +64,15 @@ public class Battleship
                 columnas[navesJugador1[0].ColumnaInicial + 2] = " d ";
                 columnas[navesJugador1[0].ColumnaInicial + 3] = " d ";
                 _tablero[navesJugador1[0].FilaInicial + 1] = string.Join("|", columnas);
+
+                if (navesJugador1.Count == 2)
+                {
+                    var columnasNaveDos = _tablero[navesJugador1[1].FilaInicial + 1].Split("|");
+                    columnasNaveDos[navesJugador1[1].ColumnaInicial + 1] = " d ";
+                    columnasNaveDos[navesJugador1[1].ColumnaInicial + 2] = " d ";
+                    columnasNaveDos[navesJugador1[1].ColumnaInicial + 3] = " d ";
+                    _tablero[navesJugador1[1].FilaInicial + 1] = string.Join("|", columnasNaveDos);
+                }
             }
         }
     }
