@@ -219,12 +219,22 @@ public class AcorazadosTests
     }
 
     [Fact]
-    public void SiCreoUnPortaavionesTeniendoUnPortaavionesEnMiTablero_Debe_LanzarUnaArgumentException()
+    public void Si_CreoUnPortaavionesTeniendoUnPortaavionesEnMiTablero_Debe_LanzarUnaArgumentException()
     {
         jugador.AgregarAcorazado(Acorazado.Portaaviones,1, 1, Direccion.Derecha);
         
         Action act = () => jugador.AgregarAcorazado(Acorazado.Portaaviones,  3, 3, Direccion.Derecha);
 
         act.Should().Throw<ArgumentException>().WithMessage("*Se supero el maximo de acorazados de este tipo*");
+    }
+
+    [Fact]
+    public void Si_CreoUnPortaavionesYluegoUnCañonero_Debe_lacasilla31Tenerg()
+    {
+        jugador.AgregarAcorazado(Acorazado.Portaaviones,1, 1, Direccion.Derecha);
+        
+        jugador.AgregarAcorazado(Acorazado.Cañonero,3, 1, Direccion.Derecha);
+        
+        jugador.ObtenerCasilla(3, 1).Should().Be("g");
     }
 }
