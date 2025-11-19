@@ -376,4 +376,34 @@ public class AcorazadosTest
 
         tablero.Should().Be(tableroEsperado);
     }
+    
+    [Fact]
+    public void Si_InicioElJuegoDosDestructoresVerticalesDe_1_0_a_3_0_Y_OtroEn_7_9_a_9_9_EImprimo_Debe_ImprimirElTableroConUna_de_1_0_a_3_0_YElOtrodDestructorDe_7_9_a_9_9()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Santi");
+        acorazados.AddPlayer("Ruben");
+
+        var destructor = new Nave(1, 0,3,0 , "d");
+        var destructor2 = new Nave(7, 9,9,9 , "d");
+
+        acorazados.Iniciar([destructor, destructor2],[]);
+
+        var tablero = acorazados.Imprimir();
+
+        var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+                              "0| | | | | | | | | | |" +
+                              "1| d | | | | | | | | | |" +
+                              "2| d | | | | | | | | | |" +
+                              "3| d | | | | | | | | | |" +
+                              "4| | | | | | | | | | |" +
+                              "5| | | | | | | | | | |" +
+                              "6| | | | | | | | | | |" +
+                              "7| | | | | | | | | | d |" +
+                              "8| | | | | | | | | | d |" +
+                              "9| | | | | | | | | | d |";
+
+        tablero.Should().Be(tableroEsperado);
+    }
 }
