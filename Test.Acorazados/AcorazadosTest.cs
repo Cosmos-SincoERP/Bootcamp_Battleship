@@ -175,4 +175,30 @@ public class AcorazadosTest
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
+
+    [Fact]
+    public void
+        Si_SeIniciaElJuegoConDosJugadoresElJugador1YColocaUnPortavionesConOrientacionHorizontalEnLaPosicionInicial2_3_Debe_LaPosicionFinalSer5_3()
+    {
+        var tamañoTablero = 10;
+        var tablero = new char[tamañoTablero, tamañoTablero];
+        tablero[2, 3] = 'c';
+        tablero[3, 3] = 'c';
+        tablero[4, 3] = 'c';
+        tablero[5, 3] = 'c';
+
+        var tableroEsperado = TableroEsperado(tablero);
+        var juegoAcorazado = new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
+
+        List<Nave> coordenadasPortaAvion = new()
+        {
+            new(2, 3, "Portaviones")
+        };
+
+        juegoAcorazado.Iniciar(coordenadasPortaAvion);
+
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
+    }
 }
