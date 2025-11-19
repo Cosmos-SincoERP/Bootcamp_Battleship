@@ -27,50 +27,36 @@ public class Battleship
 
         if (navesJugador1[0].Tipo == "c")
         {
-            if (navesJugador1[0].ColumnaInicial == 5 && navesJugador1[0].FilaInicial == 1
-                                                     && navesJugador1[0].FilaFinal == 4 &&
-                                                     navesJugador1[0].ColumnaFinal == 5)
+            if (EsVertical(navesJugador1[0]))
             {
-                var columnaInicial = _tablero[2].Split("|");
-                columnaInicial[6] = " c ";
+                var columnaInicial = _tablero[navesJugador1[0].FilaInicial + 1].Split("|");
+                columnaInicial[navesJugador1[0].ColumnaInicial + 1] = " c ";
 
-                var columna2 = _tablero[3].Split("|");
-                columna2[6] = " c ";
+                var columna2 = _tablero[navesJugador1[0].FilaInicial + 2].Split("|");
+                columna2[navesJugador1[0].ColumnaInicial + 1] = " c ";
 
-                var columna3 = _tablero[4].Split("|");
-                columna3[6] = " c ";
+                var columna3 = _tablero[navesJugador1[0].FilaInicial + 3].Split("|");
+                columna3[navesJugador1[0].ColumnaInicial + 1] = " c ";
+            
+                var columna4 = _tablero[navesJugador1[0].FilaInicial + 4].Split("|");
+                columna4[navesJugador1[0].ColumnaInicial + 1] = " c ";
 
-                var columna4 = _tablero[5].Split("|");
-                columna4[6] = " c ";
-                
-                _tablero[2] = string.Join("|", columnaInicial);
-                _tablero[3] = string.Join("|", columna2);
-                _tablero[4] = string.Join("|", columna3);
-                _tablero[5] = string.Join("|", columna4);
+                _tablero[navesJugador1[0].FilaInicial + 1] = string.Join("|", columnaInicial);
+                _tablero[navesJugador1[0].FilaInicial + 2] = string.Join("|", columna2);
+                _tablero[navesJugador1[0].FilaInicial + 3] = string.Join("|", columna3);
+                _tablero[navesJugador1[0].FilaInicial + 4] = string.Join("|", columna4);
 
                 return;
             }
-            else
-            {
-                    var columnaInicial = _tablero[4].Split("|");
-                    columnaInicial[6] = " c ";
 
-                    var columna2 = _tablero[5].Split("|");
-                    columna2[6] = " c ";
+            var columnas = _tablero[navesJugador1[0].FilaInicial + 1].Split("|");
+            columnas[navesJugador1[0].ColumnaInicial + 1] = " c ";
+            columnas[navesJugador1[0].ColumnaInicial + 2] = " c ";
+            columnas[navesJugador1[0].ColumnaInicial + 3] = " c ";
+            columnas[navesJugador1[0].ColumnaInicial + 4] = " c ";
+            _tablero[navesJugador1[0].FilaInicial + 1] = string.Join("|", columnas);
 
-                    var columna3 = _tablero[6].Split("|");
-                    columna3[6] = " c ";
-
-                    var columna4 = _tablero[7].Split("|");
-                    columna4[6] = " c ";
-                
-                    _tablero[4] = string.Join("|", columnaInicial);
-                    _tablero[5] = string.Join("|", columna2);
-                    _tablero[6] = string.Join("|", columna3);
-                    _tablero[7] = string.Join("|", columna4);
-
-                    return;
-            }
+            return;
         }
 
         foreach (var nave in navesJugador1)
