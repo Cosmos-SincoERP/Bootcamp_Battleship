@@ -422,7 +422,20 @@ public class AcorazadosTests
         var resultado = () => acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
         
         resultado.Should().ThrowExactly<InvalidOperationException>()
-            .WithMessage("*No es posible agregar mas de 3 destructores");
+            .WithMessage("*No es posible agregar mas de 2 destructores");
+    }
+    
+    [Fact]
+    public void Si_InicioJuegoAgrego1JugadorYPosiciono2PortaAviones_Debe_LanzarExcepcion()
+    {
+        var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        acorazado.PosicionarNave(0, 0, TiposNave.PortaAviones, Orientacion.Derecha);
+
+        var resultado = () => acorazado.PosicionarNave(1, 0, TiposNave.PortaAviones, Orientacion.Derecha);
+        
+        resultado.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("*No es posible agregar mas de 1 portaavion");
     }
     
 }

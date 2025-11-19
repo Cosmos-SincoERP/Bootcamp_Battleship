@@ -43,9 +43,13 @@ public class Acorazado
 
     public void PosicionarNave(int posicionX, int posicionY, TiposNave nave, Orientacion orientacion)
     {
-        if (_estrategia["Player 1"].Count(x => x == TiposNave.Canionero) == 4)
+        if (_estrategia["Player 1"].Count(nave => nave == TiposNave.Canionero) == 4)
             throw new InvalidOperationException("No es posible agregar mas de 4 cañoreros");
 
+        if (_estrategia["Player 1"].Count(nave => nave == TiposNave.Destructor) == 2)
+            throw new InvalidOperationException("No es posible agregar mas de 2 destructores");
+
+        
         
         _estrategia[_jugadores[0]].Add(nave);
 
