@@ -32,6 +32,16 @@ public class Jugador
             ValidacionesTablero(fila, columna);
             Tablero[fila, columna] = "g";
         }
+        else if (tipoAcorazado.Equals(Acorazado.Portaaviones))
+        {
+            if (direccion == Direccion.Derecha)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    Tablero[fila, columna+i] = "c";
+                }
+            }
+        }
         else
         {
             if (direccion.Equals(Direccion.Derecha))
