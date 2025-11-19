@@ -4,6 +4,9 @@ public class Acorazado
 {
     private string[,] _tablero = new string[10, 10];
 
+    private List<string> _jugadores = [];
+
+
     private Dictionary<TiposNave, int> _nave = new()
     {
         { TiposNave.Canionero, 1 },
@@ -82,12 +85,15 @@ public class Acorazado
 
     public object Iniciar()
     {
-        throw new InvalidOperationException("Deben haber minimo 2 jugadores para iniciar la partida");
+        if (_jugadores.Count == 0)
+            throw new InvalidOperationException("Deben haber minimo 2 jugadores para iniciar la partida");
+
+        throw new InvalidOperationException("*Jugador 1 no ha posicionado naves");
     }
 
 
     public void AgregarJugador(string player)
     {
-        throw new NotImplementedException();
+        _jugadores.Add(player);
     }
 }
