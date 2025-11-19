@@ -5,9 +5,11 @@ namespace TDDKatas;
 public class AcorazadosTests
 {
     [Fact]
-    public void Si_InicioElJuegoEImprimo_Debe_MostrarTableroVacio()
+    public void Si_InicioElJuegoYAgregoUnJugadorEImprimo_Debe_MostrarTableroVacio()
     {
         var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        
         var imprimir = acorazado.Imprimir();
 
         imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
@@ -35,7 +37,7 @@ public class AcorazadosTests
     }
 
     [Fact]
-    public void Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarElTableroConGEnPosicion0_0()
+    public void Si_InicioElJuegoAgregoJugadorYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarElTableroConGEnPosicion0_0()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -68,7 +70,7 @@ public class AcorazadosTests
     }
 
     [Fact]
-    public void Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarElTableroConGEnPosicion1_1()
+    public void Si_InicioElJuegoAgregoJugadorYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarElTableroConGEnPosicion1_1()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -101,7 +103,7 @@ public class AcorazadosTests
     }
 
     [Fact]
-    public void Si_InicioElJuegoYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarElTableroConDPosicionadoEn0_0()
+    public void Si_InicioElJuegoAgregoJugadorYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarElTableroConDPosicionadoEn0_0()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -134,7 +136,7 @@ public class AcorazadosTests
     }
 
     [Fact]
-    public void Si_InicioElJuegoYUbicoPortaAvionesEnPosicion0_0Imprimir_Debe_RetornarElTableroConCPosicionadoEn0_0()
+    public void Si_InicioElJuegoAgregoJugadorYUbicoPortaAvionesEnPosicion0_0Imprimir_Debe_RetornarElTableroConCPosicionadoEn0_0()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -169,7 +171,7 @@ public class AcorazadosTests
 
     [Fact]
     public void
-        Si_InicioElJuegoYUbicoDestructorEnPosicion1_3OrientacionIzquierdaImprimir_Debe_RetornarElTableroConDPosicionadoEn1_3OrientadoALaIzquierda()
+        Si_InicioElJuegoAgregoJugadorYUbicoDestructorEnPosicion1_3OrientacionIzquierdaImprimir_Debe_RetornarElTableroConDPosicionadoEn1_3OrientadoALaIzquierda()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -203,7 +205,7 @@ public class AcorazadosTests
 
     [Fact]
     public void
-        Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionArribaImprimir_Debe_RetornarElTableroConDPosicionadoEn2_3OrientadoHaciaArriba()
+        Si_InicioElJuegoAgregoJugadorYUbicoDestructorEnPosicion2_3OrientacionArribaImprimir_Debe_RetornarElTableroConDPosicionadoEn2_3OrientadoHaciaArriba()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -237,7 +239,7 @@ public class AcorazadosTests
 
     [Fact]
     public void
-        Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionAbajoImprimir_Debe_RetornarElTableroConDPosicionadoEn2_3OrientadoHaciaAbajo()
+        Si_InicioElJuegoAgregoJugadorYUbicoDestructorEnPosicion2_3OrientacionAbajoImprimir_Debe_RetornarElTableroConDPosicionadoEn2_3OrientadoHaciaAbajo()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -271,7 +273,7 @@ public class AcorazadosTests
 
     [Fact]
     public void
-        Si_InicioElJuegoYUbicoPortaAvionesEnPosicion2_3OrientacionIzquierdaImprimir_Debe_RetornarElTableroConCPosicionadoEn2_3OrientadoHaciaLaIzquierda()
+        Si_InicioElJuegoAgregoJugadorYUbicoPortaAvionesEnPosicion2_3OrientacionIzquierdaImprimir_Debe_RetornarElTableroConCPosicionadoEn2_3OrientadoHaciaLaIzquierda()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -305,7 +307,7 @@ public class AcorazadosTests
 
     [Fact]
     public void
-        Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionArribaImprimir_Debe_RetornarElTableroConCPosicionadoEn3_3OrientadoHaciaArriba()
+        Si_InicioElJuegoAgregoJugadorYUbicoPortaAvionesEnPosicion3_3OrientacionArribaImprimir_Debe_RetornarElTableroConCPosicionadoEn3_3OrientadoHaciaArriba()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -339,7 +341,7 @@ public class AcorazadosTests
 
     [Fact]
     public void
-        Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarElTableroConCPosicionadoEn3_3OrientadoHaciaAbajo()
+        Si_InicioElJuegoAgregoJugadorYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarElTableroConCPosicionadoEn3_3OrientadoHaciaAbajo()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -612,19 +614,38 @@ public class AcorazadosTests
         acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
         acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
         acorazado.AgregarJugador("Player 2");
-        acorazado.PosicionarNave(10, 10, TiposNave.Canionero, Orientacion.Izquierda);
-        acorazado.PosicionarNave(10, 9, TiposNave.Canionero, Orientacion.Izquierda);
-        acorazado.PosicionarNave(10, 8, TiposNave.Canionero, Orientacion.Izquierda);
-        acorazado.PosicionarNave(10, 7, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 9, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 8, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 7, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 6, TiposNave.Canionero, Orientacion.Izquierda);
         acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
         acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
         acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
         acorazado.Iniciar();
 
+        var imprimir = acorazado.Imprimir();
         
-        var resultado = acorazado.Disparar(10, 10);
-        
-        resultado.Should().Be("BARCO HUNDIDO");
-
+        imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "0 | g | g | g | g |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "1 | c | c | c | c |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "2 | d | d | d |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "3 | d | d | d |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "4 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "5 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "6 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "7 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "8 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "9 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+");
     }
 }
