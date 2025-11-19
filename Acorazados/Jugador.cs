@@ -7,36 +7,38 @@ public class Jugador
 
     private List<Acorazado> Acorazados = new List<Acorazado>();
 
-    public Jugador(string player)
+    public Jugador(string player, List<AcorazadoAcuatizado> acorazados)
     {
         Nombre = player;
         Tablero = new string[10, 10];
+        foreach (var acorazado in acorazados)
+            AgregarAcorazado(acorazado);
     }
-
-    public void AgregarAcorazado(Acorazado tipoAcorazado, int fila, int columna, Direccion? direccion = null)
+  
+    private void AgregarAcorazado(AcorazadoAcuatizado acorazadoAcuatizado)
     {
-        ValidarCantidadMaximaTipoAcorazado(tipoAcorazado);
+        ValidarCantidadMaximaTipoAcorazado(acorazadoAcuatizado.tipoAcorazado);
 
-        for (int i = 0; i < tipoAcorazado.CantidaCasillasOcupadasPorAcorazado; i++)
+        for (int i = 0; i < acorazadoAcuatizado.tipoAcorazado.CantidaCasillasOcupadasPorAcorazado; i++)
         {
-            switch (direccion)
+            switch (acorazadoAcuatizado.direccion)
             {
                 case Direccion.Derecha:
-                    AsignarCasillaAcorazado(tipoAcorazado, fila, columna + i);
+                    AsignarCasillaAcorazado(acorazadoAcuatizado.tipoAcorazado, acorazadoAcuatizado.fila, acorazadoAcuatizado.columna + i);
                     break;
                 case Direccion.Abajo:
-                    AsignarCasillaAcorazado(tipoAcorazado, fila + i, columna);
+                    AsignarCasillaAcorazado(acorazadoAcuatizado.tipoAcorazado, acorazadoAcuatizado.fila + i, acorazadoAcuatizado.columna);
                     break;
                 case Direccion.Izquierda:
-                    AsignarCasillaAcorazado(tipoAcorazado, fila, columna - i);
+                    AsignarCasillaAcorazado(acorazadoAcuatizado.tipoAcorazado, acorazadoAcuatizado.fila, acorazadoAcuatizado.columna - i);
                     break;
                 default:
-                    AsignarCasillaAcorazado(tipoAcorazado, fila - i, columna);
+                    AsignarCasillaAcorazado(acorazadoAcuatizado.tipoAcorazado, acorazadoAcuatizado.fila - i, acorazadoAcuatizado.columna);
                     break;
             }
         }
 
-        Acorazados.Add(tipoAcorazado);
+        Acorazados.Add(acorazadoAcuatizado.tipoAcorazado);
     }
 
     private void AsignarCasillaAcorazado(Acorazado tipoAcorazado, int fila, int columna)
