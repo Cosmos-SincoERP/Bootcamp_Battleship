@@ -38,6 +38,7 @@ public class AcorazadosTests
     public void Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarElTableroConGEnPosicion0_0()
     {
         var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
         acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
 
         var imprimir = acorazado.Imprimir();
@@ -70,6 +71,7 @@ public class AcorazadosTests
     public void Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarElTableroConGEnPosicion1_1()
     {
         var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
         acorazado.PosicionarNave(1, 1, TiposNave.Canionero, Orientacion.Derecha);
 
         var imprimir = acorazado.Imprimir();
@@ -102,6 +104,7 @@ public class AcorazadosTests
     public void Si_InicioElJuegoYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarElTableroConDPosicionadoEn0_0()
     {
         var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
         acorazado.PosicionarNave(0, 0, TiposNave.Destructor, Orientacion.Derecha);
 
         var imprimir = acorazado.Imprimir();
@@ -134,6 +137,7 @@ public class AcorazadosTests
     public void Si_InicioElJuegoYUbicoPortaAvionesEnPosicion0_0Imprimir_Debe_RetornarElTableroConCPosicionadoEn0_0()
     {
         var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
         acorazado.PosicionarNave(0, 0, TiposNave.PortaAviones, Orientacion.Derecha);
 
         var imprimir = acorazado.Imprimir();
@@ -168,6 +172,7 @@ public class AcorazadosTests
         Si_InicioElJuegoYUbicoDestructorEnPosicion1_3OrientacionIzquierdaImprimir_Debe_RetornarElTableroConDPosicionadoEn1_3OrientadoALaIzquierda()
     {
         var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
         acorazado.PosicionarNave(1, 3, TiposNave.Destructor, Orientacion.Izquierda);
 
         var imprimir = acorazado.Imprimir();
@@ -201,6 +206,7 @@ public class AcorazadosTests
         Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionArribaImprimir_Debe_RetornarElTableroConDPosicionadoEn2_3OrientadoHaciaArriba()
     {
         var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
         acorazado.PosicionarNave(2, 3, TiposNave.Destructor, Orientacion.Arriba);
 
         var imprimir = acorazado.Imprimir();
@@ -234,6 +240,7 @@ public class AcorazadosTests
         Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionAbajoImprimir_Debe_RetornarElTableroConDPosicionadoEn2_3OrientadoHaciaAbajo()
     {
         var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
         acorazado.PosicionarNave(2, 3, TiposNave.Destructor, Orientacion.Abajo);
 
         var imprimir = acorazado.Imprimir();
@@ -267,6 +274,7 @@ public class AcorazadosTests
         Si_InicioElJuegoYUbicoPortaAvionesEnPosicion2_3OrientacionIzquierdaImprimir_Debe_RetornarElTableroConCPosicionadoEn2_3OrientadoHaciaLaIzquierda()
     {
         var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
         acorazado.PosicionarNave(2, 3, TiposNave.PortaAviones, Orientacion.Izquierda);
 
         var imprimir = acorazado.Imprimir();
@@ -294,12 +302,13 @@ public class AcorazadosTests
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
     }
-    
+
     [Fact]
     public void
         Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionArribaImprimir_Debe_RetornarElTableroConCPosicionadoEn3_3OrientadoHaciaArriba()
     {
         var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
         acorazado.PosicionarNave(3, 3, TiposNave.PortaAviones, Orientacion.Arriba);
 
         var imprimir = acorazado.Imprimir();
@@ -327,12 +336,13 @@ public class AcorazadosTests
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
     }
-    
+
     [Fact]
     public void
         Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarElTableroConCPosicionadoEn3_3OrientadoHaciaAbajo()
     {
         var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
         acorazado.PosicionarNave(3, 3, TiposNave.PortaAviones, Orientacion.Abajo);
 
         var imprimir = acorazado.Imprimir();
@@ -369,8 +379,8 @@ public class AcorazadosTests
 
         var resultado = () => acorazado.Iniciar();
 
-        resultado.Should().ThrowExactly<InvalidOperationException>().WithMessage("*Deben haber minimo 2 jugadores para iniciar la partida");
-        
+        resultado.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("*Deben haber minimo 2 jugadores para iniciar la partida");
     }
 
     [Fact]
@@ -383,11 +393,10 @@ public class AcorazadosTests
         var resultado = () => acorazado.Iniciar();
 
         resultado.Should().ThrowExactly<InvalidOperationException>().WithMessage("*Jugador 1 no ha posicionado naves");
-        
     }
 
     [Fact]
-    public void Si_InicioLaPartidaYAgrego2JugadoresYPosiciono5Cañoneros_Debe_LanzarExcepcion()
+    public void Si_InicioJuegoAgrego1JugadorYPosiciono5Cañoneros_Debe_LanzarExcepcion()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -395,16 +404,10 @@ public class AcorazadosTests
         acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Abajo);
         acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Abajo);
         acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Abajo);
-        acorazado.PosicionarNave(0, 4, TiposNave.Canionero, Orientacion.Abajo);
         
+        var resultado = () => acorazado.PosicionarNave(0, 4, TiposNave.Canionero, Orientacion.Abajo);
         
-        acorazado.AgregarJugador("Player 2");
-
-        var resultado = () => acorazado.Iniciar();
-        resultado.Should().ThrowExactly<InvalidOperationException>().WithMessage("*No es posible agregar mas de cañoreros");
- 
+        resultado.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("*No es posible agregar mas de 4 cañoreros");
     }
-    
-    
-    
 }

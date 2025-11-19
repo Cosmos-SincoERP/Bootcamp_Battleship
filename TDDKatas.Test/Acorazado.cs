@@ -14,6 +14,8 @@ public class Acorazado
         { TiposNave.PortaAviones, 4 },
     };
 
+    private Dictionary<string, List<TiposNave>> _estrategia = new();
+
     public string Imprimir()
     {
         const string separador = "  +---+---+---+---+---+---+---+---+---+---+";
@@ -41,6 +43,12 @@ public class Acorazado
 
     public void PosicionarNave(int posicionX, int posicionY, TiposNave nave, Orientacion orientacion)
     {
+        if (_estrategia["Player 1"].Count(x => x == TiposNave.Canionero) == 4)
+            throw new InvalidOperationException("No es posible agregar mas de 4 cañoreros");
+
+        
+        _estrategia[_jugadores[0]].Add(nave);
+
         if (orientacion == Orientacion.Derecha)
         {
             OrientarAlaDerecha(posicionX, posicionY, nave);
@@ -87,13 +95,14 @@ public class Acorazado
     {
         if (_jugadores.Count == 0)
             throw new InvalidOperationException("Deben haber minimo 2 jugadores para iniciar la partida");
-
-        throw new InvalidOperationException("*Jugador 1 no ha posicionado naves");
+        
+        throw new InvalidOperationException("Jugador 1 no ha posicionado naves");
     }
 
 
     public void AgregarJugador(string player)
     {
         _jugadores.Add(player);
+        _estrategia.Add(player, new List<TiposNave>());
     }
 }
