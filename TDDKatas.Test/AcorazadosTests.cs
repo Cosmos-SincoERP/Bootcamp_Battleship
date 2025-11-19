@@ -360,6 +360,16 @@ public class AcorazadosTests
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
     }
-    
+
+    [Fact]
+    public void Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion()
+    {
+        var acorazado = new Acorazado();
+
+        var resultado = () => acorazado.Iniciar();
+
+        resultado.Should().ThrowExactly<InvalidOperationException>().WithMessage("*Deben haber minimo 2 jugadores para iniciar la partida");
+        
+    }
     
 }

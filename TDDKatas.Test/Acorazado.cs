@@ -79,4 +79,9 @@ public class Acorazado
         for (int i = 0; i < _nave[nave]; i++)
             _tablero[posicionX, posicionY + i] = ((char)nave).ToString();
     }
+
+    public object Iniciar()
+    {
+        throw new NotImplementedException();
+    }
 }
