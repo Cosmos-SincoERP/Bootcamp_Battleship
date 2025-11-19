@@ -45,6 +45,13 @@ public class AcorazadosTests
         _juego.ImprimirTablero().Should().BeEquivalentTo(tableroInicial);
     }
 
+    [Fact]
+    public void Si_inicioUnJuegoSinJugadores_Debe_LanzarExcepcion()
+    {
+        Action act =() => _juego.Iniciar();
+        
+        act.Should().Throw<ArgumentException>().WithMessage("*Debe tener jugadores para iniciar el juego*");
+    }
 
     [Fact]
     public void Si_CreoUnCañoneroEnLaPosicion11_Debe_LaCasilla11Tenerg()
@@ -419,6 +426,5 @@ public class AcorazadosTests
 
         _juego.ImprimirTablero().Should().BeEquivalentTo(tableroInicial);
     }
-
-
+    
 }
