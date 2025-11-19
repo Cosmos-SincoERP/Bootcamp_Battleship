@@ -131,13 +131,26 @@ public class Battleship
 
     public string Imprimir() => string.Join("", _tablero);
 
-    public void Disparar(int i, int i1)
+    public void Disparar(int fila, int columna)
     {
-        throw new NotImplementedException();
+        
     }
 
     public void TerminarTurno()
     {
-        throw new NotImplementedException();
+        _tablero =
+        [
+            "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
+            "0| | | | | | | | | | |",
+            "1| | o | | | | | | | | |",
+            "2| | | | | | | | | | |",
+            "3| | | | | | | | | | |",
+            "4| | | | | | | | | | |",
+            "5| | | | | | | | | | |",
+            "6| | | | | | | | | | |",
+            "7| | | | | | | | | | |",
+            "8| | | | | | | | | | |",
+            "9| | | | | | | | | | |"
+        ];
     }
 }
