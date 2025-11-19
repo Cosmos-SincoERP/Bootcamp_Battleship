@@ -76,9 +76,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
 
-        List<(int, int)> coordenadasCañonero = new()
+        List<(int, int, string)> coordenadasCañonero = new()
         {
-            new(0, 0)
+            new(0, 0, "Cañonero")
         };
 
         juegoAcorazado.Iniciar(coordenadasCañonero);
@@ -97,9 +97,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
 
-        List<(int, int)> coordenadasCañonero = new()
+        List<(int, int, string)> coordenadasCañonero = new()
         {
-            new(4, 5)
+            new(4, 5, "Cañonero")
         };
 
         juegoAcorazado.Iniciar(coordenadasCañonero);
@@ -120,10 +120,10 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
 
-        List<(int, int)> coordenadasCañonero = new()
+        List<(int, int, string)> coordenadasCañonero = new()
         {
-            new(2, 3),
-            new(3, 3)
+            new(2, 3, "Cañonero"),
+            new(3, 3, "Cañonero")
         };
 
         juegoAcorazado.Iniciar(coordenadasCañonero);
@@ -133,23 +133,20 @@ public class AcorazadosTest
 
 
     [Fact]
-    public void Si_SeIniciaElJuegoConDosJugadoresElJugador1_Debe_ColocarUnPortavionesHorizontakEnLaPosicionInicial2_3()
+    public void Si_SeIniciaElJuegoConDosJugadoresElJugador1_Debe_ColocarUnPortavionesEnLaPosicionInicial2_3()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
         tablero[2, 3] = 'c';
-        tablero[2, 4] = 'c';
-        tablero[2, 5] = 'c';
-        tablero[2, 6] = 'c';
 
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
 
-        List<(int, int)> coordenadasPortaAvion = new()
+        List<(int, int, string)> coordenadasPortaAvion = new()
         {
-            new(2, 3)
+            new(2, 3, "Portaviones")
         };
 
         juegoAcorazado.Iniciar(coordenadasPortaAvion);
@@ -173,15 +170,18 @@ public class JuegoAcorazado
         return _jugadores;
     }
 
-    public void Iniciar(List<(int, int)>? cañoneros = null)
+    public void Iniciar(List<(int, int, string)>? naves = null)
     {
         if (_jugadores.Count != 2)
             throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
 
-        if (cañoneros != null)
-            foreach (var cañon in cañoneros)
+        if (naves != null)
+            foreach (var nave in naves)
             {
-                _tablero[cañon.Item1, cañon.Item2] = 'g';
+                if (nave.Item3 == "Cañonero")
+                    _tablero[nave.Item1, nave.Item2] = 'g';
+                else
+                    _tablero[nave.Item1, nave.Item2] = 'c';
             }
     }
 
