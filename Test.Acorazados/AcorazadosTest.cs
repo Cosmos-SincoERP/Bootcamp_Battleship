@@ -168,7 +168,7 @@ public class AcorazadosTest
 
         List<(int, int, string)> coordenadasDestructor = new()
         {
-            new(2, 3, "Destructor")
+            new(4, 5, "Destructor")
         };
 
         juegoAcorazado.Iniciar(coordenadasDestructor);
@@ -202,8 +202,10 @@ public class JuegoAcorazado
             {
                 if (nave.Item3 == "Cañonero")
                     _tablero[nave.Item1, nave.Item2] = 'g';
-                else
+                else if (nave.Item3 == "Portaviones")
                     _tablero[nave.Item1, nave.Item2] = 'c';
+                else
+                    _tablero[nave.Item1, nave.Item2] = 'd';
             }
     }
 
