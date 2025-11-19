@@ -1,11 +1,6 @@
 namespace Acorazados;
 
-public enum Acorazado
-{
-    Cañonero = 1,
-    Destructor = 3,
-    Portaaviones = 4
-}
+
 
 public enum Direccion
 {
@@ -15,20 +10,44 @@ public enum Direccion
     Abajo
 }
 
+
+public abstract class Acorazado
+{
+    public abstract string Letra { get; }
+    public abstract int CantidadMaximaAcorazadosEnTablero { get; }
+    public abstract int CantidaCasillasOcupadasPorAcorazado { get; }
+}
+
+public class Cañonero : Acorazado
+{
+    public override string Letra => "g";
+    public override int CantidadMaximaAcorazadosEnTablero => 4;
+    public override int CantidaCasillasOcupadasPorAcorazado => 1;
+}
+
+public class Destructor : Acorazado
+{
+    public override string Letra => "d";
+    public override int CantidadMaximaAcorazadosEnTablero => 2;
+    public override int CantidaCasillasOcupadasPorAcorazado => 3;
+}
+
+public class PortaAviones : Acorazado
+{
+    public override string Letra => "c";
+    public override int CantidadMaximaAcorazadosEnTablero => 1;
+    public override int CantidaCasillasOcupadasPorAcorazado => 4;
+}
+
+
+
+
 public class Jugador
 {
     public string Nombre { get; private set; }
     private string[,] Tablero;
-    private int _conteoCañoneros;
-    private int _conteoDestructores;
-    private int _conteoPortaaviones;
-    private Dictionary<Acorazado, string> LetraAcozados = new Dictionary<Acorazado, string>
-    {
-        { Acorazado.Cañonero, "g" },
-        { Acorazado.Destructor, "d" },
-        { Acorazado.Portaaviones, "c" }
-    };
-
+    
+    private List<Acorazado> Acorazados = new List<Acorazado>();
 
     public Jugador(string player)
     {
@@ -40,7 +59,7 @@ public class Jugador
     {
         ValidarCantidadMaximaTipoAcorazado(tipoAcorazado);
 
-        for (int i = 0; i < (int)tipoAcorazado; i++)
+        for (int i = 0; i < tipoAcorazado.CantidaCasillasOcupadasPorAcorazado; i++)
         {
             switch (direccion)
             {
@@ -58,32 +77,21 @@ public class Jugador
                     break;
             }
         }
-        AumentarCantidadTipoAcorazado(tipoAcorazado);
+        Acorazados.Add(tipoAcorazado);
     }
 
     private void AsignarCasillaAcorazado(Acorazado tipoAcorazado, int fila, int columna)
     {
         ValidacionesTablero(fila, columna);
-        Tablero[fila, columna] = LetraAcozados[tipoAcorazado];
+        Tablero[fila, columna] = tipoAcorazado.Letra;
     }
 
-    private void AumentarCantidadTipoAcorazado(Acorazado tipoAcorazado)
-    {
-        if(tipoAcorazado == Acorazado.Cañonero) 
-            _conteoCañoneros++;
-        if (tipoAcorazado == Acorazado.Destructor)
-            _conteoDestructores++;
-        if (tipoAcorazado == Acorazado.Portaaviones)
-            _conteoPortaaviones++;
-    }
+
 
     private void ValidarCantidadMaximaTipoAcorazado(Acorazado tipoAcorazado)
     {
-        if(_conteoCañoneros==4 && tipoAcorazado == Acorazado.Cañonero)
-            throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
-        if(_conteoDestructores==2 && tipoAcorazado == Acorazado.Destructor)
-            throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
-        if(_conteoPortaaviones==1 && tipoAcorazado == Acorazado.Portaaviones)
+        int cantidadAcorazadosPorTipo = Acorazados.Where(x => x.GetType() == tipoAcorazado.GetType()).Count();
+        if(cantidadAcorazadosPorTipo == tipoAcorazado.CantidadMaximaAcorazadosEnTablero)
             throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
     }
 

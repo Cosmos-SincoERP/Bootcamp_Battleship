@@ -7,6 +7,9 @@ public class AcorazadosTests
 {
     Jugador jugador;
     string[,] tableroInicial;
+    private Cañonero _cañonero;
+    private Destructor _destructor;
+    private PortaAviones _portaAviones;
 
     public AcorazadosTests()
     {
@@ -24,6 +27,9 @@ public class AcorazadosTests
             { null, null, null, null, null, null, null, null, null, null },
             { null, null, null, null, null, null, null, null, null, null },
         };
+        _cañonero = new Cañonero();
+        _destructor = new Destructor();
+        _portaAviones = new PortaAviones();
     }
 
     [Fact]
@@ -46,7 +52,7 @@ public class AcorazadosTests
     {
         tableroInicial[1, 1] = "g";
 
-        jugador.AgregarAcorazado(Acorazado.Cañonero, 1, 1);
+        jugador.AgregarAcorazado(new Cañonero(), 1, 1);
 
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
     }
@@ -54,16 +60,17 @@ public class AcorazadosTests
     [Fact]
     public void Si_CreoUnCañoneroEnLaPosicion11YvueloAcrearuncañoneroenlaMismaPosicion_Debe_LanzarUnaExcepcion()
     {
-        jugador.AgregarAcorazado(Acorazado.Cañonero, 1, 1);
+    
+        jugador.AgregarAcorazado(_cañonero, 1, 1);
 
-        Action act = () => jugador.AgregarAcorazado(Acorazado.Cañonero, 1, 1);
+        Action act = () => jugador.AgregarAcorazado(_cañonero, 1, 1);
         act.Should().Throw<ArgumentException>().WithMessage("*Ya existe un acorazado en esa posicion*");
     }
 
     [Fact]
     public void Si_CreoUnCañoneroEnLaPosicion1111_Debe_LanzarUnaExcepcionDeFueraDeRango()
     {
-        Action act = () => jugador.AgregarAcorazado(Acorazado.Cañonero, 11, 11);
+        Action act = () => jugador.AgregarAcorazado(new Cañonero(), 11, 11);
 
         act.Should().Throw<ArgumentOutOfRangeException>()
             .WithMessage("*No es posible ubicar el acorazado en esa direccion*");
@@ -72,7 +79,7 @@ public class AcorazadosTests
     [Fact]
     public void Si_CreoUnCañoneroEnLaPosicionmenos1menos1_Debe_LanzarUnaExcepcionDeFueraDeRango()
     {
-        Action act = () => jugador.AgregarAcorazado(Acorazado.Cañonero, -1, -1);
+        Action act = () => jugador.AgregarAcorazado(_cañonero, -1, -1);
 
         act.Should().Throw<ArgumentOutOfRangeException>()
             .WithMessage("*No es posible ubicar el acorazado en esa direccion*");
@@ -85,7 +92,7 @@ public class AcorazadosTests
         tableroInicial[1, 1] = "d";
         tableroInicial[0, 1] = "d";
 
-        jugador.AgregarAcorazado(Acorazado.Destructor, 2, 1, Direccion.Arriba);
+        jugador.AgregarAcorazado(_destructor, 2, 1, Direccion.Arriba);
 
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
     }
@@ -97,7 +104,7 @@ public class AcorazadosTests
         tableroInicial[1, 2] = "d";
         tableroInicial[1, 3] = "d";
 
-        jugador.AgregarAcorazado(Acorazado.Destructor, 1, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_destructor, 1, 1, Direccion.Derecha);
 
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
     }
@@ -109,7 +116,7 @@ public class AcorazadosTests
         tableroInicial[1, 1] = "d";
         tableroInicial[1, 0] = "d";
 
-        jugador.AgregarAcorazado(Acorazado.Destructor, 1, 2, Direccion.Izquierda);
+        jugador.AgregarAcorazado(_destructor, 1, 2, Direccion.Izquierda);
 
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
     }
@@ -120,7 +127,7 @@ public class AcorazadosTests
         tableroInicial[1, 3] = "d";
         tableroInicial[2, 3] = "d";
         tableroInicial[3, 3] = "d";
-        jugador.AgregarAcorazado(Acorazado.Destructor, 1, 3, Direccion.Abajo);
+        jugador.AgregarAcorazado(_destructor, 1, 3, Direccion.Abajo);
 
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
     }
@@ -128,7 +135,7 @@ public class AcorazadosTests
     [Fact]
     public void Si_CreoUnDestructorEnLaPosicion99ConDireccionDerecha_Debe_LanzarUnaExcepcionDeFueraDeRango()
     {
-        Action act = () => jugador.AgregarAcorazado(Acorazado.Destructor, 9, 9, Direccion.Derecha);
+        Action act = () => jugador.AgregarAcorazado(_destructor, 9, 9, Direccion.Derecha);
         act.Should().Throw<ArgumentOutOfRangeException>()
             .WithMessage("*No es posible ubicar el acorazado en esa direccion*");
     }
@@ -145,7 +152,7 @@ public class AcorazadosTests
     public void Si_CreoUnDestructorEnAlgunaPosicionFueraDelTablero_Debe_LanzarUnaExcepcionDeFueraDeRango(int fila,
         int columna, Direccion direccion)
     {
-        Action act = () => jugador.AgregarAcorazado(Acorazado.Destructor, fila, columna, direccion);
+        Action act = () => jugador.AgregarAcorazado(_destructor, fila, columna, direccion);
 
         act.Should().Throw<ArgumentOutOfRangeException>()
             .WithMessage("*No es posible ubicar el acorazado en esa direccion*");
@@ -155,8 +162,8 @@ public class AcorazadosTests
     public void
         Si_CreoUnDestructorEnPosicion11DireccionDerechayCreoOtroEnPosicion01DireccionAbajo_Debe_LanzarUnaArgumentException()
     {
-        jugador.AgregarAcorazado(Acorazado.Destructor, 1, 1, Direccion.Derecha);
-        Action act = () => jugador.AgregarAcorazado(Acorazado.Destructor, 0, 1, Direccion.Abajo);
+        jugador.AgregarAcorazado(_destructor, 1, 1, Direccion.Derecha);
+        Action act = () => jugador.AgregarAcorazado(_destructor, 0, 1, Direccion.Abajo);
 
         act.Should().Throw<ArgumentException>().WithMessage("*Ya existe un acorazado en esa posicion*");
     }
@@ -168,7 +175,7 @@ public class AcorazadosTests
         tableroInicial[1, 2] = "c";
         tableroInicial[1, 3] = "c";
         tableroInicial[1, 4] = "c";
-        jugador.AgregarAcorazado(Acorazado.Portaaviones, 1, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_portaAviones,1, 1, Direccion.Derecha);
 
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
     }
@@ -181,7 +188,7 @@ public class AcorazadosTests
         tableroInicial[3, 1] = "c";
         tableroInicial[4, 1] = "c";
 
-        jugador.AgregarAcorazado(Acorazado.Portaaviones, 1, 1, Direccion.Abajo);
+        jugador.AgregarAcorazado(_portaAviones, 1, 1, Direccion.Abajo);
 
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
     }
@@ -194,7 +201,7 @@ public class AcorazadosTests
         tableroInicial[1, 1] = "c";
         tableroInicial[1, 0] = "c";
 
-        jugador.AgregarAcorazado(Acorazado.Portaaviones, 1, 3, Direccion.Izquierda);
+        jugador.AgregarAcorazado(_portaAviones, 1, 3, Direccion.Izquierda);
 
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
     }
@@ -206,7 +213,7 @@ public class AcorazadosTests
         tableroInicial[2, 1] = "c";
         tableroInicial[1, 1] = "c";
         tableroInicial[0, 1] = "c";
-        jugador.AgregarAcorazado(Acorazado.Portaaviones, 3, 1, Direccion.Arriba);
+        jugador.AgregarAcorazado(_portaAviones, 3, 1, Direccion.Arriba);
 
 
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
@@ -228,7 +235,7 @@ public class AcorazadosTests
     public void Si_CreoUnPortaavionesEnAlgunaPosicionFueraDelTablero_Debe_LanzarUnaExcepcionDeFueraDeRango(int fila,
         int columna, Direccion direccion)
     {
-        Action act = () => jugador.AgregarAcorazado(Acorazado.Portaaviones, fila, columna, direccion);
+        Action act = () => jugador.AgregarAcorazado(_portaAviones, fila, columna, direccion);
 
         act.Should().Throw<ArgumentOutOfRangeException>()
             .WithMessage("*No es posible ubicar el acorazado en esa direccion*");
@@ -237,12 +244,12 @@ public class AcorazadosTests
     [Fact]
     public void Si_CreoUnCañoneroTeniendoCuatroEnMiTablero_Debe_LanzarUnaArgumentException()
     {
-        jugador.AgregarAcorazado(Acorazado.Cañonero, 1, 1);
-        jugador.AgregarAcorazado(Acorazado.Cañonero, 3, 3);
-        jugador.AgregarAcorazado(Acorazado.Cañonero, 5, 5);
-        jugador.AgregarAcorazado(Acorazado.Cañonero, 7, 7);
+        jugador.AgregarAcorazado(_cañonero, 1, 1);
+        jugador.AgregarAcorazado(_cañonero, 3, 3);
+        jugador.AgregarAcorazado(_cañonero, 5, 5);
+        jugador.AgregarAcorazado(_cañonero, 7, 7);
 
-        Action act = () => jugador.AgregarAcorazado(Acorazado.Cañonero, 9, 9);
+        Action act = () => jugador.AgregarAcorazado(_cañonero, 9, 9);
 
         act.Should().Throw<ArgumentException>().WithMessage("*Se supero el maximo de acorazados de este tipo*");
     }
@@ -250,10 +257,10 @@ public class AcorazadosTests
     [Fact]
     public void Si_CreoUnDestructorTeniendoDosEnMiTablero_Debe_LanzarUnaArgumentException()
     {
-        jugador.AgregarAcorazado(Acorazado.Destructor, 1, 1, Direccion.Derecha);
-        jugador.AgregarAcorazado(Acorazado.Destructor, 3, 3, Direccion.Derecha);
+        jugador.AgregarAcorazado(_destructor, 1, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_destructor, 3, 3, Direccion.Derecha);
 
-        Action act = () => jugador.AgregarAcorazado(Acorazado.Destructor, 5, 5, Direccion.Derecha);
+        Action act = () => jugador.AgregarAcorazado(_destructor, 5, 5, Direccion.Derecha);
 
         act.Should().Throw<ArgumentException>().WithMessage("*Se supero el maximo de acorazados de este tipo*");
     }
@@ -261,9 +268,9 @@ public class AcorazadosTests
     [Fact]
     public void Si_CreoUnPortaavionesTeniendoUnPortaavionesEnMiTablero_Debe_LanzarUnaArgumentException()
     {
-        jugador.AgregarAcorazado(Acorazado.Portaaviones, 1, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_portaAviones, 1, 1, Direccion.Derecha);
 
-        Action act = () => jugador.AgregarAcorazado(Acorazado.Portaaviones, 3, 3, Direccion.Derecha);
+        Action act = () => jugador.AgregarAcorazado(_portaAviones, 3, 3, Direccion.Derecha);
 
         act.Should().Throw<ArgumentException>().WithMessage("*Se supero el maximo de acorazados de este tipo*");
     }
@@ -279,8 +286,8 @@ public class AcorazadosTests
         tableroInicial[1, 4] = "c";
 
 
-        jugador.AgregarAcorazado(Acorazado.Portaaviones, 1, 1, Direccion.Derecha);
-        jugador.AgregarAcorazado(Acorazado.Cañonero, 3, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_portaAviones, 1, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_cañonero, 3, 1, Direccion.Derecha);
 
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
     }
@@ -298,10 +305,10 @@ public class AcorazadosTests
         tableroInicial[2, 2] = "d";
         tableroInicial[2, 3] = "d";
 
-        jugador.AgregarAcorazado(Acorazado.Destructor, 1, 1, Direccion.Derecha);
-        jugador.AgregarAcorazado(Acorazado.Destructor, 2, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_destructor, 1, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_destructor, 2, 1, Direccion.Derecha);
 
-        jugador.AgregarAcorazado(Acorazado.Cañonero, 3, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_cañonero, 3, 1, Direccion.Derecha);
 
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
     }
@@ -318,11 +325,11 @@ public class AcorazadosTests
         tableroInicial[3, 3] = "c";
         tableroInicial[3, 4] = "c";
         
-        jugador.AgregarAcorazado(Acorazado.Cañonero, 1, 1, Direccion.Derecha);
-        jugador.AgregarAcorazado(Acorazado.Cañonero, 2, 1, Direccion.Derecha);
-        jugador.AgregarAcorazado(Acorazado.Cañonero, 4, 1, Direccion.Derecha);
-        jugador.AgregarAcorazado(Acorazado.Cañonero, 5, 1, Direccion.Derecha);
-        jugador.AgregarAcorazado(Acorazado.Portaaviones, 3, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_cañonero, 1, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_cañonero, 2, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_cañonero, 4, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_cañonero, 5, 1, Direccion.Derecha);
+        jugador.AgregarAcorazado(_portaAviones, 3, 1, Direccion.Derecha);
         
         jugador.ObtenerTablero().Should().BeEquivalentTo(tableroInicial);
     }
