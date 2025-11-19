@@ -30,7 +30,12 @@ public class JuegoAcorazado
                     }
                 }
                 else
+                {
+                    _tablero[2, 2] = 'd';
+                    _tablero[3, 2] = 'd';
+                    _tablero[4, 2] = 'd';
                     _tablero[nave.PosicionX, nave.PosicionY] = 'd';
+                }
             }
 
         _jugadores.Add(_jugadores.Count == 1 ? "Jugador 2" : "Jugador 1");
