@@ -54,6 +54,21 @@ public class AcorazadosTests
     }
 
     [Fact]
+    public void Si_CreoTresJugadores_Debe_LanzarExcepcion()
+    {
+        var acorazados = new List<AcorazadoAcuatizado>()
+        {
+            new(_cañonero, 0, 0, Direccion.Derecha)
+        };
+        _juego.AgregarJugador("Jugador 1", acorazados);
+        _juego.AgregarJugador("Jugador 2", acorazados);
+        
+        Action act = () => _juego.AgregarJugador("Jugador 3", acorazados);
+
+        act.Should().Throw<ArgumentException>().WithMessage("*No puede agregar mas de dos jugadores*");
+    }
+
+    [Fact]
     public void Si_CreoUnCañoneroEnLaPosicion11_Debe_LaCasilla11Tenerg()
     {
         tableroInicial[1, 1] = _cañonero.Letra;
