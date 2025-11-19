@@ -193,4 +193,17 @@ public class AcorazadosTests
         
         act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible ubicar el acorazado en esa direccion*");
     }
+
+    [Fact]
+    public void Si_CreoUnCañoneroTeniendoCuatroEnMiTablero_Debe_LanzarUnaArgumentException()
+    {
+        jugador.AgregarAcorazado(Acorazado.Cañonero, 1, 1);
+        jugador.AgregarAcorazado(Acorazado.Cañonero, 3, 3);
+        jugador.AgregarAcorazado(Acorazado.Cañonero, 5, 5);
+        jugador.AgregarAcorazado(Acorazado.Cañonero, 7, 7);
+        
+        Action act = () => jugador.AgregarAcorazado(Acorazado.Cañonero, 9, 9);
+
+        act.Should().Throw<ArgumentException>().WithMessage("*Se supero el maximo de acorazados de este tipo*");
+    }
 }
