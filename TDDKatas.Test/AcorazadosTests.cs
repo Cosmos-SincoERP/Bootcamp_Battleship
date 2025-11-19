@@ -383,17 +383,6 @@ public class AcorazadosTests
             .WithMessage("*Deben haber minimo 2 jugadores para iniciar la partida");
     }
 
-    [Fact]
-    public void Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion()
-    {
-        var acorazado = new Acorazado();
-        acorazado.AgregarJugador("Player 1");
-        acorazado.AgregarJugador("Player 2");
-
-        var resultado = () => acorazado.Iniciar();
-
-        resultado.Should().ThrowExactly<InvalidOperationException>().WithMessage("*Jugador 1 no ha posicionado naves");
-    }
 
     [Fact]
     public void Si_InicioJuegoAgrego1JugadorYPosiciono5Cañoneros_Debe_LanzarExcepcion()
@@ -404,9 +393,9 @@ public class AcorazadosTests
         acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Abajo);
         acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Abajo);
         acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Abajo);
-        
+
         var resultado = () => acorazado.PosicionarNave(0, 4, TiposNave.Canionero, Orientacion.Abajo);
-        
+
         resultado.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("*No es posible agregar mas de 4 nave(s) de tipo Cañonero");
     }
@@ -420,11 +409,11 @@ public class AcorazadosTests
         acorazado.PosicionarNave(1, 0, TiposNave.Destructor, Orientacion.Derecha);
 
         var resultado = () => acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
-        
+
         resultado.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("*No es posible agregar mas de 2 nave(s) de tipo Destructor");
     }
-    
+
     [Fact]
     public void Si_InicioJuegoAgrego1JugadorYPosiciono2PortaAviones_Debe_LanzarExcepcion()
     {
@@ -433,19 +422,20 @@ public class AcorazadosTests
         acorazado.PosicionarNave(0, 0, TiposNave.Portaviones, Orientacion.Derecha);
 
         var resultado = () => acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
-        
+
         resultado.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("No es posible agregar mas de 1 nave(s) de tipo Portaviones");
     }
 
     [Fact]
-    public void Si_Agrego1JugadorYPosiciono1Portaaviones1CanoneroImprimir_Debe_RetornarElTableroConCanoneroYPortaavionesPosicionado()
+    public void
+        Si_Agrego1JugadorYPosiciono1Portaaviones1CanoneroImprimir_Debe_RetornarElTableroConCanoneroYPortaavionesPosicionado()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
         acorazado.PosicionarNave(0, 0, TiposNave.Portaviones, Orientacion.Derecha);
         acorazado.PosicionarNave(1, 0, TiposNave.Canionero, Orientacion.Derecha);
-        
+
         var imprimir = acorazado.Imprimir();
 
         imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
@@ -470,20 +460,18 @@ public class AcorazadosTests
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
-        
-        
     }
-    
-       [Fact]
+
+    [Fact]
     public void Si_Agrego1JugadorYPosiciono1Destructor1CanoneroImprimir_Debe_RetornarElTableroConCanoneroYDestructor()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
-        
+
         acorazado.PosicionarNave(1, 0, TiposNave.Destructor, Orientacion.Derecha);
         acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
         acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
-        
+
         var imprimir = acorazado.Imprimir();
 
         imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
@@ -508,22 +496,21 @@ public class AcorazadosTests
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
-        
-        
     }
-    
-     [Fact]
-    public void Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones()
+
+    [Fact]
+    public void
+        Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
-        
+
         acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
         acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Derecha);
         acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Derecha);
         acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Derecha);
         acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
-        
+
         var imprimir = acorazado.Imprimir();
 
         imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
@@ -548,8 +535,39 @@ public class AcorazadosTests
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
-        
-        
     }
-    
+
+    [Fact]
+    public void Si_AgregoUnJugadorYLaEstrategiaNoEstaCompleta_Debe_LanzarExcepcion()
+    {
+        var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
+
+
+        var resultado = () => acorazado.AgregarJugador("Player 2");
+
+        resultado.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("*Jugador anterior no ha completado la estrategia");
+    }
+
+    [Fact]
+    public void Si_InicioLaPartidaYAgrego2JugadoresYSegundoJugadorNoHaCompletadoEstrategia_Debe_LanzarExcepcion()
+    {
+        var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.AgregarJugador("Player 2");
+
+        var resultado = () => acorazado.Iniciar();
+
+        resultado.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("*Jugador anterior no ha completado la estrategia");
+    }
 }

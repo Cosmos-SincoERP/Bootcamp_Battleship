@@ -89,12 +89,27 @@ public class Acorazado
         if (_jugadores.Count == 0)
             throw new InvalidOperationException("Deben haber minimo 2 jugadores para iniciar la partida");
 
-        throw new InvalidOperationException("Jugador 1 no ha posicionado naves");
+        if (EstrategiaCompleta() == false)
+            throw new InvalidOperationException("Jugador anterior no ha completado la estrategia");
+
+        return 0;
     }
 
+    private bool EstrategiaCompleta()
+    {
+        var estrategia = _estrategia.ToList().Last();
+        return estrategia.Value.Count(tipo => tipo == TiposNave.Canionero) == 4 &&
+            estrategia.Value.Count(tipo => tipo == TiposNave.Destructor) == 2 &&
+            estrategia.Value.Count(tipo => tipo == TiposNave.Portaviones) == 1;
+
+    }
 
     public void AgregarJugador(string player)
     {
+        if (_jugadores.Any() && EstrategiaCompleta() == false)
+        {
+            throw new InvalidOperationException("Jugador anterior no ha completado la estrategia");
+        }
         _jugadores.Add(player);
         _estrategia.Add(player, new List<TiposNave>());
     }
