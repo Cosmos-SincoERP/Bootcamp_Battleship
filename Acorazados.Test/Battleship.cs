@@ -38,57 +38,11 @@ public class Battleship
         }
         else
         {
-            if (navesJugador1[0].CoordenadaXInicial == 3)
-            {
-                _tablero =
-                [
-                    "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
-                    "0| | | | | | | | | | |",
-                    "1| | | | | | | | | | |",
-                    "2| | | | | | | | | | |",
-                    "3| | | | | | d | d | d | | |",
-                    "4| | | | | | | | | | |",
-                    "5| | | | | | | | | | |",
-                    "6| | | | | | | | | | |",
-                    "7| | | | | | | | | | |",
-                    "8| | | | | | | | | | |",
-                    "9| | | | | | | | | | |"
-                ];
-            }
-            else if (navesJugador1[0].CoordenadaXInicial == 6)
-            {
-                _tablero =
-                [
-                    "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
-                    "0| | | | | | | | | | |",
-                    "1| | | | | | | | | | |",
-                    "2| | | | | | | | | | |",
-                    "3| | | | | | | | | | |",
-                    "4| | | | | | | | | | |",
-                    "5| | | | | | | | | | |",
-                    "6| | d | d | d | | | | | | |",
-                    "7| | | | | | | | | | |",
-                    "8| | | | | | | | | | |",
-                    "9| | | | | | | | | | |"
-                ];
-            }
-            else
-            {
-                _tablero =
-                [
-                    "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
-                    "0| | | | | | | | | | |",
-                    "1| | | | | | | | | | |",
-                    "2| | | | | | | | | | |",
-                    "3| | | | | | | | | | |",
-                    "4| | | | | | | | | | |",
-                    "5| | d | d | d | | | | | | |",
-                    "6| | | | | | | | | | |",
-                    "7| | | | | | | | | | |",
-                    "8| | | | | | | | | | |",
-                    "9| | | | | | | | | | |"
-                ];
-            }
+            var columnas = _tablero[navesJugador1[0].CoordenadaXInicial + 1].Split("|");
+            columnas[navesJugador1[0].CoordenadaYInicial + 1] = " d ";
+            columnas[navesJugador1[0].CoordenadaYInicial + 2] = " d ";
+            columnas[navesJugador1[0].CoordenadaYInicial + 3] = " d ";
+            _tablero[navesJugador1[0].CoordenadaXInicial + 1] = string.Join("|", columnas);
         }
         
     }
