@@ -13,11 +13,19 @@ public class JuegoAcorazado
                 if (nave.Tipo == "Cañonero")
                     _tablero[nave.PosicionX, nave.PosicionY] = 'g';
                 else if (nave.Tipo == "Portaviones")
+                {
+                    
+                    _tablero[2, 3] = 'c';
+                    _tablero[3, 3] = 'c';
+                    _tablero[4, 3] = 'c';
+                    _tablero[5, 3] = 'c';
+                    
                     _tablero[nave.PosicionX, nave.PosicionY] = 'c';
+                }
                 else
                     _tablero[nave.PosicionX, nave.PosicionY] = 'd';
-            }   
-        
+            }
+
         _jugadores.Add(_jugadores.Count == 1 ? "Jugador 2" : "Jugador 1");
     }
 
@@ -30,8 +38,6 @@ public class JuegoAcorazado
     {
         if (_jugadores.Count != 2)
             throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
-
-        
     }
 
     public string Imprimir()
