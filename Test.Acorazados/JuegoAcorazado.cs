@@ -2,11 +2,13 @@ namespace Test.BattleShip;
 
 public class JuegoAcorazado
 {
-    private List<string> _jugadores = new();
+    private List<(string, char[,])> _jugadores = new();
     private char[,] _tablero = new char[10, 10];
 
     public void AgregarJugador(List<Coordenada>? coordenadas = null)
     {
+        _tablero = new char[10, 10];
+
         if (coordenadas != null)
         {
             foreach (var coordenada in coordenadas)
@@ -21,12 +23,12 @@ public class JuegoAcorazado
             }
         }
 
-        _jugadores.Add(_jugadores.Count == 1 ? "Jugador 2" : "Jugador 1");
+        _jugadores.Add(new(_jugadores.Count == 1 ? "Jugador 2" : "Jugador 1", _tablero));
     }
 
     public List<string> MostrarJugadores()
     {
-        return _jugadores;
+        return _jugadores.Select(jugador => jugador.Item1).ToList();
     }
 
     public void Iniciar()
@@ -35,20 +37,21 @@ public class JuegoAcorazado
             throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
     }
 
-    public string Imprimir()
+    public string Imprimir(string nombreJugador = "Jugador 1")
     {
-        var tablero = string.Empty;
-        for (var x = 0; x < _tablero.GetLength(0); x++)
+        var tablero = _jugadores.FirstOrDefault(jugador => jugador.Item1 == nombreJugador).Item2;
+        var visualizarTablero = string.Empty;
+        for (var x = 0; x < tablero.GetLength(0); x++)
         {
-            for (int y = 0; y < _tablero.GetLength(1); y++)
+            for (int y = 0; y < tablero.GetLength(1); y++)
             {
-                tablero += _tablero[x, y];
+                visualizarTablero += tablero[x, y];
             }
 
-            tablero += '\n';
+            visualizarTablero += '\n';
         }
 
-        return tablero;
+        return visualizarTablero;
     }
 
 
@@ -65,14 +68,13 @@ public class Nave
     public int Tamaño { get; private set; }
     public char Valor { get; private set; }
 
-    private Nave( int tamaño, char valor)
+    private Nave(int tamaño, char valor)
     {
-
         Tamaño = tamaño;
         Valor = valor;
     }
 
-    public static Nave Cañonero => new( 1, 'g');
-    public static Nave Destructor => new( 3, 'd');
-    public static Nave PortaAviones => new( 4, 'c');
+    public static Nave Cañonero => new(1, 'g');
+    public static Nave Destructor => new(3, 'd');
+    public static Nave PortaAviones => new(4, 'c');
 }
