@@ -11,8 +11,19 @@ public class AcorazadosTest
         
         juegoAcorazado.AgregarJugador();
         
-        juegoAcorazado.MostrarJugadores()[0].Should().Be("Jugador 1");
+        juegoAcorazado.MostrarJugadores().Should().Contain("Jugador 1");
     }
+    
+    [Fact]
+    public void Si_SeAgregaJugador_Debe_MostrarJugador2()
+    {
+        var juegoAcorazado =  new JuegoAcorazado();
+        
+        juegoAcorazado.AgregarJugador();
+        
+        juegoAcorazado.MostrarJugadores().Should().Contain("Jugador 2");
+    }
+    
 }
 
 public class JuegoAcorazado
