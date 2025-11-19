@@ -31,9 +31,19 @@ public class JuegoAcorazado
                 }
                 else
                 {
-                    for (int i = 0; i < 3; i++)
+                    if (nave.Orientacion == "Vertical")
                     {
-                        _tablero[nave.PosicionX + i, nave.PosicionY] = 'd';
+                        for (int i = 0; i < 3; i++)
+                        {
+                            _tablero[nave.PosicionX, nave.PosicionY + i] = 'd';
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            _tablero[nave.PosicionX + i, nave.PosicionY] = 'd';
+                        }
                     }
                 }
             }

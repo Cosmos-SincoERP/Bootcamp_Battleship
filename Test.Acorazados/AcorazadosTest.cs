@@ -289,7 +289,7 @@ public class AcorazadosTest
 
         List<Nave> coordenadasDetructor = new()
         {
-            new(1, 1, "Destructor", "Vertical")
+            new(1, 2, "Destructor", "Vertical")
         };
 
         juegoAcorazado.AgregarJugador(coordenadasDetructor);
