@@ -320,6 +320,24 @@ public class AcorazadosTest
 
         var iniciar = () => juegoAcorazado.Iniciar();
 
-        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 le faltan pocisionar 3 cañoneros");
+        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 le faltan posicionar 3 cañoneros");
+    }
+
+    [Fact]
+    public void Si_AgregoUnJugadorYPosicionSoloDosCañonero_Debe_LanzarExcepcionFaltaPosicionarLosDosCañoneros()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
+
+        List<Coordenada> coordenadasDetructorJugador1 = new()
+        {
+            new(0, 0, Nave.Cañonero, null),
+            new(1, 5, Nave.Cañonero, null)
+        };
+
+        juegoAcorazado.AgregarJugador(coordenadasDetructorJugador1);
+
+        var iniciar = () => juegoAcorazado.Iniciar();
+
+        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 le faltan posicionar 2 cañoneros");
     }
 }

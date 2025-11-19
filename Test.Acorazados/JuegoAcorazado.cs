@@ -34,7 +34,7 @@ public class JuegoAcorazado
     public void Iniciar()
     {
         if (_jugadores.Count == 1)
-            throw new Exception("El jugador 1 le faltan pocisionar 3 cañoneros");
+            throw new Exception("El jugador 1 le faltan posicionar 3 cañoneros");
 
         if (_jugadores.Count != 2)
             throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
