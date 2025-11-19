@@ -38,7 +38,7 @@ public class Jugador
 
     public void AgregarAcorazado(Acorazado tipoAcorazado, int fila, int columna, Direccion? direccion = null)
     {
-        ValidarCantidadMaximaTipoAcorazado();
+        ValidarCantidadMaximaTipoAcorazado(tipoAcorazado);
 
         for (int i = 0; i < (int)tipoAcorazado; i++)
         {
@@ -77,13 +77,13 @@ public class Jugador
             _conteoPortaaviones++;
     }
 
-    private void ValidarCantidadMaximaTipoAcorazado()
+    private void ValidarCantidadMaximaTipoAcorazado(Acorazado tipoAcorazado)
     {
         if(_conteoCañoneros==4)
             throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
         if(_conteoDestructores==2)
             throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
-        if(_conteoPortaaviones==1)
+        if(_conteoPortaaviones==1 && tipoAcorazado == Acorazado.Portaaviones)
             throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
     }
 
