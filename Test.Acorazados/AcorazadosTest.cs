@@ -25,6 +25,7 @@ public class AcorazadosTest
         juegoAcorazado.MostrarJugadores().Should().Contain("Jugador 1").And.Contain("Jugador 2");
     }
     
+    
 }
 
 public class JuegoAcorazado
@@ -32,10 +33,7 @@ public class JuegoAcorazado
     private List<string> _jugadores = new();
     public void AgregarJugador()
     {
-        if(_jugadores.Count == 1)
-            _jugadores.Add("Jugador 2");
-        else
-            _jugadores.Add("Jugador 1");
+        _jugadores.Add(_jugadores.Count == 1 ? "Jugador 2" : "Jugador 1");
     }
 
     public List<string> MostrarJugadores()
