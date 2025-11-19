@@ -25,14 +25,35 @@ public class Battleship
     {
         if (navesJugador1.Count == 0) return;
 
-        foreach (var nave in navesJugador1)
+        if (navesJugador1[0].Tipo=="g")
         {
-            var columnas = _tablero[nave.CoordenadaXInicial + 1].Split("|");
+            foreach (var nave in navesJugador1)
+            {
+                var columnas = _tablero[nave.CoordenadaXInicial + 1].Split("|");
 
-            columnas[nave.CoordenadaYInicial + 1] = " g ";
+                columnas[nave.CoordenadaYInicial + 1] = " g ";
 
-            _tablero[nave.CoordenadaXInicial + 1] = string.Join("|", columnas);
+                _tablero[nave.CoordenadaXInicial + 1] = string.Join("|", columnas);
+            }
         }
+        else
+        {
+           _tablero =
+           [
+               "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
+               "0| | | | | | | | | | |",
+               "1| | | | | | | | | | |",
+               "2| | | | | | | | | | |",
+               "3| | | | | | d | d | d | | |",
+               "4| | | | | | | | | | |",
+               "5| | | | | | | | | | |",
+               "6| | | | | | | | | | |",
+               "7| | | | | | | | | | |",
+               "8| | | | | | | | | | |",
+               "9| | | | | | | | | | |"
+           ];
+        }
+        
     }
 
     public string Imprimir()
