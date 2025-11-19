@@ -172,4 +172,33 @@ public class AcorazadosTest
 
         tablero.Should().Be(tableroEsperado);
     }
+    
+    [Fact]
+    public void Si_InicioElJuegoConUnDestructorDe_3_5_a_3_7EImprimo_Debe_ImprimirElTableroConUna_d_de_3_5_a_3_7()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Santi");
+        acorazados.AddPlayer("Ruben");
+
+        var destructor = new Nave(3, 5,3,7 , "d");
+
+        acorazados.Iniciar([destructor],[]);
+
+        var tablero = acorazados.Imprimir();
+
+        var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+                              "0| | | | | | | | | | |" +
+                              "1| | | | | | | | | | |" +
+                              "2| | | | | | | | | | |" +
+                              "3| | | | | | d | d | d | | |" +
+                              "4| | | | | | | | | | |" +
+                              "5| | | | | | | | | | |" +
+                              "6| | | | | | | | | | |" +
+                              "7| | | | | | | | | | |" +
+                              "8| | | | | | | | | | |" +
+                              "9| | | | | | | | | | |";
+
+        tablero.Should().Be(tableroEsperado);
+    }
 }
