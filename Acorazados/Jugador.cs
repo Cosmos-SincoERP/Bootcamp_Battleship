@@ -40,6 +40,12 @@ public class Jugador
                 {
                     Tablero[fila, columna+i] = "c";
                 }
+            } else if (direccion == Direccion.Abajo)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    Tablero[fila+i, columna] = "c";
+                }
             }
         }
         else
