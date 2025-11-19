@@ -320,6 +320,6 @@ public class AcorazadosTest
 
         var iniciar = () => juegoAcorazado.Iniciar();
 
-        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 le faltana pocisionar 3 cañoneros");
+        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 le faltan pocisionar 3 cañoneros");
     }
 }
