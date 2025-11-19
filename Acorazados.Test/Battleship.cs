@@ -29,6 +29,7 @@ public class Battleship
         {
             foreach (var nave in navesJugador1)
             {
+                // Pinta Canoneros
                 var columnas = _tablero[nave.FilaInicial + 1].Split("|");
 
                 columnas[nave.ColumnaInicial + 1] = " g ";
@@ -41,6 +42,7 @@ public class Battleship
 
             if (navesJugador1[0].FilaInicial != navesJugador1[0].FilaFinal)
             {
+                // Pinta un Destructor Vertical
                 var columnaInicial = _tablero[navesJugador1[0].FilaInicial + 1].Split("|");
                 columnaInicial[navesJugador1[0].ColumnaInicial  + 1 ]= " d ";
         
@@ -56,6 +58,7 @@ public class Battleship
             }
             else
             {
+                // Pinta Un Destructor Horizontal
                 var columnas = _tablero[navesJugador1[0].FilaInicial + 1].Split("|");
                 columnas[navesJugador1[0].ColumnaInicial + 1] = " d ";
                 columnas[navesJugador1[0].ColumnaInicial + 2] = " d ";
