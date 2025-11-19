@@ -163,4 +163,14 @@ public class AcorazadosTests
         jugador.ObtenerCasilla(1, 0).Should().Be("c");
     } 
     
+    [Fact]
+    public void Si_CreoUnPortaavionesEnPosicion31DireccionArriba_Debe_LasCasillas31_21_11_01_TenercC()
+    {
+        jugador.AgregarAcorazado(Acorazado.Portaaviones, 1,3,Direccion.Izquierda);
+        
+        jugador.ObtenerCasilla(3, 1).Should().Be("c");
+        jugador.ObtenerCasilla(2, 1).Should().Be("c");
+        jugador.ObtenerCasilla(1, 1).Should().Be("c");
+        jugador.ObtenerCasilla(0, 1).Should().Be("c");
+    } 
 }
