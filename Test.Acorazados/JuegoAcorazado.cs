@@ -33,8 +33,15 @@ public class JuegoAcorazado
 
     public void Iniciar()
     {
-        if (_jugadores.Count == 1)
-            throw new Exception("El jugador 1 le faltan posicionar 3 cañoneros");
+        int conteo = 4;
+
+        foreach (var jugador in _jugadores)
+        {
+            conteo -= jugador.Item2.Cast<char>().Count(nave => nave == 'g');
+        }
+
+        if (conteo < 4)
+            throw new Exception($"El jugador 1 le faltan posicionar {conteo} cañoneros");
 
         if (_jugadores.Count != 2)
             throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
