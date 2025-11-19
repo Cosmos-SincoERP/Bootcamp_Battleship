@@ -73,9 +73,9 @@ public class AcorazadosTest
         tablero[0, 0] = 'g';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
-        List<Nave> coordenadasCañonero = new()
+        List<Coordenada> coordenadasCañonero = new()
         {
-            new(0, 0, "Cañonero")
+            new(0, 0, Nave.Cañonero, null)
         };
 
         juegoAcorazado.AgregarJugador(coordenadasCañonero);
@@ -92,9 +92,9 @@ public class AcorazadosTest
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
 
-        List<Nave> coordenadasCañonero = new()
+        List<Coordenada> coordenadasCañonero = new()
         {
-            new(4, 5, "Cañonero")
+            new(4, 5, Nave.Cañonero, null)
         };
 
         juegoAcorazado.AgregarJugador(coordenadasCañonero);
@@ -111,10 +111,10 @@ public class AcorazadosTest
         tablero[3, 3] = 'g';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
-        List<Nave> coordenadasCañonero = new()
+        List<Coordenada> coordenadasCañonero = new()
         {
-            new(2, 3, "Cañonero"),
-            new(3, 3, "Cañonero")
+            new(2, 3, Nave.Cañonero, null),
+            new(3, 3, Nave.Cañonero, null)
         };
 
         juegoAcorazado.AgregarJugador(coordenadasCañonero);
@@ -135,11 +135,10 @@ public class AcorazadosTest
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
 
-        List<Nave> coordenadasPortaAvion = new()
+        List<Coordenada> coordenadasPortaAvion = new()
         {
-            new(2, 3, "Portaviones", "Horizontal")
+            new(2, 3, Nave.PortaAviones, "Horizontal")
         };
-
         juegoAcorazado.AgregarJugador(coordenadasPortaAvion);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
@@ -157,10 +156,9 @@ public class AcorazadosTest
         tablero[8, 2] = 'c';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
-
-        List<Nave> coordenadasPortaAvion = new()
+        List<Coordenada> coordenadasPortaAvion = new()
         {
-            new(5, 2, "Portaviones", "Horizontal")
+            new(5, 2, Nave.PortaAviones, "Horizontal")
         };
 
         juegoAcorazado.AgregarJugador(coordenadasPortaAvion);
@@ -180,10 +178,9 @@ public class AcorazadosTest
         tablero[5, 5] = 'c';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
-
-        List<Nave> coordenadasPortaAvion = new()
+        List<Coordenada> coordenadasPortaAvion = new()
         {
-            new(5, 2, "Portaviones", "Vertical")
+            new(5, 2, Nave.PortaAviones, "Vertical")
         };
 
         juegoAcorazado.AgregarJugador(coordenadasPortaAvion);
@@ -204,9 +201,9 @@ public class AcorazadosTest
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
 
-        List<Nave> coordenadasDetructor = new()
+        List<Coordenada> coordenadasDetructor = new()
         {
-            new(2, 2, "Destructor", "Horizontal")
+            new(2, 2, Nave.Destructor, "Horizontal")
         };
 
         juegoAcorazado.AgregarJugador(coordenadasDetructor);
@@ -227,9 +224,9 @@ public class AcorazadosTest
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
 
-        List<Nave> coordenadasDetructor = new()
+        List<Coordenada> coordenadasDetructor = new()
         {
-            new(1, 1, "Destructor", "Horizontal")
+            new(1, 1, Nave.Destructor, "Horizontal")
         };
 
         juegoAcorazado.AgregarJugador(coordenadasDetructor);
@@ -249,9 +246,9 @@ public class AcorazadosTest
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
 
-        List<Nave> coordenadasDetructor = new()
+        List<Coordenada> coordenadasDetructor = new()
         {
-            new(1, 2, "Destructor", "Vertical")
+            new(1, 2, Nave.Destructor, "Vertical")
         };
 
         juegoAcorazado.AgregarJugador(coordenadasDetructor);

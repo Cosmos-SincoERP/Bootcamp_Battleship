@@ -5,55 +5,23 @@ public class JuegoAcorazado
     private List<string> _jugadores = new();
     private char[,] _tablero = new char[10, 10];
 
-    public void AgregarJugador(List<Nave>? naves = null)
+    public void AgregarJugador(List<Coordenada>? coordenadas = null)
     {
-        if (naves != null)
-            foreach (var nave in naves)
+        if (coordenadas != null)
+        {
+            foreach (var coordenada in coordenadas)
             {
-                if (nave.Tipo == "Cañonero")
-                    AsignarPosicionDeLaNave(nave.PosicionX, nave.PosicionY, 'g');
-                else if (nave.Tipo == "Portaviones")
+                for (int i = 0; i < coordenada.Nave.Tamaño; i++)
                 {
-                    if (nave.Orientacion == "Horizontal")
-                    {
-                        for (int i = 0; i < 4; i++)
-                        {
-                            AsignarPosicionDeLaNave(nave.PosicionX + i, nave.PosicionY, 'c');
-                        }
-                    }
+                    if (coordenada.Orientacion == "Horizontal")
+                        AsignarPosicionDeLaNave(coordenada.X + i, coordenada.Y, coordenada.Nave.Valor);
                     else
-                    {
-                        for (int i = 0; i < 4; i++)
-                        {
-                            AsignarPosicionDeLaNave(nave.PosicionX, nave.PosicionY + i, 'c');
-                        }
-                    }
-                }
-                else
-                {
-                    if (nave.Orientacion == "Vertical")
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            AsignarPosicionDeLaNave(nave.PosicionX, nave.PosicionY + i, 'd');
-                        }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            AsignarPosicionDeLaNave(nave.PosicionX + i, nave.PosicionY, 'd');
-                        }
-                    }
+                        AsignarPosicionDeLaNave(coordenada.X, coordenada.Y + i, coordenada.Nave.Valor);
                 }
             }
+        }
 
         _jugadores.Add(_jugadores.Count == 1 ? "Jugador 2" : "Jugador 1");
-    }
-
-    private void AsignarPosicionDeLaNave(int posicionX, int posicionY, char valorNave)
-    {
-        _tablero[posicionX,posicionY] = valorNave;
     }
 
     public List<string> MostrarJugadores()
@@ -82,6 +50,29 @@ public class JuegoAcorazado
 
         return tablero;
     }
+
+
+    private void AsignarPosicionDeLaNave(int posicionX, int posicionY, char valorNave)
+    {
+        _tablero[posicionX, posicionY] = valorNave;
+    }
 }
 
-public record Nave(int PosicionX, int PosicionY, string Tipo, string? Orientacion = null);
+public record Coordenada(int X, int Y, Nave Nave, string? Orientacion);
+
+public class Nave
+{
+    public int Tamaño { get; private set; }
+    public char Valor { get; private set; }
+
+    private Nave( int tamaño, char valor)
+    {
+
+        Tamaño = tamaño;
+        Valor = valor;
+    }
+
+    public static Nave Cañonero => new( 1, 'g');
+    public static Nave Destructor => new( 3, 'd');
+    public static Nave PortaAviones => new( 4, 'c');
+}
