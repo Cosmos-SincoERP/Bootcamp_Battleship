@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestPlatform.Utilities;
 
 namespace Acorazados;
 
-public class AcorazadosTests
+public class PrepararJuegoAcorazadosTests
 {
     JuegoAcorazados _juego;
     string[,] tableroInicial;
@@ -11,7 +11,7 @@ public class AcorazadosTests
     private Destructor _destructor;
     private PortaAviones _portaAviones;
 
-    public AcorazadosTests()
+    public PrepararJuegoAcorazadosTests()
     {
         _juego = new JuegoAcorazados();
         tableroInicial = new string[,]

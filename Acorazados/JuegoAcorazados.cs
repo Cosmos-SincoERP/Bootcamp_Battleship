@@ -43,4 +43,14 @@ public class JuegoAcorazados
             throw new ArgumentNullException("Debe tener jugadores para iniciar el juego");
         _juegoIniciado = true;
     }
+
+    public void Disparar(int i, int i1)
+    {
+        throw new NotImplementedException();
+    }
+
+    public string[,] ObtenerTableroContrincante()
+    {
+        throw new NotImplementedException();
+    }
 }
