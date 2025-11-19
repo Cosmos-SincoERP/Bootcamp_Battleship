@@ -38,41 +38,53 @@ public class Jugador
 
     public void AgregarAcorazado(Acorazado tipoAcorazado, int fila, int columna, Direccion? direccion = null)
     {
-        if(_conteoCañoneros==4)
-            throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
-        if(_conteoDestructores==2)
-            throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
-        if(_conteoPortaaviones==1)
-            throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
-        
+        ValidarCantidadMaximaTipoAcorazado();
+
         for (int i = 0; i < (int)tipoAcorazado; i++)
         {
             switch (direccion)
             {
                 case Direccion.Derecha:
-                    ValidacionesTablero(fila, columna+i);
-                    Tablero[fila, columna+i] = LetraAcozados[tipoAcorazado];
+                    AsignarCasillaAcorazado(tipoAcorazado, fila, columna+i);
                     break;
                 case Direccion.Abajo:
-                    ValidacionesTablero(fila+i, columna);
-                    Tablero[fila+i, columna] = LetraAcozados[tipoAcorazado];
+                    AsignarCasillaAcorazado(tipoAcorazado, fila+i, columna);
                     break;
                 case Direccion.Izquierda:
-                    ValidacionesTablero(fila, columna-i);
-                    Tablero[fila, columna-i] = LetraAcozados[tipoAcorazado];
+                    AsignarCasillaAcorazado(tipoAcorazado, fila, columna-i);
                     break;
                 default:
-                    ValidacionesTablero(fila-i, columna);
-                    Tablero[fila-i, columna] = LetraAcozados[tipoAcorazado];
+                    AsignarCasillaAcorazado(tipoAcorazado, fila-i, columna);
                     break;
             }
         }
+        AumentarCantidadTipoAcorazado(tipoAcorazado);
+    }
+
+    private void AsignarCasillaAcorazado(Acorazado tipoAcorazado, int fila, int columna)
+    {
+        ValidacionesTablero(fila, columna);
+        Tablero[fila, columna] = LetraAcozados[tipoAcorazado];
+    }
+
+    private void AumentarCantidadTipoAcorazado(Acorazado tipoAcorazado)
+    {
         if(tipoAcorazado == Acorazado.Cañonero) 
             _conteoCañoneros++;
         if (tipoAcorazado == Acorazado.Destructor)
             _conteoDestructores++;
         if (tipoAcorazado == Acorazado.Portaaviones)
             _conteoPortaaviones++;
+    }
+
+    private void ValidarCantidadMaximaTipoAcorazado()
+    {
+        if(_conteoCañoneros==4)
+            throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
+        if(_conteoDestructores==2)
+            throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
+        if(_conteoPortaaviones==1)
+            throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
     }
 
     private void ValidacionesTablero(int x, int y)
