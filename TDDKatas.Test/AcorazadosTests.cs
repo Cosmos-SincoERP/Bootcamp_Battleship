@@ -9,7 +9,7 @@ public class AcorazadosTests
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
-        
+
         var imprimir = acorazado.Imprimir();
 
         imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
@@ -37,7 +37,8 @@ public class AcorazadosTests
     }
 
     [Fact]
-    public void Si_InicioElJuegoAgregoJugadorYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarElTableroConGEnPosicion0_0()
+    public void
+        Si_InicioElJuegoAgregoJugadorYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarElTableroConGEnPosicion0_0()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -70,7 +71,8 @@ public class AcorazadosTests
     }
 
     [Fact]
-    public void Si_InicioElJuegoAgregoJugadorYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarElTableroConGEnPosicion1_1()
+    public void
+        Si_InicioElJuegoAgregoJugadorYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarElTableroConGEnPosicion1_1()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -103,7 +105,8 @@ public class AcorazadosTests
     }
 
     [Fact]
-    public void Si_InicioElJuegoAgregoJugadorYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarElTableroConDPosicionadoEn0_0()
+    public void
+        Si_InicioElJuegoAgregoJugadorYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarElTableroConDPosicionadoEn0_0()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -136,7 +139,8 @@ public class AcorazadosTests
     }
 
     [Fact]
-    public void Si_InicioElJuegoAgregoJugadorYUbicoPortaAvionesEnPosicion0_0Imprimir_Debe_RetornarElTableroConCPosicionadoEn0_0()
+    public void
+        Si_InicioElJuegoAgregoJugadorYUbicoPortaAvionesEnPosicion0_0Imprimir_Debe_RetornarElTableroConCPosicionadoEn0_0()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -572,7 +576,7 @@ public class AcorazadosTests
         resultado.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("*Jugador anterior no ha completado la estrategia");
     }
-    
+
     [Fact]
     public void Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_IniciarElTurnoDelJugadorUno()
     {
@@ -593,16 +597,16 @@ public class AcorazadosTests
         acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
         acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
         acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
-        
-        var resultado = acorazado.Iniciar();
-        
-        resultado.Should().Be("TURNO JUGADOR 1");
 
+        var resultado = acorazado.Iniciar();
+
+        resultado.Should().Be("TURNO JUGADOR 1");
     }
-    
-     
+
+
     [Fact]
-    public void Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletasYJugador1DisparaAUnCanioneroDelJugador2_Debe_RetornarBarcoHundido()
+    public void
+        Si_InicioJuegoYAgrego2JugadoresConSusEstrategiasCompletasEInicioPartidaImprimir_Debe_RetornarTableroPrimerJugador()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -624,7 +628,7 @@ public class AcorazadosTests
         acorazado.Iniciar();
 
         var imprimir = acorazado.Imprimir();
-        
+
         imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
                              "0 | g | g | g | g |   |   |   |   |   |   |\n" +
@@ -647,5 +651,33 @@ public class AcorazadosTests
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
                              "9 |   |   |   |   |   |   |   |   |   |   |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
+    }
+
+
+    [Fact]
+    public void Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO()
+    {
+        var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.AgregarJugador("Player 2");
+        acorazado.PosicionarNave(9, 9, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 8, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 7, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 6, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.Iniciar();
+
+        string disparar = acorazado.Disparar(0, 0);
+
+        disparar.Should().Be("0");
     }
 }

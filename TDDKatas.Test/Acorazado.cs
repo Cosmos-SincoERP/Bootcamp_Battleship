@@ -125,4 +125,9 @@ public class Acorazado
         _turnoActivo = player;
         _estrategia.Add(player, []);
     }
+
+    public string Disparar(int i, int i1)
+    {
+        return "";
+    }
 }
