@@ -11,16 +11,20 @@ public class AcorazadosTest
         
         juegoAcorazado.AgregarJugador();
         
-        juegoAcorazado.Jugadores[0].Should().NotBeNull();
+        juegoAcorazado.MostrarJugadores()[0].Should().Be("Jugador 1");
     }
 }
 
 public class JuegoAcorazado
 {
-    public List<string> Jugadores { get; private set; }
+    private List<string> _jugadores = new();
     public void AgregarJugador()
     {
-        throw new NotImplementedException();
+        _jugadores.Add("Jugador 1");
     }
 
+    public List<string> MostrarJugadores()
+    {
+        return _jugadores;
+    }
 }
