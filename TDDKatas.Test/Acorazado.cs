@@ -84,7 +84,7 @@ public class Acorazado
             _tablero[posicionX, posicionY + i] = ((char)nave.Tipo).ToString();
     }
 
-    public object Iniciar()
+    public string Iniciar()
     {
         if (_jugadores.Count == 0)
             throw new InvalidOperationException("Deben haber minimo 2 jugadores para iniciar la partida");
@@ -92,7 +92,7 @@ public class Acorazado
         if (EstrategiaCompleta() == false)
             throw new InvalidOperationException("Jugador anterior no ha completado la estrategia");
 
-        return 0;
+        return "TURNO JUGADOR 1";
     }
 
     private bool EstrategiaCompleta()
