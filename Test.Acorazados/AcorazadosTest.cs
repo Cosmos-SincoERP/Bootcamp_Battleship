@@ -60,7 +60,7 @@ public class AcorazadosTest
         {
             for (int y = 0; y <  tablero.GetLength(1); y++)
             {
-                tableroEsperado += ' ';
+                tableroEsperado += tablero[x,y];
             }
     
             tableroEsperado += '\n';
@@ -80,6 +80,7 @@ public class AcorazadosTest
 public class JuegoAcorazado
 {
     private List<string> _jugadores = new();
+    private char[,] _tablero = new char[10, 10];
     public void AgregarJugador()
     {
         _jugadores.Add(_jugadores.Count == 1 ? "Jugador 2" : "Jugador 1");
@@ -94,10 +95,21 @@ public class JuegoAcorazado
     {
         if(_jugadores.Count != 2)
             throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
+        
+        _tablero[0,0] = 'g';
     }
 
-    public object Imprimir()
+    public string Imprimir()
     {
-        throw new NotImplementedException();
+        var tablero = string.Empty;
+        for (var x = 0; x < _tablero.GetLength(0); x++)
+        {
+            for (int y = 0; y <  _tablero.GetLength(1); y++)
+            {
+                tablero += _tablero[x,y];
+            }
+            tablero += '\n';
+        }
+        return tablero;
     }
 }
