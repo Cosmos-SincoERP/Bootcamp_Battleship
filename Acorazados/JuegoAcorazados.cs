@@ -23,6 +23,7 @@ public class JuegoAcorazados
 
     public void Iniciar()
     {
-        throw new NotImplementedException();
+       if(jugador1 is null)
+           throw new ArgumentNullException("Debe tener jugadores para iniciar el juego");
     }
 }
