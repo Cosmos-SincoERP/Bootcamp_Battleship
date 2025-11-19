@@ -437,5 +437,41 @@ public class AcorazadosTests
         resultado.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("*No es posible agregar mas de 1 portaavion");
     }
+
+    [Fact]
+    public void Si_Agrego1JugadorYPosiciono1Portaaviones1CanoneroImprimir_Debe_RetornarElTableroConCanoneroYPortaavionesPosicionado()
+    {
+        var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        acorazado.PosicionarNave(0, 0, TiposNave.PortaAviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(1, 0, TiposNave.Canionero, Orientacion.Derecha);
+        
+        var imprimir = acorazado.Imprimir();
+
+        imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "0 | c | c | c | c |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "1 | g |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "2 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "3 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "4 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "5 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "6 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "7 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "8 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "9 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+");
+        
+        
+    }
     
 }
