@@ -6,12 +6,14 @@ public class Nave
     public int ColumnaInicial { get; set; }
     public string Tipo { get; set; }
     public int FilaFinal { get; set; }
+    public int ColumnaFinal { get; set; }
 
     public Nave(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal, string tipo)
     {
         FilaInicial = filaInicial;
-        ColumnaInicial = columnaInicial;
         FilaFinal = filaFinal;
+        ColumnaInicial = columnaInicial;
+        ColumnaFinal = columnaFinal;
         Tipo = tipo;
     }
 }

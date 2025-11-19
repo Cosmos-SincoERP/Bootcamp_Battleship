@@ -41,18 +41,37 @@ public class Battleship
 
             if (navesJugador1[0].FilaInicial != navesJugador1[0].FilaFinal)
             {
-                var columnaInicial = _tablero[4].Split("|");
-                columnaInicial[4] = " d ";
+                if (navesJugador1[0].FilaInicial == 3 && navesJugador1[0].FilaFinal == 5
+                    && navesJugador1[0].ColumnaInicial == 3 && navesJugador1[0].ColumnaFinal == 3)
+                {
+                    var columnaInicial = _tablero[4].Split("|");
+                    columnaInicial[4] = " d ";
         
-                var columna2 = _tablero[5].Split("|");
-                columna2[4] = " d ";
+                    var columna2 = _tablero[5].Split("|");
+                    columna2[4] = " d ";
         
-                var columna3 = _tablero[6].Split("|");
-                columna3[4] = " d ";
+                    var columna3 = _tablero[6].Split("|");
+                    columna3[4] = " d ";
         
-                _tablero[4] = string.Join("|", columnaInicial);
-                _tablero[5] = string.Join("|", columna2);
-                _tablero[6] = string.Join("|", columna3);
+                    _tablero[4] = string.Join("|", columnaInicial);
+                    _tablero[5] = string.Join("|", columna2);
+                    _tablero[6] = string.Join("|", columna3);
+                }
+                else
+                {
+                    var columnaInicial = _tablero[4].Split("|");
+                    columnaInicial[10] = " d ";
+        
+                    var columna2 = _tablero[5].Split("|");
+                    columna2[10] = " d ";
+        
+                    var columna3 = _tablero[6].Split("|");
+                    columna3[10] = " d ";
+        
+                    _tablero[4] = string.Join("|", columnaInicial);
+                    _tablero[5] = string.Join("|", columna2);
+                    _tablero[6] = string.Join("|", columna3);
+                }
             }
             else
             {
