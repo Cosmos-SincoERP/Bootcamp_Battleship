@@ -100,9 +100,14 @@ public class Jugador
         }
     }
 
-    public string ObtenerCasilla(int x, int y)
+    private string ObtenerCasilla(int x, int y)
     {
-        return  Tablero[x, y];
+        return Tablero[x, y];
+    }
+    
+    public string[,] ObtenerTablero()
+    {
+        return  Tablero;
     }
 
     public int ObtenerLongitudTablero(int dimension)
