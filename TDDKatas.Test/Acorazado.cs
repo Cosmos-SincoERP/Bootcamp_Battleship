@@ -2,10 +2,14 @@
 
 public class Acorazado
 {
-    private string _barco = " ";
-    private int _posicionX;
-    private int _posicionY;
     private string[,] _tablero = new string[10, 10];
+
+    private Dictionary<TiposNave, int> _nave = new()
+    {
+        { TiposNave.Canionero, 1 },
+        { TiposNave.Destructor, 3 },
+        { TiposNave.PortaAviones, 4 },
+    };
 
     public string Imprimir()
     {
@@ -34,61 +38,45 @@ public class Acorazado
 
     public void PosicionarNave(int posicionX, int posicionY, TiposNave nave, Orientacion orientacion)
     {
-        _posicionY = posicionY;
-        _posicionX = posicionX;
-        _tablero[posicionX, posicionY] = ((char)nave).ToString();
-
-        if (nave == TiposNave.Destructor)
+        if (orientacion == Orientacion.Derecha)
         {
-            if (orientacion == Orientacion.Derecha)
-            {
-                _tablero[posicionX, posicionY + 1] = ((char)nave).ToString();
-                _tablero[posicionX, posicionY + 2] = ((char)nave).ToString();
-            }
-            else if (orientacion == Orientacion.Arriba)
-            {
-                _tablero[posicionX - 1, posicionY] = ((char)nave).ToString();
-                _tablero[posicionX - 2, posicionY] = ((char)nave).ToString();
-            }
-            else if (orientacion == Orientacion.Abajo)
-            {
-                _tablero[posicionX + 1, posicionY] = ((char)nave).ToString();
-                _tablero[posicionX + 2, posicionY] = ((char)nave).ToString();
-            }
-            else
-            {
-                _tablero[posicionX, posicionY - 1] = ((char)nave).ToString();
-                _tablero[posicionX, posicionY - 2] = ((char)nave).ToString();
-            }
+            OrientarAlaDerecha(posicionX, posicionY, nave);
         }
-
-        if (nave == TiposNave.PortaAviones)
+        else if (orientacion == Orientacion.Arriba)
         {
-            if (orientacion == Orientacion.Derecha)
-            {
-                _tablero[posicionX, posicionY + 1] = ((char)nave).ToString();
-                _tablero[posicionX, posicionY + 2] = ((char)nave).ToString();
-                _tablero[posicionX, posicionY + 3] = ((char)nave).ToString();
-            }
-            else if (orientacion == Orientacion.Arriba)
-            {
-                _tablero[posicionX - 1, posicionY] = ((char)nave).ToString();
-                _tablero[posicionX - 2, posicionY] = ((char)nave).ToString();
-                _tablero[posicionX - 3, posicionY] = ((char)nave).ToString();
-            }
-            else if (orientacion == Orientacion.Abajo)
-            {
-                _tablero[posicionX + 1, posicionY] = ((char)nave).ToString();
-                _tablero[posicionX + 2, posicionY] = ((char)nave).ToString();
-                _tablero[posicionX + 3, posicionY] = ((char)nave).ToString();
-            }
-
-            else
-            {
-                _tablero[posicionX, posicionY - 1] = ((char)nave).ToString();
-                _tablero[posicionX, posicionY - 2] = ((char)nave).ToString();
-                _tablero[posicionX, posicionY - 3] = ((char)nave).ToString();
-            }
+            OrientarHaciaArriba(posicionX, posicionY, nave);
         }
+        else if (orientacion == Orientacion.Abajo)
+        {
+            OrientarHaciaAbajo(posicionX, posicionY, nave);
+        }
+        else
+        {
+            OrientarAlaIzquierda(posicionX, posicionY, nave);
+        }
+    }
+
+    private void OrientarAlaIzquierda(int posicionX, int posicionY, TiposNave nave)
+    {
+        for (int i = 0; i < _nave[nave]; i++)
+            _tablero[posicionX, posicionY - i] = ((char)nave).ToString();
+    }
+
+    private void OrientarHaciaArriba(int posicionX, int posicionY, TiposNave nave)
+    {
+        for (int i = 0; i < _nave[nave]; i++)
+            _tablero[posicionX - i, posicionY] = ((char)nave).ToString();
+    }
+
+    private void OrientarHaciaAbajo(int posicionX, int posicionY, TiposNave nave)
+    {
+        for (int i = 0; i < _nave[nave]; i++)
+            _tablero[posicionX + i, posicionY] = ((char)nave).ToString();
+    }
+
+    private void OrientarAlaDerecha(int posicionX, int posicionY, TiposNave nave)
+    {
+        for (int i = 0; i < _nave[nave]; i++)
+            _tablero[posicionX, posicionY + i] = ((char)nave).ToString();
     }
 }

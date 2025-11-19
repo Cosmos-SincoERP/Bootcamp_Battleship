@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion2_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaLaIzquierda">
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaAbajo">
+      <change afterPath="$PROJECT_DIR$/TDDKatas.Test/Orientacion.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TDDKatas.Test/TiposNave.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,13 +41,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/de8a243f75215d958afa80cf80a41b4981a44efea7db93bffcdaf7bd6ba378c0/Number.Parsing.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f9878f643c2ecf1b4ce73234de56c9754a451c835620eae85ca8babbcb5889c4/LateBoundTestFramework.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/Acorazado.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/Acorazado.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/AcorazadosTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/AcorazadosTests.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/AcorazadosTests.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/AcorazadosTests.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/AcorazadosTests.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -55,20 +53,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "244b7420-c203-42fb-b944-ec09ca0c9ae4.executor": "Debug",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Acorazados",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "advanced.settings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;244b7420-c203-42fb-b944-ec09ca0c9ae4.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Acorazados&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="🔴💚🔵 Si_AgregoUnaActividadALas8Y20yTengoUnaActividadaALas8_Debe_GenerarError" />
@@ -78,39 +76,8 @@
       <updated>1762827924642</updated>
       <workItem from="1762827924643" duration="25950000" />
       <workItem from="1763135552154" duration="18182000" />
-      <workItem from="1763165952569" duration="12162000" />
-    </task>
-    <task id="LOCAL-00016" summary="🔵 SiComproSoloUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_0_99">
-      <option name="closed" value="true" />
-      <created>1762831067342</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1762831067342</updated>
-    </task>
-    <task id="LOCAL-00017" summary="🔴SiComproUnKiloDeManzanasElPrecioTotalDelRecibo_DEBE_ser_1_99">
-      <option name="closed" value="true" />
-      <created>1762831618801</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1762831618801</updated>
-    </task>
-    <task id="LOCAL-00018" summary="💚 SiComproUnKiloDeManzanasElPrecioTotalDelRecibo_DEBE_ser_1_99">
-      <option name="closed" value="true" />
-      <created>1762832884611</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1762832884611</updated>
-    </task>
-    <task id="LOCAL-00019" summary="🔵 SiComproUnKiloDeManzanasElPrecioTotalDelRecibo_DEBE_ser_1_99">
-      <option name="closed" value="true" />
-      <created>1762834306417</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1762834306417</updated>
+      <workItem from="1763165952569" duration="12691000" />
+      <workItem from="1763563174982" duration="2930000" />
     </task>
     <task id="LOCAL-00020" summary="🔴 SiComproUnKiloDeManzanasYUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_2_98">
       <option name="closed" value="true" />
@@ -472,7 +439,39 @@
       <option name="project" value="LOCAL" />
       <updated>1763488052322</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="💚 Si_InicioElJuegoYUbicoPortaAvionesEnPosicion2_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaLaIzquierda">
+      <option name="closed" value="true" />
+      <created>1763488136717</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1763488136717</updated>
+    </task>
+    <task id="LOCAL-00066" summary="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaArriba">
+      <option name="closed" value="true" />
+      <created>1763488288497</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1763488288497</updated>
+    </task>
+    <task id="LOCAL-00067" summary="💚 Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaArriba">
+      <option name="closed" value="true" />
+      <created>1763488439264</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1763488439264</updated>
+    </task>
+    <task id="LOCAL-00068" summary="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaAbajo">
+      <option name="closed" value="true" />
+      <created>1763488590125</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1763488590125</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -492,10 +491,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=" 5️⃣6️⃣7️⃣8️⃣ OK" />
-    <MESSAGE value=" 5️⃣6️⃣7️⃣8️⃣ (first refactor)" />
-    <MESSAGE value=" 5️⃣6️⃣7️⃣8️⃣ (second refactor)" />
-    <MESSAGE value="9️⃣ OK" />
     <MESSAGE value=" refactor" />
     <MESSAGE value=" refactor - create class Wrap" />
     <MESSAGE value="inicial" />
@@ -517,6 +512,10 @@
     <MESSAGE value="❤️ Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaAbajo" />
     <MESSAGE value=" Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaAbajo" />
     <MESSAGE value="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion2_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaLaIzquierda" />
-    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion2_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaLaIzquierda" />
+    <MESSAGE value=" Si_InicioElJuegoYUbicoPortaAvionesEnPosicion2_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaLaIzquierda" />
+    <MESSAGE value="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaArriba" />
+    <MESSAGE value=" Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaArriba" />
+    <MESSAGE value="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaAbajo" />
+    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaAbajo" />
   </component>
 </project>
