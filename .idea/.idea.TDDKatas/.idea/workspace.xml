@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion" />
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💚Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,31 +72,7 @@
       <workItem from="1762827924643" duration="25950000" />
       <workItem from="1763135552154" duration="18182000" />
       <workItem from="1763165952569" duration="12691000" />
-      <workItem from="1763563174982" duration="4079000" />
-    </task>
-    <task id="LOCAL-00022" summary="🔵 SiComproUnKiloDeManzanasYUnCepilloDeDientesElPrecioTotalDelRecibo_DEBE_ser_2_98">
-      <option name="closed" value="true" />
-      <created>1762835529588</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1762835529588</updated>
-    </task>
-    <task id="LOCAL-00023" summary="🔴 SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion">
-      <option name="closed" value="true" />
-      <created>1762835863874</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1762835863874</updated>
-    </task>
-    <task id="LOCAL-00024" summary="💚 SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion">
-      <option name="closed" value="true" />
-      <created>1762836041141</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1762836041141</updated>
+      <workItem from="1763563174982" duration="5841000" />
     </task>
     <task id="LOCAL-00025" summary="🔵 SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion">
       <option name="closed" value="true" />
@@ -466,7 +442,31 @@
       <option name="project" value="LOCAL" />
       <updated>1763566612042</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="💚Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion">
+      <option name="closed" value="true" />
+      <created>1763568326622</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1763568326622</updated>
+    </task>
+    <task id="LOCAL-00072" summary="❤️Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion">
+      <option name="closed" value="true" />
+      <created>1763568592218</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1763568592218</updated>
+    </task>
+    <task id="LOCAL-00073" summary="💚Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion">
+      <option name="closed" value="true" />
+      <created>1763569051937</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1763569051937</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,9 +486,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="inicial" />
-    <MESSAGE value=" Si_InicioElJuego_debe_ImprimirElTableroEnVacio" />
-    <MESSAGE value=" Si_InicioElJuego_debe_ImprimirElTableroEnVacio" />
     <MESSAGE value="Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
     <MESSAGE value=" Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
     <MESSAGE value=" Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
@@ -511,6 +508,9 @@
     <MESSAGE value="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaAbajo" />
     <MESSAGE value="️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaAbajo" />
     <MESSAGE value="❤️Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion" />
-    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion" />
+    <MESSAGE value="Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion" />
+    <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion" />
+    <MESSAGE value="Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion" />
   </component>
 </project>

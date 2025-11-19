@@ -385,6 +385,25 @@ public class AcorazadosTests
         resultado.Should().ThrowExactly<InvalidOperationException>().WithMessage("*Jugador 1 no ha posicionado naves");
         
     }
+
+    [Fact]
+    public void Si_InicioLaPartidaYAgrego2JugadoresYPosiciono5Cañoneros_Debe_LanzarExcepcion()
+    {
+        var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Abajo);
+        acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Abajo);
+        acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Abajo);
+        acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Abajo);
+        acorazado.PosicionarNave(0, 4, TiposNave.Canionero, Orientacion.Abajo);
+        
+        
+        acorazado.AgregarJugador("Player 2");
+
+        var resultado = () => acorazado.Iniciar();
+        resultado.Should().ThrowExactly<InvalidOperationException>().WithMessage("*No es posible agregar mas de cañoreros");
+ 
+    }
     
     
     
