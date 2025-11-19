@@ -69,6 +69,21 @@ public class AcorazadosTests
     }
 
     [Fact]
+    public void Si_InicioUnJuegoDosVeces_Debe_LanzarExcepcion()
+    {
+        var acorazados = new List<AcorazadoAcuatizado>()
+        {
+            new(_cañonero, 0, 0, Direccion.Derecha)
+        };
+        _juego.AgregarJugador("Jugador 1", acorazados);
+        _juego.Iniciar();
+        
+        Action act = () => _juego.Iniciar();
+
+        act.Should().Throw<ArgumentException>().WithMessage("*Ya hay un juego en curso*");
+    }
+
+    [Fact]
     public void Si_CreoUnCañoneroEnLaPosicion11_Debe_LaCasilla11Tenerg()
     {
         tableroInicial[1, 1] = _cañonero.Letra;
