@@ -6,14 +6,6 @@ public class Acorazado
 
     private List<string> _jugadores = [];
 
-
-    private Dictionary<TiposNave, int> _nave = new()
-    {
-        { TiposNave.Canionero, 1 },
-        { TiposNave.Destructor, 3 },
-        { TiposNave.Portaviones, 4 },
-    };
-
     private Dictionary<string, List<TiposNave>> _estrategia = new();
 
     public string Imprimir()
@@ -41,14 +33,14 @@ public class Acorazado
         return resultado;
     }
 
-    public void PosicionarNave(int posicionX, int posicionY, TiposNave nave, Orientacion orientacion)
+    public void PosicionarNave(int posicionX, int posicionY, TiposNave tipoNave, Orientacion orientacion)
     {
-        var naveNueva = Nave.Instanciar(nave);
-        if (_estrategia["Player 1"].Count(tipoNave => tipoNave == naveNueva.Tipo) ==  naveNueva.CantidadPermitida &&
-              nave == naveNueva.Tipo)
-            throw new InvalidOperationException($"No es posible agregar mas de {naveNueva.CantidadPermitida} nave(s) de tipo {naveNueva.Descripcion}");
+        var nave = Nave.Crear(tipoNave);
+        if (_estrategia["Player 1"].Count(tipo => tipo == nave.Tipo) ==  nave.CantidadPermitida &&
+              tipoNave == nave.Tipo)
+            throw new InvalidOperationException($"No es posible agregar mas de {nave.CantidadPermitida} nave(s) de tipo {nave.Descripcion}");
      
-        _estrategia[_jugadores[0]].Add(nave);
+        _estrategia[_jugadores[0]].Add(tipoNave);
 
         if (orientacion == Orientacion.Derecha)
         {
@@ -68,28 +60,28 @@ public class Acorazado
         }
     }
 
-    private void OrientarAlaIzquierda(int posicionX, int posicionY, TiposNave nave)
+    private void OrientarAlaIzquierda(int posicionX, int posicionY, Nave nave)
     {
-        for (int i = 0; i < _nave[nave]; i++)
-            _tablero[posicionX, posicionY - i] = ((char)nave).ToString();
+        for (int i = 0; i < nave.Tamanio; i++)
+            _tablero[posicionX, posicionY - i] = ((char)nave.Tipo).ToString();
     }
 
-    private void OrientarHaciaArriba(int posicionX, int posicionY, TiposNave nave)
+    private void OrientarHaciaArriba(int posicionX, int posicionY, Nave nave)
     {
-        for (int i = 0; i < _nave[nave]; i++)
-            _tablero[posicionX - i, posicionY] = ((char)nave).ToString();
+        for (int i = 0; i < nave.Tamanio; i++)
+            _tablero[posicionX - i, posicionY] = ((char)nave.Tipo).ToString();
     }
 
-    private void OrientarHaciaAbajo(int posicionX, int posicionY, TiposNave nave)
+    private void OrientarHaciaAbajo(int posicionX, int posicionY, Nave nave)
     {
-        for (int i = 0; i < _nave[nave]; i++)
-            _tablero[posicionX + i, posicionY] = ((char)nave).ToString();
+        for (int i = 0; i < nave.Tamanio; i++)
+            _tablero[posicionX + i, posicionY] = ((char)nave.Tipo).ToString();
     }
 
-    private void OrientarAlaDerecha(int posicionX, int posicionY, TiposNave nave)
+    private void OrientarAlaDerecha(int posicionX, int posicionY, Nave nave)
     {
-        for (int i = 0; i < _nave[nave]; i++)
-            _tablero[posicionX, posicionY + i] = ((char)nave).ToString();
+        for (int i = 0; i < nave.Tamanio; i++)
+            _tablero[posicionX, posicionY + i] = ((char)nave.Tipo).ToString();
     }
 
     public object Iniciar()

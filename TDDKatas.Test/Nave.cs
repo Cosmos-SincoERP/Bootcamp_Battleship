@@ -7,7 +7,7 @@ public abstract class Nave
     public abstract  int Tamanio { get;  }
     public abstract  string Descripcion { get;  }
 
-    public static Nave Instanciar(TiposNave tipo)
+    public static Nave Crear(TiposNave tipo)
     {
         if (tipo == TiposNave.Canionero) return new Canionero();
         if (tipo == TiposNave.Destructor) return new Destructor();
