@@ -49,7 +49,9 @@ public class Acorazado
         if (_estrategia["Player 1"].Count(nave => nave == TiposNave.Destructor) == 2)
             throw new InvalidOperationException("No es posible agregar mas de 2 destructores");
 
-        
+        if (_estrategia["Player 1"].Count(nave => nave == TiposNave.PortaAviones) == 1)
+            throw new InvalidOperationException("No es posible agregar mas de 1 portaavion");
+
         
         _estrategia[_jugadores[0]].Add(nave);
 
