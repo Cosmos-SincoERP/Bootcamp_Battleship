@@ -39,55 +39,30 @@ public class Battleship
         }
         else
         {
-
-            if (navesJugador1[0].FilaInicial != navesJugador1[0].FilaFinal)
+            foreach (var nave in navesJugador1)
             {
-                // Pinta un Destructor Vertical
-                var columnaInicial = _tablero[navesJugador1[0].FilaInicial + 1].Split("|");
-                columnaInicial[navesJugador1[0].ColumnaInicial  + 1 ]= " d ";
-        
-                var columna2 = _tablero[navesJugador1[0].FilaInicial + 2].Split("|");
-                columna2[navesJugador1[0].ColumnaInicial  + 1] = " d ";
-        
-                var columna3 = _tablero[navesJugador1[0].FilaInicial + 3].Split("|");
-                columna3[navesJugador1[0].ColumnaInicial  + 1 ] = " d ";
-        
-                _tablero[navesJugador1[0].FilaInicial + 1] = string.Join("|", columnaInicial);
-                _tablero[navesJugador1[0].FilaInicial + 2] = string.Join("|", columna2);
-                _tablero[navesJugador1[0].FilaInicial + 3] = string.Join("|", columna3);
-
-                if (navesJugador1.Count == 2)
+                if (nave.FilaInicial != nave.FilaFinal)
                 {
-                    var columnaInicialNave2 = _tablero[navesJugador1[1].FilaInicial + 1].Split("|");
-                    columnaInicialNave2[navesJugador1[1].ColumnaInicial  + 1 ]= " d ";
+                    var columnaInicial = _tablero[nave.FilaInicial + 1].Split("|");
+                    columnaInicial[nave.ColumnaInicial  + 1 ]= " d ";
         
-                    var columna2Nave2 = _tablero[navesJugador1[1].FilaInicial + 2].Split("|");
-                    columna2Nave2[navesJugador1[1].ColumnaInicial  + 1] = " d ";
+                    var columna2 = _tablero[nave.FilaInicial + 2].Split("|");
+                    columna2[nave.ColumnaInicial  + 1] = " d ";
         
-                    var columna3Nave2 = _tablero[navesJugador1[1].FilaInicial + 3].Split("|");
-                    columna3Nave2[navesJugador1[1].ColumnaInicial  + 1 ] = " d ";
+                    var columna3 = _tablero[nave.FilaInicial + 3].Split("|");
+                    columna3[nave.ColumnaInicial  + 1 ] = " d ";
         
-                    _tablero[navesJugador1[1].FilaInicial + 1] = string.Join("|", columnaInicialNave2);
-                    _tablero[navesJugador1[1].FilaInicial + 2] = string.Join("|", columna2Nave2);
-                    _tablero[navesJugador1[1].FilaInicial + 3] = string.Join("|", columna3Nave2);
+                    _tablero[nave.FilaInicial + 1] = string.Join("|", columnaInicial);
+                    _tablero[nave.FilaInicial + 2] = string.Join("|", columna2);
+                    _tablero[nave.FilaInicial + 3] = string.Join("|", columna3);
                 }
-            }
-            else
-            {
-                // Pinta Un Destructor Horizontal
-                var columnas = _tablero[navesJugador1[0].FilaInicial + 1].Split("|");
-                columnas[navesJugador1[0].ColumnaInicial + 1] = " d ";
-                columnas[navesJugador1[0].ColumnaInicial + 2] = " d ";
-                columnas[navesJugador1[0].ColumnaInicial + 3] = " d ";
-                _tablero[navesJugador1[0].FilaInicial + 1] = string.Join("|", columnas);
-
-                if (navesJugador1.Count == 2)
+                else
                 {
-                    var columnasNaveDos = _tablero[navesJugador1[1].FilaInicial + 1].Split("|");
-                    columnasNaveDos[navesJugador1[1].ColumnaInicial + 1] = " d ";
-                    columnasNaveDos[navesJugador1[1].ColumnaInicial + 2] = " d ";
-                    columnasNaveDos[navesJugador1[1].ColumnaInicial + 3] = " d ";
-                    _tablero[navesJugador1[1].FilaInicial + 1] = string.Join("|", columnasNaveDos);
+                    var columnas = _tablero[nave.FilaInicial + 1].Split("|");
+                    columnas[nave.ColumnaInicial + 1] = " d ";
+                    columnas[nave.ColumnaInicial + 2] = " d ";
+                    columnas[nave.ColumnaInicial + 3] = " d ";
+                    _tablero[nave.FilaInicial + 1] = string.Join("|", columnas);
                 }
             }
         }
