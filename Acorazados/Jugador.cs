@@ -81,7 +81,7 @@ public class Jugador
     {
         if(_conteoCañoneros==4)
             throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
-        if(_conteoDestructores==2)
+        if(_conteoDestructores==2 && tipoAcorazado == Acorazado.Destructor)
             throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
         if(_conteoPortaaviones==1 && tipoAcorazado == Acorazado.Portaaviones)
             throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
