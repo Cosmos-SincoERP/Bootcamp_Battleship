@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💚Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion" />
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💚Si_InicioJuegoAgrego1JugadorYPosiciono5Cañoneros_Debe_LanzarExcepcion">
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,23 +74,7 @@
       <workItem from="1762827924643" duration="25950000" />
       <workItem from="1763135552154" duration="18182000" />
       <workItem from="1763165952569" duration="12691000" />
-      <workItem from="1763563174982" duration="5841000" />
-    </task>
-    <task id="LOCAL-00025" summary="🔵 SiComproUnProductoQueNoEstaEnElCatalogo_DEBE_retornarUnaExcepcion">
-      <option name="closed" value="true" />
-      <created>1762836445759</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1762836445759</updated>
-    </task>
-    <task id="LOCAL-00026" summary="🔴SiComproUnSacoDeArroz_ElPrecioTotalDelRecibo_DEBE_ser_2_49">
-      <option name="closed" value="true" />
-      <created>1762836532347</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1762836532348</updated>
+      <workItem from="1763563174982" duration="8028000" />
     </task>
     <task id="LOCAL-00027" summary="💚SiComproUnSacoDeArroz_ElPrecioTotalDelRecibo_DEBE_ser_2_49">
       <option name="closed" value="true" />
@@ -466,7 +452,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763569051937</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="❤️Si_InicioLaPartidaYAgrego2JugadoresYPosiciono5Cañoneros_Debe_LanzarExcepcion">
+      <option name="closed" value="true" />
+      <created>1763569507430</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1763569507430</updated>
+    </task>
+    <task id="LOCAL-00075" summary="💚Si_InicioJuegoAgrego1JugadorYPosiciono5Cañoneros_Debe_LanzarExcepcion">
+      <option name="closed" value="true" />
+      <created>1763571233207</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1763571233207</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,8 +488,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
-    <MESSAGE value=" Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
     <MESSAGE value=" Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0" />
     <MESSAGE value="❤️ Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1" />
     <MESSAGE value="Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1" />
@@ -511,6 +511,8 @@
     <MESSAGE value="Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion" />
     <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion" />
     <MESSAGE value="Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion" />
+    <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2JugadoresYPosiciono5Cañoneros_Debe_LanzarExcepcion" />
+    <MESSAGE value="Si_InicioJuegoAgrego1JugadorYPosiciono5Cañoneros_Debe_LanzarExcepcion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Si_InicioJuegoAgrego1JugadorYPosiciono5Cañoneros_Debe_LanzarExcepcion" />
   </component>
 </project>
