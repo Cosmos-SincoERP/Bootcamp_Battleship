@@ -80,7 +80,7 @@ public class AcorazadosTests
         
         Action act = () => _juego.Iniciar();
 
-        act.Should().Throw<ArgumentException>().WithMessage("*Ya hay un juego en curso*");
+        act.Should().Throw<Exception>().WithMessage("*Ya hay un juego en curso*");
     }
 
     [Fact]

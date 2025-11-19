@@ -12,6 +12,7 @@ public class JuegoAcorazados
 {
     Jugador jugador1;
     Jugador jugador2;
+    private bool _juegoIniciado;
 
     public void AgregarJugador(string jugador, List<AcorazadoAcuatizado> acorazados)
     {
@@ -36,7 +37,10 @@ public class JuegoAcorazados
 
     public void Iniciar()
     {
+        if (_juegoIniciado)
+            throw new Exception("Ya hay un juego en curso");
         if (jugador1 is null)
             throw new ArgumentNullException("Debe tener jugadores para iniciar el juego");
+        _juegoIniciado = true;
     }
 }
