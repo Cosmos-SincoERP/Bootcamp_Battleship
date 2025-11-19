@@ -2,9 +2,9 @@ namespace Acorazados;
 
 public enum Acorazado
 {
-    Cañonero,
-    Destructor,
-    Portaaviones
+    Cañonero = 1,
+    Destructor = 3,
+    Portaaviones = 4
 }
 
 public enum Direccion
@@ -14,10 +14,17 @@ public enum Direccion
     Izquierda,
     Abajo
 }
+
 public class Jugador
 {
     public string Nombre { get; private set; }
     private string[,] Tablero;
+    private Dictionary<Acorazado, string> LetraAcozados = new Dictionary<Acorazado, string>
+    {
+        { Acorazado.Cañonero, "g" },
+        { Acorazado.Destructor, "d" },
+        { Acorazado.Portaaviones, "c" }
+    };
 
     public Jugador(string player)
     {
@@ -27,79 +34,26 @@ public class Jugador
 
     public void AgregarAcorazado(Acorazado tipoAcorazado, int fila, int columna, Direccion? direccion = null)
     {
-        if (tipoAcorazado.Equals(Acorazado.Cañonero))
+        for (int i = 0; i < (int)tipoAcorazado; i++)
         {
-            ValidacionesTablero(fila, columna);
-            Tablero[fila, columna] = "g";
-        }
-        else if (tipoAcorazado.Equals(Acorazado.Portaaviones))
-        {
-            if (direccion == Direccion.Derecha)
+            switch (direccion)
             {
-                for (int i = 0; i < 4; i++)
-                {
+                case Direccion.Derecha:
                     ValidacionesTablero(fila, columna+i);
-                    Tablero[fila, columna+i] = "c";
-                }
-            } 
-            else if (direccion == Direccion.Abajo)
-            {
-                for (int i = 0; i < 4; i++)
-                {
+                    Tablero[fila, columna+i] = LetraAcozados[tipoAcorazado];
+                    break;
+                case Direccion.Abajo:
                     ValidacionesTablero(fila+i, columna);
-                    Tablero[fila+i, columna] = "c";
-                }
-            }
-            else if (direccion == Direccion.Izquierda)
-            {
-                for (int i = 0; i < 4; i++)
-                {
+                    Tablero[fila+i, columna] = LetraAcozados[tipoAcorazado];
+                    break;
+                case Direccion.Izquierda:
                     ValidacionesTablero(fila, columna-i);
-                    Tablero[fila, columna-i] = "c";
-                }
-            }
-            else
-            {
-                for (int i = 0; i < 4; i++)
-                {
+                    Tablero[fila, columna-i] = LetraAcozados[tipoAcorazado];
+                    break;
+                default:
                     ValidacionesTablero(fila-i, columna);
-                    Tablero[fila-i, columna] = "c";
-                }
-            }
-        }
-        else
-        {
-            if (direccion.Equals(Direccion.Derecha))
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    ValidacionesTablero(fila, columna+i);
-                    Tablero[fila, columna+i] = "d";
-                }
-            }
-            else if (direccion.Equals(Direccion.Izquierda))
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    ValidacionesTablero(fila, columna-i);
-                    Tablero[fila, columna-i] = "d";
-                }
-            }
-            else if (direccion.Equals(Direccion.Abajo))
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    ValidacionesTablero(fila+i, columna);
-                    Tablero[fila+i, columna] = "d";
-                }
-            }
-            else
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    ValidacionesTablero(fila-i, columna);
-                    Tablero[fila-i, columna] = "d";
-                }
+                    Tablero[fila-i, columna] = LetraAcozados[tipoAcorazado];
+                    break;
             }
         }
     }
