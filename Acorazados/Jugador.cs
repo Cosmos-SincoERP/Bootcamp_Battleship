@@ -55,6 +55,13 @@ public class Jugador
                     Tablero[fila, columna-i] = "c";
                 }
             }
+            else
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    Tablero[fila-i, columna] = "c";
+                }
+            }
         }
         else
         {
