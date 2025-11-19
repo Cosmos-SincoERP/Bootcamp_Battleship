@@ -173,4 +173,24 @@ public class AcorazadosTests
         jugador.ObtenerCasilla(1, 1).Should().Be("c");
         jugador.ObtenerCasilla(0, 1).Should().Be("c");
     } 
+    
+    [Theory]
+    [InlineData(0, 0, Direccion.Arriba)]
+    [InlineData(9, 9, Direccion.Derecha)]
+    [InlineData(9, 9, Direccion.Abajo)]
+    [InlineData(0, 0, Direccion.Izquierda)]
+    [InlineData(1, 0, Direccion.Arriba)]
+    [InlineData(0, 8, Direccion.Derecha)]
+    [InlineData(8, 8, Direccion.Abajo)]
+    [InlineData(5, 1, Direccion.Izquierda)]
+    [InlineData(2, 0, Direccion.Arriba)]
+    [InlineData(0, 7, Direccion.Derecha)]
+    [InlineData(7, 8, Direccion.Abajo)]
+    [InlineData(5, 2, Direccion.Izquierda)]
+    public void Si_CreoUnPortaavionesEnAlgunaPosicionFueraDelTablero_Debe_LanzarUnaExcepcionDeFueraDeRango(int fila, int columna, Direccion direccion)
+    {
+        Action act = () => jugador.AgregarAcorazado(Acorazado.Portaaviones, fila, columna, direccion);
+        
+        act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible ubicar el acorazado en esa direccion*");
+    }
 }
