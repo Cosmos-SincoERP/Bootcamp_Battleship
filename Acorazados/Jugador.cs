@@ -3,7 +3,8 @@ namespace Acorazados;
 public enum Acorazado
 {
     Cañonero,
-    Destructor
+    Destructor,
+    Portaaviones
 }
 
 public enum Direccion
