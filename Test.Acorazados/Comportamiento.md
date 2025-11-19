@@ -25,7 +25,7 @@ Reglas
  - Al mostrar el tablero, los barcos hundidos en su totalidad marcan con una X mayuscula y los que no se hundieron en su totalidad en una x minuscula
 
 Restricciones
-- Completar utilizando outside-in. ¿ esto que es?
+- Completar utilizando outside-in. Es London School
 - Un jugador tiene como maximo las siguientes naves:
   - 1 Porta avion
   - 2 Desctructores
