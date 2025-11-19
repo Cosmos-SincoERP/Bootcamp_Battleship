@@ -340,4 +340,21 @@ public class AcorazadosTest
 
         iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 le faltan posicionar 2 cañoneros");
     }
+
+    [Fact]
+    public void Si_AgregoUnJugadorYPosicionoSoloUnDestructor_Debe_LanzarExcepcionFaltaPosicionarUnDestructor()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
+
+        List<Coordenada> coordenadasDetructorJugador1 = new()
+        {
+            new(0, 0, Nave.Destructor, null)
+        };
+
+        juegoAcorazado.AgregarJugador(coordenadasDetructorJugador1);
+
+        var iniciar = () => juegoAcorazado.Iniciar();
+
+        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 le faltan posicionar 1 destructor");
+    }
 }
