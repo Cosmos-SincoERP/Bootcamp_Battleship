@@ -52,6 +52,6 @@ public class JuegoAcorazado
 
     public void Iniciar()
     {
-        throw new NotImplementedException();
+        throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
     }
 }
