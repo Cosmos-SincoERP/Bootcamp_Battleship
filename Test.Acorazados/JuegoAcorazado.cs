@@ -33,6 +33,8 @@ public class JuegoAcorazado
 
     public void Iniciar()
     {
+        
+        
         if (_jugadores.Count != 2)
             throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
     }
