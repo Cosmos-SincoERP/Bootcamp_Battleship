@@ -423,6 +423,7 @@ public class AcorazadosTests
         
         resultado.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("*No es posible agregar mas de 2 destructores");
+        
     }
     
     [Fact]
@@ -480,9 +481,9 @@ public class AcorazadosTests
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
         
+        acorazado.PosicionarNave(1, 0, TiposNave.Destructor, Orientacion.Derecha);
         acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
-        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
-        acorazado.PosicionarNave(1, 0, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
         
         var imprimir = acorazado.Imprimir();
 
