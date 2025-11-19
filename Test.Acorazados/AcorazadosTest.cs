@@ -24,8 +24,17 @@ public class AcorazadosTest
         
         juegoAcorazado.MostrarJugadores().Should().Contain("Jugador 1").And.Contain("Jugador 2");
     }
-    
-    
+
+    [Fact]
+    public void Si_SeIniciaElJuegoConUnJugador_Debe_LanzarExcepcion()
+    {
+        var juegoAcorazado =  new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
+
+        var iniciarJuego = () => juegoAcorazado.Iniciar();
+        
+        iniciarJuego.Should().Throw<Exception>().WithMessage("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
+    }
 }
 
 public class JuegoAcorazado
@@ -39,5 +48,10 @@ public class JuegoAcorazado
     public List<string> MostrarJugadores()
     {
         return _jugadores;
+    }
+
+    public void Iniciar()
+    {
+        throw new NotImplementedException();
     }
 }
