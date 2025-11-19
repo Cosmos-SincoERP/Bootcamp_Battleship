@@ -536,7 +536,7 @@ public class AcorazadosTest
         var destructor = new Nave(6, 2,8,2, "d");
         var canonero = new Nave(9, 9,9,9, "g");
 
-        acorazados.Iniciar([portaaviones],[]);
+        acorazados.Iniciar([portaaviones, destructor, canonero],[]);
 
         var tablero = acorazados.Imprimir();
 
