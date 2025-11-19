@@ -49,32 +49,32 @@ public class AcorazadosTest
         iniciarJuego.Should().NotThrow();
     }
     
-    // [Fact]
-    // public void Si_SeIniciaElJuegoConDosJugadoresElJugador1_Debe_ColocarUnCañoneroEnLaPosicion0_0()
-    // {
-    //     var tamañoTablero = 10;
-    //     var tablero = new char[tamañoTablero, tamañoTablero];
-    //     tablero[0, 0] = 'g';
-    //     var tableroEsperado = string.Empty;
-    //     for (var x = 0; x < tablero.GetLength(0); x++)
-    //     {
-    //         for (int y = 0; y <  tablero.GetLength(1); y++)
-    //         {
-    //             tableroEsperado += ' ';
-    //         }
-    //
-    //         tableroEsperado += '\n';
-    //     }
-    //     
-    //     
-    //     var juegoAcorazado =  new JuegoAcorazado();
-    //     juegoAcorazado.AgregarJugador();
-    //     juegoAcorazado.AgregarJugador();
-    //
-    //     juegoAcorazado.Iniciar();
-    //     
-    //     juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
-    // }
+    [Fact]
+    public void Si_SeIniciaElJuegoConDosJugadoresElJugador1_Debe_ColocarUnCañoneroEnLaPosicion0_0()
+    {
+        var tamañoTablero = 10;
+        var tablero = new char[tamañoTablero, tamañoTablero];
+        tablero[0, 0] = 'g';
+        var tableroEsperado = string.Empty;
+        for (var x = 0; x < tablero.GetLength(0); x++)
+        {
+            for (int y = 0; y <  tablero.GetLength(1); y++)
+            {
+                tableroEsperado += ' ';
+            }
+    
+            tableroEsperado += '\n';
+        }
+        
+        
+        var juegoAcorazado =  new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
+    
+        juegoAcorazado.Iniciar();
+        
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
+    }
 }
 
 public class JuegoAcorazado
