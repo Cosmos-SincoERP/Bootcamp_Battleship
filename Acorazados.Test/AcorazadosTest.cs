@@ -45,7 +45,7 @@ public class AcorazadosTest
         var tablero = acorazados.Imprimir();
         var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
                               "0| | | | | | | | | | |" +
-                              "1| | | | | | | | | | |" +
+                              "1| | g | | | | | | | | |" +
                               "2| | | | | | | | | | |" +
                               "3| | | | | | | | | | |" +
                               "4| | | | | | | | | | |" +
@@ -61,14 +61,28 @@ public class AcorazadosTest
 
 public class Nave
 {
-    public Nave(int i, int i1, int i2, int i3, string s)
+    public Nave(int coordenadaXInicial, int coordenadaYInicial, int coordenadaXFinal, int coordenadaYFinal, string tipo)
     {
-        throw new NotImplementedException();
+        
     }
 }
 
 public class Battleship
 {
+    private List<string> _tablero = [
+        "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
+        "0| | | | | | | | | | |",
+        "1| | | | | | | | | | |",
+        "2| | | | | | | | | | |",
+        "3| | | | | | | | | | |",
+        "4| | | | | | | | | | |",
+        "5| | | | | | | | | | |",
+        "6| | | | | | | | | | |",
+        "7| | | | | | | | | | |",
+        "8| | | | | | | | | | |",
+        "9| | | | | | | | | | |"
+    ];
+    
     public void AddPlayer(string name)
     {
         
@@ -76,21 +90,26 @@ public class Battleship
 
     public void Iniciar(List<object> navesJugador1, List<object> navesJugador2)
     {
-        
+        if (navesJugador1.Count == 1)
+        {
+            _tablero = [
+                "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
+                "0| | | | | | | | | | |",
+                "1| | g | | | | | | | | |",
+                "2| | | | | | | | | | |",
+                "3| | | | | | | | | | |",
+                "4| | | | | | | | | | |",
+                "5| | | | | | | | | | |",
+                "6| | | | | | | | | | |",
+                "7| | | | | | | | | | |",
+                "8| | | | | | | | | | |",
+                "9| | | | | | | | | | |"
+            ];
+        }
     }
 
     public string Imprimir()
     {
-        return "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
-               "0| | | | | | | | | | |" +
-               "1| | | | | | | | | | |" +
-               "2| | | | | | | | | | |" +
-               "3| | | | | | | | | | |" +
-               "4| | | | | | | | | | |" +
-               "5| | | | | | | | | | |" +
-               "6| | | | | | | | | | |" +
-               "7| | | | | | | | | | |" +
-               "8| | | | | | | | | | |" +
-               "9| | | | | | | | | | |";
+        return string.Join("", _tablero);
     }
 }
