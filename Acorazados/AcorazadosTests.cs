@@ -217,4 +217,14 @@ public class AcorazadosTests
 
         act.Should().Throw<ArgumentException>().WithMessage("*Se supero el maximo de acorazados de este tipo*");
     }
+
+    [Fact]
+    public void SiCreoUnPortaavionesTeniendoUnPortaavionesEnMiTablero_Debe_LanzarUnaArgumentException()
+    {
+        jugador.AgregarAcorazado(Acorazado.Portaaviones,1, 1, Direccion.Derecha);
+        
+        Action act = () => jugador.AgregarAcorazado(Acorazado.Portaaviones,  3, 3, Direccion.Derecha);
+
+        act.Should().Throw<ArgumentException>().WithMessage("*Se supero el maximo de acorazados de este tipo*");
+    }
 }
