@@ -70,7 +70,7 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
     
-        juegoAcorazado.Iniciar();
+        juegoAcorazado.Iniciar(0, 0);
         
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -96,7 +96,7 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
     
-        juegoAcorazado.Iniciar();
+        juegoAcorazado.Iniciar(4, 5);
         
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -116,12 +116,12 @@ public class JuegoAcorazado
         return _jugadores;
     }
 
-    public void Iniciar()
+    public void Iniciar(int posicionEnX = 0, int posicionEnY = 0)
     {
         if(_jugadores.Count != 2)
             throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
         
-        _tablero[0,0] = 'g';
+        _tablero[posicionEnX, posicionEnY] = 'g';
     }
 
     public string Imprimir()
