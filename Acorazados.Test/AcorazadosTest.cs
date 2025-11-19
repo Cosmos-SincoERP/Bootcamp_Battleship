@@ -523,4 +523,35 @@ public class AcorazadosTest
 
         tablero.Should().Be(tableroEsperado);
     }
+    
+    [Fact]
+    public void Si_InicioElJuegoConUnaNavePortaAvionesHorizontalEn_2_0_a_2_4_YUnCanoneroEn9_9_YunDestructorEn6_3_6_6EImprimoSegunCoordenadasDadas()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+
+        var portaaviones = new Nave(2, 0,2,4, "c");
+        var destructor = new Nave(6, 2,8,2, "d");
+        var canonero = new Nave(9, 9,9,9, "g");
+
+        acorazados.Iniciar([portaaviones],[]);
+
+        var tablero = acorazados.Imprimir();
+
+        var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+                              "0| | | | | | | | | | |" +
+                              "1| | | | | | | | | | |" +
+                              "2| c | c | c | c | | | | | | |" +
+                              "3| | | | | | | | | | |" +
+                              "4| | | | | | | | | | |" +
+                              "5| | | | | | | | | | |" +
+                              "6| | | d | | | | | | | |" +
+                              "7| | | d | | | | | | | |" +
+                              "8| | | d | | | | | | | |" +
+                              "9| | | | | | | | | | g |"; 
+
+        tablero.Should().Be(tableroEsperado);
+    }
 }
