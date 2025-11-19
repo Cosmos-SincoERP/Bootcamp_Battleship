@@ -153,6 +153,28 @@ public class AcorazadosTest
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
+
+    [Fact]
+    public void Si_SeIniciaElJuegoConDosJugadoresElJugador1_Debe_ColocarUnDestructorEnLaPosicionInicial4_5()
+    {
+        var tamañoTablero = 10;
+        var tablero = new char[tamañoTablero, tamañoTablero];
+        tablero[4, 5] = 'd';
+
+        var tableroEsperado = TableroEsperado(tablero);
+        var juegoAcorazado = new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
+
+        List<(int, int, string)> coordenadasDestructor = new()
+        {
+            new(2, 3, "Destructor")
+        };
+
+        juegoAcorazado.Iniciar(coordenadasDestructor);
+
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
+    }
 }
 
 public class JuegoAcorazado
