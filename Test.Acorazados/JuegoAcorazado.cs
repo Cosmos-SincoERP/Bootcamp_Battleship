@@ -14,9 +14,19 @@ public class JuegoAcorazado
                     _tablero[nave.PosicionX, nave.PosicionY] = 'g';
                 else if (nave.Tipo == "Portaviones")
                 {
-                    for (int i = 0; i < 4; i++)
+                    if (nave.Orientacion == "Horizontal")
                     {
-                        _tablero[nave.PosicionX + i, nave.PosicionY] = 'c';
+                        for (int i = 0; i < 4; i++)
+                        {
+                            _tablero[nave.PosicionX + i, nave.PosicionY] = 'c';
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            _tablero[nave.PosicionX, nave.PosicionY + i] = 'c';
+                        }
                     }
                 }
                 else
@@ -54,4 +64,4 @@ public class JuegoAcorazado
     }
 }
 
-public record Nave(int PosicionX, int PosicionY, string Tipo);
+public record Nave(int PosicionX, int PosicionY, string Tipo, string? Orientacion = null);

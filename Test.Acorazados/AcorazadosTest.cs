@@ -221,7 +221,7 @@ public class AcorazadosTest
 
         List<Nave> coordenadasPortaAvion = new()
         {
-            new(5, 2, "Portaviones")
+            new(5, 2, "Portaviones", "Vertical")
         };
 
         juegoAcorazado.AgregarJugador(coordenadasPortaAvion);
