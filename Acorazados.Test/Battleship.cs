@@ -25,47 +25,13 @@ public class Battleship
     {
         if (navesJugador1.Count == 0) return;
 
-        if (navesJugador1.Count == 1)
+        foreach (var nave in navesJugador1)
         {
-            var columnas = _tablero[navesJugador1[0].CoordenadaXInicial + 1].Split("|");
+            var columnas = _tablero[nave.CoordenadaXInicial + 1].Split("|");
 
-            columnas[navesJugador1[0].CoordenadaYInicial + 1] = " g ";
+            columnas[nave.CoordenadaYInicial + 1] = " g ";
 
-            _tablero[navesJugador1[0].CoordenadaXInicial + 1] = string.Join("|", columnas);
-        }
-        else if (navesJugador1.Count == 2)
-        {
-            var columnas1 = _tablero[navesJugador1[0].CoordenadaXInicial + 1].Split("|");
-
-            columnas1[navesJugador1[0].CoordenadaYInicial + 1] = " g ";
-
-            _tablero[navesJugador1[0].CoordenadaXInicial + 1] = string.Join("|", columnas1);
-            
-            var columnas2 = _tablero[navesJugador1[1].CoordenadaXInicial + 1].Split("|");
-
-            columnas2[navesJugador1[1].CoordenadaYInicial + 1] = " g ";
-
-            _tablero[navesJugador1[1].CoordenadaXInicial + 1] = string.Join("|", columnas2);
-        }
-        else
-        {
-            var columnas1 = _tablero[navesJugador1[0].CoordenadaXInicial + 1].Split("|");
-
-            columnas1[navesJugador1[0].CoordenadaYInicial + 1] = " g ";
-
-            _tablero[navesJugador1[0].CoordenadaXInicial + 1] = string.Join("|", columnas1);
-            
-            var columnas2 = _tablero[navesJugador1[1].CoordenadaXInicial + 1].Split("|");
-
-            columnas2[navesJugador1[1].CoordenadaYInicial + 1] = " g ";
-
-            _tablero[navesJugador1[1].CoordenadaXInicial + 1] = string.Join("|", columnas2);
-            
-            var columnas3 = _tablero[navesJugador1[2].CoordenadaXInicial + 1].Split("|");
-
-            columnas3[navesJugador1[2].CoordenadaYInicial + 1] = " g ";
-
-            _tablero[navesJugador1[2].CoordenadaXInicial + 1] = string.Join("|", columnas3);
+            _tablero[nave.CoordenadaXInicial + 1] = string.Join("|", columnas);
         }
     }
 
