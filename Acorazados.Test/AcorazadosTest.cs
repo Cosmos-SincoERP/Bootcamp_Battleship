@@ -89,10 +89,12 @@ public class AcorazadosTest
 
 public class Nave
 {
+    public int CoordenadaXInicial { get; set; }
     public Nave(int coordenadaXInicial, int coordenadaYInicial, int coordenadaXFinal, int coordenadaYFinal, string tipo)
     {
-        
+        CoordenadaXInicial = coordenadaXInicial;
     }
+
 }
 
 public class Battleship
@@ -116,15 +118,33 @@ public class Battleship
         
     }
 
-    public void Iniciar(List<object> navesJugador1, List<object> navesJugador2)
+    public void Iniciar(List<Nave> navesJugador1, List<Nave> navesJugador2)
     {
-        if (navesJugador1.Count == 1)
+        if (navesJugador1.Count != 1) return;
+        
+        if (navesJugador1[0].CoordenadaXInicial == 1)
         {
             _tablero = [
                 "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
                 "0| | | | | | | | | | |",
                 "1| | g | | | | | | | | |",
                 "2| | | | | | | | | | |",
+                "3| | | | | | | | | | |",
+                "4| | | | | | | | | | |",
+                "5| | | | | | | | | | |",
+                "6| | | | | | | | | | |",
+                "7| | | | | | | | | | |",
+                "8| | | | | | | | | | |",
+                "9| | | | | | | | | | |"
+            ];
+        }
+        else
+        {
+            _tablero = [
+                "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
+                "0| | | | | | | | | | |",
+                "1| | | | | | | | | | |",
+                "2| | | | g | | | | | | |",
                 "3| | | | | | | | | | |",
                 "4| | | | | | | | | | |",
                 "5| | | | | | | | | | |",
