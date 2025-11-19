@@ -25,33 +25,29 @@ public class Battleship
     {
         if (navesJugador1.Count == 0) return;
 
-        if (navesJugador1[0].Tipo=="g")
+        foreach (var nave in navesJugador1)
         {
-            foreach (var nave in navesJugador1)
+            if (nave.Tipo == "g")
             {
-                // Pinta Canoneros
                 var columnas = _tablero[nave.FilaInicial + 1].Split("|");
 
                 columnas[nave.ColumnaInicial + 1] = " g ";
 
                 _tablero[nave.FilaInicial + 1] = string.Join("|", columnas);
             }
-        }
-        else
-        {
-            foreach (var nave in navesJugador1)
+            else
             {
                 if (nave.FilaInicial != nave.FilaFinal)
                 {
                     var columnaInicial = _tablero[nave.FilaInicial + 1].Split("|");
-                    columnaInicial[nave.ColumnaInicial  + 1 ]= " d ";
-        
+                    columnaInicial[nave.ColumnaInicial + 1] = " d ";
+
                     var columna2 = _tablero[nave.FilaInicial + 2].Split("|");
-                    columna2[nave.ColumnaInicial  + 1] = " d ";
-        
+                    columna2[nave.ColumnaInicial + 1] = " d ";
+
                     var columna3 = _tablero[nave.FilaInicial + 3].Split("|");
-                    columna3[nave.ColumnaInicial  + 1 ] = " d ";
-        
+                    columna3[nave.ColumnaInicial + 1] = " d ";
+
                     _tablero[nave.FilaInicial + 1] = string.Join("|", columnaInicial);
                     _tablero[nave.FilaInicial + 2] = string.Join("|", columna2);
                     _tablero[nave.FilaInicial + 3] = string.Join("|", columna3);
