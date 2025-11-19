@@ -27,45 +27,61 @@ public class Battleship
 
         foreach (var nave in navesJugador1)
         {
-            if (nave.Tipo == "g")
+            if (EsCanonero(nave))
             {
-                var columnas = _tablero[nave.FilaInicial + 1].Split("|");
-
-                columnas[nave.ColumnaInicial + 1] = " g ";
-
-                _tablero[nave.FilaInicial + 1] = string.Join("|", columnas);
+                ImprimirCanonero(nave);
             }
             else
             {
-                if (nave.FilaInicial != nave.FilaFinal)
+                if (EsVertical(nave))
                 {
-                    var columnaInicial = _tablero[nave.FilaInicial + 1].Split("|");
-                    columnaInicial[nave.ColumnaInicial + 1] = " d ";
-
-                    var columna2 = _tablero[nave.FilaInicial + 2].Split("|");
-                    columna2[nave.ColumnaInicial + 1] = " d ";
-
-                    var columna3 = _tablero[nave.FilaInicial + 3].Split("|");
-                    columna3[nave.ColumnaInicial + 1] = " d ";
-
-                    _tablero[nave.FilaInicial + 1] = string.Join("|", columnaInicial);
-                    _tablero[nave.FilaInicial + 2] = string.Join("|", columna2);
-                    _tablero[nave.FilaInicial + 3] = string.Join("|", columna3);
+                    ImprimirDestructorVertical(nave);
                 }
                 else
                 {
-                    var columnas = _tablero[nave.FilaInicial + 1].Split("|");
-                    columnas[nave.ColumnaInicial + 1] = " d ";
-                    columnas[nave.ColumnaInicial + 2] = " d ";
-                    columnas[nave.ColumnaInicial + 3] = " d ";
-                    _tablero[nave.FilaInicial + 1] = string.Join("|", columnas);
+                    ImprimerDestructorHorizontal(nave);
                 }
             }
         }
     }
 
-    public string Imprimir()
+    private static bool EsCanonero(Nave nave) => nave.Tipo == "g";
+
+    private void ImprimirCanonero(Nave nave)
     {
-        return string.Join("", _tablero);
+        var columnas = _tablero[nave.FilaInicial + 1].Split("|");
+
+        columnas[nave.ColumnaInicial + 1] = " g ";
+
+        _tablero[nave.FilaInicial + 1] = string.Join("|", columnas);
     }
+
+    private static bool EsVertical(Nave nave) => nave.FilaInicial != nave.FilaFinal;
+
+    private void ImprimerDestructorHorizontal(Nave nave)
+    {
+        var columnas = _tablero[nave.FilaInicial + 1].Split("|");
+        columnas[nave.ColumnaInicial + 1] = " d ";
+        columnas[nave.ColumnaInicial + 2] = " d ";
+        columnas[nave.ColumnaInicial + 3] = " d ";
+        _tablero[nave.FilaInicial + 1] = string.Join("|", columnas);
+    }
+
+    private void ImprimirDestructorVertical(Nave nave)
+    {
+        var columnaInicial = _tablero[nave.FilaInicial + 1].Split("|");
+        columnaInicial[nave.ColumnaInicial + 1] = " d ";
+
+        var columna2 = _tablero[nave.FilaInicial + 2].Split("|");
+        columna2[nave.ColumnaInicial + 1] = " d ";
+
+        var columna3 = _tablero[nave.FilaInicial + 3].Split("|");
+        columna3[nave.ColumnaInicial + 1] = " d ";
+
+        _tablero[nave.FilaInicial + 1] = string.Join("|", columnaInicial);
+        _tablero[nave.FilaInicial + 2] = string.Join("|", columna2);
+        _tablero[nave.FilaInicial + 3] = string.Join("|", columna3);
+    }
+
+    public string Imprimir() => string.Join("", _tablero);
 }
