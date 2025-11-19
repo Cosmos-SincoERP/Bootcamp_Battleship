@@ -437,5 +437,32 @@ public class AcorazadosTest
         tablero.Should().Be(tableroEsperado);
     }
     
-    
+    [Fact]
+    public void Si_InicioElJuegoConUnaNavePortaAvionesEn_3_5_a_6_5_EImprimoSegunCoordenadasDadas()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Santi");
+        acorazados.AddPlayer("Ruben");
+
+        var portaaviones = new Nave(3, 5,6,5, "c");
+
+        acorazados.Iniciar([portaaviones],[]);
+
+        var tablero = acorazados.Imprimir();
+
+        var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+                              "0| | | | | | | | | | |" +
+                              "1| | | | | | | | | | |" +
+                              "2| | | | | | | | | | |" +
+                              "3| | | | | | c | | | | |" +
+                              "4| | | | | | c | | | | |" +
+                              "5| | | | | | c | | | | |" +
+                              "6| | | | | | c | | | | |" +
+                              "7| | | | | | | | | | |" +
+                              "8| | | | | | | | | | |" +
+                              "9| | | | | | | | | | |";
+
+        tablero.Should().Be(tableroEsperado);
+    }
 }
