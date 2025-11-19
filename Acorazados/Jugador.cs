@@ -21,6 +21,7 @@ public class Jugador
     private string[,] Tablero;
     private int _conteoCañoneros;
     private int _conteoDestructores;
+    private int _conteoPortaaviones;
     private Dictionary<Acorazado, string> LetraAcozados = new Dictionary<Acorazado, string>
     {
         { Acorazado.Cañonero, "g" },
@@ -40,6 +41,8 @@ public class Jugador
         if(_conteoCañoneros==4)
             throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
         if(_conteoDestructores==2)
+            throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
+        if(_conteoPortaaviones==1)
             throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
         
         for (int i = 0; i < (int)tipoAcorazado; i++)
@@ -68,6 +71,8 @@ public class Jugador
             _conteoCañoneros++;
         if (tipoAcorazado == Acorazado.Destructor)
             _conteoDestructores++;
+        if (tipoAcorazado == Acorazado.Portaaviones)
+            _conteoPortaaviones++;
     }
 
     private void ValidacionesTablero(int x, int y)
