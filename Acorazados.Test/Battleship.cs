@@ -55,6 +55,22 @@ public class Battleship
                 _tablero[navesJugador1[0].FilaInicial + 1] = string.Join("|", columnaInicial);
                 _tablero[navesJugador1[0].FilaInicial + 2] = string.Join("|", columna2);
                 _tablero[navesJugador1[0].FilaInicial + 3] = string.Join("|", columna3);
+
+                if (navesJugador1.Count == 2)
+                {
+                    var columnaInicialNave2 = _tablero[navesJugador1[1].FilaInicial + 1].Split("|");
+                    columnaInicialNave2[navesJugador1[1].ColumnaInicial  + 1 ]= " d ";
+        
+                    var columna2Nave2 = _tablero[navesJugador1[1].FilaInicial + 2].Split("|");
+                    columna2Nave2[navesJugador1[1].ColumnaInicial  + 1] = " d ";
+        
+                    var columna3Nave2 = _tablero[navesJugador1[1].FilaInicial + 3].Split("|");
+                    columna3Nave2[navesJugador1[1].ColumnaInicial  + 1 ] = " d ";
+        
+                    _tablero[navesJugador1[1].FilaInicial + 1] = string.Join("|", columnaInicialNave2);
+                    _tablero[navesJugador1[1].FilaInicial + 2] = string.Join("|", columna2Nave2);
+                    _tablero[navesJugador1[1].FilaInicial + 3] = string.Join("|", columna3Nave2);
+                }
             }
             else
             {
