@@ -36,11 +36,11 @@ public class Acorazado
     public void PosicionarNave(int posicionX, int posicionY, TiposNave tipoNave, Orientacion orientacion)
     {
         var nave = Nave.Crear(tipoNave);
-        if (_estrategia["Player 1"].Count(tipo => tipo == nave.Tipo) ==  nave.CantidadPermitida &&
+        if (_estrategia[_jugadores.LastOrDefault()].Count(tipo => tipo == nave.Tipo) ==  nave.CantidadPermitida &&
               tipoNave == nave.Tipo)
             throw new InvalidOperationException($"No es posible agregar mas de {nave.CantidadPermitida} nave(s) de tipo {nave.Descripcion}");
      
-        _estrategia[_jugadores[0]].Add(tipoNave);
+        _estrategia[_jugadores.LastOrDefault()].Add(tipoNave);
 
         if (orientacion == Orientacion.Derecha)
         {

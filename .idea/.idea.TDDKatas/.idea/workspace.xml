@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💙refactor">
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
-    </list>
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💚Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_RetornarJuegoIniciado" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,12 +31,11 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5e14a4e27990972fa4ae94975603bd298aaf328ee083c03b10569ee4724d57/TestInvoker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/de8a243f75215d958afa80cf80a41b4981a44efea7db93bffcdaf7bd6ba378c0/Number.Parsing.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f9878f643c2ecf1b4ce73234de56c9754a451c835620eae85ca8babbcb5889c4/LateBoundTestFramework.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/Acorazado.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/Acorazado.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/victor.novoa/RiderProjects/TDDKatas/TDDKatas.Test/Acorazado.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TDDKatas.Test/Nave.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -79,31 +75,7 @@
       <workItem from="1763135552154" duration="18182000" />
       <workItem from="1763165952569" duration="12691000" />
       <workItem from="1763563174982" duration="12396000" />
-      <workItem from="1763575727124" duration="2842000" />
-    </task>
-    <task id="LOCAL-00038" summary="3️⃣4️⃣ OK">
-      <option name="closed" value="true" />
-      <created>1763138863413</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1763138863413</updated>
-    </task>
-    <task id="LOCAL-00039" summary="🔵 3️⃣4️⃣ (little refactor)">
-      <option name="closed" value="true" />
-      <created>1763139286628</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1763139286628</updated>
-    </task>
-    <task id="LOCAL-00040" summary="🔵 5️⃣6️⃣7️⃣8️⃣ OK">
-      <option name="closed" value="true" />
-      <created>1763140322300</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1763140322300</updated>
+      <workItem from="1763575727124" duration="4370000" />
     </task>
     <task id="LOCAL-00041" summary="🔵 5️⃣6️⃣7️⃣8️⃣ (first refactor)">
       <option name="closed" value="true" />
@@ -473,7 +445,31 @@
       <option name="project" value="LOCAL" />
       <updated>1763581818951</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="❤️🟩Si_InicioLaPartidaYAgrego2JugadoresYSegundoJugadorNoHaCompletadoEstrategia_Debe_LanzarExcepcion">
+      <option name="closed" value="true" />
+      <created>1763583331985</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1763583331985</updated>
+    </task>
+    <task id="LOCAL-00088" summary="❤️Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_RetornarJuegoIniciado">
+      <option name="closed" value="true" />
+      <created>1763583830600</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1763583830600</updated>
+    </task>
+    <task id="LOCAL-00089" summary="💚Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_RetornarJuegoIniciado">
+      <option name="closed" value="true" />
+      <created>1763583890939</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1763583890939</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,9 +489,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="️ Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaArriba" />
-    <MESSAGE value="❤️ Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaAbajo" />
-    <MESSAGE value=" Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaAbajo" />
     <MESSAGE value="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion2_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaLaIzquierda" />
     <MESSAGE value=" Si_InicioElJuegoYUbicoPortaAvionesEnPosicion2_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaLaIzquierda" />
     <MESSAGE value="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaArriba" />
@@ -518,6 +511,28 @@
     <MESSAGE value="️Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones" />
     <MESSAGE value="mejora de lectura (primera parte)" />
     <MESSAGE value="refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+    <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2JugadoresYSegundoJugadorNoHaCompletadoEstrategia_Debe_LanzarExcepcion" />
+    <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_RetornarJuegoIniciado" />
+    <MESSAGE value="Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_RetornarJuegoIniciado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_RetornarJuegoIniciado" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs</url>
+          <line>42</line>
+          <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'PosicionarNave'">
+            <startOffsets>
+              <option value="1383" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1437" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

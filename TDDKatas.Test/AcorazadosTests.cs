@@ -570,4 +570,31 @@ public class AcorazadosTests
         resultado.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("*Jugador anterior no ha completado la estrategia");
     }
+    
+    [Fact]
+    public void Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_IniciarElTurnoDelJugadorUno()
+    {
+        var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.AgregarJugador("Player 2");
+        acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        
+        var resultado = acorazado.Iniciar();
+        
+        resultado.Should().Be("TURNO JUGADOR 1");
+
+    }
 }
