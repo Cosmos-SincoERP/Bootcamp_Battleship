@@ -7,6 +7,6 @@ public class Cañonero : Acorazado
         AsignarSegmentos(fila,columna,direccion,1);
     }
 
-    public override string Letra => "g";
+    public override string Letra => Constantes.LetraCoñonero;
     public override int CantidadMaximaAcorazadosEnTablero => 4;
 }

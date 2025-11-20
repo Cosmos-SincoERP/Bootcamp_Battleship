@@ -42,16 +42,11 @@ public class JuegoAcorazados
     public string[,] ObtenerTableroContrincante()
     {
         var obtenerTableroContrincante = jugadores.Last().ObtenerTablero();
-        var letrasDisparos = new List<string>
-        {
-            "o", "x", "X"
-        };
-
         for (int fila = 0; fila < jugadores.Last().ObtenerLongitudTablero(0); fila++)
         {
             for (int columna = 0; columna < jugadores.Last().ObtenerLongitudTablero(1); columna++)
             {
-                if (!letrasDisparos.Contains(obtenerTableroContrincante[fila, columna]) && obtenerTableroContrincante[fila, columna] != null)
+                if (!Constantes.LetrasDiparos.Contains(obtenerTableroContrincante[fila, columna]) && obtenerTableroContrincante[fila, columna] != null)
                 {
                     obtenerTableroContrincante[fila, columna] = null;
                 }

@@ -45,7 +45,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_DisparoEnLaPosicion22_Debe_TableroContrincanteTener_o()
     {
-        tableroDisparos[2, 2] = "o";
+        tableroDisparos[2, 2] = Constantes.LetraDisparoFallido;;
         
         _juego.Disparar(2, 2);
 
@@ -55,7 +55,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_DisparoEnLaPosicion11_Debe_TableroContrincanteTener_x()
     {
-        tableroDisparos[1, 1] = "x";
+        tableroDisparos[1, 1] = Constantes.LetraDisparoAcertado;;
         
         _juego.Disparar(1, 1);
 
@@ -65,10 +65,10 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_DisparoEnLasPosiciones11_12_13_14_Debe_TableroContrincanteTener_XXX()
     {
-        tableroDisparos[1, 1] = "X";
-        tableroDisparos[1, 2] = "X";
-        tableroDisparos[1, 3] = "X";
-        tableroDisparos[1, 4] = "X";
+        tableroDisparos[1, 1] = Constantes.LetraAcorazadoHundido;;
+        tableroDisparos[1, 2] = Constantes.LetraAcorazadoHundido;;
+        tableroDisparos[1, 3] = Constantes.LetraAcorazadoHundido;;
+        tableroDisparos[1, 4] = Constantes.LetraAcorazadoHundido;;
         
         _juego.Disparar(1, 1);
         _juego.Disparar(1, 2);
@@ -81,9 +81,9 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_Disparo_EnLasPosiciones34_44_54_Debe_TableroContrincanteNoTenerX()
     {
-        tableroDisparos[3, 4] = "x";
-        tableroDisparos[4, 4] = "x";
-        tableroDisparos[5, 4] = "x";
+        tableroDisparos[3, 4] =Constantes.LetraDisparoAcertado;
+        tableroDisparos[4, 4] =Constantes.LetraDisparoAcertado;
+        tableroDisparos[5, 4] =Constantes.LetraDisparoAcertado;
         
         _juego.Disparar(3, 4);
         _juego.Disparar(4, 4);
@@ -95,7 +95,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_DisparoEnLaPosicion41_Debe_TableroContrincanteTener_X()
     {
-        tableroDisparos[4, 1] = "X";
+        tableroDisparos[4, 1] = Constantes.LetraAcorazadoHundido;
         
         _juego.Disparar(4, 1);
         
@@ -105,7 +105,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_DisparoEnLaPosicion41LaCualTieneUnaX_Debe_TableroContrincanteTener_X()
     {
-        tableroDisparos[4, 1] = "X";
+        tableroDisparos[4, 1] = Constantes.LetraAcorazadoHundido;
         
         _juego.Disparar(4, 1);
         _juego.Disparar(4, 1);
@@ -117,7 +117,7 @@ public class JuegoAcorazadosTest
     public void Si_FinalizoTurno_Debe_TableroJugador2Tener_g()
     {
         var tableroEsperadoJugador2 = tableroDisparos;
-        tableroEsperadoJugador2[6,1] = "g";
+        tableroEsperadoJugador2[6,1] = Constantes.LetraCoñonero;
         var juego = new JuegoAcorazados();
         var acorazadosJugador1 = new List<Acorazado>()
         {

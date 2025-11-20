@@ -5,7 +5,7 @@ public class Jugador
     public string Nombre { get; private set; }
     private string[,] Tablero;
 
-    private List<Acorazado> Acorazados = new List<Acorazado>();
+    private List<Acorazado> Acorazados = new ();
 
     public Jugador(string player, List<Acorazado> acorazados)
     {
@@ -50,14 +50,17 @@ public class Jugador
         }
     }
 
-    private bool EstaAfueraDelTablero(int x, int y)
+    private bool EstaAfueraDelTablero(int fila, int columna)
     {
-        return ObtenerLongitudTablero(0) - 1 < x || ObtenerLongitudTablero(1) - 1 < y || x < 0 || y < 0;
+        return ObtenerLongitudTablero(0) - 1 < fila 
+               || ObtenerLongitudTablero(1) - 1 < columna 
+               || fila < 0 
+               || columna < 0;
     }
 
-    private string ObtenerCasilla(int x, int y)
+    private string ObtenerCasilla(int fila, int columna)
     {
-        return Tablero[x, y];
+        return Tablero[fila, columna];
     }
 
     public string[,] ObtenerTablero()
@@ -80,14 +83,14 @@ public class Jugador
         var valorCasilla = ObtenerCasilla(fila, columna);
         switch (valorCasilla)
         {
-            case "c":
+            case Constantes.LetraPortaAviones:
                 return GestionarDisparo<PortaAviones>(fila, columna);
-            case "d":
+            case Constantes.LetraDestructor:
                 return GestionarDisparo<Destructor>(fila, columna);
-            case "g":
+            case Constantes.LetraCoñonero:
                 return GestionarDisparo<Cañonero>(fila, columna);
             case null:
-                Tablero[fila, columna] = "o";
+                Tablero[fila, columna] = Constantes.LetraDisparoFallido;
                 break;
         }
         
@@ -114,12 +117,12 @@ public class Jugador
         {
             foreach (var segmento in acorazado.SegmentosAcorazado)
             {
-                Tablero[segmento.fila, segmento.columna] = "X";
+                Tablero[segmento.fila, segmento.columna] = Constantes.LetraAcorazadoHundido;
             }
             return "Se ha hundido un acorazado";
         }
 
-        Tablero[fila, columna] = "x";
+        Tablero[fila, columna] = Constantes.LetraDisparoAcertado;
         return "Se ha interceptado un acorazado";
     }
     
