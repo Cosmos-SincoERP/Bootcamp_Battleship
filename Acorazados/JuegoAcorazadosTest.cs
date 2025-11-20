@@ -48,11 +48,21 @@ public class JuegoAcorazadosTest
     }
     
     [Fact]
-    public void Si_DisparoEnLaPosicion33_Debe_TableroContrincanteTener_o()
+    public void Si_DisparoEnLaPosicion22_Debe_TableroContrincanteTener_o()
     {
         tableroDisparos[2, 2] = "o";
         
         _juego.Disparar(2, 2);
+
+        _juego.ObtenerTableroContrincante().Should().BeEquivalentTo(tableroDisparos);
+    }
+
+    [Fact]
+    public void Si_DisparoEnLaPosicion11_Debe_TableroContrincanteTener_x()
+    {
+        tableroDisparos[1, 1] = "x";
+        
+        _juego.Disparar(1, 1);
 
         _juego.ObtenerTableroContrincante().Should().BeEquivalentTo(tableroDisparos);
     }
