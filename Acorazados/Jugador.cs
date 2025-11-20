@@ -121,6 +121,9 @@ public class Jugador
         }
 
         Tablero[fila, columna] = "x";
-        return "";
+        return "Se ha interceptado un acorazado";
     }
+    
+    
+    
 }

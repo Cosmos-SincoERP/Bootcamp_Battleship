@@ -157,7 +157,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_DisparoYGolpeoUnAcorazado_Debe_RetornarSeInterceptoUnAcorazado()
     {
-        var mensaje = _juego.Disparar(4, 5);
+        var mensaje = _juego.Disparar(4, 4);
 
         mensaje.Should().Be("Se ha interceptado un acorazado");
     }
