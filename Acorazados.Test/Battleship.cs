@@ -92,6 +92,10 @@ public class Battleship
         {
             columnas[columna + 1] = " x ";
         }
+        else if (columnas[columna + 1] == " c ")
+        {
+            columnas[columna + 1] = " x ";
+        }
         else
         {
             columnas[columna + 1] = " o ";
