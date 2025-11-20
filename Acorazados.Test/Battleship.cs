@@ -84,11 +84,7 @@ public class Battleship
     {
         var columnas = _tableroJugador2[fila + 1].Split("|");
 
-        if (fila == 8 && columna == 8)
-        {
-            columnas[columna + 1] = " X ";
-        }
-        else if (fila == 6 && columna == 6)
+        if (columnas[columna + 1] == " g ")
         {
             columnas[columna + 1] = " X ";
         }
