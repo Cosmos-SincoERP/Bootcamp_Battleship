@@ -4,7 +4,7 @@ public class Battleship
 {
     private bool _turnoJugador1 = true;
 
-    private List<string> _tableroJugador1 =
+    private readonly List<string> _tableroJugador1 =
     [
         "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
         "0| | | | | | | | | | |",
@@ -19,7 +19,7 @@ public class Battleship
         "9| | | | | | | | | | |"
     ];
 
-    private List<string> _tableroJugador2 =
+    private readonly List<string> _tableroJugador2 =
     [
         "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
         "0| | | | | | | | | | |",
@@ -47,9 +47,9 @@ public class Battleship
         UbicarNavesEnTablero(navesJugador2, _tableroJugador2);
     }
 
-    private void UbicarNavesEnTablero(List<Nave> naves, List<string> tablero) => naves.ForEach(nave => UbicarNave(nave, tablero));
+    private static void UbicarNavesEnTablero(List<Nave> naves, List<string> tablero) => naves.ForEach(nave => UbicarNave(nave, tablero));
 
-    private void UbicarNave(Nave nave, List<string> tablero)
+    private static void UbicarNave(Nave nave, List<string> tablero)
     {
         if (EsVertical(nave))
             UbicarNaveVertical(nave, tablero);
