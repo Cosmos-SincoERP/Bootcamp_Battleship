@@ -23,7 +23,7 @@ public class JuegoAcorazado
     {   
         _jugadores.Add(new ()
         {
-            Item1 = "Jugador 1", 
+            Item1 = _jugadores.Any() ? "Jugador 2" : "Jugador 1", 
             Item2 = _tablero,
             Item3 = _inventarioBarco
         });
@@ -82,6 +82,9 @@ public class JuegoAcorazado
     
     public string ReporteBatalla()
     {
+        if(_jugadores.Count > 1)
+            return "Jugador 1 - Jugador 2";
+        
         return "Jugador 1";
     }
     
