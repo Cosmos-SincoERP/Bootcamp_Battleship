@@ -123,6 +123,28 @@ public class Jugador
                 }
             }
         }
+        else if (ObtenerCasilla(fila, columna) is "g")
+        {
+            var cañoneros = Acorazados.Where(acorazado => acorazado.GetType() == typeof(Cañonero));
+            foreach (var cañonero in cañoneros)
+            {
+                if (cañonero.SegmentosAcorazado.Any(segmento => segmento.fila == fila && segmento.columna == columna))
+                {
+                    cañonero.RegistrarDisparo(fila, columna);
+                    if (cañonero.EstaDestruido)
+                    {
+                        foreach (var segmento in cañonero.SegmentosAcorazado)
+                        {
+                            Tablero[segmento.fila, segmento.columna] = "X";
+                        }
+                    }
+                    else
+                    {
+                        Tablero[fila, columna] = "x";
+                    }
+                }
+            }
+        }
         else
         {
             Tablero[fila, columna] = "o";

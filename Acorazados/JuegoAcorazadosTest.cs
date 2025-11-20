@@ -4,9 +4,6 @@ using AwesomeAssertions;
 public class JuegoAcorazadosTest
 {
     private JuegoAcorazados _juego;
-    private Cañonero _cañonero;
-    private Destructor _destructor;
-    private PortaAviones _portaAviones;
     private string[,] tableroDisparos;
     
     public JuegoAcorazadosTest()
@@ -24,28 +21,22 @@ public class JuegoAcorazadosTest
             { null, null, null, null, null, null, null, null, null, null },
             { null, null, null, null, null, null, null, null, null, null },
         };
-        _cañonero = new Cañonero();
-        _destructor = new Destructor();
-        _portaAviones = new PortaAviones();
         _juego = new JuegoAcorazados();
         var acorazadosJugador1 = new List<AcorazadoAcuatizado>()
         {
-            new(_portaAviones, 1, 1, Direccion.Derecha),
-            new(_destructor, 5, 5, Direccion.Derecha),
-            new(_cañonero, 7, 7, Direccion.Derecha),
-            new(_cañonero, 9, 9, Direccion.Derecha)
+            new(new PortaAviones(), 1, 1, Direccion.Derecha),
+            new(new Destructor(), 5, 5, Direccion.Derecha),
+            new(new Cañonero(), 7, 7, Direccion.Derecha),
+            new(new Cañonero(), 9, 9, Direccion.Derecha)
         };
         _juego.AgregarJugador("Jugador 1", acorazadosJugador1);
-        _cañonero = new Cañonero();
-        _destructor = new Destructor();
-        _portaAviones = new PortaAviones();
         var acorazadosJugador2 = new List<AcorazadoAcuatizado>()
         {
-            new(_portaAviones, 1, 1, Direccion.Derecha),
-            new(_destructor, 3, 3, Direccion.Derecha),
-            new(_destructor, 4, 4, Direccion.Abajo),
-            new(_cañonero, 4, 1, Direccion.Derecha),
-            new(_cañonero, 6, 1, Direccion.Derecha)
+            new(new PortaAviones(), 1, 1, Direccion.Derecha),
+            new(new Destructor(), 3, 3, Direccion.Derecha),
+            new(new Destructor(), 4, 4, Direccion.Abajo),
+            new(new Cañonero(), 4, 1, Direccion.Derecha),
+            new(new Cañonero(), 6, 1, Direccion.Derecha)
         };
         _juego.AgregarJugador("Jugador 2", acorazadosJugador2);
         _juego.Iniciar();
