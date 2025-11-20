@@ -153,4 +153,12 @@ public class JuegoAcorazadosTest
 
         mensaje.Should().Be("Se ha hundido un acorazado");
     }
+
+    [Fact]
+    public void Si_DisparoYGolpeoUnAcorazado_Debe_RetornarSeInterceptoUnAcorazado()
+    {
+        var mensaje = _juego.Disparar(4, 5);
+
+        mensaje.Should().Be("Se ha interceptado un acorazado");
+    }
 }
