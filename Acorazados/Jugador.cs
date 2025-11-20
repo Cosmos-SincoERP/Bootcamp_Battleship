@@ -85,69 +85,49 @@ public class Jugador
 
     public void RecibirDisparo(int fila, int columna)
     {
-        if (ObtenerCasilla(fila, columna) is "c")
+        var valorCasilla = ObtenerCasilla(fila, columna);
+        switch (valorCasilla)
         {
-            var portaviones = Acorazados.Where(acorazado => acorazado.GetType() == typeof(PortaAviones)).FirstOrDefault();
-            portaviones.RegistrarDisparo(fila, columna);
-            if (portaviones.EstaDestruido)
+            case "c":
+                GestionarDisparo<PortaAviones>(fila, columna);
+                break;
+            case "d":
+                GestionarDisparo<Destructor>(fila, columna);
+                break;
+            case "g":
+                GestionarDisparo<Cañonero>(fila, columna);
+                break;
+            default:
+                Tablero[fila, columna] = "o";
+                break;
+        }
+    }
+
+    private void GestionarDisparo<T>(int fila, int columna) where T : Acorazado
+    {
+        var acorazados = Acorazados.Where(acorazado => acorazado.GetType() == typeof(T));
+        foreach (var acorazado in acorazados)
+        {
+            if (acorazado.SegmentosAcorazado.Any(segmento => segmento.fila == fila && segmento.columna == columna))
             {
-                foreach (var segmento in portaviones.SegmentosAcorazado)
-                {
-                    Tablero[segmento.fila, segmento.columna] = "X";
-                }
-            }
-            else
-            {
-                Tablero[fila, columna] = "x";
+                acorazado.RegistrarDisparo(fila, columna);
+                RegistrarDisparoAcorazadoEnTablero(fila, columna, acorazado);
             }
         }
-        else if (ObtenerCasilla(fila, columna) is "d")
+    }
+
+    private void RegistrarDisparoAcorazadoEnTablero(int fila, int columna, Acorazado acorazado)
+    {
+        if (acorazado.EstaDestruido)
         {
-            var destructores = Acorazados.Where(acorazado => acorazado.GetType() == typeof(Destructor));
-            foreach (var destructor in destructores)
+            foreach (var segmento in acorazado.SegmentosAcorazado)
             {
-                if (destructor.SegmentosAcorazado.Any(segmento => segmento.fila == fila && segmento.columna == columna))
-                {
-                    destructor.RegistrarDisparo(fila, columna);
-                    if (destructor.EstaDestruido)
-                    {
-                        foreach (var segmento in destructor.SegmentosAcorazado)
-                        {
-                            Tablero[segmento.fila, segmento.columna] = "X";
-                        }
-                    }
-                    else
-                    {
-                        Tablero[fila, columna] = "x";
-                    }
-                }
-            }
-        }
-        else if (ObtenerCasilla(fila, columna) is "g")
-        {
-            var cañoneros = Acorazados.Where(acorazado => acorazado.GetType() == typeof(Cañonero));
-            foreach (var cañonero in cañoneros)
-            {
-                if (cañonero.SegmentosAcorazado.Any(segmento => segmento.fila == fila && segmento.columna == columna))
-                {
-                    cañonero.RegistrarDisparo(fila, columna);
-                    if (cañonero.EstaDestruido)
-                    {
-                        foreach (var segmento in cañonero.SegmentosAcorazado)
-                        {
-                            Tablero[segmento.fila, segmento.columna] = "X";
-                        }
-                    }
-                    else
-                    {
-                        Tablero[fila, columna] = "x";
-                    }
-                }
+                Tablero[segmento.fila, segmento.columna] = "X";
             }
         }
         else
         {
-            Tablero[fila, columna] = "o";
+            Tablero[fila, columna] = "x";
         }
     }
 }
