@@ -185,12 +185,22 @@ public class JuegoAcorazadosTest
     }
     
     [Fact]
-    public void Si_SeAgregaJugadorYNoHaPosicionadoAlMenosUnPortaAviones_NoDebe_PermitirAgregarAlSegundoJugador()
+    public void Si_SeAgregaJugadorYNoHaPosicionadoAlMenosUnBarco_NoDebe_PermitirAgregarAlSegundoJugador()
     {
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
         var jugador2 = () => juegoAcorazado.AgregarJugador();
 
         jugador2.Should().Throw<Exception>();
+    }
+    
+    [Fact]
+    public void Si_SeAgregaJugadorYHaPosicionadoAlMenosUnBarco_Debe_PermitirAgregarAlSegundoJugador()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
+        var jugador2 = () => juegoAcorazado.AgregarJugador();
+
+        jugador2.Should().NotThrow();
     }
 }
