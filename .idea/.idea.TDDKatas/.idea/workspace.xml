@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💙Eliminar tablero">
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️Si_ElJugadorUnoNoHaDisparadoYCambiaTurno_Debe_LanzarExcepcion">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +36,8 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3f306492a8992ce3707d90e5a2eb6fca5f6b056d8e3d1c398226a368787514/InvalidOperationException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5e14a4e27990972fa4ae94975603bd298aaf328ee083c03b10569ee4724d57/TestInvoker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a086b2165e70434c59081373b994348c6fdf544df56b32a3f25fa92f682e482/LateBoundTestFramework.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/de8a243f75215d958afa80cf80a41b4981a44efea7db93bffcdaf7bd6ba378c0/Number.Parsing.cs" root0="FORCE_HIGHLIGHTING" />
@@ -79,55 +83,7 @@
       <workItem from="1763165952569" duration="12691000" />
       <workItem from="1763563174982" duration="12396000" />
       <workItem from="1763575727124" duration="15679000" />
-      <workItem from="1763648957965" duration="8609000" />
-    </task>
-    <task id="LOCAL-00060" summary="❤️ Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaArriba">
-      <option name="closed" value="true" />
-      <created>1763487095470</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1763487095470</updated>
-    </task>
-    <task id="LOCAL-00061" summary="💚️ Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaArriba">
-      <option name="closed" value="true" />
-      <created>1763487569720</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1763487569720</updated>
-    </task>
-    <task id="LOCAL-00062" summary="❤️ Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaAbajo">
-      <option name="closed" value="true" />
-      <created>1763487756948</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1763487756948</updated>
-    </task>
-    <task id="LOCAL-00063" summary="💚 Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaAbajo">
-      <option name="closed" value="true" />
-      <created>1763487835657</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1763487835657</updated>
-    </task>
-    <task id="LOCAL-00064" summary="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion2_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaLaIzquierda">
-      <option name="closed" value="true" />
-      <created>1763488052322</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1763488052322</updated>
-    </task>
-    <task id="LOCAL-00065" summary="💚 Si_InicioElJuegoYUbicoPortaAvionesEnPosicion2_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaLaIzquierda">
-      <option name="closed" value="true" />
-      <created>1763488136717</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1763488136717</updated>
+      <workItem from="1763648957965" duration="13068000" />
     </task>
     <task id="LOCAL-00066" summary="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaArriba">
       <option name="closed" value="true" />
@@ -473,7 +429,55 @@
       <option name="project" value="LOCAL" />
       <updated>1763657226551</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="❤️Si_ElJugadorUnoDisparaYNoAcierta_Debe_FinalizarElTurnoYRetornarTurnoJugadorDos">
+      <option name="closed" value="true" />
+      <created>1763658387423</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1763658387423</updated>
+    </task>
+    <task id="LOCAL-00110" summary="💚Si_ElJugadorUnoDisparaYNoAcierta_Debe_FinalizarElTurnoYRetornarTurnoJugadorDos">
+      <option name="closed" value="true" />
+      <created>1763658484976</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1763658484976</updated>
+    </task>
+    <task id="LOCAL-00111" summary="❤️Si_ElJugadorDosDisparaYNoAcierta_Debe_FinalizarElTurnoYRetornarTurnoJugadorUno">
+      <option name="closed" value="true" />
+      <created>1763658631430</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1763658631430</updated>
+    </task>
+    <task id="LOCAL-00112" summary="💚Si_InicioJuegoYAgrego2JugadoresConSusEstrategiasCompletasEInicioPartidaImprimir_Debe_RetornarTableroPrimerJugador">
+      <option name="closed" value="true" />
+      <created>1763658918001</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1763658918001</updated>
+    </task>
+    <task id="LOCAL-00113" summary="💙Si_InicioJuegoYAgrego2JugadoresConSusEstrategiasCompletasEInicioPartidaImprimir_Debe_RetornarTableroPrimerJugador">
+      <option name="closed" value="true" />
+      <created>1763659086353</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1763659086353</updated>
+    </task>
+    <task id="LOCAL-00114" summary="❤️Si_ElJugadorUnoNoHaDisparadoYCambiaTurno_Debe_LanzarExcepcion">
+      <option name="closed" value="true" />
+      <created>1763659359604</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1763659359604</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,12 +497,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="❤️Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones" />
-    <MESSAGE value="️Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones" />
-    <MESSAGE value="mejora de lectura (primera parte)" />
-    <MESSAGE value="refactor" />
-    <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2JugadoresYSegundoJugadorNoHaCompletadoEstrategia_Debe_LanzarExcepcion" />
-    <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_RetornarJuegoIniciado" />
     <MESSAGE value="Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_RetornarJuegoIniciado" />
     <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_IniciarElTurnoDelJugadorUno" />
     <MESSAGE value="Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_IniciarElTurnoDelJugadorUno" />
@@ -518,7 +516,32 @@
     <MESSAGE value=" (variables mas dicientes)" />
     <MESSAGE value=" Agregar class Coordenada" />
     <MESSAGE value="Eliminar tablero" />
-    <option name="LAST_COMMIT_MESSAGE" value="Eliminar tablero" />
+    <MESSAGE value="❤️Si_ElJugadorUnoDisparaYNoAcierta_Debe_FinalizarElTurnoYRetornarTurnoJugadorDos" />
+    <MESSAGE value="Si_ElJugadorUnoDisparaYNoAcierta_Debe_FinalizarElTurnoYRetornarTurnoJugadorDos" />
+    <MESSAGE value="❤️Si_ElJugadorDosDisparaYNoAcierta_Debe_FinalizarElTurnoYRetornarTurnoJugadorUno" />
+    <MESSAGE value="Si_InicioJuegoYAgrego2JugadoresConSusEstrategiasCompletasEInicioPartidaImprimir_Debe_RetornarTableroPrimerJugador" />
+    <MESSAGE value="Si_InicioJuegoYAgrego2JugadoresConSusEstrategiasCompletasEInicioPartidaImprimir_Debe_RetornarTableroPrimerJugador" />
+    <MESSAGE value="❤️Si_ElJugadorUnoNoHaDisparadoYCambiaTurno_Debe_LanzarExcepcion" />
+    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_ElJugadorUnoNoHaDisparadoYCambiaTurno_Debe_LanzarExcepcion" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs</url>
+          <line>129</line>
+          <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'CambiarTurno'">
+            <startOffsets>
+              <option value="4566" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4605" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
