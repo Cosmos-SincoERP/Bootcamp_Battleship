@@ -59,7 +59,7 @@ public class JuegoAcorazado
         foreach (var inventarioBarcos in _jugadores[0].Item3)
         {
             if (_jugadores[0].Item3[inventarioBarcos.Key] > 0)
-                throw new Exception("No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+                throw new Exception("El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
         }
         
     }

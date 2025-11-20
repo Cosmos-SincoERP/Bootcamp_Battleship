@@ -256,7 +256,7 @@ public class JuegoAcorazadosTest
         juegoAcorazado.AgregarJugador();
         var iniciar = () => juegoAcorazado.Iniciar();
 
-        iniciar.Should().Throw<Exception>().WithMessage("No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
     }
     
     [Fact]
@@ -271,7 +271,7 @@ public class JuegoAcorazadosTest
         
         var iniciar = () => juegoAcorazado.Iniciar();
 
-        iniciar.Should().Throw<Exception>().WithMessage("No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
     }
     
     [Fact]
@@ -289,7 +289,7 @@ public class JuegoAcorazadosTest
         
         var iniciar = () => juegoAcorazado.Iniciar();
 
-        iniciar.Should().Throw<Exception>().WithMessage("No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
     }
     
     [Fact]
@@ -310,6 +310,6 @@ public class JuegoAcorazadosTest
         
         var iniciar = () => juegoAcorazado.Iniciar();
 
-        iniciar.Should().Throw<Exception>().WithMessage("No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
     }
 }
