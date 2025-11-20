@@ -101,4 +101,15 @@ public class JuegoAcorazadosTest
         
         _juego.ObtenerTableroContrincante().Should().BeEquivalentTo(tableroDisparos);
     }
+
+    [Fact]
+    public void Si_DisparoEnLaPosicion41LaCualTieneUnaX_Debe_TableroContrincanteTener_X()
+    {
+        tableroDisparos[4, 1] = "X";
+        
+        _juego.Disparar(4, 1);
+        _juego.Disparar(4, 1);
+        
+        _juego.ObtenerTableroContrincante().Should().BeEquivalentTo(tableroDisparos);
+    }
 }
