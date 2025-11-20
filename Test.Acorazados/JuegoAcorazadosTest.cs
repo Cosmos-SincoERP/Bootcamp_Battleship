@@ -220,4 +220,21 @@ public class JuegoAcorazadosTest
 
         jugador2.Should().Throw<Exception>();
     }
+    
+    [Fact]
+    public void Si_SeAgregaJugadorYHaPosicionadoUnDesctructorPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirAgregarAlSegundoJugador()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((2, 0), new Destructor(Orientacion.Vertical))
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((2, 0), new Destructor(Orientacion.Vertical))
+        );
+        
+        var jugador2 = () => juegoAcorazado.AgregarJugador();
+
+        jugador2.Should().Throw<Exception>();
+    }
 }

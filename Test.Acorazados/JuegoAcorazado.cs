@@ -8,7 +8,7 @@ public class JuegoAcorazado
     private Dictionary<string, int> _inventarioBarco = new()
     {
         {"Cañonero", 4},
-        {"Destructor", 3},
+        {"Destructor", 2},
         {"PortaAviones", 1},
     };
     public JuegoAcorazado(int tamañoTablero = 10)
@@ -24,6 +24,9 @@ public class JuegoAcorazado
         if (_jugadores.Any())
         {
             if (_inventarioBarco["Destructor"] > 0)
+                throw new Exception();
+            
+            if (_inventarioBarco["PortaAviones"] > 0)
                 throw new Exception();
         }
         
@@ -45,7 +48,7 @@ public class JuegoAcorazado
                 AsignarElValorDeLBarcoALaPosicion(posicionarBarco.Coordenadas.X + i, posicionarBarco.Coordenadas.Y, posicionarBarco.Barco.Valor);
             }
         }
-        _inventarioBarco[posicionarBarco.Barco.GetType().Name]--;
+        _inventarioBarco[posicionarBarco.Barco.GetType().Name] -= 1;
     }
 
     public string Imprimir()
