@@ -56,8 +56,9 @@ public class JuegoAcorazados
         return obtenerTableroContrincante;
     }
 
-    public void FinalizarTurno()
+    public InformeJuego FinalizarTurno()
     {
         jugadores.Reverse();
+        return null;
     }
 }
