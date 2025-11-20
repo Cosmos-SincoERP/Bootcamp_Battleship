@@ -165,7 +165,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_DisparoYNoGolpeoUnAcorazado_Debe_RetornarDisparoFallido()
     {
-        var mensaje = _juego.Disparar(4, 4);
+        var mensaje = _juego.Disparar(4, 8);
 
         mensaje.Should().Be("Disparo fallido");
     }

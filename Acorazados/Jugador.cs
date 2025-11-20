@@ -91,7 +91,7 @@ public class Jugador
                 break;
         }
         
-        return "";
+        return "Disparo fallido";
     }
 
     private string GestionarDisparo<T>(int fila, int columna) where T : Acorazado
@@ -105,8 +105,7 @@ public class Jugador
                 return RegistrarDisparoAcorazadoEnTablero(fila, columna, acorazado);
             }
         }
-        
-        return "";
+        return "Segmento no encontrado";
     }
 
     private string RegistrarDisparoAcorazadoEnTablero(int fila, int columna, Acorazado acorazado)
