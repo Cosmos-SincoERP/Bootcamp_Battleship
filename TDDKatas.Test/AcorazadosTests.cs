@@ -903,4 +903,56 @@ public class AcorazadosTests
                              "  +---+---+---+---+---+---+---+---+---+---+");
 
     }
+    
+    [Fact]
+       public void Si_TerminoTurnoJugadorUnoYAcertoDisparoImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado()
+    {
+        var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.AgregarJugador("Player 2");
+        acorazado.PosicionarNave(9, 9, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 8, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 7, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 6, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.Iniciar(); //turno player 1
+
+        acorazado.Disparar(1, 0);
+        acorazado.CambiarTurno(); //turno player 2
+
+        var imprimir = acorazado.Imprimir();
+
+        imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "0 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "1 | x | c | c | c |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "2 | d | d | d |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "3 | d | d | d |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "4 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "5 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "6 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "7 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "8 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "9 |   |   |   |   |   |   | g | g | g | g |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+");
+
+    }
 }
