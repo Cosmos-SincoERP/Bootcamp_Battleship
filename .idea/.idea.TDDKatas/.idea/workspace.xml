@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💙 Agregar class Coordenada">
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💙Eliminar tablero">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,15 +79,7 @@
       <workItem from="1763165952569" duration="12691000" />
       <workItem from="1763563174982" duration="12396000" />
       <workItem from="1763575727124" duration="15679000" />
-      <workItem from="1763648957965" duration="7370000" />
-    </task>
-    <task id="LOCAL-00059" summary="💚 Si_InicioElJuegoYUbicoDestructorEnPosicion1_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn1_3OrientadoALaIzquierda">
-      <option name="closed" value="true" />
-      <created>1763486836972</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1763486836972</updated>
+      <workItem from="1763648957965" duration="8609000" />
     </task>
     <task id="LOCAL-00060" summary="❤️ Si_InicioElJuegoYUbicoDestructorEnPosicion2_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn2_3OrientadoHaciaArriba">
       <option name="closed" value="true" />
@@ -473,7 +465,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763656092957</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="💙Eliminar tablero">
+      <option name="closed" value="true" />
+      <created>1763657226549</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1763657226551</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,7 +493,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="❤️Si_Agrego1JugadorYPosiciono1Destructor1CanoneroImprimir_Debe_RetornarElTableroConCanoneroYDestructor()" />
     <MESSAGE value="❤️Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones" />
     <MESSAGE value="️Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones" />
     <MESSAGE value="mejora de lectura (primera parte)" />
@@ -518,7 +517,8 @@
     <MESSAGE value="Si_ElJugadorUnoDisparaA3CoordenadasDe1NaveDestructor_Debe_RetornarNaveHundida" />
     <MESSAGE value=" (variables mas dicientes)" />
     <MESSAGE value=" Agregar class Coordenada" />
-    <option name="LAST_COMMIT_MESSAGE" value=" Agregar class Coordenada" />
+    <MESSAGE value="Eliminar tablero" />
+    <option name="LAST_COMMIT_MESSAGE" value="Eliminar tablero" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

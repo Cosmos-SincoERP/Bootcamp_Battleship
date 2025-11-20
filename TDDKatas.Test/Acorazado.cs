@@ -124,4 +124,9 @@ public class Acorazado
         return "x";
         
     }
+
+    public string FinalizarTurno()
+    {
+        return "";
+    }
 }
