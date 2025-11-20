@@ -101,6 +101,28 @@ public class Jugador
                 Tablero[fila, columna] = "x";
             }
         }
+        else if (ObtenerCasilla(fila, columna) is "d")
+        {
+            var destructores = Acorazados.Where(acorazado => acorazado.GetType() == typeof(Destructor));
+            foreach (var destructor in destructores)
+            {
+                if (destructor.SegmentosAcorazado.Any(segmento => segmento.fila == fila && segmento.columna == columna))
+                {
+                    destructor.RegistrarDisparo(fila, columna);
+                    if (destructor.EstaDestruido)
+                    {
+                        foreach (var segmento in destructor.SegmentosAcorazado)
+                        {
+                            Tablero[segmento.fila, segmento.columna] = "X";
+                        }
+                    }
+                    else
+                    {
+                        Tablero[fila, columna] = "x";
+                    }
+                }
+            }
+        }
         else
         {
             Tablero[fila, columna] = "o";
