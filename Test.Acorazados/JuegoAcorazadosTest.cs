@@ -398,6 +398,22 @@ public class JuegoAcorazadosTest
 
     [Fact]
     public void
+        Si_SeDisparaSinIniciarElJuego_Debe_LanzarExcepcionPorQueNoSeHaIniciadoElJuego()
+    {
+        var tablero = new char[10, 10];
+        tablero[0, 0] = 'o';
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
+        var juegoAcorazado = Mocks.MockIniciarJuego();
+
+
+        var disparar = () => juegoAcorazado.Disparar(0, 0);
+
+        disparar.Should().Throw<Exception>().WithMessage("No es posible disparar hasta que el juego haya iniciado");
+    }
+
+
+    [Fact]
+    public void
         Si_Eljugador1DisparaUnTorpedoEnLaPosicion0_0YNoImpactaUnBarco_Debe_ImprimirElTableroDelJugador2Con_o_EnLaPosicion0_0()
     {
         var tablero = new char[10, 10];
