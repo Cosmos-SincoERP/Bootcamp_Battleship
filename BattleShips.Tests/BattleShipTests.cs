@@ -10,7 +10,7 @@ public class BattleShipTests
     {
         var battleship = new BattleShip();
 
-        var action = () => battleship.AddPlayer();
+        var action = () => battleship.AddPlayer(["Cañonero"]);
 
         action.Should().NotThrow();
     }
@@ -19,10 +19,10 @@ public class BattleShipTests
     public void Cuando_AgregoTresJugadores_Debe_ArrojarException()
     {
         var battleShip = new BattleShip();
-        battleShip.AddPlayer();
-        battleShip.AddPlayer();
+        battleShip.AddPlayer(["Cañonero"]);
+        battleShip.AddPlayer(["Cañonero"]);
         
-        var action = () => battleShip.AddPlayer();
+        var action = () => battleShip.AddPlayer(["Cañonero"]);
 
         action.Should().ThrowExactly<NotSupportedException>();
     }
@@ -36,14 +36,26 @@ public class BattleShipTests
 
         action.Should().ThrowExactly<NotSupportedException>();
     }
+
+    [Fact]
+    public void Cuando_AgregoUnJugadorSinBarcos_Debe_ArrojarExcepcion()
+    {
+        var battleship = new BattleShip();
+        
+        var action = () => battleship.AddPlayer([]);
+
+        action.Should().ThrowExactly<ArgumentException>();
+    }
     
 }
 
 public class BattleShip
 {
     private int _cantidadJugadores;
-    public void AddPlayer()
+    public void AddPlayer(List<object> chips)
     {
+        if (chips.Count == 0)
+            throw new ArgumentException();
         if (_cantidadJugadores == 2)
             throw new NotSupportedException();
         _cantidadJugadores++;
