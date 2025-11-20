@@ -85,20 +85,7 @@ public class Battleship
         if (!_turnoJugador1)
         {
             var columnas = _tableroJugador1[fila + 1].Split("|");
-        
-            if (columnas[columna + 1] == " g ")
-            {
-                columnas[columna + 1] = " X ";
-            }
-            else if (columnas[columna + 1] == " d " || columnas[columna + 1] == " c ")
-            {
-                columnas[columna + 1] = " x ";
-            }
-            else
-            {
-                columnas[columna + 1] = " o ";
-            }
-        
+            columnas[columna + 1] = " o ";
             _tableroJugador1[fila + 1] = string.Join("|", columnas);
         }
         else
