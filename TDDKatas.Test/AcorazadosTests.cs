@@ -788,7 +788,7 @@ public class AcorazadosTests
         acorazado.Iniciar();
 
         acorazado.Disparar(0, 0);
-        string finalizarTurno = acorazado.FinalizarTurno();
+        string finalizarTurno = acorazado.CambiarTurno();
         
         finalizarTurno.Should().Be("TURNO PLAYER 2");
         
@@ -817,9 +817,9 @@ public class AcorazadosTests
         acorazado.Iniciar();
 
         acorazado.Disparar(0, 0);
-        acorazado.FinalizarTurno();
+        acorazado.CambiarTurno();
         acorazado.Disparar(9, 9);
-        string finalizarTurno = acorazado.FinalizarTurno();
+        string finalizarTurno = acorazado.CambiarTurno();
         
         finalizarTurno.Should().Be("TURNO PLAYER 1");
     }
