@@ -72,11 +72,73 @@ public class Battleship
             }
         }
 
-        if (navesJugador2.Count == 1)
+        foreach (var nave in navesJugador2)
         {
-            var columnas = _tableroJugador2[navesJugador2[0].FilaInicial + 1].Split("|");
-            columnas[navesJugador2[0].ColumnaInicial + 1] = " g ";
-            _tableroJugador2[navesJugador2[0].FilaInicial + 1] = string.Join("|", columnas);
+            if (EsCanonero(nave))
+            {
+                var columnas = _tableroJugador2[nave.FilaInicial + 1].Split("|");
+
+                columnas[nave.ColumnaInicial + 1] = " g ";
+
+                _tableroJugador2[nave.FilaInicial + 1] = string.Join("|", columnas);
+            }
+            else if (EsPortaaviones(nave))
+            {
+                if (EsVertical(nave))
+                {
+                    var columnaInicial = _tableroJugador2[nave.FilaInicial + 1].Split("|");
+                    columnaInicial[nave.ColumnaInicial + 1] = " c ";
+
+                    var columna2 = _tableroJugador2[nave.FilaInicial + 2].Split("|");
+                    columna2[nave.ColumnaInicial + 1] = " c ";
+
+                    var columna3 = _tableroJugador2[nave.FilaInicial + 3].Split("|");
+                    columna3[nave.ColumnaInicial + 1] = " c ";
+
+                    var columna4 = _tableroJugador2[nave.FilaInicial + 4].Split("|");
+                    columna4[nave.ColumnaInicial + 1] = " c ";
+
+                    _tableroJugador2[nave.FilaInicial + 1] = string.Join("|", columnaInicial);
+                    _tableroJugador2[nave.FilaInicial + 2] = string.Join("|", columna2);
+                    _tableroJugador2[nave.FilaInicial + 3] = string.Join("|", columna3);
+                    _tableroJugador2[nave.FilaInicial + 4] = string.Join("|", columna4);
+                }
+                else
+                {
+                    var columnas = _tableroJugador2[navesJugador1[0].FilaInicial + 1].Split("|");
+                    columnas[navesJugador1[0].ColumnaInicial + 1] = " c ";
+                    columnas[navesJugador1[0].ColumnaInicial + 2] = " c ";
+                    columnas[navesJugador1[0].ColumnaInicial + 3] = " c ";
+                    columnas[navesJugador1[0].ColumnaInicial + 4] = " c ";
+                    _tableroJugador2[navesJugador1[0].FilaInicial + 1] = string.Join("|", columnas);
+                }
+            }
+            else
+            {
+                if (EsVertical(nave))
+                {
+                    var columnaInicial = _tableroJugador2[nave.FilaInicial + 1].Split("|");
+                    columnaInicial[nave.ColumnaInicial + 1] = " d ";
+
+                    var columna2 = _tableroJugador2[nave.FilaInicial + 2].Split("|");
+                    columna2[nave.ColumnaInicial + 1] = " d ";
+
+                    var columna3 = _tableroJugador2[nave.FilaInicial + 3].Split("|");
+                    columna3[nave.ColumnaInicial + 1] = " d ";
+
+                    _tableroJugador2[nave.FilaInicial + 1] = string.Join("|", columnaInicial);
+                    _tableroJugador2[nave.FilaInicial + 2] = string.Join("|", columna2);
+                    _tableroJugador2[nave.FilaInicial + 3] = string.Join("|", columna3);
+                }
+                else
+                {
+                    var columnas = _tableroJugador2[nave.FilaInicial + 1].Split("|");
+                    columnas[nave.ColumnaInicial + 1] = " d ";
+                    columnas[nave.ColumnaInicial + 2] = " d ";
+                    columnas[nave.ColumnaInicial + 3] = " d ";
+                    _tableroJugador2[nave.FilaInicial + 1] = string.Join("|", columnas);
+                }
+            }
         }
     }
     

@@ -693,7 +693,7 @@ public class AcorazadosTest
         var canonero3 = new Nave(3, 3,3,3, "g");
         var canonero4 = new Nave(4, 4,4,4, "g");
         var destructor1 = new Nave(5, 5,5,7, "d");
-        var destructor2 = new Nave(5, 0,8,0, "d");
+        var destructor2 = new Nave(5, 0,7,0, "d");
         var portaaviones = new Nave(6, 6,9,6, "c");
 
         acorazados.Iniciar([],[canonero1, canonero2, canonero3, canonero4, destructor1, destructor2, portaaviones]);
@@ -711,8 +711,8 @@ public class AcorazadosTest
                               "5| d | | | | | d | d | d | | |" +
                               "6| d | | | | | | c | | | |" +
                               "7| d | | | | | | c | o | | |" +
-                              "8| d | | | | | | c | | | |" +
-                              "9| | | | | | | | c | | |"; 
+                              "8| | | | | | | c | | | |" +
+                              "9| | | | | | | c | | | |"; 
 
         tablero.Should().Be(tableroEsperado);
     }
