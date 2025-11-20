@@ -823,4 +823,32 @@ public class AcorazadosTests
         
         finalizarTurno.Should().Be("TURNO PLAYER 1");
     }
+    
+    [Fact]
+    public void Si_ElJugadorUnoNoHaDisparadoYCambiaTurno_Debe_LanzarExcepcion()
+    {
+        var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.AgregarJugador("Player 2");
+        acorazado.PosicionarNave(9, 9, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 8, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 7, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 6, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.Iniciar();
+        
+        var llamado = () => acorazado.CambiarTurno();
+        
+        llamado.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("*Debe disparar primero");
+    }
 }
