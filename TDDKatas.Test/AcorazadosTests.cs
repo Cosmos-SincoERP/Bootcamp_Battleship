@@ -600,7 +600,7 @@ public class AcorazadosTests
 
         var resultado = acorazado.Iniciar();
 
-        resultado.Should().Be("TURNO JUGADOR 1");
+        resultado.Should().Be("TURNO PLAYER 1");
     }
 
 
@@ -790,7 +790,7 @@ public class AcorazadosTests
         acorazado.Disparar(0, 0);
         string finalizarTurno = acorazado.FinalizarTurno();
         
-        finalizarTurno.Should().Be("TURNO JUGADOR 2");
+        finalizarTurno.Should().Be("TURNO PLAYER 2");
         
     }
 
@@ -821,6 +821,6 @@ public class AcorazadosTests
         acorazado.Disparar(9, 9);
         string finalizarTurno = acorazado.FinalizarTurno();
         
-        finalizarTurno.Should().Be("TURNO JUGADOR 1");
+        finalizarTurno.Should().Be("TURNO PLAYER 1");
     }
 }

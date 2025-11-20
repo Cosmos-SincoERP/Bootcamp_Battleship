@@ -69,7 +69,7 @@ public class Acorazado
             throw new InvalidOperationException("Jugador anterior no ha completado la estrategia");
 
         _turnoActivo = _jugadores.First();
-        return "TURNO JUGADOR 1";
+        return $"TURNO {_turnoActivo.ToUpper()}";
     }
 
     private bool EstaLaEstrategiaCompletada()
@@ -127,6 +127,8 @@ public class Acorazado
 
     public string FinalizarTurno()
     {
-        return "TURNO JUGADOR 2";
+        _turnoActivo = _jugadores.LastOrDefault(x => x != _turnoActivo);
+        
+        return $"TURNO {_turnoActivo.ToUpper()}";
     }
 }
