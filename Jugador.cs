@@ -25,6 +25,11 @@ public class Jugador
 
         IncrementarDisparosRecibidosTotales();
     }
+    
+    public void RegistrarBarcoUndido(TipoBarco tipoBarco,Coordenada coordenada) 
+    {
+        Informe.AgregarBarcoUndido(tipoBarco, coordenada);
+    }
 
     private void IncrementarDisparosRecibidosTotales()
     {
@@ -40,4 +45,6 @@ public class Jugador
     {
         Informe.DisparosAsertadosEnemigo++;
     }
+    
+    
 }

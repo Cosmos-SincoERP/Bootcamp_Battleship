@@ -90,7 +90,10 @@ public class BatallaNaval
             if (posicionAtacada is (char)TipoBarco.PortaAviones or (char)TipoBarco.Destructor)
                 JugadorAtacado.Tablero[columna, fila] = 'x';
             else
+            {
+                JugadorAtacado.RegistrarBarcoUndido((TipoBarco)posicionAtacada, new Coordenada(fila, columna));
                 JugadorAtacado.Tablero[columna, fila] = 'X';
+            }
         }
         else
         {
