@@ -6,7 +6,7 @@ namespace BattleShips.Tests;
 public class BattleShipTests
 {
     [Fact]
-    public void Cuando_AgregoUnJugador_Debe_QuedarAgregado()
+    public void Cuando_AgregoUnJugador_NoDebe_ArrojarException()
     {
         var battleship = new BattleShip();
 
@@ -14,12 +14,29 @@ public class BattleShipTests
 
         action.Should().NotThrow();
     }
+
+    [Fact]
+    public void Cuando_AgregoTresJugadores_Debe_ArrojarException()
+    {
+        var battleShip = new BattleShip();
+        battleShip.AddPlayer();
+        battleShip.AddPlayer();
+        
+        var action = () => battleShip.AddPlayer();
+
+        action.Should().ThrowExactly<ArgumentOutOfRangeException>();
+    }
+    
 }
 
 public class BattleShip
 {
+    private int _cantidadJugadores;
     public void AddPlayer()
     {
+        if (_cantidadJugadores == 2)
+            throw new ArgumentOutOfRangeException();
+        _cantidadJugadores++;
         
     }
 }
