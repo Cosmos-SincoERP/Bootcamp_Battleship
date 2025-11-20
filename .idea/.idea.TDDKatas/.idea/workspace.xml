@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️Si_ElJugadorUnoDisparaA3CoordenadasDe1NaveDestructor_Debe_RetornarNaveHundida">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💙 (variables mas dicientes)">
+      <change afterPath="$PROJECT_DIR$/TDDKatas.Test/Coordenada.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Despliegue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Despliegue.cs" afterDir="false" />
     </list>
@@ -35,9 +35,6 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5e14a4e27990972fa4ae94975603bd298aaf328ee083c03b10569ee4724d57/TestInvoker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a086b2165e70434c59081373b994348c6fdf544df56b32a3f25fa92f682e482/LateBoundTestFramework.cs" root0="FORCE_HIGHLIGHTING" />
@@ -84,23 +81,7 @@
       <workItem from="1763165952569" duration="12691000" />
       <workItem from="1763563174982" duration="12396000" />
       <workItem from="1763575727124" duration="15679000" />
-      <workItem from="1763648957965" duration="4800000" />
-    </task>
-    <task id="LOCAL-00056" summary="💚 Si_InicioElJuegoYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarDestructorPosicionadoEn0_0">
-      <option name="closed" value="true" />
-      <created>1763485504649</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1763485504649</updated>
-    </task>
-    <task id="LOCAL-00057" summary="❤️ Si_InicioElJuegoYUbicoPortaAvionesEnPosicion0_0Imprimir_Debe_RetornarPortaAvionesPosicionadoEn0_0">
-      <option name="closed" value="true" />
-      <created>1763485930476</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1763485930476</updated>
+      <workItem from="1763648957965" duration="7051000" />
     </task>
     <task id="LOCAL-00058" summary="❤️ Si_InicioElJuegoYUbicoDestructorEnPosicion1_3OrientacionIzquierdaImprimir_Debe_RetornarDestructorPosicionadoEn1_3OrientadoALaIzquierda">
       <option name="closed" value="true" />
@@ -478,7 +459,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763649865011</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="💚Si_ElJugadorUnoDisparaA3CoordenadasDe1NaveDestructor_Debe_RetornarNaveHundida">
+      <option name="closed" value="true" />
+      <created>1763654390667</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1763654390667</updated>
+    </task>
+    <task id="LOCAL-00106" summary="💙 (variables mas dicientes)">
+      <option name="closed" value="true" />
+      <created>1763654896429</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1763654896429</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,8 +495,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Si_InicioJuegoAgrego1JugadorYPosiciono2PortaAviones_Debe_LanzarExcepcion" />
-    <MESSAGE value="Si_InicioJuegoAgrego1JugadorYPosiciono2PortaAviones_Debe_LanzarExcepcion" />
     <MESSAGE value="❤️Si_Agrego1JugadorYPosiciono1Portaaviones1CanoneroImprimir_Debe_RetornarElTableroConCanoneroYPortaavionesPosicionado" />
     <MESSAGE value="❤️Si_Agrego1JugadorYPosiciono1Destructor1CanoneroImprimir_Debe_RetornarElTableroConCanoneroYDestructor()" />
     <MESSAGE value="❤️Si_Agrego1JugadorYPosiciono1PortaAvion4DestructorImprimir_Debe_RetornarElTableroConCanoneroYPortaAviones" />
@@ -523,7 +518,9 @@
     <MESSAGE value=" Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx" />
     <MESSAGE value=" Si_ElJugadorUnoDisparaA2CoordenadasDe1NaveDestructor_Debe_Retornarx" />
     <MESSAGE value="❤️Si_ElJugadorUnoDisparaA3CoordenadasDe1NaveDestructor_Debe_RetornarNaveHundida" />
-    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_ElJugadorUnoDisparaA3CoordenadasDe1NaveDestructor_Debe_RetornarNaveHundida" />
+    <MESSAGE value="Si_ElJugadorUnoDisparaA3CoordenadasDe1NaveDestructor_Debe_RetornarNaveHundida" />
+    <MESSAGE value=" (variables mas dicientes)" />
+    <option name="LAST_COMMIT_MESSAGE" value=" (variables mas dicientes)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -533,26 +530,13 @@
           <line>92</line>
           <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'OrientarAlaDerecha'">
             <startOffsets>
-              <option value="3310" />
+              <option value="3401" />
             </startOffsets>
             <endOffsets>
-              <option value="3348" />
+              <option value="3439" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs</url>
-          <line>138</line>
-          <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'Disparar'">
-            <startOffsets>
-              <option value="5060" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5083" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

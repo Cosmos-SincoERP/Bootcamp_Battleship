@@ -5,7 +5,7 @@ public class Acorazado
     private string[,] _tablero = new string[10, 10];
     private List<string> _jugadores = [];
     private Dictionary<string, List<Despliegue>> _estrategia = new();
-    private Dictionary<string, List<Disparo>> _disparos = new();
+    private Dictionary<string, List<Coordenada>> _disparos = new();
     private string _turnoActivo;
 
     public string Imprimir()
@@ -41,19 +41,19 @@ public class Acorazado
             var despliegue = _estrategia[_turnoActivo][i];
             if (despliegue.Orientacion == Orientacion.Derecha)
             {
-                OrientarAlaDerecha(despliegue.PosicionX, despliegue.PosicionY, despliegue.Nave);
+                OrientarAlaDerecha(despliegue.Coordenada.PosicionX, despliegue.Coordenada.PosicionY, despliegue.Nave);
             }
             else if (despliegue.Orientacion == Orientacion.Arriba)
             {
-                OrientarHaciaArriba(despliegue.PosicionX, despliegue.PosicionY, despliegue.Nave);
+                OrientarHaciaArriba(despliegue.Coordenada.PosicionX, despliegue.Coordenada.PosicionY, despliegue.Nave);
             }
             else if (despliegue.Orientacion == Orientacion.Abajo)
             {
-                OrientarHaciaAbajo(despliegue.PosicionX, despliegue.PosicionY, despliegue.Nave);
+                OrientarHaciaAbajo(despliegue.Coordenada.PosicionX, despliegue.Coordenada.PosicionY, despliegue.Nave);
             }
             else
             {
-                OrientarAlaIzquierda(despliegue.PosicionX, despliegue.PosicionY, despliegue.Nave);
+                OrientarAlaIzquierda(despliegue.Coordenada.PosicionX, despliegue.Coordenada.PosicionY, despliegue.Nave);
             }
         }
     }
@@ -99,14 +99,14 @@ public class Acorazado
         if (_jugadores.Count == 0)
             throw new InvalidOperationException("Deben haber minimo 2 jugadores para iniciar la partida");
 
-        if (!estaLaEstrategiaCompletada())
+        if (!EstaLaEstrategiaCompletada())
             throw new InvalidOperationException("Jugador anterior no ha completado la estrategia");
 
         _turnoActivo = _jugadores.First();
         return "TURNO JUGADOR 1";
     }
 
-    private bool estaLaEstrategiaCompletada()
+    private bool EstaLaEstrategiaCompletada()
     {
         var estrategia = _estrategia.ToList().Last();
         return estrategia.Value.Count(despliegue => despliegue.Nave.Tipo == TiposNave.Canionero) == 4 &&
@@ -116,7 +116,7 @@ public class Acorazado
 
     public void AgregarJugador(string player)
     {
-        if (_jugadores.Any() && !estaLaEstrategiaCompletada())
+        if (_jugadores.Any() && !EstaLaEstrategiaCompletada())
         {
             throw new InvalidOperationException("Jugador anterior no ha completado la estrategia");
         }
@@ -130,7 +130,7 @@ public class Acorazado
 
     public string Disparar(int coordenadaX, int coordenadaY)
     {
-        _disparos[_turnoActivo].Add(new Disparo(coordenadaX, coordenadaY));
+        _disparos[_turnoActivo].Add(new Coordenada(coordenadaX, coordenadaY));
         
         
         var navesDelOponente = _estrategia.First(x => x.Key != _turnoActivo).Value;
@@ -139,7 +139,7 @@ public class Acorazado
             navesDelOponente.SelectMany(x => x.CoordenadasNave());
         
         var aciertoDisparo = coordenadasDeTodasLasNavesDelOponente
-            .Any(x => x.Item1 == coordenadaX && x.Item2 == coordenadaY);
+            .Any(x => x.PosicionX == coordenadaX && x.PosicionY == coordenadaY);
         
         
         if (aciertoDisparo is false)
@@ -148,9 +148,9 @@ public class Acorazado
         }
         
         var naveImpactada =
-            navesDelOponente.First(x => x.CoordenadasNave().Contains((coordenadaX, coordenadaY)));
+            navesDelOponente.First(x => x.CoordenadasNave().Contains(new Coordenada(coordenadaX, coordenadaY)));
 
-        var disparosJugadorActivo = _disparos[_turnoActivo].Select(x => (x.CoordenadaX, x.CoordenadaY)).ToList();
+        var disparosJugadorActivo = _disparos[_turnoActivo].ToList();
         
         if (naveImpactada.EstaHundida(disparosJugadorActivo))
         {
@@ -160,8 +160,4 @@ public class Acorazado
         return "x";
         
     }
-}
-
-public record Disparo(int CoordenadaX, int CoordenadaY)
-{
 }

@@ -1,44 +1,40 @@
 ﻿namespace TDDKatas;
 
-public class Despliegue(Nave Nave, int PosicionX, int PosicionY, Orientacion Orientacion)
+internal class Despliegue(Nave Nave, int PosicionX, int PosicionY, Orientacion Orientacion)
 {
-    public Nave Nave { get; init; } = Nave;
-    public int PosicionX { get; init; } = PosicionX;
-    public int PosicionY { get; init; } = PosicionY;
-    public Orientacion Orientacion { get; init; } = Orientacion;
+    private readonly Coordenada _coordenada = new(PosicionX,PosicionY);
+    public Nave Nave { get; } = Nave;
+    public Orientacion Orientacion { get; } = Orientacion;
 
-    public void Deconstruct(out Nave nave, out int posicionX, out int posicionY, out Orientacion orientacion)
+    public Coordenada Coordenada
     {
-        nave = this.Nave;
-        posicionX = this.PosicionX;
-        posicionY = this.PosicionY;
-        orientacion = this.Orientacion;
+        get { return _coordenada; }
     }
 
-    public bool EstaHundida(List<(int, int)> coordenadasDisparadas)
+    public bool EstaHundida(List<Coordenada> coordenadasDisparadas)
     {
-        var coordenadasNave = ObtenerCoordenadasPorOrientacion(PosicionX, PosicionY, Nave, Orientacion);
+        var coordenadasNave = ObtenerCoordenadasPorOrientacion(Coordenada.PosicionX, Coordenada.PosicionY, Nave, Orientacion);
 
         return coordenadasNave.TrueForAll(x => coordenadasDisparadas.Contains(x));
     }
     
-    public List<(int, int)> CoordenadasNave() => ObtenerCoordenadasPorOrientacion(PosicionX, PosicionY, Nave, Orientacion);
+    public List<Coordenada> CoordenadasNave() => ObtenerCoordenadasPorOrientacion(Coordenada.PosicionX, Coordenada.PosicionY, Nave, Orientacion);
 
-    private List<(int, int)> ObtenerCoordenadasPorOrientacion(int posicionX, int posicionY, Nave nave,
+    private List<Coordenada> ObtenerCoordenadasPorOrientacion(int posicionX, int posicionY, Nave nave,
         Orientacion orientacion)
     {
-        List<(int, int)> coordenadas = new List<(int, int)>();
+        List<Coordenada> coordenadas = [];
 
         for (int i = 0; i < nave.Tamanio; i++)
         {
             if (orientacion == Orientacion.Izquierda)
-                coordenadas.Add((posicionX, posicionY - i));
+                coordenadas.Add(new Coordenada(posicionX, posicionY - i));
             else if (orientacion == Orientacion.Arriba)
-                coordenadas.Add((posicionX - i, posicionY));
+                coordenadas.Add(new Coordenada(posicionX - i, posicionY));
             else if (orientacion == Orientacion.Abajo)
-                coordenadas.Add((posicionX + i, posicionY));
+                coordenadas.Add(new Coordenada(posicionX + i, posicionY));
             else
-                coordenadas.Add((posicionX, posicionY + i));
+                coordenadas.Add(new Coordenada(posicionX, posicionY + i));
         }
 
         return coordenadas;
