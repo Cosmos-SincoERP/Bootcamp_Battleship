@@ -648,4 +648,35 @@ public class AcorazadosTest
 
         tablero.Should().Be(tableroEsperado);
     }
+    
+    [Fact]
+    public void Si_InicioElJuegoConUnCanoneroParaJugadorEn_3_4_YJugador1DisparaA_1_2_Debe_ImprimirCirculoYCanoneroSegunCoordenadaDadas()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+        
+        var canonero2 = new Nave(3, 4,3,4, "g");
+
+        acorazados.Iniciar([],[canonero2]);
+        acorazados.Disparar(1, 2);
+        acorazados.TerminarTurno();
+
+        var tablero = acorazados.Imprimir();
+
+        var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+                              "0| | | | | | | | | | |" +
+                              "1| | | o | | | | | | | |" +
+                              "2| | | | | | | | | | |" +
+                              "3| | | | | g | | | | | |" +
+                              "4| | | | | | | | | | |" +
+                              "5| | | | | | | | | | |" +
+                              "6| | | | | | | | | | |" +
+                              "7| | | | | | | | | | |" +
+                              "8| | | | | | | | | | |" +
+                              "9| | | | | | | | | | |"; 
+
+        tablero.Should().Be(tableroEsperado);
+    }
 }
