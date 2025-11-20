@@ -2,7 +2,6 @@
 
 public class Acorazado
 {
-    private string[,] _tablero = new string[10, 10];
     private List<string> _jugadores = [];
     private Dictionary<string, List<Despliegue>> _estrategia = new();
     private Dictionary<string, List<Coordenada>> _disparos = new();
@@ -10,18 +9,19 @@ public class Acorazado
 
     public string Imprimir()
     {
-        PosicionarNaves();
+        var tablero = PosicionarNaves();
+        
         const string separador = "  +---+---+---+---+---+---+---+---+---+---+";
         string resultado = "    0   1   2   3   4   5   6   7   8   9\n";
-        for (int i = 0; i < _tablero.GetLength(0); i++)
+        for (int i = 0; i < tablero.GetLength(0); i++)
         {
             resultado += $"{separador}\n";
             resultado += $"{i} |";
 
-            for (int j = 0; j < _tablero.GetLength(1); j++)
+            for (int j = 0; j < tablero.GetLength(1); j++)
             {
-                if (!string.IsNullOrEmpty(_tablero[i, j]))
-                    resultado += $" {_tablero[i, j]} |";
+                if (!string.IsNullOrEmpty(tablero[i, j]))
+                    resultado += $" {tablero[i, j]} |";
                 else
                     resultado += "   |";
             }
@@ -34,28 +34,18 @@ public class Acorazado
         return resultado;
     }
 
-    private void PosicionarNaves()
+    private string[,] PosicionarNaves()
     {
-        for (int i = 0; i < _estrategia[_turnoActivo].Count; i++)
+        var tableroJugador = new string[10, 10];
+        for (int indiceNave = 0; indiceNave < _estrategia[_turnoActivo].Count; indiceNave++)
         {
-            var despliegue = _estrategia[_turnoActivo][i];
-            if (despliegue.Orientacion == Orientacion.Derecha)
-            {
-                OrientarAlaDerecha(despliegue.Coordenada.PosicionX, despliegue.Coordenada.PosicionY, despliegue.Nave);
-            }
-            else if (despliegue.Orientacion == Orientacion.Arriba)
-            {
-                OrientarHaciaArriba(despliegue.Coordenada.PosicionX, despliegue.Coordenada.PosicionY, despliegue.Nave);
-            }
-            else if (despliegue.Orientacion == Orientacion.Abajo)
-            {
-                OrientarHaciaAbajo(despliegue.Coordenada.PosicionX, despliegue.Coordenada.PosicionY, despliegue.Nave);
-            }
-            else
-            {
-                OrientarAlaIzquierda(despliegue.Coordenada.PosicionX, despliegue.Coordenada.PosicionY, despliegue.Nave);
-            }
+            var despliegue = _estrategia[_turnoActivo][indiceNave];
+            
+            var coordenadasNave = despliegue.CoordenadasNave();
+            for (int coordenada = 0; coordenada < coordenadasNave.Count; coordenada++)
+                tableroJugador[coordenadasNave[coordenada].PosicionX, coordenadasNave[coordenada].PosicionY] = ((char)despliegue.Nave.Tipo).ToString();
         }
+        return tableroJugador;
     }
 
     public void PosicionarNave(int posicionX, int posicionY, TiposNave tipoNave, Orientacion orientacion)
@@ -69,31 +59,7 @@ public class Acorazado
 
         _estrategia[_jugadores.LastOrDefault()].Add(new Despliegue(nave, posicionX, posicionY, orientacion));
     }
-
-    private void OrientarAlaIzquierda(int posicionX, int posicionY, Nave nave)
-    {
-        for (int i = 0; i < nave.Tamanio; i++)
-            _tablero[posicionX, posicionY - i] = ((char)nave.Tipo).ToString();
-    }
-
-    private void OrientarHaciaArriba(int posicionX, int posicionY, Nave nave)
-    {
-        for (int i = 0; i < nave.Tamanio; i++)
-            _tablero[posicionX - i, posicionY] = ((char)nave.Tipo).ToString();
-    }
-
-    private void OrientarHaciaAbajo(int posicionX, int posicionY, Nave nave)
-    {
-        for (int i = 0; i < nave.Tamanio; i++)
-            _tablero[posicionX + i, posicionY] = ((char)nave.Tipo).ToString();
-    }
-
-    private void OrientarAlaDerecha(int posicionX, int posicionY, Nave nave)
-    {
-        for (int i = 0; i < nave.Tamanio; i++)
-            _tablero[posicionX, posicionY + i] = ((char)nave.Tipo).ToString();
-    }
-
+    
     public string Iniciar()
     {
         if (_jugadores.Count == 0)
@@ -121,7 +87,6 @@ public class Acorazado
             throw new InvalidOperationException("Jugador anterior no ha completado la estrategia");
         }
 
-        _tablero = new string[10, 10];
         _jugadores.Add(player);
         _turnoActivo = player;
         _estrategia.Add(player, []);
@@ -131,7 +96,6 @@ public class Acorazado
     public string Disparar(int coordenadaX, int coordenadaY)
     {
         _disparos[_turnoActivo].Add(new Coordenada(coordenadaX, coordenadaY));
-        
         
         var navesDelOponente = _estrategia.First(x => x.Key != _turnoActivo).Value;
 
