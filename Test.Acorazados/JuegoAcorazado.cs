@@ -113,7 +113,12 @@ public class JuegoAcorazado
         if (!_juegoIniciado)
             throw new Exception("No es posible disparar hasta que el juego haya iniciado");
 
-        _tablero[posicionX, posicionY] = 'o';
+        var tableroJugador = _jugadores.First(jugador => jugador.Nombre == "Jugador 2").Tablero;
+        
+        if(tableroJugador[posicionX, posicionY] == 'd')
+            _tablero[posicionX, posicionY] = 'x';
+        else
+            _tablero[posicionX, posicionY] = 'o';
     }
 }
 
