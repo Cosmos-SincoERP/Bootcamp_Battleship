@@ -762,7 +762,7 @@ public class AcorazadosTests
          acorazado.Disparar(3, 1);
         string disparar = acorazado.Disparar(3, 2);
 
-        disparar.Should().Be("Nava hundida");
+        disparar.Should().Be("Nave hundida");
     }
 
 }

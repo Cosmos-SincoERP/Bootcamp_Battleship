@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💚 Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO">
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️Si_ElJugadorUnoDisparaA3CoordenadasDe1NaveDestructor_Debe_RetornarNaveHundida">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Despliegue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Despliegue.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,71 +84,7 @@
       <workItem from="1763165952569" duration="12691000" />
       <workItem from="1763563174982" duration="12396000" />
       <workItem from="1763575727124" duration="15679000" />
-      <workItem from="1763648957965" duration="375000" />
-    </task>
-    <task id="LOCAL-00048" summary="🔴🟢🔵 Si_InicioElJuego_debe_ImprimirElTableroEnVacio">
-      <option name="closed" value="true" />
-      <created>1763479824849</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1763479824849</updated>
-    </task>
-    <task id="LOCAL-00049" summary="🔴Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0">
-      <option name="closed" value="true" />
-      <created>1763480665382</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1763480665382</updated>
-    </task>
-    <task id="LOCAL-00050" summary="💚 Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0">
-      <option name="closed" value="true" />
-      <created>1763481025640</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1763481025640</updated>
-    </task>
-    <task id="LOCAL-00051" summary="💙 Si_InicioElJuegoYUbicoCañoneroEnPosicion0_0Imprimir_Debe_RetornarCEnPosicion0_0">
-      <option name="closed" value="true" />
-      <created>1763481237309</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1763481237309</updated>
-    </task>
-    <task id="LOCAL-00052" summary="❤️ Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1">
-      <option name="closed" value="true" />
-      <created>1763481339534</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1763481339534</updated>
-    </task>
-    <task id="LOCAL-00053" summary="💚Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1">
-      <option name="closed" value="true" />
-      <created>1763483298553</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1763483298553</updated>
-    </task>
-    <task id="LOCAL-00054" summary="💙Si_InicioElJuegoYUbicoCañoneroEnPosicion1_1Imprimir_Debe_RetornarCEnPosicion1_1">
-      <option name="closed" value="true" />
-      <created>1763483848263</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1763483848263</updated>
-    </task>
-    <task id="LOCAL-00055" summary="❤️Si_InicioElJuegoYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarDestructorPosicionadoEn0_0">
-      <option name="closed" value="true" />
-      <created>1763484506504</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1763484506504</updated>
+      <workItem from="1763648957965" duration="4800000" />
     </task>
     <task id="LOCAL-00056" summary="💚 Si_InicioElJuegoYUbicoDestructorEnPosicion0_0Imprimir_Debe_RetornarDestructorPosicionadoEn0_0">
       <option name="closed" value="true" />
@@ -476,7 +414,71 @@
       <option name="project" value="LOCAL" />
       <updated>1763649226994</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="❤️Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx">
+      <option name="closed" value="true" />
+      <created>1763649351248</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1763649351248</updated>
+    </task>
+    <task id="LOCAL-00098" summary="💚Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx">
+      <option name="closed" value="true" />
+      <created>1763649401611</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1763649401611</updated>
+    </task>
+    <task id="LOCAL-00099" summary="💙Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx">
+      <option name="closed" value="true" />
+      <created>1763649437177</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1763649437177</updated>
+    </task>
+    <task id="LOCAL-00100" summary="❤️Si_ElJugadorUnoDisparaA2CoordenadasDe1NaveDestructor_Debe_Retornarx">
+      <option name="closed" value="true" />
+      <created>1763649654376</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1763649654376</updated>
+    </task>
+    <task id="LOCAL-00101" summary="💚 Si_ElJugadorUnoDisparaA2CoordenadasDe1NaveDestructor_Debe_Retornarx">
+      <option name="closed" value="true" />
+      <created>1763649705589</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1763649705589</updated>
+    </task>
+    <task id="LOCAL-00102" summary="💚 Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx">
+      <option name="closed" value="true" />
+      <created>1763649733337</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1763649733337</updated>
+    </task>
+    <task id="LOCAL-00103" summary="💚 Si_ElJugadorUnoDisparaA2CoordenadasDe1NaveDestructor_Debe_Retornarx">
+      <option name="closed" value="true" />
+      <created>1763649768622</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1763649768622</updated>
+    </task>
+    <task id="LOCAL-00104" summary="❤️Si_ElJugadorUnoDisparaA3CoordenadasDe1NaveDestructor_Debe_RetornarNaveHundida">
+      <option name="closed" value="true" />
+      <created>1763649865011</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1763649865011</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,13 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion" />
-    <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion" />
-    <MESSAGE value="Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion" />
-    <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2JugadoresYPosiciono5Cañoneros_Debe_LanzarExcepcion" />
-    <MESSAGE value="Si_InicioJuegoAgrego1JugadorYPosiciono5Cañoneros_Debe_LanzarExcepcion" />
-    <MESSAGE value="❤️Si_InicioJuegoAgrego1JugadorYPosiciono3Destructores_Debe_LanzarExcepcion" />
-    <MESSAGE value="❤️Si_InicioJuegoAgrego1JugadorYPosiciono2PortaAviones_Debe_LanzarExcepcion" />
     <MESSAGE value="Si_InicioJuegoAgrego1JugadorYPosiciono2PortaAviones_Debe_LanzarExcepcion" />
     <MESSAGE value="Si_InicioJuegoAgrego1JugadorYPosiciono2PortaAviones_Debe_LanzarExcepcion" />
     <MESSAGE value="❤️Si_Agrego1JugadorYPosiciono1Portaaviones1CanoneroImprimir_Debe_RetornarElTableroConCanoneroYPortaavionesPosicionado" />
@@ -521,23 +516,43 @@
     <MESSAGE value=" se cambia nombre porque no es tan diciente" />
     <MESSAGE value="❤️Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO" />
     <MESSAGE value=" Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO" />
-    <option name="LAST_COMMIT_MESSAGE" value=" Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO" />
+    <MESSAGE value="❤️Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx" />
+    <MESSAGE value="Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx" />
+    <MESSAGE value="Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx" />
+    <MESSAGE value="❤️Si_ElJugadorUnoDisparaA2CoordenadasDe1NaveDestructor_Debe_Retornarx" />
+    <MESSAGE value=" Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx" />
+    <MESSAGE value=" Si_ElJugadorUnoDisparaA2CoordenadasDe1NaveDestructor_Debe_Retornarx" />
+    <MESSAGE value="❤️Si_ElJugadorUnoDisparaA3CoordenadasDe1NaveDestructor_Debe_RetornarNaveHundida" />
+    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_ElJugadorUnoDisparaA3CoordenadasDe1NaveDestructor_Debe_RetornarNaveHundida" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs</url>
-          <line>91</line>
+          <line>92</line>
           <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'OrientarAlaDerecha'">
             <startOffsets>
-              <option value="3245" />
+              <option value="3310" />
             </startOffsets>
             <endOffsets>
-              <option value="3283" />
+              <option value="3348" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs</url>
+          <line>138</line>
+          <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'Disparar'">
+            <startOffsets>
+              <option value="5060" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5083" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

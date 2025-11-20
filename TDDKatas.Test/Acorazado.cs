@@ -5,6 +5,7 @@ public class Acorazado
     private string[,] _tablero = new string[10, 10];
     private List<string> _jugadores = [];
     private Dictionary<string, List<Despliegue>> _estrategia = new();
+    private Dictionary<string, List<Disparo>> _disparos = new();
     private string _turnoActivo;
 
     public string Imprimir()
@@ -98,7 +99,7 @@ public class Acorazado
         if (_jugadores.Count == 0)
             throw new InvalidOperationException("Deben haber minimo 2 jugadores para iniciar la partida");
 
-        if (!estaLaEstrategiaCompletada() )
+        if (!estaLaEstrategiaCompletada())
             throw new InvalidOperationException("Jugador anterior no ha completado la estrategia");
 
         _turnoActivo = _jugadores.First();
@@ -124,13 +125,43 @@ public class Acorazado
         _jugadores.Add(player);
         _turnoActivo = player;
         _estrategia.Add(player, []);
+        _disparos.Add(player, []);
     }
 
     public string Disparar(int coordenadaX, int coordenadaY)
     {
-        if((coordenadaX==3 && coordenadaY==0) || (coordenadaX==3 && coordenadaY==1) )
-            return "x";
-        
-        return "0";
+        _disparos[_turnoActivo].Add(new Disparo(coordenadaX, coordenadaY));
+        var estrategiaOponente = _estrategia.First(x => x.Key != _turnoActivo).Value;
+
+        var coordenadas =
+            estrategiaOponente.SelectMany(x => x.CoordenadasDisparadas());
+        var ledioAAlgo = coordenadas
+            .Any(x => x.Item1 == coordenadaX && x.Item2 == coordenadaY);
+
+        if (ledioAAlgo is false)
+        {
+            return "0";
+        }
+
+        var naveOponente =
+            estrategiaOponente.First(x => x.CoordenadasDisparadas().Contains((coordenadaX, coordenadaY)));
+
+        if (naveOponente.NaveHundida(_disparos[_turnoActivo].Select(x => (x.CoordenadaX, x.CoordenadaY)).ToList()))
+        {
+            return "Nave hundida";
+        }
+
+
+        return "x";
+
+        //
+        // if((coordenadaX==3 && coordenadaY==0) || (coordenadaX==3 && coordenadaY==1) )
+        //     return "x";
+        //
+        // return "0";
     }
+}
+
+public record Disparo(int CoordenadaX, int CoordenadaY)
+{
 }
