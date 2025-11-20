@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💚Si_TerminoTurnoJugadorUnoYAcertoDisparoAlCanioneroImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado">
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️💚Si_TerminoTurnoJugadorUnoYAcerto3DisparoAlDestructorImprimir_Debe_MostrarTableroJugadorCon3DestructorHundidoXXX">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Despliegue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Despliegue.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,15 +84,7 @@
       <workItem from="1763165952569" duration="12691000" />
       <workItem from="1763563174982" duration="12396000" />
       <workItem from="1763575727124" duration="15679000" />
-      <workItem from="1763648957965" duration="19069000" />
-    </task>
-    <task id="LOCAL-00074" summary="❤️Si_InicioLaPartidaYAgrego2JugadoresYPosiciono5Cañoneros_Debe_LanzarExcepcion">
-      <option name="closed" value="true" />
-      <created>1763569507430</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1763569507430</updated>
+      <workItem from="1763648957965" duration="20998000" />
     </task>
     <task id="LOCAL-00075" summary="💚Si_InicioJuegoAgrego1JugadorYPosiciono5Cañoneros_Debe_LanzarExcepcion">
       <option name="closed" value="true" />
@@ -479,7 +470,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763671222848</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="❤️💚Si_TerminoTurnoJugadorUnoYAcerto3DisparoAlDestructorImprimir_Debe_MostrarTableroJugadorCon3DestructorHundidoXXX">
+      <option name="closed" value="true" />
+      <created>1763673537996</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1763673537998</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,7 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="❤️Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx" />
     <MESSAGE value="Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx" />
     <MESSAGE value="Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx" />
     <MESSAGE value="❤️Si_ElJugadorUnoDisparaA2CoordenadasDe1NaveDestructor_Debe_Retornarx" />
@@ -524,39 +522,8 @@
     <MESSAGE value=" Si_TerminoTurnoJugadorUnoYAcertoDisparoAlDestructorImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado" />
     <MESSAGE value="❤️Si_TerminoTurnoJugadorUnoYAcertoDisparoAlCanioneroImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado" />
     <MESSAGE value="Si_TerminoTurnoJugadorUnoYAcertoDisparoAlCanioneroImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Si_TerminoTurnoJugadorUnoYAcertoDisparoAlCanioneroImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs</url>
-          <line>70</line>
-          <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'PosicionarNaves'">
-            <startOffsets>
-              <option value="2318" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2546" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs</url>
-          <line>68</line>
-          <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'PosicionarNaves'">
-            <startOffsets>
-              <option value="2268" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2287" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="❤️Si_TerminoTurnoJugadorUnoYAcerto3DisparoAlDestructorImprimir_Debe_MostrarTableroJugadorCon3DestructorHundidoXXX" />
+    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_TerminoTurnoJugadorUnoYAcerto3DisparoAlDestructorImprimir_Debe_MostrarTableroJugadorCon3DestructorHundidoXXX" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
