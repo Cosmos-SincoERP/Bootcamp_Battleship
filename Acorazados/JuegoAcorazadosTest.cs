@@ -22,21 +22,21 @@ public class JuegoAcorazadosTest
             { null, null, null, null, null, null, null, null, null, null },
         };
         _juego = new JuegoAcorazados();
-        var acorazadosJugador1 = new List<AcorazadoAcuatizado>()
+        var acorazadosJugador1 = new List<Acorazado>()
         {
-            new(new PortaAviones(), 1, 1, Direccion.Derecha),
-            new(new Destructor(), 5, 5, Direccion.Derecha),
-            new(new Cañonero(), 7, 7, Direccion.Derecha),
-            new(new Cañonero(), 9, 9, Direccion.Derecha)
+            new PortaAviones( 1, 1, Direccion.Derecha),
+            new Destructor( 5, 5, Direccion.Derecha),
+            new Cañonero( 7, 7, Direccion.Derecha),
+            new Cañonero( 9, 9, Direccion.Derecha)
         };
         _juego.AgregarJugador("Jugador 1", acorazadosJugador1);
-        var acorazadosJugador2 = new List<AcorazadoAcuatizado>()
+        var acorazadosJugador2 = new List<Acorazado>()
         {
-            new(new PortaAviones(), 1, 1, Direccion.Derecha),
-            new(new Destructor(), 3, 3, Direccion.Derecha),
-            new(new Destructor(), 4, 4, Direccion.Abajo),
-            new(new Cañonero(), 4, 1, Direccion.Derecha),
-            new(new Cañonero(), 6, 1, Direccion.Derecha)
+            new PortaAviones( 1, 1, Direccion.Derecha),
+            new Destructor( 3, 3, Direccion.Derecha),
+            new Destructor( 4, 4, Direccion.Abajo),
+            new Cañonero( 4, 1, Direccion.Derecha),
+            new Cañonero( 6, 1, Direccion.Derecha)
         };
         _juego.AgregarJugador("Jugador 2", acorazadosJugador2);
         _juego.Iniciar();

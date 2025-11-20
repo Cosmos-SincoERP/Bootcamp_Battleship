@@ -7,7 +7,7 @@ public class Jugador
 
     private List<Acorazado> Acorazados = new List<Acorazado>();
 
-    public Jugador(string player, List<AcorazadoAcuatizado> acorazados)
+    public Jugador(string player, List<Acorazado> acorazados)
     {
         Nombre = player;
         Tablero = new string[10, 10];
@@ -15,37 +15,19 @@ public class Jugador
             AgregarAcorazado(acorazado);
     }
   
-    private void AgregarAcorazado(AcorazadoAcuatizado acorazadoAcuatizado)
+    private void AgregarAcorazado(Acorazado acorazadoAcuatizado)
     {
-        ValidarCantidadMaximaTipoAcorazado(acorazadoAcuatizado.tipoAcorazado);
-
-        for (int i = 0; i < acorazadoAcuatizado.tipoAcorazado.CantidaCasillasOcupadasPorAcorazado; i++)
-        {
-            switch (acorazadoAcuatizado.direccion)
-            {
-                case Direccion.Derecha:
-                    AsignarCasillaAcorazado(acorazadoAcuatizado.tipoAcorazado, acorazadoAcuatizado.fila, acorazadoAcuatizado.columna + i);
-                    break;
-                case Direccion.Abajo:
-                    AsignarCasillaAcorazado(acorazadoAcuatizado.tipoAcorazado, acorazadoAcuatizado.fila + i, acorazadoAcuatizado.columna);
-                    break;
-                case Direccion.Izquierda:
-                    AsignarCasillaAcorazado(acorazadoAcuatizado.tipoAcorazado, acorazadoAcuatizado.fila, acorazadoAcuatizado.columna - i);
-                    break;
-                default:
-                    AsignarCasillaAcorazado(acorazadoAcuatizado.tipoAcorazado, acorazadoAcuatizado.fila - i, acorazadoAcuatizado.columna);
-                    break;
-            }
-        }
-
-        Acorazados.Add(acorazadoAcuatizado.tipoAcorazado);
+        ValidarCantidadMaximaTipoAcorazado(acorazadoAcuatizado);
+        acorazadoAcuatizado.SegmentosAcorazado.ForEach(segmento =>
+            AsignarCasillaAcorazado(acorazadoAcuatizado, segmento.fila, segmento.columna));
+        
+        Acorazados.Add(acorazadoAcuatizado);
     }
 
     private void AsignarCasillaAcorazado(Acorazado tipoAcorazado, int fila, int columna)
     {
         ValidacionesTablero(fila, columna);
         Tablero[fila, columna] = tipoAcorazado.Letra;
-        tipoAcorazado.SegmentosAcorazado.Add(new SegmentoAcorazado(fila, columna, false));
     }
 
     private void ValidarCantidadMaximaTipoAcorazado(Acorazado tipoAcorazado)

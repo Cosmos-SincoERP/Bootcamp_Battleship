@@ -4,5 +4,10 @@ public class PortaAviones : Acorazado
 {
     public override string Letra => "c";
     public override int CantidadMaximaAcorazadosEnTablero => 1;
-    public override int CantidaCasillasOcupadasPorAcorazado => 4;
+    
+    public PortaAviones(int fila, int columna, Direccion direccion) : base(fila, columna, direccion)
+    {
+        AsignarSegmentos(fila,columna,direccion,4);
+    }
+
 }

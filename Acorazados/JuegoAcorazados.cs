@@ -1,12 +1,7 @@
 using System.Net;
 using Acorazados;
 
-public record AcorazadoAcuatizado(
-    Acorazado tipoAcorazado,
-    int fila,
-    int columna,
-    Direccion? direccion
-);
+
 
 public class JuegoAcorazados
 {
@@ -14,7 +9,7 @@ public class JuegoAcorazados
     Jugador jugador2;
     private bool _juegoIniciado;
 
-    public void AgregarJugador(string jugador, List<AcorazadoAcuatizado> acorazados)
+    public void AgregarJugador(string jugador, List<Acorazado> acorazados)
     {
         if (jugador1 is null)
         {
