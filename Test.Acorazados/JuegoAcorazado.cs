@@ -2,9 +2,9 @@ namespace Test.BattleShip;
 
 public class JuegoAcorazado
 {
-    private List<(string, char[,], Dictionary<string, int>)> _jugadores = new();
     private char[,] _tablero;
-    private bool _juegoIniciado = false;
+    private bool _juegoIniciado;
+    private List<Jugador> _jugadores = new();
 
 
     public JuegoAcorazado(int tamañoTablero = 10)
@@ -24,19 +24,18 @@ public class JuegoAcorazado
             { "PortaAviones", 1 },
         };
 
-        _jugadores.Add(new()
-        {
-            Item1 = _jugadores.Any() ? "Jugador 2" : "Jugador 1",
-            Item2 = _tablero,
-            Item3 = invetario
-        });
+        _jugadores.Add(new(
+            _jugadores.Any() ? "Jugador 2" : "Jugador 1",
+            _tablero,
+            invetario
+        ));
     }
 
 
     public void AgregarBarco(PosicionarBarco posicionarBarco, string nombreJugador = "Jugador 1")
     {
-        var jugador = _jugadores.FirstOrDefault(buscarJugador => buscarJugador.Item1 == nombreJugador);
-        _tablero = jugador.Item2;
+        var jugador = _jugadores.First(buscarJugador => buscarJugador.Nombre == nombreJugador);
+        _tablero = jugador.Tablero;
 
         for (var i = 0; i < posicionarBarco.Barco.Tamaño; i++)
         {
@@ -54,7 +53,7 @@ public class JuegoAcorazado
             }
         }
 
-        jugador.Item3[posicionarBarco.Barco.GetType().Name] -= 1;
+        jugador.Inventario[posicionarBarco.Barco.GetType().Name] -= 1;
     }
 
     public void Iniciar()
@@ -64,10 +63,10 @@ public class JuegoAcorazado
 
         foreach (var jugador in _jugadores)
         {
-            foreach (var inventarioBarcos in jugador.Item3)
-                if (jugador.Item3[inventarioBarcos.Key] > 0)
+            foreach (var inventarioBarcos in jugador.Inventario)
+                if (jugador.Inventario[inventarioBarcos.Key] > 0)
                     throw new Exception(
-                        $"El {jugador.Item1} No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+                        $"El {jugador.Nombre} No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
         }
 
         _tablero = new char[10, 10];
@@ -113,7 +112,9 @@ public class JuegoAcorazado
     {
         if (!_juegoIniciado)
             throw new Exception("No es posible disparar hasta que el juego haya iniciado");
-        
+
         _tablero[posicionX, posicionY] = 'o';
     }
 }
+
+public record Jugador(string Nombre, char[,] Tablero, Dictionary<string, int> Inventario);

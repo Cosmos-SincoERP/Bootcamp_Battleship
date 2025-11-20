@@ -402,9 +402,7 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[0, 0] = 'o';
-        var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
-
 
         var disparar = () => juegoAcorazado.Disparar(0, 0);
 
@@ -420,10 +418,24 @@ public class JuegoAcorazadosTest
         tablero[0, 0] = 'o';
         var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
-
         juegoAcorazado.Iniciar();
 
         juegoAcorazado.Disparar(0, 0);
+
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
+    }
+    
+    [Fact]
+    public void
+        Si_Eljugador1DisparaUnTorpedoEnLaPosicion3_6EImpactaUnBarcoDestructor_Debe_ImprimirElTableroDelJugador2Con_x_EnLaPosicion3_6()
+    {
+        var tablero = new char[10, 10];
+        tablero[3, 6] = 'x';
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
+        var juegoAcorazado = Mocks.MockIniciarJuego();
+        juegoAcorazado.Iniciar();
+
+        juegoAcorazado.Disparar(3, 6);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
