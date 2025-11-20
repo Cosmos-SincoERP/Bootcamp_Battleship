@@ -58,7 +58,8 @@ public class Acorazado
 
         for (int i = 0; i < disparosOponente.Count; i++)
         {
-            if (tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] == "c")
+            if (tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] == "c" ||
+                tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] == "d")
                 tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] = "x";
             else
             {
