@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💙 se cambia nombre porque no es tan diciente">
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,15 +81,7 @@
       <workItem from="1763135552154" duration="18182000" />
       <workItem from="1763165952569" duration="12691000" />
       <workItem from="1763563174982" duration="12396000" />
-      <workItem from="1763575727124" duration="12995000" />
-    </task>
-    <task id="LOCAL-00046" summary="inicial">
-      <option name="closed" value="true" />
-      <created>1763477661794</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1763477661794</updated>
+      <workItem from="1763575727124" duration="15679000" />
     </task>
     <task id="LOCAL-00047" summary="🔴 Si_InicioElJuego_debe_ImprimirElTableroEnVacio">
       <option name="closed" value="true" />
@@ -477,7 +467,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763592072573</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="❤️Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO">
+      <option name="closed" value="true" />
+      <created>1763593224821</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1763593224821</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,7 +495,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaAbajo" />
     <MESSAGE value="❤️Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion" />
     <MESSAGE value="Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion" />
     <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion" />
@@ -522,7 +519,8 @@
     <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletasYJugador1DisparaAUnCanioneroDelJugador2_Debe_RetornarBarcoHundido" />
     <MESSAGE value=" implementacion de la clase despliegue" />
     <MESSAGE value=" se cambia nombre porque no es tan diciente" />
-    <option name="LAST_COMMIT_MESSAGE" value=" se cambia nombre porque no es tan diciente" />
+    <MESSAGE value="❤️Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO" />
+    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

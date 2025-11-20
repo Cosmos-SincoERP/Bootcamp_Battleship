@@ -10,3 +10,8 @@ user/
 /TDDKatas.sln.DotSettings.user
 /.xml
 /.patch
+*.xml
+/.idea
+idea/
+.idea
+.idea/

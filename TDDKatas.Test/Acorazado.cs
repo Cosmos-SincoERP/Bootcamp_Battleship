@@ -128,6 +128,6 @@ public class Acorazado
 
     public string Disparar(int i, int i1)
     {
-        return "";
+        return "0";
     }
 }
