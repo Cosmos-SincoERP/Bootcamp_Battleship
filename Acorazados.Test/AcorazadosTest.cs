@@ -735,15 +735,16 @@ public class AcorazadosTest
         acorazados.AddPlayer("Ruben");
 
         var canonero1 = new Nave(8, 8, 8, 8, "g");
+        var canonero2 = new Nave(0, 0, 0, 0, "g");
 
-        acorazados.Iniciar([], [canonero1]);
+        acorazados.Iniciar([], [canonero1,canonero2]);
         acorazados.Disparar(8, 8);
         acorazados.TerminarTurno();
 
         var tablero = acorazados.Imprimir();
 
         var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
-                              "0| | | | | | | | | | |" +
+                              "0| g | | | | | | | | | |" +
                               "1| | | | | | | | | | |" +
                               "2| | | | | | | | | | |" +
                               "3| | | | | | | | | | |" +
@@ -766,15 +767,16 @@ public class AcorazadosTest
         acorazados.AddPlayer("Ruben");
 
         var canonero1 = new Nave(6, 6, 6, 6, "g");
+        var canonero2 = new Nave(0, 0, 0, 0, "g");
 
-        acorazados.Iniciar([], [canonero1]);
+        acorazados.Iniciar([], [canonero1,canonero2]);
         acorazados.Disparar(6, 6);
         acorazados.TerminarTurno();
 
         var tablero = acorazados.Imprimir();
 
         var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
-                              "0| | | | | | | | | | |" +
+                              "0| g | | | | | | | | | |" +
                               "1| | | | | | | | | | |" +
                               "2| | | | | | | | | | |" +
                               "3| | | | | | | | | | |" +
@@ -924,8 +926,9 @@ public class AcorazadosTest
         acorazados.AddPlayer("Ruben");
 
         var destructor1 = new Nave(5, 5, 5, 7, "d");
+        var canonero1 = new Nave(0, 0, 0, 0, "g");
 
-        acorazados.Iniciar([], [destructor1]);
+        acorazados.Iniciar([], [destructor1,canonero1]);
 
         acorazados.Disparar(5, 5);
         acorazados.TerminarTurno();
@@ -945,7 +948,7 @@ public class AcorazadosTest
         var tablero = acorazados.Imprimir();
 
         var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
-                              "0| | | | | | | | | | |" +
+                              "0| g | | | | | | | | | |" +
                               "1| | | | | | | | | | |" +
                               "2| | | | | | | | | | |" +
                               "3| | | | | | | | | | |" +
@@ -969,8 +972,9 @@ public class AcorazadosTest
         acorazados.AddPlayer("Ruben");
 
         var destructor1 = new Nave(4, 6, 4, 8, "d");
+        var canonero1 = new Nave(0, 0, 0, 0, "g");
 
-        acorazados.Iniciar([], [destructor1]);
+        acorazados.Iniciar([], [destructor1,canonero1]);
 
         acorazados.Disparar(4, 6);
         acorazados.TerminarTurno();
@@ -990,7 +994,7 @@ public class AcorazadosTest
         var tablero = acorazados.Imprimir();
 
         var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
-                              "0| | | | | | | | | | |" +
+                              "0| g | | | | | | | | | |" +
                               "1| | | | | | | | | | |" +
                               "2| | | | | | | | | | |" +
                               "3| | | | | | | | | | |" +
@@ -1014,8 +1018,9 @@ public class AcorazadosTest
         acorazados.AddPlayer("Ruben");
 
         var destructor1 = new Nave(2, 3, 2, 5, "d");
+        var canonero1 = new Nave(0, 0, 0, 0, "g");
 
-        acorazados.Iniciar([], [destructor1]);
+        acorazados.Iniciar([], [destructor1,canonero1]);
 
         acorazados.Disparar(2, 3);
         acorazados.TerminarTurno();
@@ -1035,7 +1040,7 @@ public class AcorazadosTest
         var tablero = acorazados.Imprimir();
 
         var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
-                              "0| | | | | | | | | | |" +
+                              "0| g | | | | | | | | | |" +
                               "1| | | | | | | | | | |" +
                               "2| | | | X | X | X | | | | |" +
                               "3| | | | | | | | | | |" +
@@ -1093,8 +1098,9 @@ public class AcorazadosTest
         acorazados.AddPlayer("Ruben");
 
         var destructor1 = new Nave(2, 3, 2, 5, "d");
+        var canonero1 = new Nave(0, 0, 0, 0, "g");
 
-        acorazados.Iniciar([destructor1], []);
+        acorazados.Iniciar([destructor1,canonero1], []);
 
         acorazados.Disparar(0, 0);
         acorazados.TerminarTurno();
@@ -1117,7 +1123,7 @@ public class AcorazadosTest
         var tablero = acorazados.Imprimir();
 
         var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
-                              "0| | | | | | | | | | |" +
+                              "0| g | | | | | | | | | |" +
                               "1| | | | | | | | | | |" +
                               "2| | | | X | X | X | | | | |" +
                               "3| | | | | | | | | | |" +
@@ -1132,8 +1138,7 @@ public class AcorazadosTest
     }
 
     [Fact]
-    public void
-        Si_InicioElJuegoConUnDestructorEnCoordenada_2_3_a_2_5_ParaJugador1_YJugador2_Debe_DispararHastaHundirDestructorDeJugador1_ImprimirMensajeDeNaveHundida()
+    public void Si_InicioElJuegoConUnDestructorEnCoordenada_2_3_a_2_5_ParaJugador1_YJugador2_Debe_DispararHastaHundirDestructorDeJugador1_ImprimirMensajeDeNaveHundida()
     {
         var acorazados = new Battleship();
 
@@ -1148,4 +1153,46 @@ public class AcorazadosTest
 
         mensajeEsperado.Should().Be("Barco hundido");
     }
+    
+    [Fact]
+    public void
+        Si_InicioElJuegoConUnCanoneroParaJugador2_YJugador1DisparaA_9_9_Jugador1_Gana_Debe_ImprimirReporte()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+
+        var canonero = new Nave(9, 9, 9, 9, "g");
+
+        acorazados.Iniciar([canonero], []);
+        acorazados.Disparar(9, 9);
+        acorazados.TerminarTurno();
+
+        var tablero = acorazados.Imprimir();
+
+        var reporte = @"[ Alejandra 
+            Total shots: 1
+            Misses: 0
+            Hits: 1
+            Ships Sunk: [
+            Gunship: (9,9)
+            /n";
+
+        var tableroEsperado = reporte + 
+                              "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+                              "0| | | | | | | | | | |" +
+                              "1| | | | | | | | | | |" +
+                              "2| | | | | | | | | | |" +
+                              "3| | | | | | | | | | |" +
+                              "4| | | | | | | | | | |" +
+                              "5| | | | | | | | | | |" +
+                              "6| | | | | | | | | | |" +
+                              "7| | | | | | | | | | |" +
+                              "8| | | | | | | | | | |" +
+                              "9| | | | | | | | | | X |";
+
+        tablero.Should().Be(tableroEsperado);
+    }
+    
 }

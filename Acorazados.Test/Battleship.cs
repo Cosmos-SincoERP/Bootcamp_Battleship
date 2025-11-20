@@ -103,6 +103,7 @@ public class Battleship
     {
         var columnas = tablero[fila + 1].Split("|");
         var nave = navesJugador.FirstOrDefault(nave => nave.EstoyEnCoordenada(fila, columna));
+       
         if (nave == null)
         {
             columnas[columna + 1] = " o ";
