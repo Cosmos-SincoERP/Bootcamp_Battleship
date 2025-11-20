@@ -53,7 +53,7 @@ public class JuegoAcorazado
 
     public void Iniciar()
     {
-        if(_jugadores.Count < 2)
+        if(_jugadores.Count != 2)
             throw new Exception("Debe haber 2 jugadores para iniciar el juego");
         
         foreach (var inventarioBarcos in _jugadores[0].Item3)
