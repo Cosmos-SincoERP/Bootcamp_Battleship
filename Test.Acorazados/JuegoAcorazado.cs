@@ -4,6 +4,7 @@ public class JuegoAcorazado
 {
     private List<(string, char[,], Dictionary<string, int>)> _jugadores = new();
     private char[,] _tablero;
+    private bool _juegoIniciado = false;
 
 
     public JuegoAcorazado(int tamañoTablero = 10)
@@ -70,6 +71,7 @@ public class JuegoAcorazado
         }
 
         _tablero = new char[10, 10];
+        _juegoIniciado = true;
     }
 
     public string Imprimir()
@@ -109,6 +111,9 @@ public class JuegoAcorazado
 
     public void Disparar(int posicionX, int posicionY)
     {
+        if (!_juegoIniciado)
+            throw new Exception("No es posible disparar hasta que el juego haya iniciado");
+        
         _tablero[posicionX, posicionY] = 'o';
     }
 }
