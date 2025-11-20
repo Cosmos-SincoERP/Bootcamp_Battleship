@@ -10,7 +10,7 @@ public class BattleShipTests
     {
         var battleship = new BattleShip();
 
-        var action = () => battleship.AddPlayer(["Cañonero"]);
+        var action = () => battleship.AddPlayer(["Cañonero", "Cañonero", "Cañonero", "Cañonero"]);
 
         action.Should().NotThrow();
     }
@@ -19,8 +19,8 @@ public class BattleShipTests
     public void Cuando_AgregoTresJugadores_Debe_ArrojarException()
     {
         var battleShip = new BattleShip();
-        battleShip.AddPlayer(["Cañonero"]);
-        battleShip.AddPlayer(["Cañonero"]);
+        battleShip.AddPlayer(["Cañonero", "Cañonero", "Cañonero", "Cañonero"]);
+        battleShip.AddPlayer(["Cañonero", "Cañonero", "Cañonero", "Cañonero"]);
         
         var action = () => battleShip.AddPlayer(["Cañonero"]);
 
@@ -48,11 +48,21 @@ public class BattleShipTests
     }
 
     [Fact]
-    public void Cuando_AgregoUnJugadorCon1Cañoneros_Debe_ArrojarExcepcion()
+    public void Cuando_AgregoUnJugadorCon3Cañoneros_Debe_ArrojarExcepcion()
     {
         var battleship = new BattleShip();
 
         var action = () => battleship.AddPlayer(["Cañonero", "Cañonero", "Cañonero"]);
+
+        action.Should().ThrowExactly<ArgumentException>();
+    }
+
+    [Fact]
+    public void Cuando_AgregoUnJugadorCon5Cañoneros_Debe_ArrojarExcepcion()
+    {
+        var battleship = new BattleShip();
+
+        var action = () => battleship.AddPlayer(["Cañonero", "Cañonero", "Cañonero", "Cañonero", "Cañonero"]);
 
         action.Should().ThrowExactly<ArgumentException>();
     }
@@ -63,10 +73,10 @@ public class BattleShip
     private int _cantidadJugadores;
     public void AddPlayer(List<object> chips)
     {
-        if (chips.Count is 0 or 3)
-            throw new ArgumentException();
         if (_cantidadJugadores == 2)
             throw new NotSupportedException();
+        if (chips.Count != 4)
+            throw new ArgumentException();
         _cantidadJugadores++;
         
     }
