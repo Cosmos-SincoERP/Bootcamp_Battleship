@@ -88,6 +88,7 @@ public class JuegoAcorazadosTest
         }
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(new PosicionarBarco(
             (posicionXInicial, posicionYInicial), new PortaAviones(orientacion))
         );
@@ -102,7 +103,7 @@ public class JuegoAcorazadosTest
         Orientacion orientacion)
     {
         var juegoAcorazado = new JuegoAcorazado();
-
+        juegoAcorazado.AgregarJugador();
         var agregarPortaviones = () =>
             juegoAcorazado.AgregarBarco(new PosicionarBarco(
                 (posicionXInicial, posicionYInicial), new PortaAviones(orientacion))
@@ -124,6 +125,7 @@ public class JuegoAcorazadosTest
         }
         var juegoAcorazado = new JuegoAcorazado();
         var tableroEsperado = TableroEsperado(tablero);
+        juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(new PosicionarBarco(
             (posicionXInicial, posicionYInicial), new Destructor(orientacion))
         );
@@ -138,7 +140,7 @@ public class JuegoAcorazadosTest
         Orientacion orientacion)
     {
         var juegoAcorazado = new JuegoAcorazado();
-
+        juegoAcorazado.AgregarJugador();
         var agregarDestructores = () =>
             juegoAcorazado.AgregarBarco(new PosicionarBarco(
                 (posicionXInicial, posicionYInicial), new Destructor(orientacion))
@@ -155,6 +157,7 @@ public class JuegoAcorazadosTest
         tablero[7, 6] = 'g';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco(( 7, 6), new Cañonero())
         );
@@ -169,6 +172,8 @@ public class JuegoAcorazadosTest
         tablero[8, 1] = 'g';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
+        
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco((8, 1), new Cañonero())
         );
@@ -180,7 +185,8 @@ public class JuegoAcorazadosTest
     public void Si_AgregoUnCañoneroEnLaPosicion_11_11_Debe_LanzarExcepcion()
     {
         var juegoAcorazado = new JuegoAcorazado();
-
+        juegoAcorazado.AgregarJugador();
+        
         var cañonero = () => juegoAcorazado.AgregarBarco(
             new PosicionarBarco((11, 11), new Cañonero())
         );
@@ -202,9 +208,9 @@ public class JuegoAcorazadosTest
     {
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
-        var jugador2 = () => juegoAcorazado.AgregarJugador();
+        var iniciar = () => juegoAcorazado.Iniciar();
 
-        jugador2.Should().Throw<Exception>();
+        iniciar.Should().Throw<Exception>();
     }
     
     [Fact]
@@ -216,9 +222,9 @@ public class JuegoAcorazadosTest
             new PosicionarBarco((0, 0), new PortaAviones(Orientacion.Vertical))
         );
         
-        var jugador2 = () => juegoAcorazado.AgregarJugador();
+        var iniciar = () => juegoAcorazado.Iniciar();
 
-        jugador2.Should().Throw<Exception>();
+        iniciar.Should().Throw<Exception>();
     }
     
     [Fact]
@@ -233,9 +239,9 @@ public class JuegoAcorazadosTest
             new PosicionarBarco((2, 0), new Destructor(Orientacion.Vertical))
         );
         
-        var jugador2 = () => juegoAcorazado.AgregarJugador();
+        var iniciar = () => juegoAcorazado.Iniciar();
 
-        jugador2.Should().Throw<Exception>();
+        iniciar.Should().Throw<Exception>();
     }
     
     [Fact]
@@ -253,8 +259,8 @@ public class JuegoAcorazadosTest
             new PosicionarBarco((9, 6), new Destructor(Orientacion.Vertical))
         );
         
-        var jugador2 = () => juegoAcorazado.AgregarJugador();
+        var iniciar = () => juegoAcorazado.Iniciar();
 
-        jugador2.Should().Throw<Exception>();
+        iniciar.Should().Throw<Exception>();
     }
 }
