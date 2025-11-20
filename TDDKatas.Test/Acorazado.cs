@@ -39,27 +39,30 @@ public class Acorazado
         var tableroJugador = new string[10, 10];
 
 
-        var disparosOponente =  _jugadores.Count > 1 && _disparos.Any() 
-            ? _disparos[_jugadores.FirstOrDefault(x => x != _turnoActivo)]
-            : [];
-
         for (int indiceNave = 0; indiceNave < _estrategia[_turnoActivo].Count; indiceNave++)
         {
             var despliegue = _estrategia[_turnoActivo][indiceNave];
 
             var coordenadasNave = despliegue.CoordenadasNave();
 
-            for (int disparo = 0; disparo < disparosOponente.Count; disparo++)
-            {
-                tableroJugador[disparosOponente[disparo].PosicionX, disparosOponente[disparo].PosicionY] = "0";
-            }
-
             for (int coordenada = 0; coordenada < coordenadasNave.Count; coordenada++)
             {
                 tableroJugador[coordenadasNave[coordenada].PosicionX, coordenadasNave[coordenada].PosicionY] =
                     ((char)despliegue.Nave.Tipo).ToString();
+            }
+        }
 
-                // disparosOponente.Where(disparo=>coordenadasNave[coordenada].PosicionX==disparo.PosicionX && coordenadasNave[coordenada].PosicionY==disparo.PosicionY).
+        var disparosOponente = _jugadores.Count > 1 && _disparos.Any()
+            ? _disparos[_jugadores.FirstOrDefault(x => x != _turnoActivo)]
+            : [];
+
+        for (int i = 0; i < disparosOponente.Count; i++)
+        {
+            if (tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] == "c")
+                tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] = "x";
+            else
+            {
+                tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] = "0";
             }
         }
 
