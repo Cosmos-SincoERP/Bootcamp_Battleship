@@ -77,13 +77,37 @@ public class JuegoAcorazadosTest
     }
     
     [Fact]
-    public void Si_SeIniciaElJuegoSinJugador_Debe_LanzarExcepcion()
+    public void Si_SeIniciaElJuegoSinJugador_Debe_LanzarExcepcionPorCantidadDeJugadores()
     {
         var juegoAcorazado = new JuegoAcorazado();
         
         var iniciarJuego = () => juegoAcorazado.Iniciar();
         
-        iniciarJuego.Should().Throw<Exception>().WithMessage("El juego no puede iniciarse sin jugadores");
+        iniciarJuego.Should().Throw<Exception>().WithMessage("Debe haber 2 jugadores para iniciar el juego");
+    }
+    
+    [Fact]
+    public void Si_SeIniciaElJuegoConUnJugador_Debe_LanzarExcepcionPorCantidadDeJugadores()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
+        
+        var iniciarJuego = () => juegoAcorazado.Iniciar();
+        juegoAcorazado.AgregarJugador();
+        
+        iniciarJuego.Should().Throw<Exception>().WithMessage("Debe haber 2 jugadores para iniciar el juego");
+    }
+    
+    [Fact]
+    public void Si_SeIniciaElJuegoConTresJugador_Debe_LanzarExcepcionPorCantidadDeJugadores()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
+        
+        var iniciarJuego = () => juegoAcorazado.Iniciar();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
+        
+        iniciarJuego.Should().Throw<Exception>().WithMessage("Debe haber 2 jugadores para iniciar el juego");
     }
 
     [Theory]
