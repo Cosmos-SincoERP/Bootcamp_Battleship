@@ -118,6 +118,7 @@ public class Battleship
                 columnas[8] = " X ";
             }
             
+            
             _tableroJugador2[fila + 1] = string.Join("|", columnas);
         }
     }
