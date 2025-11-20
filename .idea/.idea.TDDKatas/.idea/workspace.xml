@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💚 Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO">
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,21 +55,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "244b7420-c203-42fb-b944-ec09ca0c9ae4.executor": "Debug",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Acorazados",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;244b7420-c203-42fb-b944-ec09ca0c9ae4.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Acorazados&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="🔴💚🔵 Si_AgregoUnaActividadALas8Y20yTengoUnaActividadaALas8_Debe_GenerarError" />
@@ -82,14 +82,7 @@
       <workItem from="1763165952569" duration="12691000" />
       <workItem from="1763563174982" duration="12396000" />
       <workItem from="1763575727124" duration="15679000" />
-    </task>
-    <task id="LOCAL-00047" summary="🔴 Si_InicioElJuego_debe_ImprimirElTableroEnVacio">
-      <option name="closed" value="true" />
-      <created>1763479505327</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1763479505327</updated>
+      <workItem from="1763648957965" duration="375000" />
     </task>
     <task id="LOCAL-00048" summary="🔴🟢🔵 Si_InicioElJuego_debe_ImprimirElTableroEnVacio">
       <option name="closed" value="true" />
@@ -475,7 +468,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763593224821</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="💚 Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO">
+      <option name="closed" value="true" />
+      <created>1763649226994</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1763649226994</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -495,7 +496,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="❤️Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion" />
     <MESSAGE value="Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion" />
     <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion" />
     <MESSAGE value="Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion" />
@@ -520,7 +520,8 @@
     <MESSAGE value=" implementacion de la clase despliegue" />
     <MESSAGE value=" se cambia nombre porque no es tan diciente" />
     <MESSAGE value="❤️Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO" />
-    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO" />
+    <MESSAGE value=" Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -540,5 +541,13 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>

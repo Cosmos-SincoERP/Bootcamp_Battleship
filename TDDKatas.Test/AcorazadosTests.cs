@@ -680,4 +680,30 @@ public class AcorazadosTests
 
         disparar.Should().Be("0");
     }
+    [Fact]
+    public void Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx()
+    {
+        var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.AgregarJugador("Player 2");
+        acorazado.PosicionarNave(9, 9, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 8, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 7, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 6, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.Iniciar();
+
+        string disparar = acorazado.Disparar(3, 0);
+
+        disparar.Should().Be("x");
+    }
 }
