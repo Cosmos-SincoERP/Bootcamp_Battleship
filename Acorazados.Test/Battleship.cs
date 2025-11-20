@@ -118,6 +118,12 @@ public class Battleship
                 columnas[8] = " X ";
             }
             
+            if (columnas[7] == " x " && columnas[8] == " x " && columnas[9] == " x ")
+            {
+                columnas[7] = " X ";
+                columnas[8] = " X ";
+                columnas[9] = " X ";
+            }
             
             _tableroJugador2[fila + 1] = string.Join("|", columnas);
         }
