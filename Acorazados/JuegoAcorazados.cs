@@ -34,9 +34,9 @@ public class JuegoAcorazados
         _juegoIniciado = true;
     }
 
-    public void Disparar(int fila, int columna)
+    public string Disparar(int fila, int columna)
     {
-        jugadores.Last().RecibirDisparo(fila, columna);
+        return jugadores.Last().RecibirDisparo(fila, columna);
     }
 
     public string[,] ObtenerTableroContrincante()

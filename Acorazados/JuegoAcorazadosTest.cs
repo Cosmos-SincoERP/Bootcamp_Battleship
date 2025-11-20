@@ -145,4 +145,12 @@ public class JuegoAcorazadosTest
         
         act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible disparar en esa direccion*");
     }
+
+    [Fact]
+    public void Si_DisparoYDestruyoUnAcorazado_Debe_RetornarSeHaHundidoUnAcorazado()
+    {
+        var mensaje = _juego.Disparar(6, 1);
+
+        mensaje.Should().Be("Se ha hundido un acorazado");
+    }
 }

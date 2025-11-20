@@ -70,7 +70,7 @@ public class Jugador
         return Tablero.GetLength(dimension);
     }
 
-    public void RecibirDisparo(int fila, int columna)
+    public string RecibirDisparo(int fila, int columna)
     {
         if (EstaAfueraDelTablero(fila, columna))
         {
@@ -81,21 +81,20 @@ public class Jugador
         switch (valorCasilla)
         {
             case "c":
-                GestionarDisparo<PortaAviones>(fila, columna);
-                break;
+                return GestionarDisparo<PortaAviones>(fila, columna);
             case "d":
-                GestionarDisparo<Destructor>(fila, columna);
-                break;
+                return GestionarDisparo<Destructor>(fila, columna);
             case "g":
-                GestionarDisparo<Cañonero>(fila, columna);
-                break;
+                return GestionarDisparo<Cañonero>(fila, columna);
             case null:
                 Tablero[fila, columna] = "o";
                 break;
         }
+        
+        return "";
     }
 
-    private void GestionarDisparo<T>(int fila, int columna) where T : Acorazado
+    private string GestionarDisparo<T>(int fila, int columna) where T : Acorazado
     {
         var acorazados = Acorazados.Where(acorazado => acorazado.GetType() == typeof(T));
         foreach (var acorazado in acorazados)
@@ -103,12 +102,14 @@ public class Jugador
             if (acorazado.SegmentosAcorazado.Any(segmento => segmento.fila == fila && segmento.columna == columna))
             {
                 acorazado.RegistrarDisparo(fila, columna);
-                RegistrarDisparoAcorazadoEnTablero(fila, columna, acorazado);
+                return RegistrarDisparoAcorazadoEnTablero(fila, columna, acorazado);
             }
         }
+        
+        return "";
     }
 
-    private void RegistrarDisparoAcorazadoEnTablero(int fila, int columna, Acorazado acorazado)
+    private string RegistrarDisparoAcorazadoEnTablero(int fila, int columna, Acorazado acorazado)
     {
         if (acorazado.EstaDestruido)
         {
@@ -116,10 +117,10 @@ public class Jugador
             {
                 Tablero[segmento.fila, segmento.columna] = "X";
             }
+            return "Se ha hundido un acorazado";
         }
-        else
-        {
-            Tablero[fila, columna] = "x";
-        }
+
+        Tablero[fila, columna] = "x";
+        return "";
     }
 }
