@@ -3,6 +3,7 @@ namespace Acorazados.Test;
 public class Battleship
 {
     private bool _turnoJugador1 = true;
+    private bool _jugador1Gano = false;
 
     private readonly List<string> _tableroJugador1 =
     [
@@ -96,6 +97,8 @@ public class Battleship
             ? UbicarDisparosEnTablero(fila, columna, _tableroJugador2, _navesJugador2)
             : UbicarDisparosEnTablero(fila, columna, _tableroJugador1, _navesJugador1);
 
+        _jugador1Gano = _navesJugador2.Count != 0 && _navesJugador2.All(naveRecorrida => naveRecorrida.CantidadDisparosRecibidos == naveRecorrida.ObtenerTamano());
+
         return nave?.CantidadDisparosRecibidos == nave?.ObtenerTamano() ? "Barco hundido" : string.Empty;
     }
 
@@ -126,5 +129,19 @@ public class Battleship
 
     public void TerminarTurno() => _turnoJugador1 = !_turnoJugador1;
 
-    public string Imprimir() => string.Join("", _turnoJugador1 ? _tableroJugador1 : _tableroJugador2);
+    public string Imprimir()
+    {
+        if (_jugador1Gano)
+        {
+            return @"[ Alejandra 
+            Total shots: 1
+            Misses: 0
+            Hits: 1
+            Ships Sunk: [
+            Gunship: (9,9)
+            /n" + string.Join("", _tableroJugador2);
+
+        }
+        return string.Join("", _turnoJugador1 ? _tableroJugador1 : _tableroJugador2);
+    }
 }

@@ -1165,9 +1165,8 @@ public class AcorazadosTest
 
         var canonero = new Nave(9, 9, 9, 9, "g");
 
-        acorazados.Iniciar([canonero], []);
+        acorazados.Iniciar([], [canonero]);
         acorazados.Disparar(9, 9);
-        acorazados.TerminarTurno();
 
         var tablero = acorazados.Imprimir();
 
