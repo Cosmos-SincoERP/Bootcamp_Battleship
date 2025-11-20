@@ -53,6 +53,9 @@ public class JuegoAcorazado
 
     public void Iniciar()
     {
+        if(!_jugadores.Any())
+            throw new Exception("El juego no puede iniciarse sin jugadores");
+        
         foreach (var inventarioBarcos in _jugadores[0].Item3)
         {
             if (_jugadores[0].Item3[inventarioBarcos.Key] > 0)
