@@ -840,4 +840,35 @@ public class AcorazadosTest
 
         tablero.Should().Be(tableroEsperado);
     }
+    
+    [Fact]
+    public void Si_InicioElJuegoConUnPortavionesEn6_6ParaJugador_YJugador1DisparaA_6_6_Debe_Imprimirx()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Paula");
+        acorazados.AddPlayer("Ruben");
+        
+        var destructor = new Nave(6, 6,6,9, "c");
+
+        acorazados.Iniciar([],[destructor]);
+        acorazados.Disparar(6, 6);
+        acorazados.TerminarTurno();
+
+        var tablero = acorazados.Imprimir();
+
+        var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+                              "0| | | | | | | | | | |" +
+                              "1| | | | | | | | | | |" +
+                              "2| | | | | | | | | | |" +
+                              "3| | | | | | | | | | |" +
+                              "4| | | | | | | | | | |" +
+                              "5| | | | | | | | | | |" +
+                              "6| | | | | | | x | c | c | c |" +
+                              "7| | | | | | | | | | |" +
+                              "8| | | | | | | | | | |" +
+                              "9| | | | | | | | | | |"; 
+
+        tablero.Should().Be(tableroEsperado);
+    }
 }
