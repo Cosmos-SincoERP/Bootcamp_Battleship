@@ -101,4 +101,9 @@ public class JuegoAcorazado
     {
         _tablero[posicionX, posicionY] = valorBarco;
     }
+
+    public object Disparar(int i, int i1)
+    {
+        throw new NotImplementedException();
+    }
 }

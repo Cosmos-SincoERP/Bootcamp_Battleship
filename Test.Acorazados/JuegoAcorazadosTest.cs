@@ -5,21 +5,7 @@ namespace Test.BattleShip;
 public class JuegoAcorazadosTest
 {
     
-    private static string TableroEsperado(char[,] tablero)
-    {
-        var tableroEsperado = string.Empty;
-        for (var x = 0; x < tablero.GetLength(0); x++)
-        {
-            for (int y = 0; y < tablero.GetLength(1); y++)
-            {
-                tableroEsperado += tablero[x, y];
-            }
 
-            tableroEsperado += '\n';
-        }
-
-        return tableroEsperado;
-    }
     public static IEnumerable<object[]> DatosPortaAviones => new List<object[]>
     {
         new object[] { 0, 0, Orientacion.Vertical, new[] { new[] { 0, 0 }, new[] { 0, 1 }, new[] { 0, 2 }, new[] { 0, 3 } } },
@@ -51,6 +37,7 @@ public class JuegoAcorazadosTest
         new object[] { 3, 8, Orientacion.Vertical },
         new object[] { 8, 4, Orientacion.Horizontal }
     };
+    
     
     [Fact]
     public void Si_SeCreaElJuegoConUnTamañoDeTablero0_0_Debe_MostrarUnaExcepcion()
@@ -141,14 +128,14 @@ public class JuegoAcorazadosTest
         {
             tablero[posicionEsperada[0], posicionEsperada[1]] = 'c';
         }
-        var tableroEsperado = TableroEsperado(tablero);
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(new PosicionarBarco(
             (posicionXInicial, posicionYInicial), new PortaAviones(orientacion))
         );
 
-        juegoAcorazado.Imprimir().Should().BeEquivalentTo(tableroEsperado);
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
 
     [Theory]
@@ -179,13 +166,13 @@ public class JuegoAcorazadosTest
             tablero[posicionEsperada[0], posicionEsperada[1]] = 'd';
         }
         var juegoAcorazado = new JuegoAcorazado();
-        var tableroEsperado = TableroEsperado(tablero);
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(new PosicionarBarco(
             (posicionXInicial, posicionYInicial), new Destructor(orientacion))
         );
 
-        juegoAcorazado.Imprimir().Should().BeEquivalentTo(tableroEsperado);
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
 
     [Theory]
@@ -210,14 +197,14 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[7, 6] = 'g';
-        var tableroEsperado = TableroEsperado(tablero);
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco(( 7, 6), new Cañonero())
         );
 
-        juegoAcorazado.Imprimir().Should().BeEquivalentTo(tableroEsperado);
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
 
     [Fact]
@@ -225,7 +212,7 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[8, 1] = 'g';
-        var tableroEsperado = TableroEsperado(tablero);
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
         
@@ -233,7 +220,7 @@ public class JuegoAcorazadosTest
             new PosicionarBarco((8, 1), new Cañonero())
         );
 
-        juegoAcorazado.Imprimir().Should().BeEquivalentTo(tableroEsperado);
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
 
     [Fact]
@@ -380,63 +367,25 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_Jugador1YJugador2HaPosicionadoTodosLosBarcos_Debe_PermitirIniciarElJuego()
     {
-        var juegoAcorazado = new JuegoAcorazado();
-        juegoAcorazado.AgregarJugador();
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((2, 0), new Cañonero())
-        );
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((6, 3), new Cañonero())
-        );
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((8, 6), new Cañonero())
-        );
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((9, 6), new Cañonero())
-        );
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((2, 6), new Destructor(Orientacion.Horizontal))
-        );
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((0, 2), new Destructor(Orientacion.Vertical))
-        );
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((9, 0), new PortaAviones(Orientacion.Vertical))
-        );
-        
-        juegoAcorazado.AgregarJugador();
-        
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((8, 2), new Cañonero()),
-            "Jugador 2"
-        );
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((5, 0), new Cañonero()),
-            "Jugador 2"
-        );
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((7, 4), new Cañonero()),
-            "Jugador 2"
-        );
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((3, 7), new Cañonero()),
-            "Jugador 2"
-        );
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((2, 6), new Destructor(Orientacion.Horizontal)),
-            "Jugador 2"
-        );
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((2, 2), new Destructor(Orientacion.Vertical)),
-            "Jugador 2"
-        );
-        juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((4, 0), new PortaAviones(Orientacion.Vertical)),
-            "Jugador 2"
-        );
-        
+        var juegoAcorazado = Mocks.MockIniciarJuego();
+
         var iniciar = () => juegoAcorazado.Iniciar();
 
         iniciar.Should().NotThrow();
+    }
+
+    
+
+    [Fact]
+    public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion0_0YNoImpactaUnBarco_Debe_ImprimirElTableroDelJugador2Con_o_EnLaPosicion0_0()
+    {
+        var tablero = new char[10, 10];
+        tablero[0, 0] = 'o';
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
+        var juegoAcorazado = Mocks.MockIniciarJuego();
+        
+        var disparar = juegoAcorazado.Disparar(0, 0);
+
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
 }
