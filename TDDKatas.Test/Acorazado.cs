@@ -126,9 +126,9 @@ public class Acorazado
         _estrategia.Add(player, []);
     }
 
-    public string Disparar(int i, int i1)
+    public string Disparar(int coordenadaX, int coordenadaY)
     {
-        if(i==3 && i1==0)
+        if(coordenadaX==3 && coordenadaY==0)
             return "x";
         
         return "0";
