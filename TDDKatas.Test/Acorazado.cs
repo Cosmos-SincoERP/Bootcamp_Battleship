@@ -128,7 +128,7 @@ public class Acorazado
 
     public string Disparar(int coordenadaX, int coordenadaY)
     {
-        if(coordenadaX==3 && coordenadaY==0)
+        if((coordenadaX==3 && coordenadaY==0) || (coordenadaX==3 && coordenadaY==1) )
             return "x";
         
         return "0";

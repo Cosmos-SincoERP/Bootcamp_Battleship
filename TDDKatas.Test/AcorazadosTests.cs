@@ -708,6 +708,7 @@ public class AcorazadosTests
         disparar.Should().Be("x");
     }
     
+    [Fact]
     public void Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx()
     {
         var acorazado = new Acorazado();
