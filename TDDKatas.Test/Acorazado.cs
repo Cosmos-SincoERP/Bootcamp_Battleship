@@ -127,6 +127,6 @@ public class Acorazado
 
     public string FinalizarTurno()
     {
-        return "";
+        return "TURNO JUGADOR 2";
     }
 }
