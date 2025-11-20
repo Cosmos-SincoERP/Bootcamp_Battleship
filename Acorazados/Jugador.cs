@@ -84,6 +84,11 @@ public class Jugador
 
     public void RecibirDisparo(int fila, int columna)
     {
+        if (ObtenerCasilla(fila, columna) is "c")
+        {
+            Tablero[fila, columna] = "x";
+            return;
+        }
         Tablero[fila, columna] = "o";
     }
 }
