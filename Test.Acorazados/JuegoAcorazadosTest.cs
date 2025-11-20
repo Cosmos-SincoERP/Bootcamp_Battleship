@@ -199,6 +199,7 @@ public class JuegoAcorazadosTest
     {
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarPortaAviones(0, 0, "Vertical");
         var jugador2 = () => juegoAcorazado.AgregarJugador();
 
         jugador2.Should().NotThrow();
