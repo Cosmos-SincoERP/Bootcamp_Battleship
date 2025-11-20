@@ -109,6 +109,27 @@ public class JuegoAcorazadosTest
         
         iniciarJuego.Should().Throw<Exception>().WithMessage("Debe haber 2 jugadores para iniciar el juego");
     }
+    
+    [Fact]
+     public void Si_SeAgregaJugador_Debe_ContenerJugador1()
+     {
+         var juegoAcorazado = new JuegoAcorazadosBK2();
+
+         juegoAcorazado.AgregarJugador();
+
+         juegoAcorazado.MostrarJugadores().Should().Contain("Jugador 1");
+     }
+     
+    [Fact]
+     public void Si_SeAgrega2Jugadores_Debe_ContenerJugador1YJugador2()
+     {
+         var juegoAcorazado = new JuegoAcorazado();
+
+         juegoAcorazado.AgregarJugador();
+         juegoAcorazado.AgregarJugador();
+
+         juegoAcorazado.ReporteBatalla().Should().Contain("Jugador 1").And.Contain("Jugador 2");
+     }
 
     [Theory]
     [MemberData(nameof(DatosPortaAviones))]
@@ -228,16 +249,6 @@ public class JuegoAcorazadosTest
     }
     
     [Fact]
-    public void Si_SeAgregaJugador_Debe_ContenerJugador1()
-    {
-        var juegoAcorazado = new JuegoAcorazado();
-
-        juegoAcorazado.AgregarJugador();
-
-        juegoAcorazado.ReporteBatalla().Should().Contain("Jugador 1");
-    }
-    
-    [Fact]
     public void Si_SeAgregaJugadorYNoHaPosicionadoNingunBarco_NoDebe_PermitirAgregarAlSegundoJugador()
     {
         var juegoAcorazado = new JuegoAcorazado();
@@ -282,6 +293,7 @@ public class JuegoAcorazadosTest
     public void Si_SeAgregaJugadorYHaPosicionadoTodosLosDesctructoresTodosLosPortavionesPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirAgregarAlSegundoJugador()
     {
         var juegoAcorazado = new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco((2, 0), new PortaAviones(Orientacion.Vertical))
