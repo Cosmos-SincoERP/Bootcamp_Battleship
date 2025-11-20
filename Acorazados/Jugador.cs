@@ -14,13 +14,13 @@ public class Jugador
         foreach (var acorazado in acorazados)
             AgregarAcorazado(acorazado);
     }
-  
+
     private void AgregarAcorazado(Acorazado acorazadoAcuatizado)
     {
         ValidarCantidadMaximaTipoAcorazado(acorazadoAcuatizado);
         acorazadoAcuatizado.SegmentosAcorazado.ForEach(segmento =>
             AsignarCasillaAcorazado(acorazadoAcuatizado, segmento.fila, segmento.columna));
-        
+
         Acorazados.Add(acorazadoAcuatizado);
     }
 
@@ -79,7 +79,7 @@ public class Jugador
             case "g":
                 GestionarDisparo<Cañonero>(fila, columna);
                 break;
-            default:
+            case null:
                 Tablero[fila, columna] = "o";
                 break;
         }

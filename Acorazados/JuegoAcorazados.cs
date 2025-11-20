@@ -9,15 +9,19 @@ public class JuegoAcorazados
     Jugador jugador2;
     private bool _juegoIniciado;
 
+    private List<Jugador> jugadores = new();
+
     public void AgregarJugador(string jugador, List<Acorazado> acorazados)
     {
         if (jugador1 is null)
         {
             jugador1 = new Jugador(jugador, acorazados);
+            jugadores.Add(jugador1);
         }
         else if (jugador2 is null)
         {
             jugador2 = new Jugador(jugador, acorazados);
+            jugadores.Add(jugador2);
         }
         else
         {
@@ -27,7 +31,7 @@ public class JuegoAcorazados
 
     public string[,] ImprimirTablero()
     {
-        return jugador1.ObtenerTablero();
+        return jugadores.First().ObtenerTablero();
     }
 
     public void Iniciar()
@@ -46,7 +50,7 @@ public class JuegoAcorazados
 
     public string[,] ObtenerTableroContrincante()
     {
-        var obtenerTableroContrincante = jugador2.ObtenerTablero();
+        var obtenerTableroContrincante = jugadores.Last().ObtenerTablero();
         var letrasDisparos = new List<string>
         {
             "o", "x", "X"
@@ -64,5 +68,10 @@ public class JuegoAcorazados
         }
         
         return obtenerTableroContrincante;
+    }
+
+    public void FinalizarTurno()
+    {
+        jugadores.Reverse();
     }
 }

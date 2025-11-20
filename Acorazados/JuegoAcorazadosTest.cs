@@ -112,4 +112,27 @@ public class JuegoAcorazadosTest
         
         _juego.ObtenerTableroContrincante().Should().BeEquivalentTo(tableroDisparos);
     }
+
+    [Fact]
+    public void Si_FinalizoTurno_Debe_TableroJugador2Tener_g()
+    {
+        var tableroEsperadoJugador2 = tableroDisparos;
+        tableroEsperadoJugador2[6,1] = "g";
+        var juego = new JuegoAcorazados();
+        var acorazadosJugador1 = new List<Acorazado>()
+        {
+            new PortaAviones( 1, 1, Direccion.Derecha)
+        };
+        juego.AgregarJugador("Jugador 1", acorazadosJugador1);
+        var acorazadosJugador2 = new List<Acorazado>()
+        {
+            new Cañonero( 6, 1, Direccion.Derecha)
+        };
+        juego.AgregarJugador("Jugador 2", acorazadosJugador2);
+        juego.Iniciar();
+
+        juego.FinalizarTurno();
+        
+        juego.ImprimirTablero().Should().BeEquivalentTo(tableroDisparos);
+    }
 }
