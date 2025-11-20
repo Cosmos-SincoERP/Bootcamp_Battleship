@@ -53,7 +53,7 @@ public class JuegoAcorazadosTest
     };
     
     [Fact]
-    public void Si_SeInciaUnTableroUnTamaño0_0_Debe_MostrarUnaExcepcion()
+    public void Si_SeCreaElJuegoConUnTamañoDeTablero0_0_Debe_MostrarUnaExcepcion()
     {
         var juegoAcorazado = () => new JuegoAcorazado(0);
 
@@ -61,7 +61,7 @@ public class JuegoAcorazadosTest
     }
 
     [Fact]
-    public void Si_SeIniciaUnTableroUnTamaño10_10_NoDebe_LanzarExcepcion()
+    public void Si_SeCreaElJuegoConUnTamañoDeTablero10_10_NoDebe_LanzarExcepcion()
     {
         var juegoAcorazado = () => new JuegoAcorazado(10);
 
@@ -69,11 +69,21 @@ public class JuegoAcorazadosTest
     }
 
     [Fact]
-    public void Si_SeIniciaUnTableroConUnTamañoMenorA0_Debe_LanzarExcepcion()
+    public void Si_SeCreaElJuegoConUnTamañoDeTableroMenorA0_Debe_LanzarExcepcion()
     {
         var juegoAcorazado = () => new JuegoAcorazado(-1);
 
         juegoAcorazado.Should().Throw<ArgumentOutOfRangeException>();
+    }
+    
+    [Fact]
+    public void Si_SeIniciaElJuegoSinJugador_Debe_LanzarExcepcion()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
+        
+        var iniciarJuego = () => juegoAcorazado.Iniciar();
+        
+        iniciarJuego.Should().Throw<Exception>().WithMessage("El juego no puede iniciarse sin jugadores");
     }
 
     [Theory]
