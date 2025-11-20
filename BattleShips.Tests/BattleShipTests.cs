@@ -46,7 +46,16 @@ public class BattleShipTests
 
         action.Should().ThrowExactly<ArgumentException>();
     }
-    
+
+    [Fact]
+    public void Cuando_AgregoUnJugadorCon1Cañoneros_Debe_ArrojarExcepcion()
+    {
+        var battleship = new BattleShip();
+
+        var action = () => battleship.AddPlayer(["Cañonero", "Cañonero", "Cañonero"]);
+
+        action.Should().ThrowExactly<ArgumentException>();
+    }
 }
 
 public class BattleShip
@@ -54,7 +63,7 @@ public class BattleShip
     private int _cantidadJugadores;
     public void AddPlayer(List<object> chips)
     {
-        if (chips.Count == 0)
+        if (chips.Count is 0 or 3)
             throw new ArgumentException();
         if (_cantidadJugadores == 2)
             throw new NotSupportedException();
