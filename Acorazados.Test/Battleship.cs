@@ -3,7 +3,7 @@ namespace Acorazados.Test;
 public class Battleship
 {
     private bool _turnoJugador1 = true;
-    
+
     private List<string> _tableroJugador1 =
     [
         "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
@@ -18,7 +18,7 @@ public class Battleship
         "8| | | | | | | | | | |",
         "9| | | | | | | | | | |"
     ];
-    
+
     private List<string> _tableroJugador2 =
     [
         "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
@@ -42,67 +42,44 @@ public class Battleship
     {
         if (navesJugador1.Count == 0 && navesJugador2.Count == 0) return;
 
-        foreach (var nave in navesJugador1)
-        {
-            if (EsCanonero(nave))
-            {
-                ImprimirCanonero(nave, _tableroJugador1);
-            }
-            else if (EsPortaaviones(nave))
-            {
-                if (EsVertical(nave))
-                {
-                    ImprimirPortavionesVertical(nave, _tableroJugador1);
-                }
-                else
-                {
-                    ImprimirPortavionesHorizontal(navesJugador1, _tableroJugador1);
-                }
-            }
-            else
-            {
-                if (EsVertical(nave))
-                {
-                    ImprimirDestructorVertical(nave, _tableroJugador1);
-                }
-                else
-                {
-                    ImprimerDestructorHorizontal(nave, _tableroJugador1);
-                }
-            }
-        }
+        UbicarNavesEnTablero(navesJugador1, _tableroJugador1);
 
-        foreach (var nave in navesJugador2)
+        UbicarNavesEnTablero(navesJugador2, _tableroJugador2);
+    }
+
+    private void UbicarNavesEnTablero(List<Nave> naves, List<string> tablero)
+    {
+        foreach (var nave in naves)
         {
             if (EsCanonero(nave))
             {
-                ImprimirCanonero(nave, _tableroJugador2);
+                ImprimirCanonero(nave, tablero);
             }
             else if (EsPortaaviones(nave))
             {
                 if (EsVertical(nave))
                 {
-                    ImprimirPortavionesVertical(nave, _tableroJugador2);
+                    ImprimirPortavionesVertical(nave, tablero);
                 }
                 else
                 {
-                    ImprimirPortavionesHorizontal(navesJugador1, _tableroJugador2);
+                    ImprimirPortavionesHorizontal(nave, tablero);
                 }
             }
             else
             {
                 if (EsVertical(nave))
                 {
-                    ImprimirDestructorVertical(nave, _tableroJugador2);
+                    ImprimirDestructorVertical(nave, tablero);
                 }
                 else
                 {
-                    ImprimerDestructorHorizontal(nave, _tableroJugador2);
+                    ImprimerDestructorHorizontal(nave, tablero);
                 }
             }
         }
     }
-    
+
     public void Disparar(int fila, int columna)
     {
         var columnas = _tableroJugador2[fila + 1].Split("|");
@@ -112,14 +89,14 @@ public class Battleship
 
     public void TerminarTurno() => _turnoJugador1 = !_turnoJugador1;
 
-    private void ImprimirPortavionesHorizontal(List<Nave> navesJugador1, List<string> tablero)
+    private void ImprimirPortavionesHorizontal(Nave nave, List<string> tablero)
     {
-        var columnas = tablero[navesJugador1[0].FilaInicial + 1].Split("|");
-        columnas[navesJugador1[0].ColumnaInicial + 1] = " c ";
-        columnas[navesJugador1[0].ColumnaInicial + 2] = " c ";
-        columnas[navesJugador1[0].ColumnaInicial + 3] = " c ";
-        columnas[navesJugador1[0].ColumnaInicial + 4] = " c ";
-        tablero[navesJugador1[0].FilaInicial + 1] = string.Join("|", columnas);
+        var columnas = tablero[nave.FilaInicial + 1].Split("|");
+        columnas[nave.ColumnaInicial + 1] = " c ";
+        columnas[nave.ColumnaInicial + 2] = " c ";
+        columnas[nave.ColumnaInicial + 3] = " c ";
+        columnas[nave.ColumnaInicial + 4] = " c ";
+        tablero[nave.FilaInicial + 1] = string.Join("|", columnas);
     }
 
     private void ImprimirPortavionesVertical(Nave nave, List<string> tablero)
@@ -175,10 +152,10 @@ public class Battleship
         tablero[nave.FilaInicial + 2] = string.Join("|", columna2);
         tablero[nave.FilaInicial + 3] = string.Join("|", columna3);
     }
+
     private static bool EsVertical(Nave nave) => nave.FilaInicial != nave.FilaFinal;
     private static bool EsPortaaviones(Nave nave) => nave.Tipo == "c";
     private static bool EsCanonero(Nave nave) => nave.Tipo == "g";
 
     public string Imprimir() => string.Join("", _turnoJugador1 ? _tableroJugador1 : _tableroJugador2);
-
 }
