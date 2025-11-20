@@ -12,61 +12,66 @@ public class JuegoAcorazado
             throw new ArgumentOutOfRangeException();
         _tablero = new char[tamañoTablero, tamañoTablero];
     }
-    
-        
+
+
     public void AgregarJugador()
-    {   
-        var invetario =  new Dictionary<string, int> ()
+    {
+        var invetario = new Dictionary<string, int>()
         {
-            {"Cañonero", 4},
-            {"Destructor", 2},
-            {"PortaAviones", 1},
-        }; 
-        
-        _jugadores.Add(new ()
+            { "Cañonero", 4 },
+            { "Destructor", 2 },
+            { "PortaAviones", 1 },
+        };
+
+        _jugadores.Add(new()
         {
-            Item1 = _jugadores.Any() ? "Jugador 2" : "Jugador 1", 
+            Item1 = _jugadores.Any() ? "Jugador 2" : "Jugador 1",
             Item2 = _tablero,
             Item3 = invetario
         });
     }
-    
+
 
     public void AgregarBarco(PosicionarBarco posicionarBarco, string nombreJugador = "Jugador 1")
     {
         var jugador = _jugadores.FirstOrDefault(buscarJugador => buscarJugador.Item1 == nombreJugador);
         _tablero = jugador.Item2;
-        
-        for (var i = 0; i < posicionarBarco.Barco.Tamaño ; i++)
+
+        for (var i = 0; i < posicionarBarco.Barco.Tamaño; i++)
         {
             if (posicionarBarco.Barco.Orientacion == Orientacion.Vertical)
             {
                 ValidarPosicionDelBarco(posicionarBarco.Coordenadas.Y + i, 1, posicionarBarco.Barco.GetType().Name);
-                AsignarElValorDeLBarcoALaPosicion(posicionarBarco.Coordenadas.X, posicionarBarco.Coordenadas.Y + i, posicionarBarco.Barco.Valor);
+                AsignarElValorDeLBarcoALaPosicion(posicionarBarco.Coordenadas.X, posicionarBarco.Coordenadas.Y + i,
+                    posicionarBarco.Barco.Valor);
             }
             else
             {
                 ValidarPosicionDelBarco(posicionarBarco.Coordenadas.X + i, 0, posicionarBarco.Barco.GetType().Name);
-                AsignarElValorDeLBarcoALaPosicion(posicionarBarco.Coordenadas.X + i, posicionarBarco.Coordenadas.Y, posicionarBarco.Barco.Valor);
+                AsignarElValorDeLBarcoALaPosicion(posicionarBarco.Coordenadas.X + i, posicionarBarco.Coordenadas.Y,
+                    posicionarBarco.Barco.Valor);
             }
         }
+
         jugador.Item3[posicionarBarco.Barco.GetType().Name] -= 1;
     }
 
     public void Iniciar()
     {
-        if(_jugadores.Count != 2)
+        if (_jugadores.Count != 2)
             throw new Exception("Debe haber 2 jugadores para iniciar el juego");
-        
+
         foreach (var jugador in _jugadores)
         {
             foreach (var inventarioBarcos in jugador.Item3)
                 if (jugador.Item3[inventarioBarcos.Key] > 0)
-                    throw new Exception($"El {jugador.Item1} No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+                    throw new Exception(
+                        $"El {jugador.Item1} No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
         }
-        
+
+        _tablero = new char[10, 10];
     }
-    
+
     public string Imprimir()
     {
         var visualizarTablero = string.Empty;
@@ -82,15 +87,15 @@ public class JuegoAcorazado
 
         return visualizarTablero;
     }
-    
+
     public string ReporteBatalla()
     {
-        if(_jugadores.Count > 1)
+        if (_jugadores.Count > 1)
             return "Jugador 1 - Jugador 2";
-        
+
         return "Jugador 1";
     }
-    
+
     private void ValidarPosicionDelBarco(int posicion, int dimension, string valorNave)
     {
         if (posicion > _tablero.GetLength(dimension) - 1)
@@ -102,8 +107,8 @@ public class JuegoAcorazado
         _tablero[posicionX, posicionY] = valorBarco;
     }
 
-    public object Disparar(int i, int i1)
+    public void Disparar(int posicionX, int posicionY)
     {
-        throw new NotImplementedException();
+        _tablero[posicionX, posicionY] = 'o';
     }
 }

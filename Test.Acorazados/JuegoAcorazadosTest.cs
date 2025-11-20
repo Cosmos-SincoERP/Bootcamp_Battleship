@@ -4,14 +4,16 @@ namespace Test.BattleShip;
 
 public class JuegoAcorazadosTest
 {
-    
-
     public static IEnumerable<object[]> DatosPortaAviones => new List<object[]>
     {
-        new object[] { 0, 0, Orientacion.Vertical, new[] { new[] { 0, 0 }, new[] { 0, 1 }, new[] { 0, 2 }, new[] { 0, 3 } } },
-        new object[] { 0, 0, Orientacion.Horizontal, new[] { new[] { 0, 0 }, new[] { 1, 0 }, new[] { 2, 0 }, new[] { 3, 0 } } },
-        new object[] { 3, 4, Orientacion.Vertical, new[] { new[] { 3, 4 }, new[] { 3, 5 }, new[] { 3, 6 }, new[] { 3, 7 } } },
-        new object[] { 6, 2, Orientacion.Horizontal, new[] { new[] { 6, 2 }, new[] { 7, 2 }, new[] { 8, 2 }, new[] { 9, 2 } } }
+        new object[]
+            { 0, 0, Orientacion.Vertical, new[] { new[] { 0, 0 }, new[] { 0, 1 }, new[] { 0, 2 }, new[] { 0, 3 } } },
+        new object[]
+            { 0, 0, Orientacion.Horizontal, new[] { new[] { 0, 0 }, new[] { 1, 0 }, new[] { 2, 0 }, new[] { 3, 0 } } },
+        new object[]
+            { 3, 4, Orientacion.Vertical, new[] { new[] { 3, 4 }, new[] { 3, 5 }, new[] { 3, 6 }, new[] { 3, 7 } } },
+        new object[]
+            { 6, 2, Orientacion.Horizontal, new[] { new[] { 6, 2 }, new[] { 7, 2 }, new[] { 8, 2 }, new[] { 9, 2 } } }
     };
 
     public static IEnumerable<object[]> DatosIncorrectosPortaAviones => new List<object[]>
@@ -32,13 +34,13 @@ public class JuegoAcorazadosTest
 
     public static IEnumerable<object[]> DatosIncorrectosDestructores => new List<object[]>
     {
-        new object[] { 9, 8, Orientacion.Vertical},
+        new object[] { 9, 8, Orientacion.Vertical },
         new object[] { 8, 5, Orientacion.Horizontal },
         new object[] { 3, 8, Orientacion.Vertical },
         new object[] { 8, 4, Orientacion.Horizontal }
     };
-    
-    
+
+
     [Fact]
     public void Si_SeCreaElJuegoConUnTamañoDeTablero0_0_Debe_MostrarUnaExcepcion()
     {
@@ -62,61 +64,61 @@ public class JuegoAcorazadosTest
 
         juegoAcorazado.Should().Throw<ArgumentOutOfRangeException>();
     }
-    
+
     [Fact]
     public void Si_SeIniciaElJuegoSinJugador_Debe_LanzarExcepcionPorCantidadDeJugadores()
     {
         var juegoAcorazado = new JuegoAcorazado();
-        
+
         var iniciarJuego = () => juegoAcorazado.Iniciar();
-        
+
         iniciarJuego.Should().Throw<Exception>().WithMessage("Debe haber 2 jugadores para iniciar el juego");
     }
-    
+
     [Fact]
     public void Si_SeIniciaElJuegoConUnJugador_Debe_LanzarExcepcionPorCantidadDeJugadores()
     {
         var juegoAcorazado = new JuegoAcorazado();
-        
+
         var iniciarJuego = () => juegoAcorazado.Iniciar();
         juegoAcorazado.AgregarJugador();
-        
+
         iniciarJuego.Should().Throw<Exception>().WithMessage("Debe haber 2 jugadores para iniciar el juego");
     }
-    
+
     [Fact]
     public void Si_SeIniciaElJuegoConTresJugador_Debe_LanzarExcepcionPorCantidadDeJugadores()
     {
         var juegoAcorazado = new JuegoAcorazado();
-        
+
         var iniciarJuego = () => juegoAcorazado.Iniciar();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
-        
+
         iniciarJuego.Should().Throw<Exception>().WithMessage("Debe haber 2 jugadores para iniciar el juego");
     }
-    
+
     [Fact]
-     public void Si_SeAgregaJugador_Debe_ContenerJugador1()
-     {
-         var juegoAcorazado = new JuegoAcorazado();
+    public void Si_SeAgregaJugador_Debe_ContenerJugador1()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
 
-         juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
 
-         juegoAcorazado.ReporteBatalla().Should().Contain("Jugador 1");
-     }
-     
+        juegoAcorazado.ReporteBatalla().Should().Contain("Jugador 1");
+    }
+
     [Fact]
-     public void Si_SeAgrega2Jugadores_Debe_ContenerJugador1YJugador2()
-     {
-         var juegoAcorazado = new JuegoAcorazado();
+    public void Si_SeAgrega2Jugadores_Debe_ContenerJugador1YJugador2()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
 
-         juegoAcorazado.AgregarJugador();
-         juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
 
-         juegoAcorazado.ReporteBatalla().Should().Contain("Jugador 1").And.Contain("Jugador 2");
-     }
+        juegoAcorazado.ReporteBatalla().Should().Contain("Jugador 1").And.Contain("Jugador 2");
+    }
 
     [Theory]
     [MemberData(nameof(DatosPortaAviones))]
@@ -128,6 +130,7 @@ public class JuegoAcorazadosTest
         {
             tablero[posicionEsperada[0], posicionEsperada[1]] = 'c';
         }
+
         var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
@@ -165,6 +168,7 @@ public class JuegoAcorazadosTest
         {
             tablero[posicionEsperada[0], posicionEsperada[1]] = 'd';
         }
+
         var juegoAcorazado = new JuegoAcorazado();
         var tableroEsperado = Mocks.TableroEsperado(tablero);
         juegoAcorazado.AgregarJugador();
@@ -201,7 +205,7 @@ public class JuegoAcorazadosTest
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(
-            new PosicionarBarco(( 7, 6), new Cañonero())
+            new PosicionarBarco((7, 6), new Cañonero())
         );
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
@@ -215,7 +219,7 @@ public class JuegoAcorazadosTest
         var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
-        
+
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco((8, 1), new Cañonero())
         );
@@ -228,13 +232,13 @@ public class JuegoAcorazadosTest
     {
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
-        
+
         var cañonero = () => juegoAcorazado.AgregarBarco(
             new PosicionarBarco((11, 11), new Cañonero())
         );
         cañonero.Should().Throw<Exception>().WithMessage("La posicion del Cañonero debe estar dentro del tablero");
     }
-    
+
     [Fact]
     public void Si_NoHaPosicionadoNingunBarcoElJugador1_NoDebe_PermitirIniciarElJuego()
     {
@@ -243,11 +247,14 @@ public class JuegoAcorazadosTest
         juegoAcorazado.AgregarJugador();
         var iniciar = () => juegoAcorazado.Iniciar();
 
-        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+        iniciar.Should().Throw<Exception>()
+            .WithMessage(
+                "El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
     }
-    
+
     [Fact]
-    public void Si_ElJugador1HaPosicionadoTodosLosPortaAvionesPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
+    public void
+        Si_ElJugador1HaPosicionadoTodosLosPortaAvionesPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
     {
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
@@ -255,14 +262,17 @@ public class JuegoAcorazadosTest
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco((0, 0), new PortaAviones(Orientacion.Vertical))
         );
-        
+
         var iniciar = () => juegoAcorazado.Iniciar();
 
-        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+        iniciar.Should().Throw<Exception>()
+            .WithMessage(
+                "El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
     }
-    
+
     [Fact]
-    public void Si_ElJugador1HaPosicionadoTodosLosDesctructoresPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
+    public void
+        Si_ElJugador1HaPosicionadoTodosLosDesctructoresPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
     {
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
@@ -273,14 +283,17 @@ public class JuegoAcorazadosTest
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco((9, 0), new Destructor(Orientacion.Vertical))
         );
-        
+
         var iniciar = () => juegoAcorazado.Iniciar();
 
-        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+        iniciar.Should().Throw<Exception>()
+            .WithMessage(
+                "El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
     }
-    
+
     [Fact]
-    public void Si_ElJugador1HaPosicionadoTodosLosDesctructoresTodosLosPortavionesPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
+    public void
+        Si_ElJugador1HaPosicionadoTodosLosDesctructoresTodosLosPortavionesPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
     {
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
@@ -294,14 +307,17 @@ public class JuegoAcorazadosTest
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco((9, 6), new Destructor(Orientacion.Vertical))
         );
-        
+
         var iniciar = () => juegoAcorazado.Iniciar();
 
-        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+        iniciar.Should().Throw<Exception>()
+            .WithMessage(
+                "El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
     }
-    
+
     [Fact]
-    public void Si_ElJugador1HaPosicionadoTodosLosDesctructoresTodosLosCañonerosPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
+    public void
+        Si_ElJugador1HaPosicionadoTodosLosDesctructoresTodosLosCañonerosPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
     {
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
@@ -324,14 +340,17 @@ public class JuegoAcorazadosTest
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco((0, 2), new Destructor(Orientacion.Vertical))
         );
-        
+
         var iniciar = () => juegoAcorazado.Iniciar();
 
-        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+        iniciar.Should().Throw<Exception>()
+            .WithMessage(
+                "El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
     }
-    
+
     [Fact]
-    public void Si_ElJugador2HaPosicionadoTodosLosDesctructoresTodosLosCañonerosPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
+    public void
+        Si_ElJugador2HaPosicionadoTodosLosDesctructoresTodosLosCañonerosPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
     {
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
@@ -356,14 +375,16 @@ public class JuegoAcorazadosTest
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco((9, 0), new PortaAviones(Orientacion.Vertical))
         );
-        
+
         juegoAcorazado.AgregarJugador();
-        
+
         var iniciar = () => juegoAcorazado.Iniciar();
 
-        iniciar.Should().Throw<Exception>().WithMessage("El jugador 2 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+        iniciar.Should().Throw<Exception>()
+            .WithMessage(
+                "El jugador 2 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
     }
-    
+
     [Fact]
     public void Si_Jugador1YJugador2HaPosicionadoTodosLosBarcos_Debe_PermitirIniciarElJuego()
     {
@@ -374,17 +395,19 @@ public class JuegoAcorazadosTest
         iniciar.Should().NotThrow();
     }
 
-    
 
     [Fact]
-    public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion0_0YNoImpactaUnBarco_Debe_ImprimirElTableroDelJugador2Con_o_EnLaPosicion0_0()
+    public void
+        Si_Eljugador1DisparaUnTorpedoEnLaPosicion0_0YNoImpactaUnBarco_Debe_ImprimirElTableroDelJugador2Con_o_EnLaPosicion0_0()
     {
         var tablero = new char[10, 10];
         tablero[0, 0] = 'o';
         var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
-        
-        var disparar = juegoAcorazado.Disparar(0, 0);
+
+        juegoAcorazado.Iniciar();
+
+        juegoAcorazado.Disparar(0, 0);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
