@@ -96,7 +96,11 @@ public class Battleship
             {
                 columnas[columna + 1] = " X ";
             }
-            else if (columnas[columna + 1] == " d " || columnas[columna + 1] == " c ")
+            else if (columnas[columna + 1] == " d " )
+            {
+                columnas[columna + 1] = " x ";
+            }
+            else if (columnas[columna + 1] == " c ")
             {
                 columnas[columna + 1] = " x ";
             }
@@ -104,7 +108,16 @@ public class Battleship
             {
                 columnas[columna + 1] = " o ";
             }
-        
+            
+            _tableroJugador2[fila + 1] = string.Join("|", columnas);
+
+            if (columnas[6] == " x " && columnas[7] == " x " && columnas[8] == " x ")
+            {
+                columnas[6] = " X ";
+                columnas[7] = " X ";
+                columnas[8] = " X ";
+            }
+            
             _tableroJugador2[fila + 1] = string.Join("|", columnas);
         }
     }
