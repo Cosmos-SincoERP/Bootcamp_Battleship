@@ -135,4 +135,12 @@ public class JuegoAcorazadosTest
         
         juego.ImprimirTablero().Should().BeEquivalentTo(tableroDisparos);
     }
+
+    [Fact]
+    public void Si_DisparoEnPosicionQueNoExiste_Debe_LanzarExcepcion()
+    {
+        Action act = () => _juego.Disparar(11, 11);
+        
+        act.Should().Throw<ArgumentOutOfRangeException>();
+    }
 }
