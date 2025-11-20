@@ -7,6 +7,8 @@ public class Nave
     public string Tipo { get; set; }
     public int FilaFinal { get; set; }
     public int ColumnaFinal { get; set; }
+    
+    public int CantidadDisparosRecibidos { get; private set; }
 
     public Nave(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal, string tipo)
     {
@@ -27,4 +29,11 @@ public class Nave
             _ => 0
         };
     }
+
+    public void AumentarDisparo() => CantidadDisparosRecibidos++;
+    public bool EstoyEnCoordenada(int fila, int columna) => EstaEntreLasFilas(fila) && EstaEntreLasColumnas(columna);
+    
+    private bool EstaEntreLasFilas(int fila) => fila >= FilaInicial && fila <= FilaFinal;
+
+    private bool EstaEntreLasColumnas(int columna) => columna >= ColumnaInicial && columna <= ColumnaFinal;
 }

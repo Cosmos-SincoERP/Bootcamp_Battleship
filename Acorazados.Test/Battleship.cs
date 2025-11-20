@@ -34,6 +34,9 @@ public class Battleship
         "9| | | | | | | | | | |"
     ];
 
+    private List<Nave> _navesJugador1 = new ();
+    private List<Nave> _navesJugador2 = new ();
+
     public void AddPlayer(string name)
     {
     }
@@ -45,6 +48,9 @@ public class Battleship
         UbicarNavesEnTablero(navesJugador1, _tableroJugador1);
 
         UbicarNavesEnTablero(navesJugador2, _tableroJugador2);
+
+        _navesJugador1 = navesJugador1;
+        _navesJugador2 = navesJugador2;
     }
 
     private static void UbicarNavesEnTablero(List<Nave> naves, List<string> tablero) => naves.ForEach(nave => UbicarNave(nave, tablero));
@@ -60,19 +66,21 @@ public class Battleship
     private static void UbicarNaveHorizontal(Nave nave, List<string> tablero)
     {
         var columnas = tablero[nave.FilaInicial + 1].Split("|");
+        var estaHundido = nave.CantidadDisparosRecibidos == nave.ObtenerTamano();
         for (var i = 1; i <= nave.ObtenerTamano(); i++)
         {
-            columnas[nave.ColumnaInicial + i] = $" {nave.Tipo} ";
+            columnas[nave.ColumnaInicial + i] = estaHundido ?  " X " : $" {nave.Tipo} ";
         }
         tablero[nave.FilaInicial + 1] = string.Join("|", columnas);
     }
 
     private static void UbicarNaveVertical(Nave nave, List<string> tablero)
     {
+        var estaHundido = nave.CantidadDisparosRecibidos == nave.ObtenerTamano();
         for (var i = 1; i <= nave.ObtenerTamano(); i++)
         {
             var columna = tablero[nave.FilaInicial + i].Split("|");
-            columna[nave.ColumnaInicial + 1] = $" {nave.Tipo} ";
+            columna[nave.ColumnaInicial + 1] = estaHundido ?  " X " : $" {nave.Tipo} ";
 
             tablero[nave.FilaInicial + i] = string.Join("|", columna);
         }
@@ -91,41 +99,26 @@ public class Battleship
         else
         {
             var columnas = _tableroJugador2[fila + 1].Split("|");
-        
-            if (columnas[columna + 1] == " g ")
-            {
-                columnas[columna + 1] = " X ";
-            }
-            else if (columnas[columna + 1] == " d " )
-            {
-                columnas[columna + 1] = " x ";
-            }
-            else if (columnas[columna + 1] == " c ")
-            {
-                columnas[columna + 1] = " x ";
-            }
-            else
+            
+            var nave = _navesJugador2.FirstOrDefault(nave => nave.EstoyEnCoordenada(fila, columna));
+            
+            if (nave == null)
             {
                 columnas[columna + 1] = " o ";
+                _tableroJugador2[fila + 1] = string.Join("|", columnas);
+                return;
             }
-            
-            _tableroJugador2[fila + 1] = string.Join("|", columnas);
 
-            if (columnas[6] == " x " && columnas[7] == " x " && columnas[8] == " x ")
-            {
-                columnas[6] = " X ";
-                columnas[7] = " X ";
-                columnas[8] = " X ";
-            }
+            nave.AumentarDisparo();
             
-            if (columnas[7] == " x " && columnas[8] == " x " && columnas[9] == " x ")
-            {
-                columnas[7] = " X ";
-                columnas[8] = " X ";
-                columnas[9] = " X ";
-            }
-            
+            columnas[columna + 1] = " x ";
             _tableroJugador2[fila + 1] = string.Join("|", columnas);
+            
+            if (nave.CantidadDisparosRecibidos == nave.ObtenerTamano())
+            {
+                UbicarNave(nave, _tableroJugador2);
+            }
+            
         }
     }
 
