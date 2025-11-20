@@ -173,4 +173,16 @@ public class JuegoAcorazadosTest
 
         cañonero.Should().Throw<Exception>().WithMessage("La posicion del Cañonero debe estar dentro del tablero");
     }
+    
+    [Fact]
+    public void Si_SeAgregaJugador_Debe_ContenerJugador1()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
+
+        juegoAcorazado.AgregarJugador();
+
+        juegoAcorazado.ReporteBatalla().Should().Contain("Jugador 1");
+    }
+    
+    
 }

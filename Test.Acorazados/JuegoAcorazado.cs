@@ -2,6 +2,7 @@ namespace Test.BattleShip;
 
 public class JuegoAcorazado
 {
+    private List<string> _jugadores = new();
     private readonly char[,] _tablero;
 
     public JuegoAcorazado(int tamañoTablero = 10)
@@ -71,6 +72,13 @@ public class JuegoAcorazado
 
         return visualizarTablero;
     }
+    
+    
+    public void AgregarJugador()
+    {
+        throw new NotImplementedException();
+    }
+    
     private void ValidarPosicionDeLaNave(int posicion, int dimension, string nave)
     {
         if (posicion > _tablero.GetLength(dimension) - 1)
@@ -80,5 +88,10 @@ public class JuegoAcorazado
     private void AsignarElValorDeLaNaveALaPosicion(int posicionX, int posicionY, char valorNave)
     {
         _tablero[posicionX, posicionY] = valorNave;
+    }
+
+    public List<string> ReporteBatalla()
+    {
+        throw new NotImplementedException();
     }
 }
