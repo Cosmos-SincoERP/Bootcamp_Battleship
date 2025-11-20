@@ -17,7 +17,6 @@ public class Jugador
   
     private void AgregarAcorazado(AcorazadoAcuatizado acorazadoAcuatizado)
     {
-        acorazadoAcuatizado.tipoAcorazado.SegmentosAcorazado.Clear();
         ValidarCantidadMaximaTipoAcorazado(acorazadoAcuatizado.tipoAcorazado);
 
         for (int i = 0; i < acorazadoAcuatizado.tipoAcorazado.CantidaCasillasOcupadasPorAcorazado; i++)

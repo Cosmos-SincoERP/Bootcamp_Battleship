@@ -36,6 +36,9 @@ public class JuegoAcorazadosTest
             new(_cañonero, 9, 9, Direccion.Derecha)
         };
         _juego.AgregarJugador("Jugador 1", acorazadosJugador1);
+        _cañonero = new Cañonero();
+        _destructor = new Destructor();
+        _portaAviones = new PortaAviones();
         var acorazadosJugador2 = new List<AcorazadoAcuatizado>()
         {
             new(_portaAviones, 1, 1, Direccion.Derecha),
@@ -80,6 +83,20 @@ public class JuegoAcorazadosTest
         _juego.Disparar(1, 2);
         _juego.Disparar(1, 3);
         _juego.Disparar(1, 4);
+        
+        _juego.ObtenerTableroContrincante().Should().BeEquivalentTo(tableroDisparos);
+    }
+
+    [Fact]
+    public void Si_Disparo_EnLasPosiciones34_44_54_Debe_TableroContrincanteNoTenerX()
+    {
+        tableroDisparos[3, 4] = "x";
+        tableroDisparos[4, 4] = "x";
+        tableroDisparos[5, 4] = "x";
+        
+        _juego.Disparar(3, 4);
+        _juego.Disparar(4, 4);
+        _juego.Disparar(5, 4);
         
         _juego.ObtenerTableroContrincante().Should().BeEquivalentTo(tableroDisparos);
     }
