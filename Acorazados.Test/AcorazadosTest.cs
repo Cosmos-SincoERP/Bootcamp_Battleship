@@ -679,4 +679,41 @@ public class AcorazadosTest
 
         tablero.Should().Be(tableroEsperado);
     }
+    
+    [Fact]
+    public void Si_InicioElJuegoConCuatroCanonerosDosDestructoresYUnPortaavionesParaJugador2EnYJugador1DisparaA_7_7_Debe_ImprimirCirculoYCanoneroSegunCoordenadaDadas()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+        
+        var canonero1 = new Nave(1, 1,1,1, "g");
+        var canonero2 = new Nave(2, 2,2,2, "g");
+        var canonero3 = new Nave(3, 3,3,3, "g");
+        var canonero4 = new Nave(4, 4,4,4, "g");
+        var destructor1 = new Nave(5, 5,5,7, "d");
+        var destructor2 = new Nave(5, 0,8,0, "d");
+        var portaaviones = new Nave(6, 6,9,6, "c");
+
+        acorazados.Iniciar([],[canonero1, canonero2, canonero3, canonero4, destructor1, destructor2, portaaviones]);
+        acorazados.Disparar(7, 7);
+        acorazados.TerminarTurno();
+
+        var tablero = acorazados.Imprimir();
+
+        var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+                              "0| | | | | | | | | | |" +
+                              "1| | g | | | | | | | | |" +
+                              "2| | | g | | | | | | | |" +
+                              "3| | | | g | | | | | | |" +
+                              "4| | | | | g | | | | | |" +
+                              "5| d | | | | | d | d | d | | |" +
+                              "6| d | | | | | | c | | | |" +
+                              "7| d | | | | | | c | o | | |" +
+                              "8| d | | | | | | c | | | |" +
+                              "9| | | | | | | | c | | |"; 
+
+        tablero.Should().Be(tableroEsperado);
+    }
 }
