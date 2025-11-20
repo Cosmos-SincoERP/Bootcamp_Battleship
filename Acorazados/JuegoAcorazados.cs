@@ -5,23 +5,14 @@ using Acorazados;
 
 public class JuegoAcorazados
 {
-    Jugador jugador1;
-    Jugador jugador2;
     private bool _juegoIniciado;
-
     private List<Jugador> jugadores = new();
 
     public void AgregarJugador(string jugador, List<Acorazado> acorazados)
     {
-        if (jugador1 is null)
+        if (jugadores.Count < 2)
         {
-            jugador1 = new Jugador(jugador, acorazados);
-            jugadores.Add(jugador1);
-        }
-        else if (jugador2 is null)
-        {
-            jugador2 = new Jugador(jugador, acorazados);
-            jugadores.Add(jugador2);
+            jugadores.Add(new Jugador(jugador, acorazados));
         }
         else
         {
@@ -38,14 +29,14 @@ public class JuegoAcorazados
     {
         if (_juegoIniciado)
             throw new Exception("Ya hay un juego en curso");
-        if (jugador1 is null)
+        if (jugadores.Count.Equals(0))
             throw new ArgumentNullException("Debe tener jugadores para iniciar el juego");
         _juegoIniciado = true;
     }
 
     public void Disparar(int fila, int columna)
     {
-        jugador2.RecibirDisparo(fila, columna);
+        jugadores.Last().RecibirDisparo(fila, columna);
     }
 
     public string[,] ObtenerTableroContrincante()
@@ -56,9 +47,9 @@ public class JuegoAcorazados
             "o", "x", "X"
         };
 
-        for (int fila = 0; fila < jugador2.ObtenerLongitudTablero(0); fila++)
+        for (int fila = 0; fila < jugadores.Last().ObtenerLongitudTablero(0); fila++)
         {
-            for (int columna = 0; columna < jugador2.ObtenerLongitudTablero(1); columna++)
+            for (int columna = 0; columna < jugadores.Last().ObtenerLongitudTablero(1); columna++)
             {
                 if (!letrasDisparos.Contains(obtenerTableroContrincante[fila, columna]) && obtenerTableroContrincante[fila, columna] != null)
                 {
