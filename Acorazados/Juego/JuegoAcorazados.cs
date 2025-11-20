@@ -61,11 +61,16 @@ public class JuegoAcorazados
         var informes = new List<InformeJuego>();
         if (jugadores.Any(jugador => jugador.NoTieneAcorazadosAflote()))
         {
-            var informe = jugadores[1].ObtenerReporteJuego() with
+            var informeJugador1 = jugadores[1].ObtenerReporteJuego() with
             {
                 NombreJugador = jugadores[0].Nombre
             };
-            informes.Add(informe);
+            var informeJugador2 = jugadores[0].ObtenerReporteJuego() with
+            {
+                NombreJugador = jugadores[1].Nombre
+            };
+            informes.Add(informeJugador1);
+            informes.Add(informeJugador2);
         }
         
         jugadores.Reverse();
