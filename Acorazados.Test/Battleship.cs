@@ -133,16 +133,11 @@ public class Battleship
 
     public void Disparar(int fila, int columna)
     {
-        
-    }
-
-    public void TerminarTurno()
-    {
         _tablero =
         [
             "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
             "0| | | | | | | | | | |",
-            "1| | o | | | | | | | | |",
+            "1| | | | | | | | | | |",
             "2| | | | | | | | | | |",
             "3| | | | | | | | | | |",
             "4| | | | | | | | | | |",
@@ -152,5 +147,13 @@ public class Battleship
             "8| | | | | | | | | | |",
             "9| | | | | | | | | | |"
         ];
+        var columnas = _tablero[fila + 1].Split("|");
+        columnas[columna + 1] = " o ";
+        _tablero[columna + 1] = string.Join("|", columnas);
+    }
+
+    public void TerminarTurno()
+    {
+        
     }
 }

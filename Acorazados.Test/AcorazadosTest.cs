@@ -608,7 +608,39 @@ public class AcorazadosTest
                               "2| | | | | | | | | | |" +
                               "3| | | | | | | | | | |" +
                               "4| | | | | | | | | | |" +
-                              "5| | | | | o | | | | | |" +
+                              "5| | | | | | o | | | | |" +
+                              "6| | | | | | | | | | |" +
+                              "7| | | | | | | | | | |" +
+                              "8| | | | | | | | | | |" +
+                              "9| | | | | | | | | | |"; 
+
+        tablero.Should().Be(tableroEsperado);
+    }
+    
+    [Fact]
+    public void Si_InicioElJuegoConUnCanoneroParaJugador1_Y_UnoParaJugador2_YJugador1DisparaA_2_2_Debe_ImprimirCirculoYCanoneroSegunCoordenadaDadas()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+        
+        var canonero = new Nave(9, 9,9,9, "g");
+        var canonero2 = new Nave(4, 4,4,4, "g");
+
+        acorazados.Iniciar([canonero],[canonero2]);
+        acorazados.Disparar(2, 2);
+        acorazados.TerminarTurno();
+
+        var tablero = acorazados.Imprimir();
+
+        var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+                              "0| | | | | | | | | | |" +
+                              "1| | | | | | | | | | |" +
+                              "2| | | o | | | | | | | |" +
+                              "3| | | | | | | | | | |" +
+                              "4| | | | | g | | | | | |" +
+                              "5| | | | | | | | | | |" +
                               "6| | | | | | | | | | |" +
                               "7| | | | | | | | | | |" +
                               "8| | | | | | | | | | |" +
