@@ -102,8 +102,15 @@ public class Battleship
                 return;
             }
             
+            nave.AumentarDisparo();
+            
             columnas[columna + 1] = " x ";
             _tableroJugador1[fila + 1] = string.Join("|", columnas);
+            
+            if (nave.CantidadDisparosRecibidos == nave.ObtenerTamano())
+            {
+                UbicarNave(nave, _tableroJugador1);
+            }
         }
         else
         {
