@@ -680,7 +680,7 @@ public class AcorazadosTests
 
         disparar.Should().Be("0");
     }
-    
+
     [Fact]
     public void Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx()
     {
@@ -707,7 +707,7 @@ public class AcorazadosTests
 
         disparar.Should().Be("x");
     }
-    
+
     [Fact]
     public void Si_ElJugadorUnoDisparaA2CoordenadasDe1NaveDestructor_Debe_Retornarx()
     {
@@ -759,7 +759,7 @@ public class AcorazadosTests
         acorazado.Iniciar();
 
         acorazado.Disparar(3, 0);
-         acorazado.Disparar(3, 1);
+        acorazado.Disparar(3, 1);
         string disparar = acorazado.Disparar(3, 2);
 
         disparar.Should().Be("Nave hundida");
@@ -789,9 +789,8 @@ public class AcorazadosTests
 
         acorazado.Disparar(0, 0);
         string finalizarTurno = acorazado.CambiarTurno();
-        
+
         finalizarTurno.Should().Be("TURNO PLAYER 2");
-        
     }
 
     [Fact]
@@ -820,10 +819,10 @@ public class AcorazadosTests
         acorazado.CambiarTurno();
         acorazado.Disparar(9, 9);
         string finalizarTurno = acorazado.CambiarTurno();
-        
+
         finalizarTurno.Should().Be("TURNO PLAYER 1");
     }
-    
+
     [Fact]
     public void Si_ElJugadorUnoNoHaDisparadoYCambiaTurno_Debe_LanzarExcepcion()
     {
@@ -849,9 +848,8 @@ public class AcorazadosTests
         var resultado = acorazado.CambiarTurno();
 
         resultado.Should().Be("Debe disparar primero");
-
     }
-    
+
     [Fact]
     public void Si_TerminoTurnoJugadorUnoYNoAcertoImprimir_Debe_MostrarTableroJugadorDosConUnTiroErrado()
     {
@@ -901,11 +899,10 @@ public class AcorazadosTests
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
                              "9 |   |   |   |   |   |   | g | g | g | g |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
-
     }
-    
+
     [Fact]
-       public void Si_TerminoTurnoJugadorUnoYAcertoDisparoImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado()
+    public void Si_TerminoTurnoJugadorUnoYAcertoDisparoImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -953,11 +950,11 @@ public class AcorazadosTests
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
                              "9 |   |   |   |   |   |   | g | g | g | g |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
-
     }
-       
+
     [Fact]
-       public void Si_TerminoTurnoJugadorUnoYAcertoDisparoAlDestructorImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado()
+    public void
+        Si_TerminoTurnoJugadorUnoYAcertoDisparoAlDestructorImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -1005,10 +1002,11 @@ public class AcorazadosTests
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
                              "9 |   |   |   |   |   |   | g | g | g | g |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
-
     }
+
     [Fact]
-       public void Si_TerminoTurnoJugadorUnoYAcertoDisparoAlCanioneroImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado()
+    public void
+        Si_TerminoTurnoJugadorUnoYAcertoDisparoAlCanioneroImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado()
     {
         var acorazado = new Acorazado();
         acorazado.AgregarJugador("Player 1");
@@ -1056,6 +1054,61 @@ public class AcorazadosTests
                              "  +---+---+---+---+---+---+---+---+---+---+\n" +
                              "9 |   |   |   |   |   |   | X | g | g | g |\n" +
                              "  +---+---+---+---+---+---+---+---+---+---+");
+    }
 
+
+    [Fact]
+    public void
+        Si_TerminoTurnoJugadorUnoYAcerto3DisparoAlDestructorImprimir_Debe_MostrarTableroJugadorCon3DestructorHundidoXXX()
+    {
+        var acorazado = new Acorazado();
+        acorazado.AgregarJugador("Player 1");
+        acorazado.PosicionarNave(0, 0, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 1, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 2, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(0, 3, TiposNave.Canionero, Orientacion.Derecha);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.AgregarJugador("Player 2");
+        acorazado.PosicionarNave(9, 9, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 8, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 7, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(9, 6, TiposNave.Canionero, Orientacion.Izquierda);
+        acorazado.PosicionarNave(1, 0, TiposNave.Portaviones, Orientacion.Derecha);
+        acorazado.PosicionarNave(2, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.PosicionarNave(3, 0, TiposNave.Destructor, Orientacion.Derecha);
+        acorazado.Iniciar(); //turno player 1
+
+        acorazado.Disparar(2, 0);
+        acorazado.Disparar(2, 1);
+        acorazado.Disparar(2, 2);
+
+        acorazado.CambiarTurno(); //turno player 2
+
+        var imprimir = acorazado.Imprimir();
+
+        imprimir.Should().Be("    0   1   2   3   4   5   6   7   8   9\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "0 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "1 | c | c | c | c |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "2 | X | X | X |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "3 | d | d | d |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "4 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "5 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "6 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "7 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "8 |   |   |   |   |   |   |   |   |   |   |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+\n" +
+                             "9 |   |   |   |   |   |   | g | g | g | g |\n" +
+                             "  +---+---+---+---+---+---+---+---+---+---+");
     }
 }

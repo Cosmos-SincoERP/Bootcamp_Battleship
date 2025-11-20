@@ -2,23 +2,25 @@
 
 internal class Despliegue(Nave Nave, int PosicionX, int PosicionY, Orientacion Orientacion)
 {
-    private readonly Coordenada _coordenada = new(PosicionX,PosicionY);
+    private readonly Coordenada _coordenada = new(PosicionX, PosicionY);
+    private int Impacto = 0;
     public Nave Nave { get; } = Nave;
     public Orientacion Orientacion { get; } = Orientacion;
+
+    public bool EstaHundida => Nave.Tamanio == Impacto;
 
     public Coordenada Coordenada
     {
         get { return _coordenada; }
     }
 
-    public bool EstaHundida(List<Coordenada> coordenadasDisparadas)
+    public void RegistrarImpacto()
     {
-        var coordenadasNave = ObtenerCoordenadasPorOrientacion(Coordenada.PosicionX, Coordenada.PosicionY, Nave, Orientacion);
-
-        return coordenadasNave.TrueForAll(x => coordenadasDisparadas.Contains(x));
+        Impacto++;
     }
-    
-    public List<Coordenada> CoordenadasNave() => ObtenerCoordenadasPorOrientacion(Coordenada.PosicionX, Coordenada.PosicionY, Nave, Orientacion);
+
+    public List<Coordenada> CoordenadasNave() =>
+        ObtenerCoordenadasPorOrientacion(Coordenada.PosicionX, Coordenada.PosicionY, Nave, Orientacion);
 
     private List<Coordenada> ObtenerCoordenadasPorOrientacion(int posicionX, int posicionY, Nave nave,
         Orientacion orientacion)

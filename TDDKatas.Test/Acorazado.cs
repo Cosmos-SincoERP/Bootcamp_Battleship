@@ -38,7 +38,6 @@ public class Acorazado
     {
         var tableroJugador = new string[10, 10];
 
-
         for (int indiceNave = 0; indiceNave < _estrategia[_turnoActivo].Count; indiceNave++)
         {
             var despliegue = _estrategia[_turnoActivo][indiceNave];
@@ -58,17 +57,27 @@ public class Acorazado
 
         for (int i = 0; i < disparosOponente.Count; i++)
         {
-            if (tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] == "c" ||
-                tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] == "d")
-                tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] = "x";
-            else if (tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] == "g")
+            var navesDelOponente = _estrategia[_turnoActivo];
+
+            var coordenadasDeTodasLasNavesDelOponente =
+                navesDelOponente.SelectMany(x => x.CoordenadasNave());
+
+            var aciertoDisparo = coordenadasDeTodasLasNavesDelOponente
+                .Any(x => x.PosicionX == disparosOponente[i].PosicionX && x.PosicionY == disparosOponente[i].PosicionY);
+
+            if (aciertoDisparo)
             {
-                tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] = "X";
+                var naveImpactada =
+                    navesDelOponente.First(x =>
+                        x.CoordenadasNave().Contains(new Coordenada(disparosOponente[i].PosicionX,
+                            disparosOponente[i].PosicionY)));
+                if (naveImpactada.EstaHundida)
+                    tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] = "X";
+                else
+                    tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] = "x";
             }
             else
-            {
                 tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] = "0";
-            }
         }
 
         return tableroJugador;
@@ -142,10 +151,10 @@ public class Acorazado
 
         var disparosJugadorActivo = _disparos[_turnoActivo].ToList();
 
-        if (naveImpactada.EstaHundida(disparosJugadorActivo))
-        {
+        naveImpactada.RegistrarImpacto();
+
+        if (naveImpactada.EstaHundida)
             return "Nave hundida";
-        }
 
         return "x";
     }

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️ Si_TerminoTurnoJugadorUnoYAcertoDisparoImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💚Si_TerminoTurnoJugadorUnoYAcertoDisparoAlCanioneroImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado">
       <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Despliegue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Despliegue.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +35,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
@@ -83,47 +85,7 @@
       <workItem from="1763165952569" duration="12691000" />
       <workItem from="1763563174982" duration="12396000" />
       <workItem from="1763575727124" duration="15679000" />
-      <workItem from="1763648957965" duration="16354000" />
-    </task>
-    <task id="LOCAL-00069" summary="💙️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionAbajoImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaAbajo">
-      <option name="closed" value="true" />
-      <created>1763566149336</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1763566149336</updated>
-    </task>
-    <task id="LOCAL-00070" summary="❤️Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion">
-      <option name="closed" value="true" />
-      <created>1763566612042</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1763566612042</updated>
-    </task>
-    <task id="LOCAL-00071" summary="💚Si_InicioLaPartidaSinJuadores_Debe_RetornarExcepcion">
-      <option name="closed" value="true" />
-      <created>1763568326622</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1763568326622</updated>
-    </task>
-    <task id="LOCAL-00072" summary="❤️Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion">
-      <option name="closed" value="true" />
-      <created>1763568592218</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1763568592218</updated>
-    </task>
-    <task id="LOCAL-00073" summary="💚Si_InicioLaPartidaYAgrego2Jugadores_Debe_LanzarExcepcion">
-      <option name="closed" value="true" />
-      <created>1763569051937</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1763569051937</updated>
+      <workItem from="1763648957965" duration="19069000" />
     </task>
     <task id="LOCAL-00074" summary="❤️Si_InicioLaPartidaYAgrego2JugadoresYPosiciono5Cañoneros_Debe_LanzarExcepcion">
       <option name="closed" value="true" />
@@ -477,7 +439,47 @@
       <option name="project" value="LOCAL" />
       <updated>1763669457371</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="💚 Si_TerminoTurnoJugadorUnoYAcertoDisparoImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado">
+      <option name="closed" value="true" />
+      <created>1763670795157</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1763670795157</updated>
+    </task>
+    <task id="LOCAL-00119" summary="❤️ Si_TerminoTurnoJugadorUnoYAcertoDisparoAlDestructorImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado">
+      <option name="closed" value="true" />
+      <created>1763671001174</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1763671001174</updated>
+    </task>
+    <task id="LOCAL-00120" summary="💚 Si_TerminoTurnoJugadorUnoYAcertoDisparoAlDestructorImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado">
+      <option name="closed" value="true" />
+      <created>1763671038704</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1763671038704</updated>
+    </task>
+    <task id="LOCAL-00121" summary="❤️Si_TerminoTurnoJugadorUnoYAcertoDisparoAlCanioneroImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado">
+      <option name="closed" value="true" />
+      <created>1763671141809</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1763671141809</updated>
+    </task>
+    <task id="LOCAL-00122" summary="💚Si_TerminoTurnoJugadorUnoYAcertoDisparoAlCanioneroImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado">
+      <option name="closed" value="true" />
+      <created>1763671222848</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1763671222848</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,11 +499,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletasYJugador1DisparaAUnCanioneroDelJugador2_Debe_RetornarBarcoHundido" />
-    <MESSAGE value=" implementacion de la clase despliegue" />
-    <MESSAGE value=" se cambia nombre porque no es tan diciente" />
-    <MESSAGE value="❤️Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO" />
-    <MESSAGE value=" Si_ElJugadorUnoDisparaAUnaCoordenadaDondeNoHayNave_Debe_RetornarO" />
     <MESSAGE value="❤️Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx" />
     <MESSAGE value="Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx" />
     <MESSAGE value="Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx" />
@@ -522,36 +519,41 @@
     <MESSAGE value="❤️Si_TerminoTurnoJugadorUnoYNoAcertoImprimir_Debe_MostrarTableroJugadorDosConUnTiroErrado" />
     <MESSAGE value="Si_TerminoTurnoJugadorUnoYNoAcertoImprimir_Debe_MostrarTableroJugadorDosConUnTiroErrado" />
     <MESSAGE value="❤️ Si_TerminoTurnoJugadorUnoYAcertoDisparoImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado" />
-    <option name="LAST_COMMIT_MESSAGE" value="❤️ Si_TerminoTurnoJugadorUnoYAcertoDisparoImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado" />
+    <MESSAGE value=" Si_TerminoTurnoJugadorUnoYAcertoDisparoImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado" />
+    <MESSAGE value="❤️ Si_TerminoTurnoJugadorUnoYAcertoDisparoAlDestructorImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado" />
+    <MESSAGE value=" Si_TerminoTurnoJugadorUnoYAcertoDisparoAlDestructorImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado" />
+    <MESSAGE value="❤️Si_TerminoTurnoJugadorUnoYAcertoDisparoAlCanioneroImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado" />
+    <MESSAGE value="Si_TerminoTurnoJugadorUnoYAcertoDisparoAlCanioneroImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Si_TerminoTurnoJugadorUnoYAcertoDisparoAlCanioneroImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs</url>
-          <line>170</line>
-          <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'CambiarTurno'">
+          <line>70</line>
+          <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'PosicionarNaves'">
             <startOffsets>
-              <option value="6180" />
+              <option value="2318" />
             </startOffsets>
             <endOffsets>
-              <option value="6219" />
+              <option value="2546" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="12" />
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs</url>
-          <line>72</line>
+          <line>68</line>
           <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'PosicionarNaves'">
             <startOffsets>
-              <option value="2514" />
+              <option value="2268" />
             </startOffsets>
             <endOffsets>
-              <option value="2562" />
+              <option value="2287" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="18" />
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
