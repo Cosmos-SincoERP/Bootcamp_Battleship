@@ -37,17 +37,22 @@ public class Jugador
             throw new ArgumentException("Se supero el maximo de acorazados de este tipo");
     }
 
-    private void ValidacionesTablero(int x, int y)
+    private void ValidacionesTablero(int fila, int columna)
     {
-        if (ObtenerLongitudTablero(0) - 1 < x || ObtenerLongitudTablero(1) - 1 < y || x < 0 || y < 0)
+        if (EstaAfueraDelTablero(fila, columna))
         {
             throw new ArgumentOutOfRangeException("No es posible ubicar el acorazado en esa direccion");
         }
 
-        if (!string.IsNullOrEmpty(ObtenerCasilla(x, y)))
+        if (!string.IsNullOrEmpty(ObtenerCasilla(fila, columna)))
         {
             throw new ArgumentException("Ya existe un acorazado en esa posicion");
         }
+    }
+
+    private bool EstaAfueraDelTablero(int x, int y)
+    {
+        return ObtenerLongitudTablero(0) - 1 < x || ObtenerLongitudTablero(1) - 1 < y || x < 0 || y < 0;
     }
 
     private string ObtenerCasilla(int x, int y)
@@ -67,6 +72,11 @@ public class Jugador
 
     public void RecibirDisparo(int fila, int columna)
     {
+        if (EstaAfueraDelTablero(fila, columna))
+        {
+            throw new ArgumentOutOfRangeException("No es posible disparar en esa direccion");
+        }
+        
         var valorCasilla = ObtenerCasilla(fila, columna);
         switch (valorCasilla)
         {

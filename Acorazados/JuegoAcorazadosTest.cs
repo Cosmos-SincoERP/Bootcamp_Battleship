@@ -136,11 +136,13 @@ public class JuegoAcorazadosTest
         juego.ImprimirTablero().Should().BeEquivalentTo(tableroDisparos);
     }
 
-    [Fact]
-    public void Si_DisparoEnPosicionQueNoExiste_Debe_LanzarExcepcion()
+    [Theory]
+    [InlineData(-1, -1)]
+    [InlineData(11, 11)]
+    public void Si_DisparoEnPosicionQueNoExiste_Debe_LanzarExcepcion(int fila, int columna)
     {
-        Action act = () => _juego.Disparar(11, 11);
+        Action act = () => _juego.Disparar(fila, columna);
         
-        act.Should().Throw<ArgumentOutOfRangeException>();
+        act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*No es posible disparar en esa direccion*");
     }
 }
