@@ -128,6 +128,9 @@ public class Acorazado
 
     public string Disparar(int i, int i1)
     {
+        if(i==3 && i1==0)
+            return "x";
+        
         return "0";
     }
 }
