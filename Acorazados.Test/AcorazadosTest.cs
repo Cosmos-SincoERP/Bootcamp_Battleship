@@ -1117,4 +1117,22 @@ public class AcorazadosTest
 
         tablero.Should().Be(tableroEsperado);
     }
+    
+    [Fact]
+    public void Si_InicioElJuegoConUnDestructorEnCoordenada_2_3_a_2_5_ParaJugador1_YJugador2_Debe_DispararHastaHundirDestructorDeJugador1_ImprimirMensajeDeNaveHundida()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Paula");
+        acorazados.AddPlayer("Ruben");
+        
+        var destructor1 = new Nave(2, 3,2,5, "d");
+
+        acorazados.Iniciar([destructor1],[]);
+        
+        var mensajeEsperado = acorazados.Disparar(0, 0);
+
+        
+        mensajeEsperado.Should().Be("Lo mato");
+    }
 }

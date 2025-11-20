@@ -88,53 +88,36 @@ public class Battleship
 
     private static bool EsVertical(Nave nave) => nave.FilaInicial != nave.FilaFinal;
 
-    public void Disparar(int fila, int columna)
+    public string? Disparar(int fila, int columna)
     {
-        if (!_turnoJugador1)
-        {
-            var columnas = _tableroJugador1[fila + 1].Split("|");
-            var nave = _navesJugador1.FirstOrDefault(nave => nave.EstoyEnCoordenada(fila, columna));
-            if (nave == null)
-            {
-               
-                columnas[columna + 1] = " o ";
-                _tableroJugador1[fila + 1] = string.Join("|", columnas);
-                return;
-            }
-            
-            nave.AumentarDisparo();
-            
-            columnas[columna + 1] = " x ";
-            _tableroJugador1[fila + 1] = string.Join("|", columnas);
-            
-            if (nave.CantidadDisparosRecibidos == nave.ObtenerTamano())
-            {
-                UbicarNave(nave, _tableroJugador1);
-            }
-        }
-        else
-        {
-            var columnas = _tableroJugador2[fila + 1].Split("|");
-            
-            var nave = _navesJugador2.FirstOrDefault(nave => nave.EstoyEnCoordenada(fila, columna));
-            
-            if (nave == null)
-            {
-                columnas[columna + 1] = " o ";
-                _tableroJugador2[fila + 1] = string.Join("|", columnas);
-                return;
-            }
+        if (_turnoJugador1) 
+            UbicarDisparosEnTablero(fila, columna, _tableroJugador2, _navesJugador2);
+        else 
+            UbicarDisparosEnTablero(fila, columna, _tableroJugador1, _navesJugador1);
 
-            nave.AumentarDisparo();
+        return "";
+    }
+
+    private void UbicarDisparosEnTablero(int fila, int columna, List<string> tablero, List<Nave> navesJugador)
+    {
+        var columnas = tablero[fila + 1].Split("|");
+        var nave = navesJugador.FirstOrDefault(nave => nave.EstoyEnCoordenada(fila, columna));
+        if (nave == null)
+        {
+               
+            columnas[columna + 1] = " o ";
+            tablero[fila + 1] = string.Join("|", columnas);
+            return;
+        }
             
-            columnas[columna + 1] = " x ";
-            _tableroJugador2[fila + 1] = string.Join("|", columnas);
+        nave.AumentarDisparo();
             
-            if (nave.CantidadDisparosRecibidos == nave.ObtenerTamano())
-            {
-                UbicarNave(nave, _tableroJugador2);
-            }
+        columnas[columna + 1] = " x ";
+        tablero[fila + 1] = string.Join("|", columnas);
             
+        if (nave.CantidadDisparosRecibidos == nave.ObtenerTamano())
+        {
+            UbicarNave(nave, tablero);
         }
     }
 
