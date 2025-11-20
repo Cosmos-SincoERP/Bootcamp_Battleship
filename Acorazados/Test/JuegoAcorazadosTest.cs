@@ -212,6 +212,38 @@ public class JuegoAcorazadosTest
         var informe = juego.FinalizarTurno().First();
         informe.Should().BeEquivalentTo(informeEsperado);
     }
-    
-    
+
+    [Fact]
+    public void Si_FinalizoTurnoYNoHayNiUnBarcoAflote_Debe_FinalizarJuegoRetornarElInformeDelJugador2()
+    {
+        var informeEsperado = new InformeJuego(
+            "Jugador 2",
+            1,
+            1,
+            0,
+            new List<string>());
+        var tableroEsperadoJugador2 = tableroDisparos;
+        tableroEsperadoJugador2[6, 1] = Constantes.LetraCoñonero;
+        var juego = new JuegoAcorazados();
+        var acorazadosJugador1 = new List<Acorazado>()
+        {
+            new PortaAviones(1, 1, Direccion.Derecha)
+        };
+        juego.AgregarJugador("Jugador 1", acorazadosJugador1);
+        var acorazadosJugador2 = new List<Acorazado>()
+        {
+            new Cañonero(6, 1, Direccion.Derecha)
+        };
+        juego.AgregarJugador("Jugador 2", acorazadosJugador2);
+        juego.Iniciar();
+
+        juego.Disparar(6, 2);
+        juego.FinalizarTurno();
+        juego.Disparar(1, 2);
+        juego.FinalizarTurno();
+        juego.Disparar(6, 1);
+
+        var informe = juego.FinalizarTurno().Last();
+        informe.Should().BeEquivalentTo(informeEsperado);
+    }
 }
