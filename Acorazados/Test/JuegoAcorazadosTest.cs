@@ -209,7 +209,9 @@ public class JuegoAcorazadosTest
         juego.FinalizarTurno();
         juego.Disparar(6, 1);
 
-        var informe = juego.FinalizarTurno();
+        var informe = juego.FinalizarTurno().First();
         informe.Should().BeEquivalentTo(informeEsperado);
     }
+    
+    
 }

@@ -56,18 +56,19 @@ public class JuegoAcorazados
         return obtenerTableroContrincante;
     }
 
-    public InformeJuego FinalizarTurno()
+    public List<InformeJuego> FinalizarTurno()
     {
+        var informes = new List<InformeJuego>();
         if (jugadores.Any(jugador => jugador.NoTieneAcorazadosAflote()))
         {
             var informe = jugadores[1].ObtenerReporteJuego() with
             {
                 NombreJugador = jugadores[0].Nombre
             };
-            return informe;
+            informes.Add(informe);
         }
         
         jugadores.Reverse();
-        return null;
+        return informes;
     }
 }
