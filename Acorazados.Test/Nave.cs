@@ -16,4 +16,15 @@ public class Nave
         ColumnaFinal = columnaFinal;
         Tipo = tipo;
     }
+
+    public int ObtenerTamano()
+    {
+        return Tipo switch
+        {
+            "g" => 1,
+            "d" => 3,
+            "c" => 4,
+            _ => 0
+        };
+    }
 }
