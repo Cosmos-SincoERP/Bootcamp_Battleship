@@ -4,8 +4,7 @@ public class Jugador
 {
     public string Nombre { get; private set; }
     private string[,] Tablero;
-
-    private List<Acorazado> Acorazados = new ();
+    private List<Acorazado> Acorazados = new();
 
     public Jugador(string player, List<Acorazado> acorazados)
     {
@@ -52,9 +51,9 @@ public class Jugador
 
     private bool EstaAfueraDelTablero(int fila, int columna)
     {
-        return ObtenerLongitudTablero(0) - 1 < fila 
-               || ObtenerLongitudTablero(1) - 1 < columna 
-               || fila < 0 
+        return ObtenerLongitudTablero(0) - 1 < fila
+               || ObtenerLongitudTablero(1) - 1 < columna
+               || fila < 0
                || columna < 0;
     }
 
@@ -79,7 +78,7 @@ public class Jugador
         {
             throw new ArgumentOutOfRangeException("No es posible disparar en esa direccion");
         }
-        
+
         var valorCasilla = ObtenerCasilla(fila, columna);
         switch (valorCasilla)
         {
@@ -93,7 +92,7 @@ public class Jugador
                 Tablero[fila, columna] = Constantes.LetraDisparoFallido;
                 break;
         }
-        
+
         return "Disparo fallido";
     }
 
@@ -108,6 +107,7 @@ public class Jugador
                 return RegistrarDisparoAcorazadoEnTablero(fila, columna, acorazado);
             }
         }
+
         return "Segmento no encontrado";
     }
 
@@ -119,13 +119,39 @@ public class Jugador
             {
                 Tablero[segmento.fila, segmento.columna] = Constantes.LetraAcorazadoHundido;
             }
+
             return "Se ha hundido un acorazado";
         }
 
         Tablero[fila, columna] = Constantes.LetraDisparoAcertado;
         return "Se ha interceptado un acorazado";
     }
-    
-    
-    
+
+    public InformeJuego ObtenerReporteJuego()
+    {
+        int cantidadDisparosFallidos = SumarCantidadLetras(Constantes.LetraDisparoFallido);
+        int cantidadDisparosAcertados = SumarCantidadLetras(Constantes.LetraDisparoAcertado) +
+                                        SumarCantidadLetras(Constantes.LetraAcorazadoHundido);
+        int totalDisparos = cantidadDisparosFallidos + cantidadDisparosAcertados;
+        var barcosHundidos = Acorazados.Where(acorazado => acorazado.EstaDestruido).Select(acorazado =>
+                $"{acorazado.GetType().Name}: ({(acorazado.SegmentosAcorazado[0].fila)},{acorazado.SegmentosAcorazado[0].columna})")
+            .ToList();
+
+        return new InformeJuego(
+            Nombre,
+            totalDisparos,
+            cantidadDisparosAcertados,
+            cantidadDisparosFallidos,
+            barcosHundidos);
+    }
+
+    private int SumarCantidadLetras(string listaLetras)
+    {
+        return Tablero.Cast<string>().Count(letra => letra == listaLetras);
+    }
+
+    public bool NoTieneAcorazadosAflote()
+    {
+        return Acorazados.All(acorazado => acorazado.EstaDestruido);
+    }
 }

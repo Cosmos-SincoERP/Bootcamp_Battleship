@@ -58,6 +58,15 @@ public class JuegoAcorazados
 
     public InformeJuego FinalizarTurno()
     {
+        if (jugadores.Any(jugador => jugador.NoTieneAcorazadosAflote()))
+        {
+            var informe = jugadores[1].ObtenerReporteJuego() with
+            {
+                NombreJugador = jugadores[0].Nombre
+            };
+            return informe;
+        }
+        
         jugadores.Reverse();
         return null;
     }
