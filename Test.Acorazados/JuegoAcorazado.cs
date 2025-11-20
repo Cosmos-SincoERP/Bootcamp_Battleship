@@ -11,50 +11,35 @@ public class JuegoAcorazado
             throw new ArgumentOutOfRangeException();
         _tablero = new char[tamañoTablero, tamañoTablero];
     }
-
-    public void AgregarPortaAviones(int posicionX, int posicionY, string direccion)
+    
+        
+    public void AgregarJugador()
     {
-        for (var i = 0; i < 4; i++)
+        if (_jugadores.Any())
         {
-            if (direccion == "Vertical")
+            var portaAviones  = _tablero.Cast<char>().Count(barco => barco.Equals('c'));
+            if (portaAviones == 0)
+                throw new Exception();
+        }
+        
+        _jugadores.Add("Jugador 1");
+    }
+
+    public void AgregarBarco(PosicionarBarco posicionarBarco)
+    {
+        for (var i = 0; i < posicionarBarco.Barco.Tamaño ; i++)
+        {
+            if (posicionarBarco.Barco.Orientacion == Orientacion.Vertical)
             {
-                ValidarPosicionDeLaNave(posicionY + i, 1, "Portaviones");
-                AsignarElValorDeLaNaveALaPosicion(posicionX, posicionY + i, 'c');
+                ValidarPosicionDeLBarco(posicionarBarco.Coordenadas.Y + i, 1, posicionarBarco.Barco.GetType().Name);
+                AsignarElValorDeLBarcoALaPosicion(posicionarBarco.Coordenadas.X, posicionarBarco.Coordenadas.Y + i, posicionarBarco.Barco.Valor);
             }
             else
             {
-                ValidarPosicionDeLaNave(posicionX + i, 0, "Portaviones");
-                AsignarElValorDeLaNaveALaPosicion(posicionX + i, posicionY, 'c');
+                ValidarPosicionDeLBarco(posicionarBarco.Coordenadas.X + i, 0, posicionarBarco.Barco.GetType().Name);
+                AsignarElValorDeLBarcoALaPosicion(posicionarBarco.Coordenadas.X + i, posicionarBarco.Coordenadas.Y, posicionarBarco.Barco.Valor);
             }
         }
-    }
-
-
-    public void AgregarDestructor(int posicionEnX, int posicionEnY, string direccion)
-    {
-        if (direccion == "Vertical")
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                ValidarPosicionDeLaNave(posicionEnY + i, 1, "Destructor");
-                AsignarElValorDeLaNaveALaPosicion(posicionEnX, posicionEnY + i, 'd');
-            }
-        }
-        else
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                ValidarPosicionDeLaNave(posicionEnX + i, 0, "Destructor");
-                AsignarElValorDeLaNaveALaPosicion(posicionEnX + i, posicionEnY, 'd');
-            }
-        }
-    }
-
-    public void AgregarCañonero(int posicionEnX, int posicionEnY)
-    {
-        ValidarPosicionDeLaNave(posicionEnX, 0, "Cañonero");
-        ValidarPosicionDeLaNave(posicionEnY, 1, "Cañonero");
-        AsignarElValorDeLaNaveALaPosicion(posicionEnX, posicionEnY, 'g');
     }
 
     public string Imprimir()
@@ -73,32 +58,19 @@ public class JuegoAcorazado
         return visualizarTablero;
     }
     
-    
-    public void AgregarJugador()
-    {
-        if (_jugadores.Any())
-        {
-            var portaAviones  = _tablero.Cast<char>().Count(barco => barco.Equals('c'));
-            if (portaAviones == 0)
-                throw new Exception();
-        }
-        
-        _jugadores.Add("Jugador 1");
-    }
-    
-    private void ValidarPosicionDeLaNave(int posicion, int dimension, string nave)
-    {
-        if (posicion > _tablero.GetLength(dimension) - 1)
-            throw new Exception($"La posicion del {nave} debe estar dentro del tablero");
-    }
-
-    private void AsignarElValorDeLaNaveALaPosicion(int posicionX, int posicionY, char valorNave)
-    {
-        _tablero[posicionX, posicionY] = valorNave;
-    }
-
     public string ReporteBatalla()
     {
         return "Jugador 1";
+    }
+    
+    private void ValidarPosicionDeLBarco(int posicion, int dimension, string valorNave)
+    {
+        if (posicion > _tablero.GetLength(dimension) - 1)
+            throw new Exception($"La posicion del {valorNave} debe estar dentro del tablero");
+    }
+
+    private void AsignarElValorDeLBarcoALaPosicion(int posicionX, int posicionY, char valorBarco)
+    {
+        _tablero[posicionX, posicionY] = valorBarco;
     }
 }

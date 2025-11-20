@@ -15,26 +15,26 @@ public class JuegoAcorazadosBK2
         return _jugadores.Select(jugador => jugador.Item1).ToList();
     }
 
-    public void Iniciar(List<PosicionarBarco>? coordenadas = null)
-    {
-        if (_jugadores.Count < 2)
-            throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
-        
-        _tablero = new char[10, 10];
-        if (coordenadas != null)
-        {
-            foreach (var coordenada in coordenadas)
-            {
-                for (int i = 0; i < coordenada.Barco.Tamaño; i++)
-                {
-                    if (coordenada.Orientacion == "Horizontal")
-                        AsignarPosicionDeLaNave(coordenada.X + i, coordenada.Y, coordenada.Barco.Valor);
-                    else
-                        AsignarPosicionDeLaNave(coordenada.X, coordenada.Y + i, coordenada.Barco.Valor);
-                }
-            }
-        }
-    }
+    // public void Iniciar(List<PosicionarBarco>? coordenadas = null)
+    // {
+    //     if (_jugadores.Count < 2)
+    //         throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
+    //     
+    //     _tablero = new char[10, 10];
+    //     if (coordenadas != null)
+    //     {
+    //         foreach (var coordenada in coordenadas)
+    //         {
+    //             for (int i = 0; i < coordenada.Barco.Tamaño; i++)
+    //             {
+    //                 if (coordenada.Orientacion == "Horizontal")
+    //                     AsignarPosicionDeLaNave(coordenada.X + i, coordenada.Y, coordenada.Barco.Valor);
+    //                 else
+    //                     AsignarPosicionDeLaNave(coordenada.X, coordenada.Y + i, coordenada.Barco.Valor);
+    //             }
+    //         }
+    //     }
+    // }
 
     public string Imprimir(string nombreJugador = "Jugador 1")
     {
@@ -60,20 +60,4 @@ public class JuegoAcorazadosBK2
     }
 }
 
-public record PosicionarBarco(int X, int Y, Barco Barco, string? Orientacion);
-
-public class Barco
-{
-    public int Tamaño { get; private set; }
-    public char Valor { get; private set; }
-
-    private Barco(int tamaño, char valor)
-    {
-        Tamaño = tamaño;
-        Valor = valor;
-    }
-
-    public static Barco Cañonero => new(1, 'g');
-    public static Barco Destructor => new(3, 'd');
-    public static Barco PortaAviones => new(4, 'c');
-}
+// public record PosicionarBarco(int X, int Y, Barco Barco, string? Orientacion);

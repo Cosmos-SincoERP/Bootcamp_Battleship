@@ -22,34 +22,34 @@ public class JuegoAcorazadosTest
     }
     public static IEnumerable<object[]> DatosPortaAviones => new List<object[]>
     {
-        new object[] { 0, 0, "Vertical", new[] { new[] { 0, 0 }, new[] { 0, 1 }, new[] { 0, 2 }, new[] { 0, 3 } } },
-        new object[] { 0, 0, "Horizontal", new[] { new[] { 0, 0 }, new[] { 1, 0 }, new[] { 2, 0 }, new[] { 3, 0 } } },
-        new object[] { 3, 4, "Vertical", new[] { new[] { 3, 4 }, new[] { 3, 5 }, new[] { 3, 6 }, new[] { 3, 7 } } },
-        new object[] { 6, 2, "Horizontal", new[] { new[] { 6, 2 }, new[] { 7, 2 }, new[] { 8, 2 }, new[] { 9, 2 } } }
+        new object[] { 0, 0, Orientacion.Vertical, new[] { new[] { 0, 0 }, new[] { 0, 1 }, new[] { 0, 2 }, new[] { 0, 3 } } },
+        new object[] { 0, 0, Orientacion.Horizontal, new[] { new[] { 0, 0 }, new[] { 1, 0 }, new[] { 2, 0 }, new[] { 3, 0 } } },
+        new object[] { 3, 4, Orientacion.Vertical, new[] { new[] { 3, 4 }, new[] { 3, 5 }, new[] { 3, 6 }, new[] { 3, 7 } } },
+        new object[] { 6, 2, Orientacion.Horizontal, new[] { new[] { 6, 2 }, new[] { 7, 2 }, new[] { 8, 2 }, new[] { 9, 2 } } }
     };
 
     public static IEnumerable<object[]> DatosIncorrectosPortaAviones => new List<object[]>
     {
-        new object[] { 9, 9, "Vertical" },
-        new object[] { 9, 5, "Horizontal" },
-        new object[] { 1, 9, "Vertical" },
-        new object[] { 9, 4, "Horizontal" }
+        new object[] { 9, 9, Orientacion.Vertical },
+        new object[] { 9, 5, Orientacion.Horizontal },
+        new object[] { 1, 9, Orientacion.Vertical },
+        new object[] { 9, 4, Orientacion.Horizontal }
     };
 
     public static IEnumerable<object[]> DatosDestructores => new List<object[]>
     {
-        new object[] { 2, 2, "Vertical", new[] { new[] { 2, 2 }, new[] { 2, 3 }, new[] { 2, 4 } } },
-        new object[] { 2, 2, "Horizontal", new[] { new[] { 2, 2 }, new[] { 3, 2 }, new[] { 4, 2 } } },
-        new object[] { 5, 6, "Vertical", new[] { new[] { 5, 6 }, new[] { 5, 7 }, new[] { 5, 8 } } },
-        new object[] { 3, 8, "Horizontal", new[] { new[] { 3, 8 }, new[] { 4, 8 }, new[] { 5, 8 } } }
+        new object[] { 2, 2, Orientacion.Vertical, new[] { new[] { 2, 2 }, new[] { 2, 3 }, new[] { 2, 4 } } },
+        new object[] { 2, 2, Orientacion.Horizontal, new[] { new[] { 2, 2 }, new[] { 3, 2 }, new[] { 4, 2 } } },
+        new object[] { 5, 6, Orientacion.Vertical, new[] { new[] { 5, 6 }, new[] { 5, 7 }, new[] { 5, 8 } } },
+        new object[] { 3, 8, Orientacion.Horizontal, new[] { new[] { 3, 8 }, new[] { 4, 8 }, new[] { 5, 8 } } }
     };
 
     public static IEnumerable<object[]> DatosIncorrectosDestructores => new List<object[]>
     {
-        new object[] { 9, 8, "Vertical"},
-        new object[] { 8, 5, "Horizontal" },
-        new object[] { 3, 8, "Vertical" },
-        new object[] { 8, 4, "Horizontal" }
+        new object[] { 9, 8, Orientacion.Vertical},
+        new object[] { 8, 5, Orientacion.Horizontal },
+        new object[] { 3, 8, Orientacion.Vertical },
+        new object[] { 8, 4, Orientacion.Horizontal }
     };
     
     [Fact]
@@ -79,7 +79,7 @@ public class JuegoAcorazadosTest
     [Theory]
     [MemberData(nameof(DatosPortaAviones))]
     public void Si_SeAgregaUnPortaAvionEnElTablero_Debe_PodersePosicionar(int posicionXInicial, int posicionYInicial,
-        string orientacion, int[][] posicionesEsperadas)
+        Orientacion orientacion, int[][] posicionesEsperadas)
     {
         var tablero = new char[10, 10];
         foreach (var posicionEsperada in posicionesEsperadas)
@@ -88,7 +88,9 @@ public class JuegoAcorazadosTest
         }
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
-        juegoAcorazado.AgregarPortaAviones(posicionXInicial, posicionYInicial, orientacion);
+        juegoAcorazado.AgregarBarco(new PosicionarBarco(
+            (posicionXInicial, posicionYInicial), new PortaAviones(orientacion))
+        );
 
         juegoAcorazado.Imprimir().Should().BeEquivalentTo(tableroEsperado);
     }
@@ -97,21 +99,23 @@ public class JuegoAcorazadosTest
     [MemberData(nameof(DatosIncorrectosPortaAviones))]
     public void Si_AgregoUnPortavionesEnUnPosicionIncorrecta_Debe_LanzarExcepcion(int posicionXInicial,
         int posicionYInicial,
-        string orientacion)
+        Orientacion orientacion)
     {
         var juegoAcorazado = new JuegoAcorazado();
 
         var agregarPortaviones = () =>
-            juegoAcorazado.AgregarPortaAviones(posicionXInicial, posicionYInicial, orientacion);
+            juegoAcorazado.AgregarBarco(new PosicionarBarco(
+                (posicionXInicial, posicionYInicial), new PortaAviones(orientacion))
+            );
 
         agregarPortaviones.Should().Throw<Exception>()
-            .WithMessage("La posicion del Portaviones debe estar dentro del tablero");
+            .WithMessage("La posicion del PortaAviones debe estar dentro del tablero");
     }
 
     [Theory]
     [MemberData(nameof(DatosDestructores))]
     public void Si_AgregoUnDestructorEnElTablero_De_PodersePosicionar(int posicionXInicial, int posicionYInicial,
-        string orientacion, int[][] posicionesEsperadas)
+        Orientacion orientacion, int[][] posicionesEsperadas)
     {
         var tablero = new char[10, 10];
         foreach (var posicionEsperada in posicionesEsperadas)
@@ -120,7 +124,9 @@ public class JuegoAcorazadosTest
         }
         var juegoAcorazado = new JuegoAcorazado();
         var tableroEsperado = TableroEsperado(tablero);
-        juegoAcorazado.AgregarDestructor(posicionXInicial, posicionYInicial, orientacion);
+        juegoAcorazado.AgregarBarco(new PosicionarBarco(
+            (posicionXInicial, posicionYInicial), new Destructor(orientacion))
+        );
 
         juegoAcorazado.Imprimir().Should().BeEquivalentTo(tableroEsperado);
     }
@@ -129,12 +135,14 @@ public class JuegoAcorazadosTest
     [MemberData(nameof(DatosIncorrectosDestructores))]
     public void Si_AgregoUnDestructorEnUnPosicionIncorrecta_Debe_LanzarExcepcion(int posicionXInicial,
         int posicionYInicial,
-        string orientacion)
+        Orientacion orientacion)
     {
         var juegoAcorazado = new JuegoAcorazado();
 
         var agregarDestructores = () =>
-            juegoAcorazado.AgregarDestructor(posicionXInicial, posicionYInicial, orientacion);
+            juegoAcorazado.AgregarBarco(new PosicionarBarco(
+                (posicionXInicial, posicionYInicial), new Destructor(orientacion))
+            );
 
         agregarDestructores.Should().Throw<Exception>()
             .WithMessage("La posicion del Destructor debe estar dentro del tablero");
@@ -147,7 +155,9 @@ public class JuegoAcorazadosTest
         tablero[7, 6] = 'g';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
-        juegoAcorazado.AgregarCañonero(7, 6);
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco(( 7, 6), new Cañonero())
+        );
 
         juegoAcorazado.Imprimir().Should().BeEquivalentTo(tableroEsperado);
     }
@@ -159,7 +169,9 @@ public class JuegoAcorazadosTest
         tablero[8, 1] = 'g';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazado();
-        juegoAcorazado.AgregarCañonero(8, 1);
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((8, 1), new Cañonero())
+        );
 
         juegoAcorazado.Imprimir().Should().BeEquivalentTo(tableroEsperado);
     }
@@ -169,8 +181,9 @@ public class JuegoAcorazadosTest
     {
         var juegoAcorazado = new JuegoAcorazado();
 
-        var cañonero = () => juegoAcorazado.AgregarCañonero(11, 11);
-
+        var cañonero = () => juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((11, 11), new Cañonero())
+        );
         cañonero.Should().Throw<Exception>().WithMessage("La posicion del Cañonero debe estar dentro del tablero");
     }
     
@@ -199,7 +212,10 @@ public class JuegoAcorazadosTest
     {
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
-        juegoAcorazado.AgregarPortaAviones(0, 0, "Vertical");
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((0, 0), new PortaAviones(Orientacion.Vertical))
+        );
+        
         var jugador2 = () => juegoAcorazado.AgregarJugador();
 
         jugador2.Should().NotThrow();
