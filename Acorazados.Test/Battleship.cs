@@ -93,7 +93,16 @@ public class Battleship
         if (!_turnoJugador1)
         {
             var columnas = _tableroJugador1[fila + 1].Split("|");
-            columnas[columna + 1] = " o ";
+            var nave = _navesJugador1.FirstOrDefault(nave => nave.EstoyEnCoordenada(fila, columna));
+            if (nave == null)
+            {
+               
+                columnas[columna + 1] = " o ";
+                _tableroJugador1[fila + 1] = string.Join("|", columnas);
+                return;
+            }
+            
+            columnas[columna + 1] = " x ";
             _tableroJugador1[fila + 1] = string.Join("|", columnas);
         }
         else
