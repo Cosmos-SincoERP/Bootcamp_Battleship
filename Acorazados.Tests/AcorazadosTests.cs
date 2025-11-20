@@ -28,7 +28,7 @@ public class AcorazadosTests
         var jugador1 = "jugador 1";
         acorazados.AgregarJugador(jugador1);
 
-        acorazados.Jugadores[jugador1].Alias.Should().Be(jugador1);
+        acorazados.BuscarJugador(jugador1).Alias.Should().Be(jugador1);
     }
 
     [Fact]
@@ -38,7 +38,7 @@ public class AcorazadosTests
         var jugador1 = "jugador 1";
         acorazados.AgregarJugador(jugador1);
 
-        acorazados.Jugadores[jugador1].AgregarGunShip(2, 7);
+        acorazados.BuscarJugador(jugador1).AgregarGunShip(2, 7);
 
         acorazados.ObtenerElemento(jugador1, 2, 7).Should().Be(new GunShip().Valor);
     }
@@ -50,7 +50,7 @@ public class AcorazadosTests
         var jugador1 = "jugador 1";
         acorazados.AgregarJugador(jugador1);
 
-        acorazados.Jugadores[jugador1].AgregarDestroyer(3, 2, Orientacion.Horizontal);
+        acorazados.BuscarJugador(jugador1).AgregarDestroyer(3, 2, Orientacion.Horizontal);
 
         var valorDestroyer = new Destroyer().Valor;
         acorazados.ObtenerElemento(jugador1, 3, 2).Should().Be(valorDestroyer);
@@ -65,7 +65,7 @@ public class AcorazadosTests
         var jugador1 = "jugador 1";
         acorazados.AgregarJugador(jugador1);
 
-        acorazados.Jugadores[jugador1].AgregarDestroyer(7, 5, Orientacion.Vertical);
+        acorazados.BuscarJugador(jugador1).AgregarDestroyer(7, 5, Orientacion.Vertical);
 
         var valorDestroyer = new Destroyer().Valor;
         acorazados.ObtenerElemento(jugador1, 7, 5).Should().Be(valorDestroyer);
@@ -81,7 +81,7 @@ public class AcorazadosTests
         var jugador1 = "jugador 1";
         acorazados.AgregarJugador(jugador1);
 
-        acorazados.Jugadores[jugador1].AgregarCarrier(4, 8, Orientacion.Vertical);
+        acorazados.BuscarJugador(jugador1).AgregarCarrier(4, 8, Orientacion.Vertical);
 
         var valorCarrier = new Carrier().Valor;
         acorazados.ObtenerElemento(jugador1, 4, 8).Should().Be(valorCarrier);
@@ -97,7 +97,7 @@ public class AcorazadosTests
         var jugador1 = "jugador 1";
         acorazados.AgregarJugador(jugador1);
 
-        acorazados.Jugadores[jugador1].AgregarCarrier(9, 0, Orientacion.Horizontal);
+        acorazados.BuscarJugador(jugador1).AgregarCarrier(9, 0, Orientacion.Horizontal);
 
         var valorCarrier = new Carrier().Valor;
         acorazados.ObtenerElemento(jugador1, 9, 0).Should().Be(valorCarrier);
@@ -117,7 +117,7 @@ public class AcorazadosTests
         var jugador1 = "jugador 1";
         acorazados.AgregarJugador(jugador1);
 
-        var caller = () => acorazados.Jugadores[jugador1].AgregarDestroyer(fila, columna, Orientacion.Vertical);
+        var caller = () => acorazados.BuscarJugador(jugador1).AgregarDestroyer(fila, columna, Orientacion.Vertical);
         caller.Should().ThrowExactly<IndexOutOfRangeException>()
             .WithMessage($"Nave fuera del rango");
     }
@@ -133,7 +133,7 @@ public class AcorazadosTests
         var jugador1 = "jugador 1";
         acorazados.AgregarJugador(jugador1);
 
-        var caller = () => acorazados.Jugadores[jugador1].AgregarCarrier(fila, columna, Orientacion.Vertical);
+        var caller = () => acorazados.BuscarJugador(jugador1).AgregarCarrier(fila, columna, Orientacion.Vertical);
         caller.Should().ThrowExactly<IndexOutOfRangeException>()
             .WithMessage("Nave fuera del rango");
     }
@@ -149,7 +149,7 @@ public class AcorazadosTests
         var jugador1 = "jugador 1";
         acorazados.AgregarJugador(jugador1);
 
-        var caller = () => acorazados.Jugadores[jugador1].AgregarCarrier(9, 7, orientacion);
+        var caller = () => acorazados.BuscarJugador(jugador1).AgregarCarrier(9, 7, orientacion);
         caller.Should().ThrowExactly<IndexOutOfRangeException>()
             .WithMessage("Nave fuera del rango");
     }
@@ -173,9 +173,9 @@ public class AcorazadosTests
 
 
         acorazados.AgregarJugador(jugador1);
-        acorazados.Jugadores[jugador1].AgregarGunShip(0, 0);
+        acorazados.BuscarJugador(jugador1).AgregarGunShip(0, 0);
 
-        acorazados.Jugadores[jugador1].ImprimirTablero().Should().Be(expected);
+        acorazados.BuscarJugador(jugador1).ImprimirTablero().Should().Be(expected);
     }
 
     [Fact]
@@ -196,36 +196,54 @@ public class AcorazadosTests
                           "8| | | | | | | | | | |\r\n" +
                           "9| | | | | | | | | | |\r\n";
         acorazados.AgregarJugador(jugador1);
-        acorazados.Jugadores[jugador1].AgregarGunShip(0, 0);
+        acorazados.BuscarJugador(jugador1).AgregarGunShip(0, 0);
 
-        acorazados.Jugadores[jugador1].AgregarDestroyer(3, 2, Orientacion.Horizontal);
+        acorazados.BuscarJugador(jugador1).AgregarDestroyer(3, 2, Orientacion.Horizontal);
 
 
-        acorazados.Jugadores[jugador1].ImprimirTablero().Should().Be(expected);
+        acorazados.BuscarJugador(jugador1).ImprimirTablero().Should().Be(expected);
     }
 
     [Fact]
-    public void Si_Jugador1DisparaEnPosicion02_DebeTableroImprimirOEnLaPosicion02()
+    public void SiAgrego2JugadoresYElJugador1Dispara_Debe_ImprimirElTableroDelJugador2ConElDisparoRecibido()
     {
         var acorazados = new Acorazados();
         var jugador1 = "jugador 1";
-        string expected = " |0|1|2|3|4|5|6|7|8|9|\r\n" +
-                          "0|g| |o| | | | | | | |\r\n" +
-                          "1| | | | | | | | | | |\r\n" +
-                          "2| | | | | | | | | | |\r\n" +
-                          "3| | |d|d|d| | | | | |\r\n" +
-                          "4| | | | | | | | | | |\r\n" +
-                          "5| | | | | | | | | | |\r\n" +
-                          "6| | | | | | | | | | |\r\n" +
-                          "7| | | | | | | | | | |\r\n" +
-                          "8| | | | | | | | | | |\r\n" +
-                          "9| | | | | | | | | | |\r\n"; 
-        
+        var jugador2 = "jugador 2";
         acorazados.AgregarJugador(jugador1);
-        acorazados.Jugadores[jugador1].AgregarGunShip(0, 0);
+        acorazados.AgregarJugador(jugador2);
 
-        acorazados.Jugadores[jugador1].AgregarDestroyer(3, 2, Orientacion.Horizontal);
+        var j1 = acorazados.BuscarJugador(jugador1);
+        j1.AgregarCarrier(9, 0, Orientacion.Horizontal);
+        j1.AgregarDestroyer(0, 1, Orientacion.Vertical);
+        j1.AgregarGunShip(7, 1);
+        j1.AgregarGunShip(8, 8);
+        j1.AgregarGunShip(5, 1);
+        j1.AgregarGunShip(4, 3);
 
-        acorazados.Jugadores[jugador1].ImprimirTablero().Should().Be(expected);
+        var j2 = acorazados.BuscarJugador(jugador2);
+        j2.AgregarCarrier(9, 0, Orientacion.Horizontal);
+        j2.AgregarDestroyer(0, 1, Orientacion.Vertical);
+        j2.AgregarGunShip(7, 1);
+        j2.AgregarGunShip(6, 5);
+        j2.AgregarGunShip(3, 7);
+        j2.AgregarGunShip(4, 3);
+        
+        string expected = " |0|1|2|3|4|5|6|7|8|9|\r\n" +
+                          "0| |d| | | | | | | | |\r\n" +
+                          "1| |d| | | | | | | | |\r\n" +
+                          "2| |d| | |o| | | | | |\r\n" +
+                          "3| | | | | | | |g| | |\r\n" +
+                          "4| | | |g| | | | | | |\r\n" +
+                          "5| | | | | | | | | | |\r\n" +
+                          "6| | | | | |g| | | | |\r\n" +
+                          "7| |g| | | | | | | | |\r\n" +
+                          "8| | | | | | | | | | |\r\n" +
+                          "9|c|c|c|c| | | | | | |\r\n";
+        
+         acorazados.Disparar(2,4);
+         
+        
+        j2.ImprimirTablero().Should().Be(expected);
     }
 }

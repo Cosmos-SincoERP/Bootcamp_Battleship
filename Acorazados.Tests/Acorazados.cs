@@ -2,18 +2,28 @@
 
 public class Acorazados
 {
-    public readonly Dictionary<string, Jugador> Jugadores = new();
+    public readonly Jugador[] Jugadores = new Jugador[2];
+    private int ContadorJugadores = 0;
+    private bool EsTurnoJugador1 { get; set; } = true;
+
+    public Jugador BuscarJugador(string aliasJugador) =>
+        Jugadores.First(jugador => jugador.Alias == aliasJugador);
+
+    private Jugador Oponente => EsTurnoJugador1 ? Jugadores[1] : Jugadores[0];
 
     public bool TieneDimensiones(int fila, int columna) =>
         EsCantidadFilasIgualA(fila) && EsCantidadColumnasIgualA(columna);
 
     public void AgregarJugador(string alias)
     {
-        Jugadores.Add(alias, new Jugador(alias)
+        var jugador = new Jugador(alias)
         {
             Tablero = new string[_fila, _columna]
-        });
+        };
+        Jugadores[ContadorJugadores] = jugador;
+        ContadorJugadores++;
     }
+
 
     private string[,] _tablero;
     private readonly int _fila = 10;
@@ -31,13 +41,18 @@ public class Acorazados
     public string ObtenerElemento(string aliasJugador, int fila, int columna)
     {
         if (ExisteJugador(aliasJugador))
-            return Jugadores[aliasJugador].ObtenerElemento(fila, columna);
+            return BuscarJugador(aliasJugador).ObtenerElemento(fila, columna);
 
         return "";
     }
 
     private bool ExisteJugador(string aliasJugador)
     {
-        return Jugadores.ContainsKey(aliasJugador);
+        return BuscarJugador(aliasJugador) is not null;
+    }
+
+    public void Disparar(int i, int i1)
+    {
+        Oponente.RecibirDisparo(i, i1);
     }
 }

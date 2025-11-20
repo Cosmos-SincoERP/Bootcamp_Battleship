@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace AcorazadosTests;
 
@@ -100,7 +101,6 @@ public class Jugador
         return fila + longitud > _longitudFilas && EsPosicionVertical(orientacion);
     }
 
-   
 
     private string AgregarSaltoDeLineaEnBorde(int posicionColumna, string tablero)
     {
@@ -115,7 +115,7 @@ public class Jugador
         tablero += (!string.IsNullOrEmpty(casilla) ? casilla : " ") + "|";
         return tablero;
     }
-    
+
 
     private string AgregarEncabezado(string tablero)
     {
@@ -123,6 +123,7 @@ public class Jugador
         {
             tablero += $"{posicionColumna}|";
         }
+
         return tablero;
     }
 
@@ -130,5 +131,15 @@ public class Jugador
     {
         tablero += "\r\n";
         return tablero;
+    }
+
+    public (int x, int y) Disparar(int fila, int columna)
+    {
+        return (fila, columna);
+    }
+
+    public void RecibirDisparo(int x, int y)
+    {
+        Tablero[x, y] = "o";
     }
 }
