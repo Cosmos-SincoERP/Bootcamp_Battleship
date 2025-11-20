@@ -184,5 +184,13 @@ public class JuegoAcorazadosTest
         juegoAcorazado.ReporteBatalla().Should().Contain("Jugador 1");
     }
     
-    
+    [Fact]
+    public void Si_SeAgregaJugadorYNoHaPosicionadoAlMenosUnBarco_NoDebe_PermitirAgregarAlSegundoJugador()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
+        var jugador2 = () => juegoAcorazado.AgregarJugador();
+
+        jugador2.Should().Throw<Exception>();
+    }
 }
