@@ -811,7 +811,7 @@ public class AcorazadosTest
     }
     
     [Fact]
-    public void Si_InicioElJuegoConUnDestructorEn5_6ParaJugador_YJugador1DisparaA_5_6_Debe_Imprimirx()
+    public void Si_InicioElJuegoConUnDestructorEn5_6ParaJugador2_YJugador1DisparaA_5_6_Debe_Imprimirx()
     {
         var acorazados = new Battleship();
 
@@ -842,7 +842,7 @@ public class AcorazadosTest
     }
     
     [Fact]
-    public void Si_InicioElJuegoConUnPortavionesEn6_6ParaJugador_YJugador1DisparaA_6_6_Debe_Imprimirx()
+    public void Si_InicioElJuegoConUnPortavionesEn6_6ParaJugador2_YJugador1DisparaA_6_6_Debe_Imprimirx()
     {
         var acorazados = new Battleship();
 
@@ -865,6 +865,39 @@ public class AcorazadosTest
                               "4| | | | | | | | | | |" +
                               "5| | | | | | | | | | |" +
                               "6| | | | | | | x | c | c | c |" +
+                              "7| | | | | | | | | | |" +
+                              "8| | | | | | | | | | |" +
+                              "9| | | | | | | | | | |"; 
+
+        tablero.Should().Be(tableroEsperado);
+    }
+    
+    [Fact]
+    public void Si_InicioElJuegoSinBarcos_YJugador2Dispara_a_2_2_Debe_Imprimir_o_EnLasCoordenadasDadas()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Paula");
+        acorazados.AddPlayer("Ruben");
+
+        acorazados.Iniciar([],[]);
+        
+        acorazados.Disparar(0, 0);
+        acorazados.TerminarTurno();
+        
+        acorazados.Disparar(2, 2);
+        acorazados.TerminarTurno();
+
+        var tablero = acorazados.Imprimir();
+
+        var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+                              "0| | | | | | | | | | |" +
+                              "1| | | | | | | | | | |" +
+                              "2| | | o | | | | | | | |" +
+                              "3| | | | | | | | | | |" +
+                              "4| | | | | | | | | | |" +
+                              "5| | | | | | | | | | |" +
+                              "6| | | | | | | | | | |" +
                               "7| | | | | | | | | | |" +
                               "8| | | | | | | | | | |" +
                               "9| | | | | | | | | | |"; 

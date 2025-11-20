@@ -83,16 +83,12 @@ public class Battleship
     public void Disparar(int fila, int columna)
     {
         var columnas = _tableroJugador2[fila + 1].Split("|");
-
+        
         if (columnas[columna + 1] == " g ")
         {
             columnas[columna + 1] = " X ";
         }
-        else if (columnas[columna + 1] == " d ")
-        {
-            columnas[columna + 1] = " x ";
-        }
-        else if (columnas[columna + 1] == " c ")
+        else if (columnas[columna + 1] == " d " || columnas[columna + 1] == " c ")
         {
             columnas[columna + 1] = " x ";
         }
