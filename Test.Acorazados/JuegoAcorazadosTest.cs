@@ -284,7 +284,7 @@ public class JuegoAcorazadosTest
             new PosicionarBarco((2, 0), new Destructor(Orientacion.Vertical))
         );
         juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((2, 0), new Destructor(Orientacion.Vertical))
+            new PosicionarBarco((9, 0), new Destructor(Orientacion.Vertical))
         );
         
         var iniciar = () => juegoAcorazado.Iniciar();
@@ -348,7 +348,6 @@ public class JuegoAcorazadosTest
     {
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
-        juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco((2, 0), new Cañonero())
         );
@@ -367,6 +366,11 @@ public class JuegoAcorazadosTest
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco((0, 2), new Destructor(Orientacion.Vertical))
         );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((9, 0), new PortaAviones(Orientacion.Vertical))
+        );
+        
+        juegoAcorazado.AgregarJugador();
         
         var iniciar = () => juegoAcorazado.Iniciar();
 

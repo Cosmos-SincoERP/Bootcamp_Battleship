@@ -5,12 +5,7 @@ public class JuegoAcorazado
     private List<(string, char[,], Dictionary<string, int>)> _jugadores = new();
     private char[,] _tablero;
 
-    private Dictionary<string, int> _inventarioBarco = new()
-    {
-        {"Cañonero", 4},
-        {"Destructor", 2},
-        {"PortaAviones", 1},
-    };
+
     public JuegoAcorazado(int tamañoTablero = 10)
     {
         if (tamañoTablero <= 0)
@@ -21,11 +16,18 @@ public class JuegoAcorazado
         
     public void AgregarJugador()
     {   
+        var invetario =  new Dictionary<string, int> ()
+        {
+            {"Cañonero", 4},
+            {"Destructor", 2},
+            {"PortaAviones", 1},
+        }; 
+        
         _jugadores.Add(new ()
         {
             Item1 = _jugadores.Any() ? "Jugador 2" : "Jugador 1", 
             Item2 = _tablero,
-            Item3 = _inventarioBarco
+            Item3 = invetario
         });
     }
     
@@ -56,10 +58,11 @@ public class JuegoAcorazado
         if(_jugadores.Count != 2)
             throw new Exception("Debe haber 2 jugadores para iniciar el juego");
         
-        foreach (var inventarioBarcos in _jugadores[0].Item3)
+        foreach (var jugador in _jugadores)
         {
-            if (_jugadores[0].Item3[inventarioBarcos.Key] > 0)
-                throw new Exception("El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+            foreach (var inventarioBarcos in jugador.Item3)
+                if (jugador.Item3[inventarioBarcos.Key] > 0)
+                    throw new Exception($"El {jugador.Item1} No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
         }
         
     }
