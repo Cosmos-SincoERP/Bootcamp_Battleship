@@ -12,8 +12,6 @@ public abstract class Barco
         Valor = valor;
         Orientacion = orientacion;
     }
-    
-
 }
 
 public class Cañonero() : Barco(1, 'g');
