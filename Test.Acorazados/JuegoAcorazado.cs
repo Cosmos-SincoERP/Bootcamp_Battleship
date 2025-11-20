@@ -76,7 +76,14 @@ public class JuegoAcorazado
     
     public void AgregarJugador()
     {
+        if (_jugadores.Any())
+        {
+            var portaAviones  = _tablero.Cast<char>().Count(barco => barco.Equals('c'));
+            if (portaAviones == 0)
+                throw new Exception();
+        }
         
+        _jugadores.Add("Jugador 1");
     }
     
     private void ValidarPosicionDeLaNave(int posicion, int dimension, string nave)
