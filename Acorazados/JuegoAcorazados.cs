@@ -54,7 +54,7 @@ public class JuegoAcorazados
         var obtenerTableroContrincante = jugador2.ObtenerTablero();
         var letrasDisparos = new List<string>
         {
-            "o", "x"
+            "o", "x", "X"
         };
 
         for (int fila = 0; fila < jugador2.ObtenerLongitudTablero(0); fila++)

@@ -40,6 +40,7 @@ public class JuegoAcorazadosTest
         {
             new(_portaAviones, 1, 1, Direccion.Derecha),
             new(_destructor, 3, 3, Direccion.Derecha),
+            new(_destructor, 4, 4, Direccion.Abajo),
             new(_cañonero, 4, 1, Direccion.Derecha),
             new(_cañonero, 6, 1, Direccion.Derecha)
         };
@@ -68,15 +69,17 @@ public class JuegoAcorazadosTest
     }
 
     [Fact]
-    public void Si_DisparoEnLasPosiciones11_12_13_Debe_TableroContrincanteTener_XXX()
+    public void Si_DisparoEnLasPosiciones11_12_13_14_Debe_TableroContrincanteTener_XXX()
     {
         tableroDisparos[1, 1] = "X";
         tableroDisparos[1, 2] = "X";
         tableroDisparos[1, 3] = "X";
+        tableroDisparos[1, 4] = "X";
         
         _juego.Disparar(1, 1);
         _juego.Disparar(1, 2);
         _juego.Disparar(1, 3);
+        _juego.Disparar(1, 4);
         
         _juego.ObtenerTableroContrincante().Should().BeEquivalentTo(tableroDisparos);
     }

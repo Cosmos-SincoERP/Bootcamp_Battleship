@@ -17,6 +17,7 @@ public class Jugador
   
     private void AgregarAcorazado(AcorazadoAcuatizado acorazadoAcuatizado)
     {
+        acorazadoAcuatizado.tipoAcorazado.SegmentosAcorazado.Clear();
         ValidarCantidadMaximaTipoAcorazado(acorazadoAcuatizado.tipoAcorazado);
 
         for (int i = 0; i < acorazadoAcuatizado.tipoAcorazado.CantidaCasillasOcupadasPorAcorazado; i++)
@@ -45,6 +46,7 @@ public class Jugador
     {
         ValidacionesTablero(fila, columna);
         Tablero[fila, columna] = tipoAcorazado.Letra;
+        tipoAcorazado.SegmentosAcorazado.Add(new SegmentoAcorazado(fila, columna, false));
     }
 
     private void ValidarCantidadMaximaTipoAcorazado(Acorazado tipoAcorazado)
@@ -86,9 +88,23 @@ public class Jugador
     {
         if (ObtenerCasilla(fila, columna) is "c")
         {
-            Tablero[fila, columna] = "x";
-            return;
+            var portaviones = Acorazados.Where(acorazado => acorazado.GetType() == typeof(PortaAviones)).FirstOrDefault();
+            portaviones.RegistrarDisparo(fila, columna);
+            if (portaviones.EstaDestruido)
+            {
+                foreach (var segmento in portaviones.SegmentosAcorazado)
+                {
+                    Tablero[segmento.fila, segmento.columna] = "X";
+                }
+            }
+            else
+            {
+                Tablero[fila, columna] = "x";
+            }
         }
-        Tablero[fila, columna] = "o";
+        else
+        {
+            Tablero[fila, columna] = "o";
+        }
     }
 }
