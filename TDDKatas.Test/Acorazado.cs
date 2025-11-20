@@ -61,6 +61,10 @@ public class Acorazado
             if (tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] == "c" ||
                 tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] == "d")
                 tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] = "x";
+            else if (tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] == "g")
+            {
+                tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] = "X";
+            }
             else
             {
                 tableroJugador[disparosOponente[i].PosicionX, disparosOponente[i].PosicionY] = "0";
