@@ -55,13 +55,7 @@ public class Acorazado
         {
             var navesDelOponente = _estrategia[_turnoActivo];
 
-            var coordenadasDeTodasLasNavesDelOponente =
-                navesDelOponente.SelectMany(x => x.CoordenadasNave());
-
-            var aciertoDisparo = coordenadasDeTodasLasNavesDelOponente
-                .Any(x => x.PosicionX == disparosOponente[i].PosicionX && x.PosicionY == disparosOponente[i].PosicionY);
-
-            if (aciertoDisparo)
+            if (AciertoDisparo(disparosOponente[i].PosicionX, disparosOponente[i].PosicionY, navesDelOponente))
             {
                 var naveImpactada =
                     navesDelOponente.First(x =>
@@ -84,15 +78,8 @@ public class Acorazado
     {
         var tableroJugador = new List<(Coordenada, string)>();
 
-        for (int indiceNave = 0; indiceNave < _estrategia[_turnoActivo].Count; indiceNave++)
-        {
-            var nave = _estrategia[_turnoActivo][indiceNave];
-
-            var coordenadasNave = nave.CoordenadasNave();
-
-            for (int coordenada = 0; coordenada < coordenadasNave.Count; coordenada++) 
-                tableroJugador.Add((new Coordenada(coordenadasNave[coordenada].PosicionX, coordenadasNave[coordenada].PosicionY),((char)nave.Nave.Tipo).ToString()));
-        }
+        for (int indiceNave = 0; indiceNave < _estrategia[_turnoActivo].Count; indiceNave++) 
+            tableroJugador.AddRange(_estrategia[_turnoActivo][indiceNave].RevelarPosicion());
 
         return tableroJugador;
     }
@@ -132,9 +119,7 @@ public class Acorazado
     public void AgregarJugador(string player)
     {
         if (_jugadores.Any() && !EstaLaEstrategiaCompletada())
-        {
             throw new InvalidOperationException("Jugador anterior no ha completado la estrategia");
-        }
 
         _jugadores.Add(player);
         _turnoActivo = player;
@@ -146,19 +131,10 @@ public class Acorazado
     {
         _disparos[_turnoActivo].Add(new Coordenada(coordenadaX, coordenadaY));
 
-        var navesDelOponente = _estrategia.First(x => x.Key != _turnoActivo).Value;
+        var navesDelOponente = ObtenerNavesDelOponente();
 
-        var coordenadasDeTodasLasNavesDelOponente =
-            navesDelOponente.SelectMany(x => x.CoordenadasNave());
-
-        var aciertoDisparo = coordenadasDeTodasLasNavesDelOponente
-            .Any(x => x.PosicionX == coordenadaX && x.PosicionY == coordenadaY);
-
-
-        if (aciertoDisparo is false)
-        {
+        if (AciertoDisparo(coordenadaX, coordenadaY, navesDelOponente) is false)
             return "0";
-        }
 
         var naveImpactada =
             navesDelOponente.First(x => x.CoordenadasNave().Contains(new Coordenada(coordenadaX, coordenadaY)));
@@ -169,6 +145,21 @@ public class Acorazado
             return "Nave hundida";
 
         return "x";
+    }
+
+    private static bool AciertoDisparo(int coordenadaX, int coordenadaY, List<Despliegue> navesDelOponente)
+    {
+        var coordenadasDeTodasLasNavesDelOponente =
+            navesDelOponente.SelectMany(x => x.CoordenadasNave());
+
+        var aciertoDisparo = coordenadasDeTodasLasNavesDelOponente
+            .Any(x => x.PosicionX == coordenadaX && x.PosicionY == coordenadaY);
+        return aciertoDisparo;
+    }
+
+    private List<Despliegue> ObtenerNavesDelOponente()
+    {
+        return _estrategia.First(x => x.Key != _turnoActivo).Value;
     }
 
     public string CambiarTurno()

@@ -41,4 +41,16 @@ internal class Despliegue(Nave Nave, int PosicionX, int PosicionY, Orientacion O
 
         return coordenadas;
     }
+
+    public List<(Coordenada, string)> RevelarPosicion()
+    {
+        var posicion = new List<(Coordenada, string)>();
+        var coordenadas = CoordenadasNave();
+        
+        for (int coordenada = 0; coordenada < coordenadas.Count; coordenada++) 
+            posicion.AddRange((coordenadas[coordenada], ((char)Nave.Tipo).ToString()));
+        return posicion;
+    }
+    
+    
 }
