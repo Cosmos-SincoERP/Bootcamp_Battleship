@@ -293,7 +293,7 @@ public class JuegoAcorazadosTest
     }
     
     [Fact]
-    public void Si_ElJugadorHaPosicionadoTodosLosDesctructoresTodosLosPortavionesPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
+    public void Si_ElJugador1HaPosicionadoTodosLosDesctructoresTodosLosPortavionesPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
     {
         var juegoAcorazado = new JuegoAcorazado();
         juegoAcorazado.AgregarJugador();
@@ -311,5 +311,65 @@ public class JuegoAcorazadosTest
         var iniciar = () => juegoAcorazado.Iniciar();
 
         iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+    }
+    
+    [Fact]
+    public void Si_ElJugador1HaPosicionadoTodosLosDesctructoresTodosLosCañonerosPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((2, 0), new Cañonero())
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((6, 3), new Cañonero())
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((8, 6), new Cañonero())
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((9, 6), new Cañonero())
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((2, 6), new Destructor(Orientacion.Horizontal))
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((0, 2), new Destructor(Orientacion.Vertical))
+        );
+        
+        var iniciar = () => juegoAcorazado.Iniciar();
+
+        iniciar.Should().Throw<Exception>().WithMessage("El jugador 1 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
+    }
+    
+    [Fact]
+    public void Si_ElJugador2HaPosicionadoTodosLosDesctructoresTodosLosCañonerosPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((2, 0), new Cañonero())
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((6, 3), new Cañonero())
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((8, 6), new Cañonero())
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((9, 6), new Cañonero())
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((2, 6), new Destructor(Orientacion.Horizontal))
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((0, 2), new Destructor(Orientacion.Vertical))
+        );
+        
+        var iniciar = () => juegoAcorazado.Iniciar();
+
+        iniciar.Should().Throw<Exception>().WithMessage("El jugador 2 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
     }
 }
