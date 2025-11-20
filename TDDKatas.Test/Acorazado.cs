@@ -4,13 +4,13 @@ public class Acorazado
 {
     private List<string> _jugadores = [];
     private Dictionary<string, List<Despliegue>> _estrategia = new();
-    private Dictionary<string, List<Coordenada>> _disparos = new();
+    private Dictionary<string?, List<Coordenada>> _disparos = new();
     private string _turnoActivo;
 
     public string Imprimir()
     {
         var tablero = PosicionarNaves();
-        
+
         const string separador = "  +---+---+---+---+---+---+---+---+---+---+";
         string resultado = "    0   1   2   3   4   5   6   7   8   9\n";
         for (int i = 0; i < tablero.GetLength(0); i++)
@@ -37,14 +37,32 @@ public class Acorazado
     private string[,] PosicionarNaves()
     {
         var tableroJugador = new string[10, 10];
+
+
+        var disparosOponente =  _jugadores.Count > 1 && _disparos.Any() 
+            ? _disparos[_jugadores.FirstOrDefault(x => x != _turnoActivo)]
+            : [];
+
         for (int indiceNave = 0; indiceNave < _estrategia[_turnoActivo].Count; indiceNave++)
         {
             var despliegue = _estrategia[_turnoActivo][indiceNave];
-            
+
             var coordenadasNave = despliegue.CoordenadasNave();
+
+            for (int disparo = 0; disparo < disparosOponente.Count; disparo++)
+            {
+                tableroJugador[disparosOponente[disparo].PosicionX, disparosOponente[disparo].PosicionY] = "0";
+            }
+
             for (int coordenada = 0; coordenada < coordenadasNave.Count; coordenada++)
-                tableroJugador[coordenadasNave[coordenada].PosicionX, coordenadasNave[coordenada].PosicionY] = ((char)despliegue.Nave.Tipo).ToString();
+            {
+                tableroJugador[coordenadasNave[coordenada].PosicionX, coordenadasNave[coordenada].PosicionY] =
+                    ((char)despliegue.Nave.Tipo).ToString();
+
+                // disparosOponente.Where(disparo=>coordenadasNave[coordenada].PosicionX==disparo.PosicionX && coordenadasNave[coordenada].PosicionY==disparo.PosicionY).
+            }
         }
+
         return tableroJugador;
     }
 
@@ -59,7 +77,7 @@ public class Acorazado
 
         _estrategia[_jugadores.LastOrDefault()].Add(new Despliegue(nave, posicionX, posicionY, orientacion));
     }
-    
+
     public string Iniciar()
     {
         if (_jugadores.Count == 0)
@@ -96,41 +114,41 @@ public class Acorazado
     public string Disparar(int coordenadaX, int coordenadaY)
     {
         _disparos[_turnoActivo].Add(new Coordenada(coordenadaX, coordenadaY));
-        
+
         var navesDelOponente = _estrategia.First(x => x.Key != _turnoActivo).Value;
 
         var coordenadasDeTodasLasNavesDelOponente =
             navesDelOponente.SelectMany(x => x.CoordenadasNave());
-        
+
         var aciertoDisparo = coordenadasDeTodasLasNavesDelOponente
             .Any(x => x.PosicionX == coordenadaX && x.PosicionY == coordenadaY);
-        
-        
+
+
         if (aciertoDisparo is false)
         {
             return "0";
         }
-        
+
         var naveImpactada =
             navesDelOponente.First(x => x.CoordenadasNave().Contains(new Coordenada(coordenadaX, coordenadaY)));
 
         var disparosJugadorActivo = _disparos[_turnoActivo].ToList();
-        
+
         if (naveImpactada.EstaHundida(disparosJugadorActivo))
         {
             return "Nave hundida";
         }
-        
+
         return "x";
-        
     }
 
     public string CambiarTurno()
     {
         if (_disparos[_turnoActivo].Count == 0)
         {
-          return "Debe disparar primero";
+            return "Debe disparar primero";
         }
+
         _turnoActivo = _jugadores.First(x => x != _turnoActivo);
         return $"TURNO {_turnoActivo.ToUpper()}";
     }

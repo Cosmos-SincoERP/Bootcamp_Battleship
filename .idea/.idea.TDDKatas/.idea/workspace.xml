@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️Si_ElJugadorUnoNoHaDisparadoYCambiaTurno_Debe_LanzarExcepcion">
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="❤️Si_TerminoTurnoJugadorUnoYNoAcertoImprimir_Debe_MostrarTableroJugadorDosConUnTiroErrado">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +34,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3f306492a8992ce3707d90e5a2eb6fca5f6b056d8e3d1c398226a368787514/InvalidOperationException.cs" root0="SKIP_HIGHLIGHTING" />
@@ -83,15 +83,7 @@
       <workItem from="1763165952569" duration="12691000" />
       <workItem from="1763563174982" duration="12396000" />
       <workItem from="1763575727124" duration="15679000" />
-      <workItem from="1763648957965" duration="13068000" />
-    </task>
-    <task id="LOCAL-00066" summary="❤️Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaArriba">
-      <option name="closed" value="true" />
-      <created>1763488288497</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1763488288497</updated>
+      <workItem from="1763648957965" duration="14295000" />
     </task>
     <task id="LOCAL-00067" summary="💚 Si_InicioElJuegoYUbicoPortaAvionesEnPosicion3_3OrientacionArribaImprimir_Debe_RetornarDestructorPosicionadoEn3_3OrientadoHaciaArriba">
       <option name="closed" value="true" />
@@ -477,7 +469,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763659359604</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="❤️Si_TerminoTurnoJugadorUnoYNoAcertoImprimir_Debe_MostrarTableroJugadorDosConUnTiroErrado">
+      <option name="closed" value="true" />
+      <created>1763667444347</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1763667444348</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,7 +497,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_RetornarJuegoIniciado" />
     <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_IniciarElTurnoDelJugadorUno" />
     <MESSAGE value="Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletas_Debe_IniciarElTurnoDelJugadorUno" />
     <MESSAGE value="❤️Si_InicioLaPartidaYAgrego2JugadoresConSusEstrategiasCompletasYJugador1DisparaAUnCanioneroDelJugador2_Debe_RetornarBarcoHundido" />
@@ -522,23 +521,63 @@
     <MESSAGE value="Si_InicioJuegoYAgrego2JugadoresConSusEstrategiasCompletasEInicioPartidaImprimir_Debe_RetornarTableroPrimerJugador" />
     <MESSAGE value="Si_InicioJuegoYAgrego2JugadoresConSusEstrategiasCompletasEInicioPartidaImprimir_Debe_RetornarTableroPrimerJugador" />
     <MESSAGE value="❤️Si_ElJugadorUnoNoHaDisparadoYCambiaTurno_Debe_LanzarExcepcion" />
-    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_ElJugadorUnoNoHaDisparadoYCambiaTurno_Debe_LanzarExcepcion" />
+    <MESSAGE value="❤️Si_TerminoTurnoJugadorUnoYNoAcertoImprimir_Debe_MostrarTableroJugadorDosConUnTiroErrado" />
+    <option name="LAST_COMMIT_MESSAGE" value="❤️Si_TerminoTurnoJugadorUnoYNoAcertoImprimir_Debe_MostrarTableroJugadorDosConUnTiroErrado" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs</url>
-          <line>129</line>
+          <line>147</line>
           <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'CambiarTurno'">
             <startOffsets>
-              <option value="4566" />
+              <option value="5172" />
             </startOffsets>
             <endOffsets>
-              <option value="4605" />
+              <option value="5211" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs</url>
+          <line>49</line>
+          <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'PosicionarNaves'">
+            <startOffsets>
+              <option value="1503" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1551" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs</url>
+          <line>43</line>
+          <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'PosicionarNaves'">
+            <startOffsets>
+              <option value="1250" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1334" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs</url>
+          <line>41</line>
+          <properties documentPath="C:\Users\victor.novoa\RiderProjects\TDDKatas\TDDKatas.Test\Acorazado.cs" containingFunctionPresentation="Method 'PosicionarNaves'">
+            <startOffsets>
+              <option value="1129" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1232" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
