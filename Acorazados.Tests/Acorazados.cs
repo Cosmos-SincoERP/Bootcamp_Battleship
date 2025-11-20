@@ -51,8 +51,8 @@ public class Acorazados
         return BuscarJugador(aliasJugador) is not null;
     }
 
-    public void Disparar(int i, int i1)
-    {
-        Oponente.RecibirDisparo(i, i1);
+    public void Disparar(int fila, int columna)
+    {   
+        Oponente.RecibirDisparo(fila, columna);
     }
 }
