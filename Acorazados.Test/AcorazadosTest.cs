@@ -992,4 +992,48 @@ public class AcorazadosTest
 
         tablero.Should().Be(tableroEsperado);
     }
+    
+    [Fact]
+    public void Si_InicioElJuegoConUnDestructorEnCoordenada_2_3_a_2_5_ParaJugador2_YJugador1_Debe_DispararHastaHundirDestructorDeJugador2()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Paula");
+        acorazados.AddPlayer("Ruben");
+        
+        var destructor1 = new Nave(2, 3,2,5, "d");
+
+        acorazados.Iniciar([],[destructor1]);
+        
+        acorazados.Disparar(2, 3);
+        acorazados.TerminarTurno();
+        
+        acorazados.Disparar(0, 0);
+        acorazados.TerminarTurno();
+        
+        acorazados.Disparar(2, 4);
+        acorazados.TerminarTurno();
+        
+        acorazados.Disparar(1, 1);
+        acorazados.TerminarTurno();
+        
+        acorazados.Disparar(2, 5);
+        acorazados.TerminarTurno();
+        
+        var tablero = acorazados.Imprimir();
+
+        var tableroEsperado = "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+                              "0| | | | | | | | | | |" +
+                              "1| | | | | | | | | | |" +
+                              "2| | | X | X | X | | | | | |" +
+                              "3| | | | | | | | | | |" +
+                              "4| | | | | | | | | | |" +
+                              "5| | | | | | | | | | |" +
+                              "6| | | | | | | | | | |" +
+                              "7| | | | | | | | | | |" +
+                              "8| | | | | | | | | | |" +
+                              "9| | | | | | | | | | |"; 
+
+        tablero.Should().Be(tableroEsperado);
+    }
 }
