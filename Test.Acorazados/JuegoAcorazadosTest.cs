@@ -247,10 +247,10 @@ public class JuegoAcorazadosTest
             new PosicionarBarco((2, 0), new PortaAviones(Orientacion.Vertical))
         );
         juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((6, 3), new Destructor(Orientacion.Vertical))
+            new PosicionarBarco((6, 3), new Destructor(Orientacion.Horizontal))
         );
         juegoAcorazado.AgregarBarco(
-            new PosicionarBarco((9, 6), new Destructor(Orientacion.Horizontal))
+            new PosicionarBarco((9, 6), new Destructor(Orientacion.Vertical))
         );
         
         var jugador2 = () => juegoAcorazado.AgregarJugador();

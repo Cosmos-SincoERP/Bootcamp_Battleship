@@ -28,6 +28,9 @@ public class JuegoAcorazado
             
             if (_inventarioBarco["PortaAviones"] > 0)
                 throw new Exception();
+            
+            if (_inventarioBarco["Cañonero"] > 0)
+                throw new Exception();
         }
         
         _jugadores.Add("Jugador 1");
