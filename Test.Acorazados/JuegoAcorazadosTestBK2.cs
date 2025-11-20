@@ -2,7 +2,7 @@ using AwesomeAssertions;
 
 namespace Test.BattleShip;
 
-public class AcorazadosTest
+public class JuegoAcorazadosTestBK2
 {
     private static string TableroEsperado(char[,] tablero)
     {
@@ -23,7 +23,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeAgregaJugador_Debe_ContenerJugador1()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadosBK2();
 
         juegoAcorazado.AgregarJugador();
 
@@ -33,7 +33,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeAgrega2Jugadores_Debe_ContenerJugador1YJugador2()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadosBK2();
 
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
@@ -44,7 +44,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeIniciaElJuegoCon1Jugador_Debe_LanzarExcepcion()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadosBK2();
         juegoAcorazado.AgregarJugador();
 
         var iniciarJuego = () => juegoAcorazado.Iniciar();
@@ -56,7 +56,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeIniciaElJuegoCon2Jugador_NoDebe_LanzarExcepcionPorCantidadDeJugadores()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadosBK2();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
 
@@ -66,19 +66,19 @@ public class AcorazadosTest
     }
 
     [Fact]
-    public void Si_SeAgregaUnJugador_Debe_ColocarUnCañoneroEnLaPosicion0_0()
+    public void Si_SeIniciaElJuego_Debe_ColocarUnCañoneroEnLaPosicion0_0()
     {
         var tamañoTablero = 10;
         var tablero = new char[tamañoTablero, tamañoTablero];
         tablero[0, 0] = 'g';
         var tableroEsperado = TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
-        List<Coordenada> coordenadasCañonero = new()
+        var juegoAcorazado = new JuegoAcorazadosBK2();
+        List<PosicionarBarco> coordenadasCañonero = new()
         {
-            new(0, 0, Nave.Cañonero, null)
+            new(0, 0, Barco.Cañonero, null)
         };
 
-        juegoAcorazado.AgregarJugador(coordenadasCañonero);
+        juegoAcorazado.Iniciar(coordenadasCañonero);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -90,14 +90,14 @@ public class AcorazadosTest
         var tablero = new char[tamañoTablero, tamañoTablero];
         tablero[4, 5] = 'g';
         var tableroEsperado = TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadosBK2();
 
-        List<Coordenada> coordenadasCañonero = new()
+        List<PosicionarBarco> coordenadasCañonero = new()
         {
-            new(4, 5, Nave.Cañonero, null)
+            new(4, 5, Barco.Cañonero, null)
         };
 
-        juegoAcorazado.AgregarJugador(coordenadasCañonero);
+        juegoAcorazado.Iniciar(coordenadasCañonero);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -110,14 +110,14 @@ public class AcorazadosTest
         tablero[2, 3] = 'g';
         tablero[3, 3] = 'g';
         var tableroEsperado = TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
-        List<Coordenada> coordenadasCañonero = new()
+        var juegoAcorazado = new JuegoAcorazadosBK2();
+        List<PosicionarBarco> coordenadasCañonero = new()
         {
-            new(2, 3, Nave.Cañonero, null),
-            new(3, 3, Nave.Cañonero, null)
+            new(2, 3, Barco.Cañonero, null),
+            new(3, 3, Barco.Cañonero, null)
         };
 
-        juegoAcorazado.AgregarJugador(coordenadasCañonero);
+        juegoAcorazado.Iniciar(coordenadasCañonero);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -133,13 +133,13 @@ public class AcorazadosTest
         tablero[4, 3] = 'c';
         tablero[5, 3] = 'c';
         var tableroEsperado = TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadosBK2();
 
-        List<Coordenada> coordenadasPortaAvion = new()
+        List<PosicionarBarco> coordenadasPortaAvion = new()
         {
-            new(2, 3, Nave.PortaAviones, "Horizontal")
+            new(2, 3, Barco.PortaAviones, "Horizontal")
         };
-        juegoAcorazado.AgregarJugador(coordenadasPortaAvion);
+        juegoAcorazado.Iniciar(coordenadasPortaAvion);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -155,13 +155,13 @@ public class AcorazadosTest
         tablero[7, 2] = 'c';
         tablero[8, 2] = 'c';
         var tableroEsperado = TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
-        List<Coordenada> coordenadasPortaAvion = new()
+        var juegoAcorazado = new JuegoAcorazadosBK2();
+        List<PosicionarBarco> coordenadasPortaAvion = new()
         {
-            new(5, 2, Nave.PortaAviones, "Horizontal")
+            new(5, 2, Barco.PortaAviones, "Horizontal")
         };
 
-        juegoAcorazado.AgregarJugador(coordenadasPortaAvion);
+        juegoAcorazado.Iniciar(coordenadasPortaAvion);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -177,13 +177,13 @@ public class AcorazadosTest
         tablero[5, 4] = 'c';
         tablero[5, 5] = 'c';
         var tableroEsperado = TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
-        List<Coordenada> coordenadasPortaAvion = new()
+        var juegoAcorazado = new JuegoAcorazadosBK2();
+        List<PosicionarBarco> coordenadasPortaAvion = new()
         {
-            new(5, 2, Nave.PortaAviones, "Vertical")
+            new(5, 2, Barco.PortaAviones, "Vertical")
         };
 
-        juegoAcorazado.AgregarJugador(coordenadasPortaAvion);
+        juegoAcorazado.Iniciar(coordenadasPortaAvion);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -199,14 +199,14 @@ public class AcorazadosTest
         tablero[3, 2] = 'd';
         tablero[4, 2] = 'd';
         var tableroEsperado = TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadosBK2();
 
-        List<Coordenada> coordenadasDetructor = new()
+        List<PosicionarBarco> coordenadasDetructor = new()
         {
-            new(2, 2, Nave.Destructor, "Horizontal")
+            new(2, 2, Barco.Destructor, "Horizontal")
         };
 
-        juegoAcorazado.AgregarJugador(coordenadasDetructor);
+        juegoAcorazado.Iniciar(coordenadasDetructor);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -222,14 +222,14 @@ public class AcorazadosTest
         tablero[2, 1] = 'd';
         tablero[3, 1] = 'd';
         var tableroEsperado = TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadosBK2();
 
-        List<Coordenada> coordenadasDetructor = new()
+        List<PosicionarBarco> coordenadasDetructor = new()
         {
-            new(1, 1, Nave.Destructor, "Horizontal")
+            new(1, 1, Barco.Destructor, "Horizontal")
         };
 
-        juegoAcorazado.AgregarJugador(coordenadasDetructor);
+        juegoAcorazado.Iniciar(coordenadasDetructor);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -244,14 +244,14 @@ public class AcorazadosTest
         tablero[1, 3] = 'd';
         tablero[1, 4] = 'd';
         var tableroEsperado = TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadosBK2();
 
-        List<Coordenada> coordenadasDetructor = new()
+        List<PosicionarBarco> coordenadasDetructor = new()
         {
-            new(1, 2, Nave.Destructor, "Vertical")
+            new(1, 2, Barco.Destructor, "Vertical")
         };
 
-        juegoAcorazado.AgregarJugador(coordenadasDetructor);
+        juegoAcorazado.Iniciar(coordenadasDetructor);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -266,14 +266,14 @@ public class AcorazadosTest
         tablero[1, 3] = 'd';
         tablero[1, 4] = 'd';
         var tableroEsperado = TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadosBK2();
 
-        List<Coordenada> coordenadasDetructor = new()
+        List<PosicionarBarco> coordenadasDetructor = new()
         {
-            new(1, 2, Nave.Destructor, "Vertical")
+            new(1, 2, Barco.Destructor, "Vertical")
         };
 
-        juegoAcorazado.AgregarJugador(coordenadasDetructor);
+        juegoAcorazado.Iniciar(coordenadasDetructor);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -287,21 +287,21 @@ public class AcorazadosTest
         tableroJugador1[0, 0] = 'g';
         var tableroEsperado = TableroEsperado(tableroJugador1);
 
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadosBK2();
 
-        List<Coordenada> coordenadasDetructorJugador1 = new()
+        List<PosicionarBarco> coordenadasDetructorJugador1 = new()
         {
-            new(0, 0, Nave.Cañonero, null)
+            new(0, 0, Barco.Cañonero, null)
         };
 
-        juegoAcorazado.AgregarJugador(coordenadasDetructorJugador1);
+        juegoAcorazado.Iniciar(coordenadasDetructorJugador1);
 
-        List<Coordenada> coordenadasDetructorJugador2 = new()
+        List<PosicionarBarco> coordenadasDetructorJugador2 = new()
         {
-            new(1, 1, Nave.Cañonero, null)
+            new(1, 1, Barco.Cañonero, null)
         };
 
-        juegoAcorazado.AgregarJugador(coordenadasDetructorJugador2);
+        juegoAcorazado.Iniciar(coordenadasDetructorJugador2);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -309,14 +309,14 @@ public class AcorazadosTest
     [Fact]
     public void Si_AgregoUnJugadorYPosicionSoloUnCañonero_Debe_LanzarExcepcionFaltaPosicionarLosTresCañoneros()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadosBK2();
 
-        List<Coordenada> coordenadasDetructorJugador1 = new()
+        List<PosicionarBarco> coordenadasDetructorJugador1 = new()
         {
-            new(0, 0, Nave.Cañonero, null)
+            new(0, 0, Barco.Cañonero, null)
         };
 
-        juegoAcorazado.AgregarJugador(coordenadasDetructorJugador1);
+        juegoAcorazado.Iniciar(coordenadasDetructorJugador1);
 
         var iniciar = () => juegoAcorazado.Iniciar();
 
@@ -326,15 +326,15 @@ public class AcorazadosTest
     [Fact]
     public void Si_AgregoUnJugadorYPosicionSoloDosCañonero_Debe_LanzarExcepcionFaltaPosicionarLosDosCañoneros()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadosBK2();
 
-        List<Coordenada> coordenadasDetructorJugador1 = new()
+        List<PosicionarBarco> coordenadasDetructorJugador1 = new()
         {
-            new(0, 0, Nave.Cañonero, null),
-            new(1, 5, Nave.Cañonero, null)
+            new(0, 0, Barco.Cañonero, null),
+            new(1, 5, Barco.Cañonero, null)
         };
 
-        juegoAcorazado.AgregarJugador(coordenadasDetructorJugador1);
+        juegoAcorazado.Iniciar(coordenadasDetructorJugador1);
 
         var iniciar = () => juegoAcorazado.Iniciar();
 

@@ -2,60 +2,68 @@ namespace Test.BattleShip;
 
 public class JuegoAcorazado
 {
-    private List<(string, char[,])> _jugadores = new();
-    private char[,] _tablero = new char[10, 10];
+    private readonly char[,] _tablero;
 
-    public void AgregarJugador(List<Coordenada>? coordenadas = null)
+    public JuegoAcorazado(int tamañoTablero = 10)
     {
-        _tablero = new char[10, 10];
+        if (tamañoTablero <= 0)
+            throw new ArgumentOutOfRangeException();
+        _tablero = new char[tamañoTablero, tamañoTablero];
+    }
 
-        if (coordenadas != null)
+    public void AgregarPortaAviones(int posicionX, int posicionY, string direccion)
+    {
+        for (var i = 0; i < 4; i++)
         {
-            foreach (var coordenada in coordenadas)
+            if (direccion == "Vertical")
             {
-                for (int i = 0; i < coordenada.Nave.Tamaño; i++)
-                {
-                    if (coordenada.Orientacion == "Horizontal")
-                        AsignarPosicionDeLaNave(coordenada.X + i, coordenada.Y, coordenada.Nave.Valor);
-                    else
-                        AsignarPosicionDeLaNave(coordenada.X, coordenada.Y + i, coordenada.Nave.Valor);
-                }
+                ValidarPosicionDeLaNave(posicionY + i, 1, "Portaviones");
+                AsignarElValorDeLaNaveALaPosicion(posicionX, posicionY + i, 'c');
+            }
+            else
+            {
+                ValidarPosicionDeLaNave(posicionX + i, 0, "Portaviones");
+                AsignarElValorDeLaNaveALaPosicion(posicionX + i, posicionY, 'c');
             }
         }
-
-        _jugadores.Add(new(_jugadores.Count == 1 ? "Jugador 2" : "Jugador 1", _tablero));
     }
 
-    public List<string> MostrarJugadores()
-    {
-        return _jugadores.Select(jugador => jugador.Item1).ToList();
-    }
 
-    public void Iniciar()
+    public void AgregarDestructor(int posicionEnX, int posicionEnY, string direccion)
     {
-        int conteo = 4;
-
-        foreach (var jugador in _jugadores)
+        if (direccion == "Vertical")
         {
-            conteo -= jugador.Item2.Cast<char>().Count(nave => nave == 'g');
-        }
-
-        if (conteo < 4)
-            throw new Exception($"El jugador 1 le faltan posicionar {conteo} cañoneros");
-
-        if (_jugadores.Count != 2)
-            throw new Exception("El juego no puede iniciarse hasta que se hayan agregado 2 jugadores");
-    }
-
-    public string Imprimir(string nombreJugador = "Jugador 1")
-    {
-        var tablero = _jugadores.FirstOrDefault(jugador => jugador.Item1 == nombreJugador).Item2;
-        var visualizarTablero = string.Empty;
-        for (var x = 0; x < tablero.GetLength(0); x++)
-        {
-            for (int y = 0; y < tablero.GetLength(1); y++)
+            for (int i = 0; i < 3; i++)
             {
-                visualizarTablero += tablero[x, y];
+                ValidarPosicionDeLaNave(posicionEnY + i, 1, "Destructor");
+                AsignarElValorDeLaNaveALaPosicion(posicionEnX, posicionEnY + i, 'd');
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                ValidarPosicionDeLaNave(posicionEnX + i, 0, "Destructor");
+                AsignarElValorDeLaNaveALaPosicion(posicionEnX + i, posicionEnY, 'd');
+            }
+        }
+    }
+
+    public void AgregarCañonero(int posicionEnX, int posicionEnY)
+    {
+        ValidarPosicionDeLaNave(posicionEnX, 0, "Cañonero");
+        ValidarPosicionDeLaNave(posicionEnY, 1, "Cañonero");
+        AsignarElValorDeLaNaveALaPosicion(posicionEnX, posicionEnY, 'g');
+    }
+
+    public string Imprimir()
+    {
+        var visualizarTablero = string.Empty;
+        for (var x = 0; x < _tablero.GetLength(0); x++)
+        {
+            for (int y = 0; y < _tablero.GetLength(1); y++)
+            {
+                visualizarTablero += _tablero[x, y];
             }
 
             visualizarTablero += '\n';
@@ -63,28 +71,14 @@ public class JuegoAcorazado
 
         return visualizarTablero;
     }
+    private void ValidarPosicionDeLaNave(int posicion, int dimension, string nave)
+    {
+        if (posicion > _tablero.GetLength(dimension) - 1)
+            throw new Exception($"La posicion del {nave} debe estar dentro del tablero");
+    }
 
-
-    private void AsignarPosicionDeLaNave(int posicionX, int posicionY, char valorNave)
+    private void AsignarElValorDeLaNaveALaPosicion(int posicionX, int posicionY, char valorNave)
     {
         _tablero[posicionX, posicionY] = valorNave;
     }
-}
-
-public record Coordenada(int X, int Y, Nave Nave, string? Orientacion);
-
-public class Nave
-{
-    public int Tamaño { get; private set; }
-    public char Valor { get; private set; }
-
-    private Nave(int tamaño, char valor)
-    {
-        Tamaño = tamaño;
-        Valor = valor;
-    }
-
-    public static Nave Cañonero => new(1, 'g');
-    public static Nave Destructor => new(3, 'd');
-    public static Nave PortaAviones => new(4, 'c');
 }
