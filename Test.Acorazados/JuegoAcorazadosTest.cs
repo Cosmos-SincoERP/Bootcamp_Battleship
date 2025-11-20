@@ -376,4 +376,67 @@ public class JuegoAcorazadosTest
 
         iniciar.Should().Throw<Exception>().WithMessage("El jugador 2 No ha posicionado todos los barcos, por favor posicione todos los barcos antes de iniciar el juego");
     }
+    
+    [Fact]
+    public void Si_Jugador1YJugador2HaPosicionadoTodosLosBarcos_Debe_PermitirIniciarElJuego()
+    {
+        var juegoAcorazado = new JuegoAcorazado();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((2, 0), new Cañonero())
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((6, 3), new Cañonero())
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((8, 6), new Cañonero())
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((9, 6), new Cañonero())
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((2, 6), new Destructor(Orientacion.Horizontal))
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((0, 2), new Destructor(Orientacion.Vertical))
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((9, 0), new PortaAviones(Orientacion.Vertical))
+        );
+        
+        juegoAcorazado.AgregarJugador();
+        
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((8, 2), new Cañonero()),
+            "Jugador 2"
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((5, 0), new Cañonero()),
+            "Jugador 2"
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((7, 4), new Cañonero()),
+            "Jugador 2"
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((3, 7), new Cañonero()),
+            "Jugador 2"
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((2, 6), new Destructor(Orientacion.Horizontal)),
+            "Jugador 2"
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((2, 2), new Destructor(Orientacion.Vertical)),
+            "Jugador 2"
+        );
+        juegoAcorazado.AgregarBarco(
+            new PosicionarBarco((4, 0), new PortaAviones(Orientacion.Vertical)),
+            "Jugador 2"
+        );
+        
+        var iniciar = () => juegoAcorazado.Iniciar();
+
+        iniciar.Should().NotThrow();
+    }
 }
