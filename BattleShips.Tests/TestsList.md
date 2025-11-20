@@ -1,7 +1,7 @@
 ## BattleShip
 
-* Debo permitir agregar jugadores
-* No debe permitir agregar más de dos jugadores
+* ✅Debo permitir agregar jugadores
+* ✅No debe permitir agregar más de dos jugadores
 * No se puede iniciar un juego sin jugadores
 * No se puede iniciar un juego con un jugador
 * Para iniciar el juego ambos jugadores deben tener barcos.

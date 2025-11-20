@@ -14,7 +14,7 @@ public class BattleShipTests
 
         action.Should().NotThrow();
     }
-
+    
     [Fact]
     public void Cuando_AgregoTresJugadores_Debe_ArrojarException()
     {
@@ -24,7 +24,17 @@ public class BattleShipTests
         
         var action = () => battleShip.AddPlayer();
 
-        action.Should().ThrowExactly<ArgumentOutOfRangeException>();
+        action.Should().ThrowExactly<NotSupportedException>();
+    }
+
+    [Fact]
+    public void Cuando_InicioElJuegoSinJugadores_Debe_ArrojarException()
+    {
+        var battleShip = new BattleShip();
+
+        var action = () => battleShip.Start();
+
+        action.Should().ThrowExactly<NotSupportedException>();
     }
     
 }
@@ -35,8 +45,13 @@ public class BattleShip
     public void AddPlayer()
     {
         if (_cantidadJugadores == 2)
-            throw new ArgumentOutOfRangeException();
+            throw new NotSupportedException();
         _cantidadJugadores++;
         
+    }
+
+    public void Start()
+    {
+        throw new NotSupportedException();
     }
 }
