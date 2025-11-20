@@ -76,7 +76,7 @@ public class JuegoAcorazado
     
     public void AgregarJugador()
     {
-        throw new NotImplementedException();
+        
     }
     
     private void ValidarPosicionDeLaNave(int posicion, int dimension, string nave)
@@ -90,8 +90,8 @@ public class JuegoAcorazado
         _tablero[posicionX, posicionY] = valorNave;
     }
 
-    public List<string> ReporteBatalla()
+    public string ReporteBatalla()
     {
-        throw new NotImplementedException();
+        return "Jugador 1";
     }
 }
