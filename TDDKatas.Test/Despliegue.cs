@@ -15,14 +15,14 @@ public class Despliegue(Nave Nave, int PosicionX, int PosicionY, Orientacion Ori
         orientacion = this.Orientacion;
     }
 
-    public bool NaveHundida(List<(int, int)> coordenadasDisparadas)
+    public bool EstaHundida(List<(int, int)> coordenadasDisparadas)
     {
         var coordenadasNave = ObtenerCoordenadasPorOrientacion(PosicionX, PosicionY, Nave, Orientacion);
 
         return coordenadasNave.TrueForAll(x => coordenadasDisparadas.Contains(x));
     }
     
-    public List<(int, int)> CoordenadasDisparadas() => ObtenerCoordenadasPorOrientacion(PosicionX, PosicionY, Nave, Orientacion);
+    public List<(int, int)> CoordenadasNave() => ObtenerCoordenadasPorOrientacion(PosicionX, PosicionY, Nave, Orientacion);
 
     private List<(int, int)> ObtenerCoordenadasPorOrientacion(int posicionX, int posicionY, Nave nave,
         Orientacion orientacion)

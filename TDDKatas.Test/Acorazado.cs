@@ -131,34 +131,34 @@ public class Acorazado
     public string Disparar(int coordenadaX, int coordenadaY)
     {
         _disparos[_turnoActivo].Add(new Disparo(coordenadaX, coordenadaY));
-        var estrategiaOponente = _estrategia.First(x => x.Key != _turnoActivo).Value;
+        
+        
+        var navesDelOponente = _estrategia.First(x => x.Key != _turnoActivo).Value;
 
-        var coordenadas =
-            estrategiaOponente.SelectMany(x => x.CoordenadasDisparadas());
-        var ledioAAlgo = coordenadas
+        var coordenadasDeTodasLasNavesDelOponente =
+            navesDelOponente.SelectMany(x => x.CoordenadasNave());
+        
+        var aciertoDisparo = coordenadasDeTodasLasNavesDelOponente
             .Any(x => x.Item1 == coordenadaX && x.Item2 == coordenadaY);
-
-        if (ledioAAlgo is false)
+        
+        
+        if (aciertoDisparo is false)
         {
             return "0";
         }
+        
+        var naveImpactada =
+            navesDelOponente.First(x => x.CoordenadasNave().Contains((coordenadaX, coordenadaY)));
 
-        var naveOponente =
-            estrategiaOponente.First(x => x.CoordenadasDisparadas().Contains((coordenadaX, coordenadaY)));
-
-        if (naveOponente.NaveHundida(_disparos[_turnoActivo].Select(x => (x.CoordenadaX, x.CoordenadaY)).ToList()))
+        var disparosJugadorActivo = _disparos[_turnoActivo].Select(x => (x.CoordenadaX, x.CoordenadaY)).ToList();
+        
+        if (naveImpactada.EstaHundida(disparosJugadorActivo))
         {
             return "Nave hundida";
         }
-
-
+        
         return "x";
-
-        //
-        // if((coordenadaX==3 && coordenadaY==0) || (coordenadaX==3 && coordenadaY==1) )
-        //     return "x";
-        //
-        // return "0";
+        
     }
 }
 
