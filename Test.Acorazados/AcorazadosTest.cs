@@ -45,7 +45,7 @@ public class JuegoAcorazados
     public List<string> _jugadores { get; } = new();
     public void Iniciar()
     {
-        if (_jugadores.Count < 2)
+        if (_jugadores.Count != 2)
             throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
     }
 
