@@ -3,7 +3,7 @@ namespace Test.BattleShip;
 public class JuegoAcorazados
 {
     public List<(string, char[,])> _jugadores { get; } = new();
-    public void Iniciar(List<(Coordenada, Barco, OrientacionBarco orientacion)> barcosJugador1)
+    public void Iniciar(List<(Coordenada, Barco, OrientacionBarco orientacion)> barcosJugador1, List<(Coordenada, Barco, OrientacionBarco orientacion)> barcosJugador2)
     {
         if (_jugadores.Count != 2)
             throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
