@@ -217,42 +217,54 @@ public class Battleship
     {
         if (_jugador1Gano)
         {
-            var sb = new StringBuilder();
-            sb.AppendLine($"[ {_jugador1}");
-            sb.AppendLine($"    Total shots: {_conteoDisparosJugador1}");
-            sb.AppendLine($"    Misses: {_conteoDisparosJugador1 - _conteoDisparosAcertadosJugador1}");
-            sb.AppendLine($"    Hits: {_conteoDisparosAcertadosJugador1}");
-            sb.AppendLine("    Ships Sunk: [");
-
-            foreach (var nave in _navesHundidasJugador1)
-            {
-                sb.AppendLine($"        {nave.ObtenerNombre()}: ({nave.FilaInicial},{nave.ColumnaInicial})");
-            }
-
-            sb.Append("    ]");
-            sb.Append(string.Join("", _tableroJugador2));
-
-            return sb.ToString();
+            return ImprimirReporteVictoria(
+                _jugador1, 
+                _conteoDisparosJugador1, 
+                _conteoDisparosAcertadosJugador1, 
+                _navesHundidasJugador1, 
+                _tableroJugador2
+            );
         }
+    
         if (_jugador2Gano)
         {
-            var sb = new StringBuilder();
-            sb.AppendLine($"[ {_jugador2}");
-            sb.AppendLine($"    Total shots: {_conteoDisparosJugador2}");
-            sb.AppendLine($"    Misses: {_conteoDisparosJugador2 - _conteoDisparosAcertadosJugador2}");
-            sb.AppendLine($"    Hits: {_conteoDisparosAcertadosJugador2}");
-            sb.AppendLine("    Ships Sunk: [");
-
-            foreach (var nave in _navesHundidasJugador2)
-            {
-                sb.AppendLine($"        {nave.ObtenerNombre()}: ({nave.FilaInicial},{nave.ColumnaInicial})");
-            }
-
-            sb.Append("    ]");
-            sb.Append(string.Join("", _tableroJugador1));
-
-            return sb.ToString();
+            return ImprimirReporteVictoria(
+                _jugador2, 
+                _conteoDisparosJugador2, 
+                _conteoDisparosAcertadosJugador2, 
+                _navesHundidasJugador2, 
+                _tableroJugador1
+            );
         }
-        return string.Join("", _turnoJugador1 ? _tableroJugador1 : _tableroJugador2);
+    
+        return ImprimirTablero(_turnoJugador1 ? _tableroJugador1 : _tableroJugador2);
     }
+
+    private string ImprimirReporteVictoria(
+        string nombreJugador, 
+        int totalDisparos, 
+        int disparosAcertados, 
+        List<Nave> navesHundidas, 
+        List<string> tableroOponente)
+    {
+        var sb = new StringBuilder();
+    
+        sb.AppendLine($"[ {nombreJugador}");
+        sb.AppendLine($"    Total shots: {totalDisparos}");
+        sb.AppendLine($"    Misses: {totalDisparos - disparosAcertados}");
+        sb.AppendLine($"    Hits: {disparosAcertados}");
+        sb.AppendLine("    Ships Sunk: [");
+    
+        foreach (var nave in navesHundidas)
+        {
+            sb.AppendLine($"        {nave.ObtenerNombre()}: ({nave.FilaInicial},{nave.ColumnaInicial})");
+        }
+    
+        sb.Append("    ]");
+        sb.Append(ImprimirTablero(tableroOponente));
+    
+        return sb.ToString();
+    }
+
+    private string ImprimirTablero(List<string> tablero) => string.Join("", tablero);
 }
