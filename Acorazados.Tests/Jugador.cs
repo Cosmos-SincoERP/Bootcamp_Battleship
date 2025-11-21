@@ -49,6 +49,17 @@ public class Jugador
         return tablero;
     }
 
+    public void RecibirDisparo(int x, int y)
+    {
+        var casilla = ObtenerElemento(x, y);
+        if (casilla == "g")
+            Tablero[x, y] = "X";
+        else if (casilla is "d" or "c")
+            Tablero[x, y] = "x";
+        else
+            Tablero[x, y] = "o";
+    }
+
     private void PosicionarNave(INave nave, Orientacion orientacion, int fila, int columna)
     {
         var longitud = nave.Longitud;
@@ -128,21 +139,5 @@ public class Jugador
     {
         tablero += "\r\n";
         return tablero;
-    }
-
-
-    public void RecibirDisparo(int x, int y)
-    {
-        if (ObtenerElemento(x, y) == "g")
-            Tablero[x, y] = "X";
-        else if (ObtenerElemento(x, y) == "d")
-        {
-            Tablero[x, y] = "x";
-            new Carrier().CantidadDisparosRecibidos += 1;
-        }
-        else if (ObtenerElemento(x, y) == "c")
-            Tablero[x, y] = "x";
-        else
-            Tablero[x, y] = "o";
     }
 }
