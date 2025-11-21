@@ -191,10 +191,13 @@ public class AcorazadosTest
     [Fact]
     public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion0_0YNoImpactaUnBarco_Debe_ImprimirElTableroDelJugador2Con_o_EnLaPosicion0_0()
     {
+        var tablero = new char[10, 10];
+        tablero[0, 0] = 'o';
+        var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = new JuegoAcorazados();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
-        List<(string tipo, int x, int y, string orientacion)> posicionesJugador1 = new()
+        var posicionesJugador1 = new List<(string tipo, int x, int y, string orientacion)>()
         {
             new("Cañonero", 2, 1, ""),
             new("Cañonero", 1, 3, ""),
@@ -204,7 +207,7 @@ public class AcorazadosTest
             new("Destructor", 7, 2, "Vertical"),
             new("Portaviones", 2, 7, "Horizontal"),
         };
-        List<(string tipo, int x, int y, string orientacion)> posicionesJugador2 = new()
+        var posicionesJugador2 = new List<(string tipo, int x, int y, string orientacion)>()
         {
             new("Cañonero", 1, 8, ""),
             new("Cañonero", 1, 3, ""),
@@ -214,15 +217,52 @@ public class AcorazadosTest
             new("Destructor", 4, 7, "Vertical"),
             new("Portaviones", 0, 4, "Vertical"),
         };
-        var tablero = new char[10, 10];
-        tablero[0, 0] = 'o';
-        var tableroEsperado = TableroEsperado(tablero);
         
         juegoAcorazado.Iniciar(posicionesJugador1, posicionesJugador2);
+        
         juegoAcorazado.Disparar(0, 0);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
+    
+    [Fact]
+    public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion0_1YNoImpactaUnBarco_Debe_ImprimirElTableroDelJugador2Con_o_EnLaPosicion0_1()
+    {
+        var tablero = new char[10, 10];
+        tablero[0, 1] = 'o';
+        var tableroEsperado = TableroEsperado(tablero);
+        var juegoAcorazado = new JuegoAcorazados();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
+        var posicionesJugador1 = new List<(string tipo, int x, int y, string orientacion)>()
+        {
+            new("Cañonero", 2, 1, ""),
+            new("Cañonero", 1, 3, ""),
+            new("Cañonero", 5, 2, ""),
+            new("Cañonero", 7, 6, ""),
+            new("Destructor", 1, 5, "Horizontal"),
+            new("Destructor", 7, 2, "Vertical"),
+            new("Portaviones", 2, 7, "Horizontal"),
+        };
+        var posicionesJugador2 = new List<(string tipo, int x, int y, string orientacion)>()
+        {
+            new("Cañonero", 1, 8, ""),
+            new("Cañonero", 1, 3, ""),
+            new("Cañonero", 2, 5, ""),
+            new("Cañonero", 4, 5, ""),
+            new("Destructor", 7, 4, "Horizontal"),
+            new("Destructor", 4, 7, "Vertical"),
+            new("Portaviones", 0, 4, "Vertical"),
+        };
+        
+        juegoAcorazado.Iniciar(posicionesJugador1, posicionesJugador2);
+        
+        juegoAcorazado.Disparar(0, 1);
+
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
+    }
+
+    
 }
 
 public class JuegoAcorazados
@@ -247,6 +287,11 @@ public class JuegoAcorazados
         ValidarCantidadBarcos(posicionesBarcosJugador1, _jugadores[0]);
         ValidarCantidadBarcos(posicionesBarcosJugador2, _jugadores[1]);
         
+    }
+    
+    public void Disparar(int x, int y)
+    {
+        _tablero[x, y] = 'o';
     }
     
     public string Imprimir()
@@ -287,10 +332,5 @@ public class JuegoAcorazados
 
         if (posicionesBarcosJugador.Count(barco => barco.tipo == "Portaviones") < cantidadPortaAviones)
             throw new Exception(string.Format(faltanLosPortaviones, nombreJugador));
-    }
-
-    public void Disparar(int i, int i1)
-    {
-        _tablero[0, 0] = 'o';
     }
 }
