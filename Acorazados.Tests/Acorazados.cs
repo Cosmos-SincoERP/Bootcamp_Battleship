@@ -52,8 +52,10 @@ public class Acorazados
     }
 
     public void Disparar(int fila, int columna)
-    {   
+    {
         Oponente.RecibirDisparo(fila, columna);
-        
+        TerminarTurno();
     }
+
+    private void TerminarTurno() => EsTurnoJugador1 = !EsTurnoJugador1;
 }
