@@ -78,9 +78,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
-        List<(int x, int y, char barco, int cantidadPosiciones)> barcosJugador1 = new()
+        List<(int x, int y, char barco, int cantidadPosiciones, string orientacion)> barcosJugador1 = new()
         {
-            (0, 0, 'c',4)
+            (0, 0, 'c',4,"Horizontal")
         };
 
         juegoAcorazado.Iniciar(barcosJugador1);
@@ -112,9 +112,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
-        List<(int x, int y, char barco, int cantidadPosiciones)> barcosJugador1 = new()
+        List<(int x, int y, char barco, int cantidadPosiciones, string orientacion)> barcosJugador1 = new()
         {
-            (1, 0, 'c',4)
+            (1, 0, 'c',4,"Horizontal")
         };
 
         juegoAcorazado.Iniciar(barcosJugador1);
@@ -147,9 +147,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
-        List<(int x, int y, char barco, int cantidadPosiciones)> barcosJugador1 = new()
+        List<(int x, int y, char barco, int cantidadPosiciones, string orientacion)> barcosJugador1 = new()
         {
-            (1, 0, 'c',4)
+            (1, 0, 'c',4,"Vertical")
         };
 
         juegoAcorazado.Iniciar(barcosJugador1);
@@ -180,21 +180,30 @@ public class AcorazadosTest
 public class JuegoAcorazados
 {
     public List<(string, char[,])> _jugadores { get; } = new();
-    public void Iniciar(List<(int x, int y, char valor, int cantidadPosiciones)> barcosJugador1)
+    public void Iniciar(List<(int x, int y, char valor, int cantidadPosiciones, string orientacion)> barcosJugador1)
     {
+        if (_jugadores.Count != 2)
+            throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
+
         var tableroJugador1 = _jugadores[0].Item2;
 
         foreach (var barco in barcosJugador1)
         {
-            for (int i = 0; i < barco.cantidadPosiciones; i++)
+            if (barco.orientacion == "Vertical")
             {
-                tableroJugador1[barco.x, barco.y + i] = barco.valor;
+                tableroJugador1[0, 0] = 'c';
+                tableroJugador1[1, 0] = 'c';
+                tableroJugador1[2, 0] = 'c';
+                tableroJugador1[3, 0] = 'c';
+            }
+            else
+            {
+                for (int i = 0; i < barco.cantidadPosiciones; i++)
+                {
+                    tableroJugador1[barco.x, barco.y + i] = barco.valor;
+                }
             }
         }
-
-
-        if (_jugadores.Count != 2)
-            throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
     }
 
     public void AgregarJugador(string nombre)
