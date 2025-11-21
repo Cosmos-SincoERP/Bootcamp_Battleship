@@ -36,8 +36,15 @@ public class JuegoAcorazados
         var tablero = _jugadores[_jugadorContrincante].Tablero;
         var _listaBarcosJugadorContrincante = _jugadorContrincante == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
 
-        if (_listaBarcosJugadorContrincante.Any(barco => barco.Posicion.X == x && barco.Posicion.Y == y))
-            tablero[x, y] = 'x';
+        var buscarBarco = _listaBarcosJugadorContrincante.FirstOrDefault(barco => barco.Posicion.X == x && barco.Posicion.Y == y);
+        if (buscarBarco != null )
+        {
+            if(buscarBarco.GetType().Name == "Cañonero")
+                tablero[x, y] = 'X';
+            else
+                tablero[x, y] = 'x';
+        }
+            
         else
             tablero[x, y] = 'o';
     }
