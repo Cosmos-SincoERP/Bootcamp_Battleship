@@ -149,7 +149,7 @@ public class AcorazadosTest
 
         List<(int x, int y, char barco, int cantidadPosiciones, string orientacion)> barcosJugador1 = new()
         {
-            (1, 0, 'c',4,"Vertical")
+            (0, 0, 'c',4,"Vertical")
         };
 
         juegoAcorazado.Iniciar(barcosJugador1);
@@ -226,10 +226,10 @@ public class JuegoAcorazados
         {
             if (barco.orientacion == "Vertical")
             {
-                tableroJugador1[0, 0] = 'c';
-                tableroJugador1[1, 0] = 'c';
-                tableroJugador1[2, 0] = 'c';
-                tableroJugador1[3, 0] = 'c';
+                for (int i = 0; i < barco.cantidadPosiciones; i++)
+                {
+                    tableroJugador1[barco.x + i, barco.y] = barco.valor;
+                }
             }
             else
             {
