@@ -47,6 +47,7 @@ public class JuegoAcorazados
             else if (buscarBarco.GetType().Name == "Destructor")
             {
                 tablero[x, y] = 'X';
+                mensaje = "Se hundio un barco en la coordenada (4,7)";
             }
             else
                 tablero[x, y] = 'x';
