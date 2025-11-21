@@ -10,12 +10,12 @@ public class BattleShipTests
         var battleship = new BattleShip();
 
         var action = () => battleship.AddPlayer([
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Destructor", []),
-            ("Destructor", []),
+            ("Cañonero", [new Coord(0,0)]),
+            ("Cañonero", [new Coord(1,0)]),
+            ("Cañonero", [new Coord(2,0)]),
+            ("Cañonero", [new Coord(3,0)]),
+            ("Destructor", [new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
+            ("Destructor", [new Coord(5,0), new Coord(5,1), new Coord(5,2)]),
             ("Portaavion", [])
         ]);
 
@@ -27,21 +27,21 @@ public class BattleShipTests
     {
         var battleShip = new BattleShip();
         battleShip.AddPlayer([
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Destructor", []),
-            ("Destructor", []),
+            ("Cañonero", [new Coord(0,0)]),
+            ("Cañonero", [new Coord(1,0)]),
+            ("Cañonero", [new Coord(2,0)]),
+            ("Cañonero", [new Coord(3,0)]),
+            ("Destructor", [new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
+            ("Destructor", [new Coord(5,0), new Coord(5,1), new Coord(5,2)]),
             ("Portaavion", [])
         ]);
         battleShip.AddPlayer([
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Destructor", []),
-            ("Destructor", []),
+            ("Cañonero", [new Coord(0,0)]),
+            ("Cañonero", [new Coord(1,0)]),
+            ("Cañonero", [new Coord(2,0)]),
+            ("Cañonero", [new Coord(3,0)]),
+            ("Destructor", [new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
+            ("Destructor", [new Coord(5,0), new Coord(5,1), new Coord(5,2)]),
             ("Portaavion", [])
         ]);
 
@@ -169,6 +169,24 @@ public class BattleShipTests
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Debe ser 1 portaavion por jugador.");
     }
+    
+    [Fact]
+    public void Si_AgregoUnJugadorConCañonerosSinCoordenadas_Debe_ArrojarExcepcion()
+    {
+        var battleship = new BattleShip();
+
+        var action = () => battleship.AddPlayer([
+            ("Cañonero", []),
+            ("Cañonero", []),
+            ("Cañonero", []),
+            ("Cañonero", []),
+            ("Destructor", []),
+            ("Destructor", []),
+            ("Portaavion", [])
+        ]);
+
+        action.Should().ThrowExactly<ArgumentException>().WithMessage("Un cañonero solo puede tener una coordenada");
+    }
 
     [Fact]
     public void Si_AgregoUnJugadorConCañonerosDe2Coordenadas_Debe_ArrojarExcepcion()
@@ -205,9 +223,9 @@ public class BattleShipTests
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Un cañonero solo puede tener una coordenada");
     }
-
+    
     [Fact]
-    public void Si_AgregoUnJugadorConDestructoresDeMasDe3Coordenadas_Debe_ArrojarExcepcion()
+    public void Si_AgregoUnJugadorConDestructoresDe4Coordenadas_Debe_ArrojarExcepcion()
     {
         var battleship = new BattleShip();
 
@@ -218,6 +236,24 @@ public class BattleShipTests
             ("Cañonero", [new Coord(3, 0)]),
             ("Destructor", [new Coord(3, 0), new Coord(3, 1), new Coord(3, 2), new Coord(3, 3)]),
             ("Destructor", [new Coord(4, 0), new Coord(4, 1), new Coord(4, 2), new Coord(4, 3)]),
+            ("Portaavion", []),
+        ]);
+
+        action.Should().ThrowExactly<ArgumentException>().WithMessage("Los destructores deben tener 3 coordenadas.");
+    }
+    
+    [Fact]
+    public void Si_AgregoUnJugadorConDestructoresDe2Coordenadas_Debe_ArrojarExcepcion()
+    {
+        var battleship = new BattleShip();
+
+        var action = () => battleship.AddPlayer([
+            ("Cañonero", [new Coord(0, 0)]),
+            ("Cañonero", [new Coord(1, 0)]),
+            ("Cañonero", [new Coord(2, 0)]),
+            ("Cañonero", [new Coord(3, 0)]),
+            ("Destructor", [new Coord(3, 0), new Coord(3, 1)]),
+            ("Destructor", [new Coord(4, 0), new Coord(4, 1)]),
             ("Portaavion", []),
         ]);
 
@@ -239,9 +275,9 @@ public class BattleShip
             throw new ArgumentException("Deben ser 2 destructores por jugador.");
         if (ships.Count(ship => ship.tipo == "Portaavion") != 1)
             throw new ArgumentException("Debe ser 1 portaavion por jugador.");
-        if (ships.Any(ship => ship is { tipo: "Cañonero", coords.Count: >= 2 } ))
+        if (ships.Any(ship => ship.tipo == "Cañonero" && ship.coords.Count != 1))
             throw new ArgumentException("Un cañonero solo puede tener una coordenada");
-        if (ships.Any(ship => ship.coords.Count == 4))
+        if (ships.Any(ship => ship.tipo == "Destructor" && (ship.coords.Count < 3 || ship.coords.Count > 3)))
             throw new ArgumentException("Los destructores deben tener 3 coordenadas.");
         _cantidadJugadores++;
     }
