@@ -381,4 +381,50 @@ public class AcorazadosTests
 
         j2.ImprimirTablero().Should().Be(expected);
     }
+    [Fact]
+    public void
+        SiJugador1RealizaUnDisparoEnLaCoordenada11YNaveEsDestroyer_Debe_ImprimirTableroDelJugador2ConDisparoRecibidoEnLaCoordenadaMarcadoConxYTurnoSerDeJugador2()
+    {
+        var acorazados = new Acorazados();
+        var jugador1 = "jugador 1";
+        var jugador2 = "jugador 2";
+        acorazados.AgregarJugador(jugador1);
+        acorazados.AgregarJugador(jugador2);
+
+        var j1 = acorazados.BuscarJugador(jugador1);
+        j1.AgregarCarrier(9, 0, Orientacion.Horizontal);
+        j1.AgregarDestroyer(0, 1, Orientacion.Vertical);
+        j1.AgregarGunShip(7, 1);
+        j1.AgregarGunShip(8, 8);
+        j1.AgregarGunShip(5, 1);
+        j1.AgregarGunShip(4, 3);
+
+        var j2 = acorazados.BuscarJugador(jugador2);
+        j2.AgregarCarrier(9, 0, Orientacion.Horizontal);
+        j2.AgregarDestroyer(0, 1, Orientacion.Vertical);
+        j2.AgregarGunShip(7, 1);
+        j2.AgregarGunShip(6, 5);
+        j2.AgregarGunShip(3, 7);
+        j2.AgregarGunShip(4, 3);
+
+        string expected = " |0|1|2|3|4|5|6|7|8|9|\r\n" +
+                          "0| |d| | | | | | | | |\r\n" +
+                          "1| |x| | | | | | | | |\r\n" +
+                          "2| |d| | | | | | | | |\r\n" +
+                          "3| | | | | | | |g| | |\r\n" +
+                          "4| | | |g| | | | | | |\r\n" +
+                          "5| | | | | | | | | | |\r\n" +
+                          "6| | | | | |g| | | | |\r\n" +
+                          "7| |g| | | | | | | | |\r\n" +
+                          "8| | | | | | | | | | |\r\n" +
+                          "9|c|c|c|c| | | | | | |\r\n";
+
+
+        acorazados.Disparar(1, 1);
+
+
+        j2.ImprimirTablero().Should().Be(expected);
+        acorazados.EsTurnoJugador1.Should().BeFalse();
+
+    }
 }

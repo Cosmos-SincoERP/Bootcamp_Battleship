@@ -4,7 +4,7 @@ public class Acorazados
 {
     public readonly Jugador[] Jugadores = new Jugador[2];
     private int ContadorJugadores = 0;
-    private bool EsTurnoJugador1 { get; set; } = true;
+    public bool EsTurnoJugador1 { get; private set; } = true;
 
     public Jugador BuscarJugador(string aliasJugador) =>
         Jugadores.First(jugador => jugador.Alias == aliasJugador);
@@ -54,5 +54,6 @@ public class Acorazados
     public void Disparar(int fila, int columna)
     {   
         Oponente.RecibirDisparo(fila, columna);
+        
     }
 }
