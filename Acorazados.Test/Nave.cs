@@ -29,6 +29,17 @@ public class Nave
             _ => 0
         };
     }
+    
+    public string ObtenerNombre()
+    {
+        return Tipo switch
+        {
+            "g" => "Gunship",
+            "d" => "Destroyer",
+            "c" => "Carrier",
+            _ => ""
+        };
+    }
 
     public void AumentarDisparo() => CantidadDisparosRecibidos++;
     public bool EstoyEnCoordenada(int fila, int columna) => EstaEntreLasFilas(fila) && EstaEntreLasColumnas(columna);

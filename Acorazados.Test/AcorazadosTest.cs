@@ -1170,13 +1170,16 @@ public class AcorazadosTest
 
         var tablero = acorazados.Imprimir();
 
-        var reporte = @"[ Alejandra 
-            Total shots: 1
-            Misses: 0
-            Hits: 1
-            Ships Sunk: [
-            Gunship: (9,9)
-            /n";
+        var reporte = 
+            """
+            [ Alejandra
+                Total shots: 1
+                Misses: 0
+                Hits: 1
+                Ships Sunk: [
+                    Gunship: (9,9)
+                ]
+            """;
 
         var tableroEsperado = reporte + 
                               "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
@@ -1217,15 +1220,18 @@ public class AcorazadosTest
 
         var tablero = acorazados.Imprimir();
 
-        var reporte = @"[ Alejandra 
-            Total shots: 2
-            Misses: 0
-            Hits: 2
-            Ships Sunk: [
-            Gunship: (9,9)
-            Gunship: (8,8)
-            /n";
-
+        var reporte = 
+            """
+            [ Alejandra
+                Total shots: 2
+                Misses: 0
+                Hits: 2
+                Ships Sunk: [
+                    Gunship: (9,9)
+                    Gunship: (8,8)
+                ]
+            """;
+        
         var tableroEsperado = reporte + 
                               "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
                               "0| | | | | | | | | | |" +

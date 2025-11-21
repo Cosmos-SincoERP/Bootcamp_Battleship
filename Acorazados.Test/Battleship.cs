@@ -1,9 +1,20 @@
+using System.Text;
+
 namespace Acorazados.Test;
 
 public class Battleship
 {
     private bool _turnoJugador1 = true;
-    private bool _jugador1Gano = false;
+    
+    private bool _jugador1Gano;
+
+    private string _jugador1 = "";
+
+    private string _jugador2 = "";
+
+    private int _conteoDisparosJugador1;
+    
+    private int _conteoDisparosAcertadosJugador1;
 
     private readonly List<string> _tableroJugador1 =
     [
@@ -36,10 +47,17 @@ public class Battleship
     ];
 
     private List<Nave> _navesJugador1 = new();
+    
     private List<Nave> _navesJugador2 = new();
+
+    private List<Nave> _navesHundidasJugador1 = new();
 
     public void AddPlayer(string name)
     {
+        if (_jugador1 == "")
+            _jugador1 = name;
+        else if (_jugador2 == "")
+            _jugador2 = name;
     }
 
     public void Iniciar(List<Nave> navesJugador1, List<Nave> navesJugador2)
@@ -97,6 +115,17 @@ public class Battleship
             ? UbicarDisparosEnTablero(fila, columna, _tableroJugador2, _navesJugador2)
             : UbicarDisparosEnTablero(fila, columna, _tableroJugador1, _navesJugador1);
 
+        if (_turnoJugador1)
+        {
+            _conteoDisparosJugador1++;
+            _conteoDisparosAcertadosJugador1 =
+                nave == null ? _conteoDisparosAcertadosJugador1 : _conteoDisparosAcertadosJugador1 + 1;
+        }
+        
+        if (nave?.CantidadDisparosRecibidos == nave?.ObtenerTamano())
+            if (nave != null)
+                _navesHundidasJugador1.Add(nave);
+
         _jugador1Gano = _navesJugador2.Count != 0 && _navesJugador2.All(naveRecorrida => naveRecorrida.CantidadDisparosRecibidos == naveRecorrida.ObtenerTamano());
 
         return nave?.CantidadDisparosRecibidos == nave?.ObtenerTamano() ? "Barco hundido" : string.Empty;
@@ -133,14 +162,22 @@ public class Battleship
     {
         if (_jugador1Gano)
         {
-            return @"[ Alejandra 
-            Total shots: 1
-            Misses: 0
-            Hits: 1
-            Ships Sunk: [
-            Gunship: (9,9)
-            /n" + string.Join("", _tableroJugador2);
+            var sb = new StringBuilder();
+            sb.AppendLine($"[ {_jugador1}");
+            sb.AppendLine($"    Total shots: {_conteoDisparosJugador1}");
+            sb.AppendLine($"    Misses: {_conteoDisparosJugador1 - _conteoDisparosAcertadosJugador1}");
+            sb.AppendLine($"    Hits: {_conteoDisparosAcertadosJugador1}");
+            sb.AppendLine("    Ships Sunk: [");
 
+            foreach (var nave in _navesHundidasJugador1)
+            {
+                sb.AppendLine($"        {nave.ObtenerNombre()}: ({nave.FilaInicial},{nave.ColumnaInicial})");
+            }
+
+            sb.Append("    ]");
+            sb.Append(string.Join("", _tableroJugador2));
+
+            return sb.ToString();
         }
         return string.Join("", _turnoJugador1 ? _tableroJugador1 : _tableroJugador2);
     }
