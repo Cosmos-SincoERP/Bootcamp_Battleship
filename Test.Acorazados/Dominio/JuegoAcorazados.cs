@@ -34,9 +34,9 @@ public class JuegoAcorazados
     {
 
         var tablero = _jugadores[_jugadorContrincante].Tablero;
-        var _listaBarcosJugadorActivo = _jugadorContrincante == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
+        var _listaBarcosJugadorContrincante = _jugadorContrincante == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
 
-        if (_listaBarcosJugadorActivo.Any(barco => barco.Posicion.X == x && barco.Posicion.Y == y))
+        if (_listaBarcosJugadorContrincante.Any(barco => barco.Posicion.X == x && barco.Posicion.Y == y))
             tablero[x, y] = 'x';
         else
             tablero[x, y] = 'o';
