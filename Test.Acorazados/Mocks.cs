@@ -1,3 +1,6 @@
+using Test.BattleShip.Dominio;
+using Test.BattleShip.Dominio.Barcos;
+
 namespace Test.BattleShip;
 
 public class Mocks
@@ -7,28 +10,28 @@ public class Mocks
         var juegoAcorazado = new JuegoAcorazados();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
-        var posicionesJugador1 = new List<(string tipo, int x, int y, string orientacion)>()
+        var barcosJugador1 = new List<Barco>
         {
-            new("Cañonero", 2, 1, ""),
-            new("Cañonero", 1, 3, ""),
-            new("Cañonero", 5, 2, ""),
-            new("Cañonero", 7, 6, ""),
-            new("Destructor", 1, 5, "Horizontal"),
-            new("Destructor", 7, 2, "Vertical"),
-            new("Portaviones", 2, 7, "Horizontal"),
+            new Cañonero(new(2, 1)),
+            new Cañonero(new(1, 3)),
+            new Cañonero(new(5, 2)),
+            new Cañonero(new(7, 6)),
+            new Destructor(new(1, 5), OrientacionBarco.Horizontal),
+            new Destructor(new(7, 2), OrientacionBarco.Vertical),
+            new PortaAviones(new (2, 7), OrientacionBarco.Horizontal)
         };
-        var posicionesJugador2 = new List<(string tipo, int x, int y, string orientacion)>()
+        var barcosJugador2 = new List<Barco>
         {
-            new("Cañonero", 1, 8, ""),
-            new("Cañonero", 1, 3, ""),
-            new("Cañonero", 2, 5, ""),
-            new("Cañonero", 4, 5, ""),
-            new("Destructor", 7, 4, "Horizontal"),
-            new("Destructor", 4, 7, "Vertical"),
-            new("Portaviones", 0, 4, "Vertical"),
+            new Cañonero(new(1, 8)),
+            new Cañonero(new(1, 3)),
+            new Cañonero(new(2, 5)),
+            new Cañonero(new(4, 5)),
+            new Destructor(new( 7, 4), OrientacionBarco.Horizontal),
+            new Destructor(new( 4, 7), OrientacionBarco.Vertical),
+            new PortaAviones(new(0, 4), OrientacionBarco.Vertical)
         };
         
-        juegoAcorazado.Iniciar(posicionesJugador1, posicionesJugador2);
+        juegoAcorazado.Iniciar(barcosJugador1, barcosJugador2);
         return juegoAcorazado;
     }
 }

@@ -1,4 +1,6 @@
 using AwesomeAssertions;
+using Test.BattleShip.Dominio;
+using Test.BattleShip.Dominio.Barcos;
 
 namespace Test.BattleShip;
 
@@ -73,9 +75,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
 
-        List<(string tipo, int x, int y, string orientacion)> posicionesJugador1 = new()
+        var posicionesJugador1 = new List<Barco>
         {
-            new("Cañonero", 0, 0, "Vertical")
+            new Cañonero(new (0, 0)),
         };
 
         var iniciar = () => juegoAcorazado.Iniciar(posicionesJugador1, []);
@@ -92,13 +94,13 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
 
-        List<(string tipo, int x, int y, string orientacion)> posicionesJugador1 = new()
+        var posicionesJugador1 = new List<Barco>
         {
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Destructor", 0, 0, "Vertical")
+            new Cañonero(new (0, 0)),
+            new Cañonero( new (0, 0)),
+            new Cañonero( new (0, 0)),
+            new Cañonero( new (0, 0)),
+            new Destructor(new( 0, 0), OrientacionBarco.Vertical),
         };
 
         var iniciar = () => juegoAcorazado.Iniciar(posicionesJugador1, []);
@@ -115,14 +117,14 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
 
-        List<(string tipo, int x, int y, string orientacion)> posicionesJugador1 = new()
+        var posicionesJugador1 = new List<Barco>
         {
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Destructor", 0, 0, "Vertical"),
-            new("Destructor", 0, 0, "Vertical"),
+            new Cañonero(new (0, 0)),
+            new Cañonero( new (0, 0)),
+            new Cañonero( new (0, 0)),
+            new Cañonero( new (0, 0)),
+            new Destructor(new( 0, 0), OrientacionBarco.Vertical),
+            new Destructor(new( 0, 0), OrientacionBarco.Vertical),
         };
 
         var iniciar = () => juegoAcorazado.Iniciar(posicionesJugador1, []);
@@ -140,15 +142,15 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
 
-        List<(string tipo, int x, int y, string orientacion)> posicionesJugador1 = new()
+        var posicionesJugador1 = new List<Barco>
         {
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Destructor", 0, 0, "Vertical"),
-            new("Destructor", 0, 0, "Vertical"),
-            new("Portaviones", 0, 0, "Vertical"),
+            new Cañonero(new (0, 0)),
+            new Cañonero( new (0, 0)),
+            new Cañonero( new (0, 0)),
+            new Cañonero( new (0, 0)),
+            new Destructor(new( 0, 0), OrientacionBarco.Vertical),
+            new Destructor(new( 0, 0), OrientacionBarco.Vertical),
+            new PortaAviones(new(0, 0), OrientacionBarco.Horizontal),
         };
 
         var iniciar = () => juegoAcorazado.Iniciar(posicionesJugador1, []);
@@ -165,20 +167,20 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
 
-        List<(string tipo, int x, int y, string orientacion)> posicionesJugador1 = new()
+        var posicionesJugador1 = new List<Barco>
         {
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Cañonero", 0, 0, "Vertical"),
-            new("Destructor", 0, 0, "Vertical"),
-            new("Destructor", 0, 0, "Vertical"),
-            new("Portaviones", 0, 0, "Vertical"),
+            new Cañonero(new (0, 0)),
+            new Cañonero( new (0, 0)),
+            new Cañonero( new (0, 0)),
+            new Cañonero( new (0, 0)),
+            new Destructor(new( 0, 0), OrientacionBarco.Vertical),
+            new Destructor(new( 0, 0), OrientacionBarco.Vertical),
+            new PortaAviones(new(0, 0), OrientacionBarco.Horizontal),
         };
 
-        List<(string tipo, int x, int y, string orientacion)> posicionesJugador2 = new()
+        var posicionesJugador2 = new List<Barco>
         {
-            new("Cañonero", 0, 0, "Vertical")
+            new Cañonero(new(0, 0))
         };
 
 
@@ -225,84 +227,5 @@ public class AcorazadosTest
         juegoAcorazado.Disparar(0, 4);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
-    }
-}
-
-public class JuegoAcorazados
-{
-    private List<(string, char[,])> _jugadores = new();
-    private List<(string tipo, int x, int y, string orientacion)> _listaPosicionesBarcos = new();
-
-    public void AgregarJugador()
-    {
-        if (_jugadores.Count == 2)
-            throw new Exception("No se permite agregar mas jugadores al juego");
-
-        _jugadores.Add((_jugadores.Count == 1 ? "2" : "1", new char[10, 10]));
-    }
-
-    public void Iniciar(List<(string tipo, int x, int y, string orientacion)> posicionesBarcosJugador1,
-        List<(string tipo, int x, int y, string orientacion)> posicionesBarcosJugador2)
-    {
-        if (_jugadores.Count != 2)
-            throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
-
-        ValidarCantidadBarcos(posicionesBarcosJugador1, _jugadores[0].Item1);
-        ValidarCantidadBarcos(posicionesBarcosJugador2, _jugadores[1].Item1);
-
-        _listaPosicionesBarcos.AddRange(posicionesBarcosJugador2);
-    }
-
-    public void Disparar(int x, int y)
-    {
-
-        var tablero = _jugadores[1].Item2;
-
-        if (_listaPosicionesBarcos.Any(barco => barco.x == x && barco.y == y))
-            tablero[x, y] = 'x';
-        else
-            tablero[x, y] = 'o';
-    }
-
-    public string Imprimir()
-    {
-        var tablero = _jugadores[1].Item2;
-
-        var visualizarTablero = string.Empty;
-        for (var x = 0; x < tablero.GetLength(0); x++)
-        {
-            for (int y = 0; y < tablero.GetLength(1); y++)
-            {
-                visualizarTablero += tablero[x, y];
-            }
-            visualizarTablero += '\n';
-        }
-        return visualizarTablero;
-    }
-
-    private void ValidarCantidadBarcos(
-        List<(string tipo, int x, int y, string orientacion)> posicionesBarcosJugador, string nombreJugador)
-    {
-        const int cantidadCañoneros = 4;
-        const int cantidadDestructores = 2;
-        const int cantidadPortaAviones = 1;
-
-        const string faltanTodosLosBarco = "El jugador {0}, no ha enviado los barcos para posicionar";
-        const string faltanLosCañoneros = "El jugador {0}, no ha enviado todos los cañoneros para posicionar";
-        const string faltanLosDestructores = "El jugador {0}, no ha enviado todos los destructores para posicionar";
-        const string faltanLosPortaviones = "El jugador {0}, no ha enviado todos los portaviones para posicionar";
-
-
-        if (posicionesBarcosJugador.Count == 0)
-            throw new Exception(string.Format(faltanTodosLosBarco, nombreJugador));
-
-        if (posicionesBarcosJugador.Count(barco => barco.tipo == "Cañonero") < cantidadCañoneros)
-            throw new Exception(string.Format(faltanLosCañoneros, nombreJugador));
-
-        if (posicionesBarcosJugador.Count(barco => barco.tipo == "Destructor") < cantidadDestructores)
-            throw new Exception(string.Format(faltanLosDestructores, nombreJugador));
-
-        if (posicionesBarcosJugador.Count(barco => barco.tipo == "Portaviones") < cantidadPortaAviones)
-            throw new Exception(string.Format(faltanLosPortaviones, nombreJugador));
     }
 }
