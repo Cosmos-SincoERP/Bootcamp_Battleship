@@ -4,7 +4,7 @@ using Test.BattleShip.Dominio.Barcos;
 
 namespace Test.BattleShip;
 
-public class AcorazadosTest
+public class JuegoAcorazadosTest
 {
     public static string TableroEsperado(char[,] tablero)
     {
@@ -225,6 +225,20 @@ public class AcorazadosTest
         var juegoAcorazado = Mocks.MockIniciarJuego();
 
         juegoAcorazado.Disparar(0, 4);
+
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
+    }
+    
+    [Fact]
+    public void Si_Eljugador2DisparaUnTorpedoEnLaPosicion1_1YNoImpactaUnBarco_Debe_ImprimirElTableroDelJugador1Con_o_EnLaPosicion1_1()
+    {
+        var tablero = new char[10, 10];
+        tablero[1, 1] = 'o';
+        var tableroEsperado = TableroEsperado(tablero);
+        var juegoAcorazado = Mocks.MockIniciarJuego();
+    
+        juegoAcorazado.Disparar(0, 4);
+        juegoAcorazado.Disparar(1, 1);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
