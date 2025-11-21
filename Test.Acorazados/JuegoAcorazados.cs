@@ -20,18 +20,24 @@ public class JuegoAcorazados
             {
                 for (int i = 0; i < posicionBarco.barco.Cantidad; i++)
                 {
-                    tableroJugador1[posicionBarco.coordenada.x + i, posicionBarco.coordenada.y] = posicionBarco.barco.Valor;
+                    AsignarPosicionEnTablero(tableroJugador1, posicionBarco.coordenada.x + i, posicionBarco.coordenada.y, posicionBarco.barco.Valor);
                 }
             }
             else
             {
                 for (int i = 0; i < posicionBarco.barco.Cantidad; i++)
                 {
-                    tableroJugador1[posicionBarco.coordenada.x, posicionBarco.coordenada.y + i] = posicionBarco.barco.Valor;
+                    AsignarPosicionEnTablero(tableroJugador1, posicionBarco.coordenada.x, posicionBarco.coordenada.y + i, posicionBarco.barco.Valor);
                 }
             }
         }
     }
+
+    private static void AsignarPosicionEnTablero(char[,] tableroJugador1, int x, int y, char valor)
+    {
+        tableroJugador1[x, y] = valor;
+    }
+
 
     public void AgregarJugador(string nombre)
     {
