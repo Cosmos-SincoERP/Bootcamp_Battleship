@@ -336,7 +336,7 @@ public class AcorazadosTests
 
         j2.ImprimirTablero().Should().Be(expected);
     }
-    
+
     [Fact]
     public void
         SiJugador1RealizaUnDisparoEnLaCoordenada11YNaveEsDestroyer_Debe_ImprimirTableroDelJugador2ConDisparoRecibidoEnLaCoordenadaMarcadoConx()
@@ -368,7 +368,7 @@ public class AcorazadosTests
                           "1| |x| | | | | | | | |\r\n" +
                           "2| |d| | | | | | | | |\r\n" +
                           "3| | | | | | | |g| | |\r\n" +
-                          "4| | | |X| | | | | | |\r\n" +
+                          "4| | | |g| | | | | | |\r\n" +
                           "5| | | | | | | | | | |\r\n" +
                           "6| | | | | |g| | | | |\r\n" +
                           "7| |g| | | | | | | | |\r\n" +
@@ -376,7 +376,7 @@ public class AcorazadosTests
                           "9|c|c|c|c| | | | | | |\r\n";
 
 
-        acorazados.Disparar(4, 3);
+        acorazados.Disparar(1, 1);
 
 
         j2.ImprimirTablero().Should().Be(expected);

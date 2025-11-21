@@ -142,6 +142,8 @@ public class Jugador
     {
         if (ObtenerElemento(x, y) == "g")
             Tablero[x, y] = "X";
+        else if (ObtenerElemento(x, y) == "d")
+            Tablero[x, y] = "x";
         else
             Tablero[x, y] = "o";
     }
