@@ -219,6 +219,7 @@ public class AcorazadosTest
         var tableroEsperado = TableroEsperado(tablero);
         
         juegoAcorazado.Iniciar(posicionesJugador1, posicionesJugador2);
+        juegoAcorazado.Disparar(0, 0);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -286,5 +287,10 @@ public class JuegoAcorazados
 
         if (posicionesBarcosJugador.Count(barco => barco.tipo == "Portaviones") < cantidadPortaAviones)
             throw new Exception(string.Format(faltanLosPortaviones, nombreJugador));
+    }
+
+    public void Disparar(int i, int i1)
+    {
+        _tablero[0, 0] = 'o';
     }
 }
