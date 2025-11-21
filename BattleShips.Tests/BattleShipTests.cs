@@ -1,4 +1,5 @@
-﻿using AwesomeAssertions;
+﻿using System.Text;
+using AwesomeAssertions;
 using BattleShips.Tests.Ships;
 
 namespace BattleShips.Tests;
@@ -316,8 +317,66 @@ public class BattleShipTests
 
         var board = _battleship.Print();
 
-        board.Should().Be("");
+        var expectedBoardInArray = new[]
+        {
+            "  0 1 2 3 4 5 6 7 8 9 ",
+            "0 | | | | | | | | | | ",
+            "1 | | | | | | | | | | ",
+            "2 | | | | | | | | | | ",
+            "3 | | | | | | | | | | ",
+            "4 | | | | | | | | | | ",
+            "5 | | | | | | | | | | ",
+            "6 | | | | | | | | | | ",
+            "7 | | | | | | | | | | ",
+            "8 | | | | | | | | | | ",
+            "9 | | | | | | | | | | ",
+        };
 
+        var boardExpected = string.Join(Environment.NewLine, expectedBoardInArray);
+        board.Should().Be(boardExpected);
+    }
 
+    [Fact]
+    public void Si_ImprimenElTableroDespuesDeIniciarPartidaConDosJugadoresDeIgualTablero_Debe_MostrarLaPosicionDeLosBarcosDelPrimerJugador()
+    {
+        _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0,0)),
+            Gunboat.Create(new Coord(1,0)),
+            Gunboat.Create(new Coord(2,0)),
+            Gunboat.Create(new Coord(3,0)),
+            Destroyer.Create([new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
+            Destroyer.Create([new Coord(5,0),new Coord(5,1), new Coord(5,2)]),
+            AircraftCarrier.Create([new Coord(6,0), new Coord(6,1), new Coord(6,2), new Coord(6,3)])
+        ]));
+        _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0,0)),
+            Gunboat.Create(new Coord(1,0)),
+            Gunboat.Create(new Coord(2,0)),
+            Gunboat.Create(new Coord(3,0)),
+            Destroyer.Create([new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
+            Destroyer.Create([new Coord(5,0),new Coord(5,1), new Coord(5,2)]),
+            AircraftCarrier.Create([new Coord(6,0), new Coord(6,1), new Coord(6,2), new Coord(6,3)])
+        ]));
+        _battleship.Start();
+
+        var board = _battleship.Print();
+        
+        var expectedBoardInArray = new[]
+        {
+            "  0 1 2 3 4 5 6 7 8 9 ",
+            "0 g | | | | | | | | | ",
+            "1 g | | | | | | | | | ",
+            "2 g | | | | | | | | | ",
+            "3 g | | | | | | | | | ",
+            "4 d d d | | | | | | | ",
+            "5 d d d | | | | | | | ",
+            "6 c c c c | | | | | | ",
+            "7 | | | | | | | | | | ",
+            "8 | | | | | | | | | | ",
+            "9 | | | | | | | | | | ",
+        };
+
+        var boardExpected = string.Join(Environment.NewLine, expectedBoardInArray);
+        board.Should().Be(boardExpected);
     }
 }
