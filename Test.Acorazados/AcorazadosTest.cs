@@ -18,6 +18,6 @@ public class JuegoAcorazados
 {
     public object Iniciar()
     {
-        throw new NotImplementedException();
+        throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
     }
 }
