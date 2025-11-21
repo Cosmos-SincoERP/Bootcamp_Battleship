@@ -113,6 +113,14 @@ public class JuegoAcorazados
     public List<(string, char[,])> _jugadores { get; } = new();
     public void Iniciar(List<(int x, int y, char barco, int cantidadPosiciones)> barcosJugador1)
     {
+        var tableroJugador1 = _jugadores[0].Item2;
+
+        tableroJugador1[0, 0] = 'c';
+        tableroJugador1[0, 1] = 'c';
+        tableroJugador1[0, 2] = 'c';
+        tableroJugador1[0, 3] = 'c';
+
+
         if (_jugadores.Count != 2)
             throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
     }
@@ -144,7 +152,8 @@ public class JuegoAcorazados
             visualizarTablero += $" {x} |";
             for (int y = 0; y < tablero.GetLength(1); y++)
             {
-                visualizarTablero += $" {' '} |";
+                char valorAMostar = tablero[x, y] == '\0' ? ' ' : tablero[x, y];
+                visualizarTablero += $" {valorAMostar} |";
             }
             visualizarTablero += " \n";
         }
