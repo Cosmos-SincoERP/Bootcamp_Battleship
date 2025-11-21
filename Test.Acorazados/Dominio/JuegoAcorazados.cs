@@ -36,18 +36,18 @@ public class JuegoAcorazados
         var tablero = _jugadores[_jugadorContrincante].Tablero;
         var _listaBarcosJugadorContrincante = _jugadorContrincante == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
 
-        var buscarBarco = _listaBarcosJugadorContrincante.FirstOrDefault(barco => barco.Coordenada.X == x && barco.Coordenada.Y == y);
-        if (buscarBarco != null )
+        var barco = _listaBarcosJugadorContrincante.FirstOrDefault(barco => barco.EstaEnLaCoordenada(new(x, y)));
+        if (barco != null )
         {
-            if (buscarBarco.GetType().Name == "Cañonero")
+            barco.RegistrarImpacto();
+            
+            if (barco.SeHundio())
             {
-                tablero[x, y] = 'X';
-                mensaje = $"Se hundio un barco en la coordenada ({x},{y})";
-            }
-            else if (buscarBarco.GetType().Name == "Destructor")
-            {
-                tablero[x, y] = 'X';
-                mensaje = $"Se hundio un barco en la coordenada ({x},{y})";
+                foreach (var coordenada in barco.CoordenadasDeLaPosicion)
+                {
+                    tablero[coordenada.X, coordenada.Y] = 'X';
+                }
+                mensaje = $"Se hundio un barco en la coordenada ({barco.Coordenada.X},{barco.Coordenada.Y})";
             }
             else
                 tablero[x, y] = 'x';

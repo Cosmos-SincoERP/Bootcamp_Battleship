@@ -220,11 +220,11 @@ public class JuegoAcorazadosTest
     public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion0_4YGolpeaUnBarco_Debe_ImprimirElTableroDelJugador2Con_x_EnLaPosicion0_4()
     {
         var tablero = new char[10, 10];
-        tablero[0, 4] = 'x';
+        tablero[4, 0] = 'x';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
 
-        juegoAcorazado.Disparar(0, 4);
+        juegoAcorazado.Disparar(4, 0);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
@@ -276,11 +276,21 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[4, 7] = 'X';
+        tablero[4, 8] = 'X';
+        tablero[4, 9] = 'X';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
-    
-        juegoAcorazado.Disparar(4, 7);
 
+        juegoAcorazado.Disparar(4, 9);
+        juegoAcorazado.FinalizarTurno();
+        juegoAcorazado.Disparar(0, 0);
+        juegoAcorazado.FinalizarTurno();
+        juegoAcorazado.Disparar(4, 8);
+        juegoAcorazado.FinalizarTurno();
+        juegoAcorazado.Disparar(1, 0);
+        juegoAcorazado.FinalizarTurno();
+        juegoAcorazado.Disparar(4, 7);
+        
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
     
@@ -290,6 +300,15 @@ public class JuegoAcorazadosTest
     {
         var juegoAcorazado = Mocks.MockIniciarJuego();
     
+        juegoAcorazado.Disparar(4, 9);
+        juegoAcorazado.FinalizarTurno();
+        juegoAcorazado.Disparar(0, 0);
+        juegoAcorazado.FinalizarTurno();
+        juegoAcorazado.Disparar(4, 8);
+        juegoAcorazado.FinalizarTurno();
+        juegoAcorazado.Disparar(1, 0);
+        juegoAcorazado.FinalizarTurno();
+        
         var barcoHundido = juegoAcorazado.Disparar(4, 7);
 
         barcoHundido.Should().Be("Se hundio un barco en la coordenada (4,7)");

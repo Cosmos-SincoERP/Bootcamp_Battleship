@@ -28,7 +28,7 @@ public class Mocks
             new Cañonero(new(4, 5)),
             new Destructor(new( 7, 4), OrientacionBarco.Horizontal),
             new Destructor(new( 4, 7), OrientacionBarco.Vertical),
-            new PortaAviones(new(0, 4), OrientacionBarco.Vertical)
+            new PortaAviones(new(4, 0), OrientacionBarco.Vertical)
         };
         
         juegoAcorazado.Iniciar(barcosJugador1, barcosJugador2);
