@@ -25,12 +25,12 @@ public class JuegoAcorazadosBK2
     //     {
     //         foreach (var coordenada in coordenadas)
     //         {
-    //             for (int i = 0; i < coordenada.Barco.Tamaño; i++)
+    //             for (int i = 0; i < coordenada.BarcoBK.Tamaño; i++)
     //             {
     //                 if (coordenada.Orientacion == "Horizontal")
-    //                     AsignarPosicionDeLaNave(coordenada.X + i, coordenada.Y, coordenada.Barco.Valor);
+    //                     AsignarPosicionDeLaNave(coordenada.X + i, coordenada.Y, coordenada.BarcoBK.Valor);
     //                 else
-    //                     AsignarPosicionDeLaNave(coordenada.X, coordenada.Y + i, coordenada.Barco.Valor);
+    //                     AsignarPosicionDeLaNave(coordenada.X, coordenada.Y + i, coordenada.BarcoBK.Valor);
     //             }
     //         }
     //     }
@@ -60,4 +60,4 @@ public class JuegoAcorazadosBK2
     }
 }
 
-// public record PosicionarBarco(int X, int Y, Barco Barco, string? Orientacion);
+// public record PosicionarBarco(int X, int Y, BarcoBK BarcoBK, string? Orientacion);

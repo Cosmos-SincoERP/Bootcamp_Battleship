@@ -75,7 +75,7 @@
 //         var juegoAcorazado = new JuegoAcorazadosBK2();
 //         List<PosicionarBarco> coordenadasCañonero = new()
 //         {
-//             new(0, 0, Barco.Cañonero, null)
+//             new(0, 0, BarcoBK.Cañonero, null)
 //         };
 //
 //         juegoAcorazado.Iniciar(coordenadasCañonero);
@@ -94,7 +94,7 @@
 //
 //         List<PosicionarBarco> coordenadasCañonero = new()
 //         {
-//             new(4, 5, Barco.Cañonero, null)
+//             new(4, 5, BarcoBK.Cañonero, null)
 //         };
 //
 //         juegoAcorazado.Iniciar(coordenadasCañonero);
@@ -113,8 +113,8 @@
 //         var juegoAcorazado = new JuegoAcorazadosBK2();
 //         List<PosicionarBarco> coordenadasCañonero = new()
 //         {
-//             new(2, 3, Barco.Cañonero, null),
-//             new(3, 3, Barco.Cañonero, null)
+//             new(2, 3, BarcoBK.Cañonero, null),
+//             new(3, 3, BarcoBK.Cañonero, null)
 //         };
 //
 //         juegoAcorazado.Iniciar(coordenadasCañonero);
@@ -137,7 +137,7 @@
 //
 //         List<PosicionarBarco> coordenadasPortaAvion = new()
 //         {
-//             new(2, 3, Barco.PortaAviones, "Horizontal")
+//             new(2, 3, BarcoBK.PortaAviones, "Horizontal")
 //         };
 //         juegoAcorazado.Iniciar(coordenadasPortaAvion);
 //
@@ -158,7 +158,7 @@
 //         var juegoAcorazado = new JuegoAcorazadosBK2();
 //         List<PosicionarBarco> coordenadasPortaAvion = new()
 //         {
-//             new(5, 2, Barco.PortaAviones, "Horizontal")
+//             new(5, 2, BarcoBK.PortaAviones, "Horizontal")
 //         };
 //
 //         juegoAcorazado.Iniciar(coordenadasPortaAvion);
@@ -180,7 +180,7 @@
 //         var juegoAcorazado = new JuegoAcorazadosBK2();
 //         List<PosicionarBarco> coordenadasPortaAvion = new()
 //         {
-//             new(5, 2, Barco.PortaAviones, "Vertical")
+//             new(5, 2, BarcoBK.PortaAviones, "Vertical")
 //         };
 //
 //         juegoAcorazado.Iniciar(coordenadasPortaAvion);
@@ -203,7 +203,7 @@
 //
 //         List<PosicionarBarco> coordenadasDetructor = new()
 //         {
-//             new(2, 2, Barco.Destructor, "Horizontal")
+//             new(2, 2, BarcoBK.Destructor, "Horizontal")
 //         };
 //
 //         juegoAcorazado.Iniciar(coordenadasDetructor);
@@ -226,7 +226,7 @@
 //
 //         List<PosicionarBarco> coordenadasDetructor = new()
 //         {
-//             new(1, 1, Barco.Destructor, "Horizontal")
+//             new(1, 1, BarcoBK.Destructor, "Horizontal")
 //         };
 //
 //         juegoAcorazado.Iniciar(coordenadasDetructor);
@@ -248,7 +248,7 @@
 //
 //         List<PosicionarBarco> coordenadasDetructor = new()
 //         {
-//             new(1, 2, Barco.Destructor, "Vertical")
+//             new(1, 2, BarcoBK.Destructor, "Vertical")
 //         };
 //
 //         juegoAcorazado.Iniciar(coordenadasDetructor);
@@ -270,7 +270,7 @@
 //
 //         List<PosicionarBarco> coordenadasDetructor = new()
 //         {
-//             new(1, 2, Barco.Destructor, "Vertical")
+//             new(1, 2, BarcoBK.Destructor, "Vertical")
 //         };
 //
 //         juegoAcorazado.Iniciar(coordenadasDetructor);
@@ -291,14 +291,14 @@
 //
 //         List<PosicionarBarco> coordenadasDetructorJugador1 = new()
 //         {
-//             new(0, 0, Barco.Cañonero, null)
+//             new(0, 0, BarcoBK.Cañonero, null)
 //         };
 //
 //         juegoAcorazado.Iniciar(coordenadasDetructorJugador1);
 //
 //         List<PosicionarBarco> coordenadasDetructorJugador2 = new()
 //         {
-//             new(1, 1, Barco.Cañonero, null)
+//             new(1, 1, BarcoBK.Cañonero, null)
 //         };
 //
 //         juegoAcorazado.Iniciar(coordenadasDetructorJugador2);
@@ -313,7 +313,7 @@
 //
 //         List<PosicionarBarco> coordenadasDetructorJugador1 = new()
 //         {
-//             new(0, 0, Barco.Cañonero, null)
+//             new(0, 0, BarcoBK.Cañonero, null)
 //         };
 //
 //         juegoAcorazado.Iniciar(coordenadasDetructorJugador1);
@@ -330,8 +330,8 @@
 //
 //         List<PosicionarBarco> coordenadasDetructorJugador1 = new()
 //         {
-//             new(0, 0, Barco.Cañonero, null),
-//             new(1, 5, Barco.Cañonero, null)
+//             new(0, 0, BarcoBK.Cañonero, null),
+//             new(1, 5, BarcoBK.Cañonero, null)
 //         };
 //
 //         juegoAcorazado.Iniciar(coordenadasDetructorJugador1);

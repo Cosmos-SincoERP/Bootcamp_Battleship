@@ -32,3 +32,26 @@ Restricciones
   - 4 Cañoneras
 
 -La cuadricula es de 10x10;
+
+Contratos
+void AgregarJugador()
+void Iniciar(List<PosicionBarco> jugador1, List<PosicionBarco> jugador2)
+void Imprimir()
+string Disparar(Coordenada coordenada)
+void FinalizarTurno()
+
+PosicionBarco(Barco barco, Coordenada coordenada, Orientacion orientacion)
+
+[ ] Si no hay jugadores y se inicia el juego debe lanzar una excepcion por cantidad de jugadores (Assert con Iniciar)
+[ ] Si hay un jugador y se inicia el juego debe lanzar una excepcion por cantidad de jugadores (Assert con Iniciar)
+[ ] Si hay dos jugadores y se inicia el juego no debe lanzar una excepcion por cantidad de jugadores (Assert con Iniciar)
+[ ] Si se agrega un tercer jugador  debe lanzar una excepcion por cantidad de jugadores (Assert con AgregarJugador)
+[ ] Si inicia el juego sin Posicionar los barcos del jugador 1 debe lanzar una excepcion por falta de posicionamiento de barcos (Assert con Iniciar)
+[ ] Si inicia el juego solo Posicionando el portaAviones del jugador 1 debe lanzar una excepcion por falta de posicionamiento de barcos (Assert con Iniciar)
+[ ] Si inicia el juego solo Posicionando los destructores del jugador 1 debe lanzar una excepcion por falta de posicionamiento de barcos (Assert con Iniciar)
+[ ] Si inicia el juego solo Posicionando los cañoneros del jugador 1 debe lanzar una excepcion por falta de posicionamiento de barcos (Assert con Iniciar)
+[ ] Si inicia el juego solo Posicionando Todos los barcos del jugador 1 y no se posicionan los barcos del jugador 2 debe lanzar una excepcion por falta de posicionamiento de barcos (Assert con Iniciar)
+[ ] Si inicia el juego solo Posicionando Todos los barcos del jugador 1 y no se posiciona el portaAviones del jugador 2 debe lanzar una excepcion por falta de posicionamiento de barcos (Assert con Iniciar)
+[ ] Si inicia el juego solo Posicionando Todos los barcos del jugador 1 y no se posiciona los destructores del jugador 2 debe lanzar una excepcion por falta de posicionamiento de barcos (Assert con Iniciar)
+[ ] Si inicia el juego solo Posicionando Todos los barcos del jugador 1 y no se posiciona los cañoneros  del jugador 2 debe lanzar una excepcion por falta de posicionamiento de barcos (Assert con Iniciar)
+[ ] Si inicia el juego Posicionando todos los barcos del jugador 1 y todos los jugador 2 debe mostrar la flota del jugador 1 (Assert con Imprimir)

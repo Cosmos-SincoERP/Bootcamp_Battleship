@@ -1,10 +1,10 @@
 namespace Test.BattleShip;
 
-public class Mocks
+public class MocksBK
 {
-    public static JuegoAcorazado MockIniciarJuego()
+    public static JuegoAcorazadoBK MockIniciarJuego()
         {
-            var juegoAcorazado = new JuegoAcorazado();
+            var juegoAcorazado = new JuegoAcorazadoBK();
             juegoAcorazado.AgregarJugador();
             juegoAcorazado.AgregarBarco(
                 new PosicionarBarco((2, 0), new Cañonero())

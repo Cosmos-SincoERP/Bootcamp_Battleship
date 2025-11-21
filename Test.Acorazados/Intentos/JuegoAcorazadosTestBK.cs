@@ -2,7 +2,7 @@
 
 namespace Test.BattleShip;
 
-public class JuegoAcorazadosTest
+public class JuegoAcorazadosTestBK
 {
     public static IEnumerable<object[]> DatosPortaAviones => new List<object[]>
     {
@@ -44,7 +44,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_SeCreaElJuegoConUnTamañoDeTablero0_0_Debe_MostrarUnaExcepcion()
     {
-        var juegoAcorazado = () => new JuegoAcorazado(0);
+        var juegoAcorazado = () => new JuegoAcorazadoBK(0);
 
         juegoAcorazado.Should().Throw<ArgumentOutOfRangeException>();
     }
@@ -52,7 +52,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_SeCreaElJuegoConUnTamañoDeTablero10_10_NoDebe_LanzarExcepcion()
     {
-        var juegoAcorazado = () => new JuegoAcorazado(10);
+        var juegoAcorazado = () => new JuegoAcorazadoBK(10);
 
         juegoAcorazado.Should().NotThrow();
     }
@@ -60,7 +60,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_SeCreaElJuegoConUnTamañoDeTableroMenorA0_Debe_LanzarExcepcion()
     {
-        var juegoAcorazado = () => new JuegoAcorazado(-1);
+        var juegoAcorazado = () => new JuegoAcorazadoBK(-1);
 
         juegoAcorazado.Should().Throw<ArgumentOutOfRangeException>();
     }
@@ -68,7 +68,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_SeIniciaElJuegoSinJugador_Debe_LanzarExcepcionPorCantidadDeJugadores()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
 
         var iniciarJuego = () => juegoAcorazado.Iniciar();
 
@@ -78,7 +78,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_SeIniciaElJuegoConUnJugador_Debe_LanzarExcepcionPorCantidadDeJugadores()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
 
         var iniciarJuego = () => juegoAcorazado.Iniciar();
         juegoAcorazado.AgregarJugador();
@@ -89,7 +89,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_SeIniciaElJuegoConTresJugador_Debe_LanzarExcepcionPorCantidadDeJugadores()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
 
         var iniciarJuego = () => juegoAcorazado.Iniciar();
         juegoAcorazado.AgregarJugador();
@@ -102,7 +102,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_SeAgregaJugador_Debe_ContenerJugador1()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
 
         juegoAcorazado.AgregarJugador();
 
@@ -112,7 +112,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_SeAgrega2Jugadores_Debe_ContenerJugador1YJugador2()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
 
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
@@ -131,8 +131,8 @@ public class JuegoAcorazadosTest
             tablero[posicionEsperada[0], posicionEsperada[1]] = 'c';
         }
 
-        var tableroEsperado = Mocks.TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
+        var tableroEsperado = MocksBK.TableroEsperado(tablero);
+        var juegoAcorazado = new JuegoAcorazadoBK();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(new PosicionarBarco(
             (posicionXInicial, posicionYInicial), new PortaAviones(orientacion))
@@ -147,7 +147,7 @@ public class JuegoAcorazadosTest
         int posicionYInicial,
         Orientacion orientacion)
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
         juegoAcorazado.AgregarJugador();
         var agregarPortaviones = () =>
             juegoAcorazado.AgregarBarco(new PosicionarBarco(
@@ -169,8 +169,8 @@ public class JuegoAcorazadosTest
             tablero[posicionEsperada[0], posicionEsperada[1]] = 'd';
         }
 
-        var juegoAcorazado = new JuegoAcorazado();
-        var tableroEsperado = Mocks.TableroEsperado(tablero);
+        var juegoAcorazado = new JuegoAcorazadoBK();
+        var tableroEsperado = MocksBK.TableroEsperado(tablero);
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(new PosicionarBarco(
             (posicionXInicial, posicionYInicial), new Destructor(orientacion))
@@ -185,7 +185,7 @@ public class JuegoAcorazadosTest
         int posicionYInicial,
         Orientacion orientacion)
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
         juegoAcorazado.AgregarJugador();
         var agregarDestructores = () =>
             juegoAcorazado.AgregarBarco(new PosicionarBarco(
@@ -201,8 +201,8 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[7, 6] = 'g';
-        var tableroEsperado = Mocks.TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
+        var tableroEsperado = MocksBK.TableroEsperado(tablero);
+        var juegoAcorazado = new JuegoAcorazadoBK();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco((7, 6), new Cañonero())
@@ -216,8 +216,8 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[8, 1] = 'g';
-        var tableroEsperado = Mocks.TableroEsperado(tablero);
-        var juegoAcorazado = new JuegoAcorazado();
+        var tableroEsperado = MocksBK.TableroEsperado(tablero);
+        var juegoAcorazado = new JuegoAcorazadoBK();
         juegoAcorazado.AgregarJugador();
 
         juegoAcorazado.AgregarBarco(
@@ -230,7 +230,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_AgregoUnCañoneroEnLaPosicion_11_11_Debe_LanzarExcepcion()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
         juegoAcorazado.AgregarJugador();
 
         var cañonero = () => juegoAcorazado.AgregarBarco(
@@ -242,7 +242,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_NoHaPosicionadoNingunBarcoElJugador1_NoDebe_PermitirIniciarElJuego()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
         var iniciar = () => juegoAcorazado.Iniciar();
@@ -256,7 +256,7 @@ public class JuegoAcorazadosTest
     public void
         Si_ElJugador1HaPosicionadoTodosLosPortaAvionesPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(
@@ -274,7 +274,7 @@ public class JuegoAcorazadosTest
     public void
         Si_ElJugador1HaPosicionadoTodosLosDesctructoresPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(
@@ -295,7 +295,7 @@ public class JuegoAcorazadosTest
     public void
         Si_ElJugador1HaPosicionadoTodosLosDesctructoresTodosLosPortavionesPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(
@@ -319,7 +319,7 @@ public class JuegoAcorazadosTest
     public void
         Si_ElJugador1HaPosicionadoTodosLosDesctructoresTodosLosCañonerosPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(
@@ -352,7 +352,7 @@ public class JuegoAcorazadosTest
     public void
         Si_ElJugador2HaPosicionadoTodosLosDesctructoresTodosLosCañonerosPeroNoHaPosicionadoLosDemasBarcos_NoDebe_PermitirIniciarElJuego()
     {
-        var juegoAcorazado = new JuegoAcorazado();
+        var juegoAcorazado = new JuegoAcorazadoBK();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarBarco(
             new PosicionarBarco((2, 0), new Cañonero())
@@ -388,7 +388,7 @@ public class JuegoAcorazadosTest
     [Fact]
     public void Si_Jugador1YJugador2HaPosicionadoTodosLosBarcos_Debe_PermitirIniciarElJuego()
     {
-        var juegoAcorazado = Mocks.MockIniciarJuego();
+        var juegoAcorazado = MocksBK.MockIniciarJuego();
 
         var iniciar = () => juegoAcorazado.Iniciar();
 
@@ -402,7 +402,7 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[0, 0] = 'o';
-        var juegoAcorazado = Mocks.MockIniciarJuego();
+        var juegoAcorazado = MocksBK.MockIniciarJuego();
 
         var disparar = () => juegoAcorazado.Disparar(0, 0);
 
@@ -416,8 +416,8 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[0, 0] = 'o';
-        var tableroEsperado = Mocks.TableroEsperado(tablero);
-        var juegoAcorazado = Mocks.MockIniciarJuego();
+        var tableroEsperado = MocksBK.TableroEsperado(tablero);
+        var juegoAcorazado = MocksBK.MockIniciarJuego();
         juegoAcorazado.Iniciar();
 
         juegoAcorazado.Disparar(0, 0);
@@ -431,8 +431,8 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[3, 6] = 'x';
-        var tableroEsperado = Mocks.TableroEsperado(tablero);
-        var juegoAcorazado = Mocks.MockIniciarJuego();
+        var tableroEsperado = MocksBK.TableroEsperado(tablero);
+        var juegoAcorazado = MocksBK.MockIniciarJuego();
         juegoAcorazado.Iniciar();
 
         juegoAcorazado.Disparar(3, 6);
