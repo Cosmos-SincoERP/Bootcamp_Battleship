@@ -1247,4 +1247,50 @@ public class AcorazadosTest
 
         tablero.Should().Be(tableroEsperado);
     }
+    
+    [Fact]
+    public void
+        Si_InicioElJuegoConUnCanoneroParaJugador1_YJugador2LoHunde_Jugador2_Gana_Debe_ImprimirReporte()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+
+        var canonero = new Nave(9, 9, 9, 9, "g");
+
+        acorazados.Iniciar([canonero], []);
+        acorazados.Disparar(1, 1);
+        acorazados.TerminarTurno();
+        
+        acorazados.Disparar(9, 9);
+
+        var tablero = acorazados.Imprimir();
+
+        var reporte = 
+            """
+            [ Paula
+                Total shots: 1
+                Misses: 0
+                Hits: 1
+                Ships Sunk: [
+                    Gunship: (9,9)
+                ]
+            """;
+        
+        var tableroEsperado = reporte + 
+                              "| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" +
+                              "0| | | | | | | | | | |" +
+                              "1| | | | | | | | | | |" +
+                              "2| | | | | | | | | | |" +
+                              "3| | | | | | | | | | |" +
+                              "4| | | | | | | | | | |" +
+                              "5| | | | | | | | | | |" +
+                              "6| | | | | | | | | | |" +
+                              "7| | | | | | | | | | |" +
+                              "8| | | | | | | | | | |" +
+                              "9| | | | | | | | | | X |";
+
+        tablero.Should().Be(tableroEsperado);
+    }
 }
