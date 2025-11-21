@@ -75,7 +75,7 @@ public class AcorazadosTest
 
 public class JuegoAcorazados
 {
-    public List<string> _jugadores { get; } = new();
+    public List<(string, char[,])> _jugadores { get; } = new();
     public void Iniciar()
     {
         if (_jugadores.Count != 2)
@@ -84,11 +84,38 @@ public class JuegoAcorazados
 
     public void AgregarJugador(string nombre)
     {
-        _jugadores.Add(nombre);
+        _jugadores.Add((nombre, new char[10, 10]));
     }
 
     public string Imprimir(string nombreJugador)
     {
-      throw new NotImplementedException();
+        var tablero = _jugadores.FirstOrDefault(jugador => jugador.Item1 == nombreJugador).Item2;
+        var visualizarTablero = string.Empty;
+
+        visualizarTablero += "\n";
+
+        visualizarTablero += "   |";
+        for (int i = 0; i < tablero.GetLength(1); i++)
+        {
+            visualizarTablero += $" {i} |";
+        }
+        visualizarTablero += " \n";
+
+
+        visualizarTablero += "-------------------------------------------| \n";
+
+        for (var x = 0; x < tablero.GetLength(0); x++)
+        {
+            visualizarTablero += $" {x} |";
+            for (int y = 0; y < tablero.GetLength(1); y++)
+            {
+                visualizarTablero += $" {' '} |";
+            }
+            visualizarTablero += " \n";
+        }
+
+        visualizarTablero += "-------------------------------------------| \n";
+
+        return visualizarTablero;
     }
 }
