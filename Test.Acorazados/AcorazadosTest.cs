@@ -78,9 +78,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
-        List<(int x, int y, char barco, int cantidadPosiciones, string orientacion)> barcosJugador1 = new()
+        List<(Coordenada, Barco, string orientacion)> barcosJugador1 = new()
         {
-            (0, 0, 'c',4,"Horizontal")
+            (new Coordenada (0, 0), new BarcoPortaviones(),"Horizontal")
         };
 
         juegoAcorazado.Iniciar(barcosJugador1);
@@ -112,9 +112,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
-        List<(int x, int y, char barco, int cantidadPosiciones, string orientacion)> barcosJugador1 = new()
+        List<(Coordenada, Barco, string orientacion)> barcosJugador1 = new()
         {
-            (1, 0, 'c',4,"Horizontal")
+            (new Coordenada(1, 0), new BarcoPortaviones(),"Horizontal")
         };
 
         juegoAcorazado.Iniciar(barcosJugador1);
@@ -147,9 +147,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
-        List<(int x, int y, char barco, int cantidadPosiciones, string orientacion)> barcosJugador1 = new()
+        List<(Coordenada, Barco, string orientacion)> barcosJugador1 = new()
         {
-            (0, 0, 'c',4,"Vertical")
+            (new Coordenada(0, 0), new BarcoPortaviones(),"Vertical")
         };
 
         juegoAcorazado.Iniciar(barcosJugador1);
@@ -182,9 +182,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
-        List<(int x, int y, char barco, int cantidadPosiciones, string orientacion)> barcosJugador1 = new()
+        List<(Coordenada, Barco, string orientacion)> barcosJugador1 = new()
         {
-            (1, 0, 'c',4,"Vertical")
+            (new Coordenada(1, 0), new BarcoPortaviones(),"Vertical")
         };
 
         juegoAcorazado.Iniciar(barcosJugador1);
@@ -207,75 +207,5 @@ public class AcorazadosTest
         string tableroJugador1 = juegoAcorazado.Imprimir("Jugador 1");
 
         tableroJugador1.Should().Be(tableroEsperado);
-    }
-
-
-}
-
-public class JuegoAcorazados
-{
-    public List<(string, char[,])> _jugadores { get; } = new();
-    public void Iniciar(List<(int x, int y, char valor, int cantidadPosiciones, string orientacion)> barcosJugador1)
-    {
-        if (_jugadores.Count != 2)
-            throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
-
-        var tableroJugador1 = _jugadores[0].Item2;
-
-        foreach (var barco in barcosJugador1)
-        {
-            if (barco.orientacion == "Vertical")
-            {
-                for (int i = 0; i < barco.cantidadPosiciones; i++)
-                {
-                    tableroJugador1[barco.x + i, barco.y] = barco.valor;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < barco.cantidadPosiciones; i++)
-                {
-                    tableroJugador1[barco.x, barco.y + i] = barco.valor;
-                }
-            }
-        }
-    }
-
-    public void AgregarJugador(string nombre)
-    {
-        _jugadores.Add((nombre, new char[10, 10]));
-    }
-
-    public string Imprimir(string nombreJugador)
-    {
-        var tablero = _jugadores.FirstOrDefault(jugador => jugador.Item1 == nombreJugador).Item2;
-        var visualizarTablero = string.Empty;
-
-        visualizarTablero += "\n";
-
-        visualizarTablero += "   |";
-        for (int i = 0; i < tablero.GetLength(1); i++)
-        {
-            visualizarTablero += $" {i} |";
-        }
-        visualizarTablero += " \n";
-
-
-        visualizarTablero += "-------------------------------------------| \n";
-
-        for (var x = 0; x < tablero.GetLength(0); x++)
-        {
-            visualizarTablero += $" {x} |";
-            for (int y = 0; y < tablero.GetLength(1); y++)
-            {
-                char valorAMostar = tablero[x, y] == '\0' ? ' ' : tablero[x, y];
-                visualizarTablero += $" {valorAMostar} |";
-            }
-            visualizarTablero += " \n";
-        }
-
-        visualizarTablero += "-------------------------------------------| \n";
-
-        return visualizarTablero;
     }
 }
