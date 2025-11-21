@@ -1352,4 +1352,18 @@ public class AcorazadosTest
         
         act.Should().Throw<ApplicationException>();
     }
+    
+    [Fact]
+    public void
+        Si_NoInicioElJuego_E_IntentoDisparar_Debe_LanzarExcepcion()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+
+        var act = () => acorazados.Disparar(7, 9);
+        
+        act.Should().Throw<ApplicationException>();
+    }
 }
