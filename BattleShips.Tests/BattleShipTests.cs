@@ -10,7 +10,7 @@ public class BattleShipTests
     {
         var battleship = new BattleShip();
 
-        var action = () => battleship.AddPlayer(["Cañonero", "Cañonero", "Cañonero", "Cañonero"]);
+        var action = () => battleship.AddPlayer(["Cañonero", "Cañonero", "Cañonero", "Cañonero", "Destructor", "Destructor"]);
 
         action.Should().NotThrow();
     }
@@ -19,8 +19,8 @@ public class BattleShipTests
     public void Cuando_AgregoTresJugadores_Debe_ArrojarException()
     {
         var battleShip = new BattleShip();
-        battleShip.AddPlayer(["Cañonero", "Cañonero", "Cañonero", "Cañonero"]);
-        battleShip.AddPlayer(["Cañonero", "Cañonero", "Cañonero", "Cañonero"]);
+        battleShip.AddPlayer(["Cañonero", "Cañonero", "Cañonero", "Cañonero", "Destructor", "Destructor"]);
+        battleShip.AddPlayer(["Cañonero", "Cañonero", "Cañonero", "Cañonero", "Destructor", "Destructor"]);
         
         var action = () => battleShip.AddPlayer(["Cañonero"]);
 
@@ -83,6 +83,16 @@ public class BattleShipTests
 
         action.Should().Throw<ArgumentException>().WithMessage("Deben ser 2 destructores por jugador.");
     }
+
+    [Fact]
+    public void Cuando_AgregoUnJugadorCon4CañonerosY3Destructores_Debe_ArrojarExcepcion()
+    {
+        var battleship = new BattleShip();
+        
+        var action = () => battleship.AddPlayer(["Cañonero","Cañonero","Cañonero","Cañonero", "Destructor", "Destructor", "Destructor"]);
+
+        action.Should().ThrowExactly<ArgumentException>("Deben ser 2 destructores por jugador.");
+    }
 }
 
 public class BattleShip
@@ -94,7 +104,7 @@ public class BattleShip
             throw new NotSupportedException();
         if (chips.Count(chip => chip == "Cañonero") != 4)
             throw new ArgumentException("Deben ser 4 cañoneros por jugador.");
-        if (chips.Count(chip => chip == "Destructor") == 1)
+        if (chips.Count(chip => chip == "Destructor") != 2 )
             throw new ArgumentException("Deben ser 2 destructores por jugador.");
         _cantidadJugadores++;
         
