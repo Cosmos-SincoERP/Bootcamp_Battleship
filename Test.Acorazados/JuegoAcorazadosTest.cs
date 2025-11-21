@@ -286,7 +286,7 @@ public class JuegoAcorazadosTest
     
     
     [Fact]
-    public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion4_7YHundeUnBarco_Debe_NotificarQueElBarcoDelJugador1_SeHundio()
+    public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion4_7YHundeUnBarco_Debe_NotificarQueElBarcoDelJugador2_SeHundio()
     {
         var juegoAcorazado = Mocks.MockIniciarJuego();
     
@@ -297,12 +297,22 @@ public class JuegoAcorazadosTest
     
     
     [Fact]
-    public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion1_8YHundeUnBarco_Debe_NotificarQueElBarcoDelJugador1_SeHundio()
+    public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion1_8YHundeUnBarco_Debe_NotificarQueElBarcoDelJugador2_SeHundio()
     {
         var juegoAcorazado = Mocks.MockIniciarJuego();
     
         var barcoHundido = juegoAcorazado.Disparar(1, 8);
 
         barcoHundido.Should().Be("Se hundio un barco en la coordenada (1,8)");
+    }
+    
+    [Fact]
+    public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion7_4YHundeUnBarco_Debe_NotificarQueElBarcoDelJugador2_SeHundio()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego();
+    
+        var barcoHundido = juegoAcorazado.Disparar(7, 4);
+
+        barcoHundido.Should().Be("Se hundio un barco en la coordenada (7,4)");
     }
 }
