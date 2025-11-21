@@ -277,7 +277,7 @@ public class BattleShip
             throw new ArgumentException("Debe ser 1 portaavion por jugador.");
         if (ships.Any(ship => ship.tipo == "Cañonero" && ship.coords.Count != 1))
             throw new ArgumentException("Un cañonero solo puede tener una coordenada");
-        if (ships.Any(ship => ship.tipo == "Destructor" && (ship.coords.Count < 3 || ship.coords.Count > 3)))
+        if (ships.Any(ship => ship.tipo == "Destructor" && (ship.coords.Count == 4 || ship.coords.Count == 2)))
             throw new ArgumentException("Los destructores deben tener 3 coordenadas.");
         _cantidadJugadores++;
     }
