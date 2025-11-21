@@ -8,13 +8,19 @@ public class Battleship
     
     private bool _jugador1Gano;
 
+    private bool _jugador2Gano;
+
     private string _jugador1 = "";
 
     private string _jugador2 = "";
 
     private int _conteoDisparosJugador1;
     
+    private int _conteoDisparosJugador2;
+    
     private int _conteoDisparosAcertadosJugador1;
+    
+    private int _conteoDisparosAcertadosJugador2;
 
     private readonly List<string> _tableroJugador1 =
     [
@@ -51,6 +57,8 @@ public class Battleship
     private List<Nave> _navesJugador2 = new();
 
     private List<Nave> _navesHundidasJugador1 = new();
+    
+    private List<Nave> _navesHundidasJugador2 = new();
 
     public void AddPlayer(string name)
     {
@@ -120,13 +128,23 @@ public class Battleship
             _conteoDisparosJugador1++;
             _conteoDisparosAcertadosJugador1 =
                 nave == null ? _conteoDisparosAcertadosJugador1 : _conteoDisparosAcertadosJugador1 + 1;
+            if (nave?.CantidadDisparosRecibidos == nave?.ObtenerTamano())
+                if (nave != null)
+                    _navesHundidasJugador1.Add(nave);
+        }
+        else
+        {
+            _conteoDisparosJugador2++;
+            _conteoDisparosAcertadosJugador2 =
+                nave == null ? _conteoDisparosAcertadosJugador2 : _conteoDisparosAcertadosJugador2 + 1;
+            if (nave?.CantidadDisparosRecibidos == nave?.ObtenerTamano())
+                if (nave != null)
+                    _navesHundidasJugador2.Add(nave);
         }
         
-        if (nave?.CantidadDisparosRecibidos == nave?.ObtenerTamano())
-            if (nave != null)
-                _navesHundidasJugador1.Add(nave);
 
         _jugador1Gano = _navesJugador2.Count != 0 && _navesJugador2.All(naveRecorrida => naveRecorrida.CantidadDisparosRecibidos == naveRecorrida.ObtenerTamano());
+        _jugador2Gano = _navesJugador1.Count != 0 && _navesJugador1.All(naveRecorrida => naveRecorrida.CantidadDisparosRecibidos == naveRecorrida.ObtenerTamano());
 
         return nave?.CantidadDisparosRecibidos == nave?.ObtenerTamano() ? "Barco hundido" : string.Empty;
     }
@@ -176,6 +194,25 @@ public class Battleship
 
             sb.Append("    ]");
             sb.Append(string.Join("", _tableroJugador2));
+
+            return sb.ToString();
+        }
+        if (_jugador2Gano)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"[ {_jugador2}");
+            sb.AppendLine($"    Total shots: {_conteoDisparosJugador2}");
+            sb.AppendLine($"    Misses: {_conteoDisparosJugador2 - _conteoDisparosAcertadosJugador2}");
+            sb.AppendLine($"    Hits: {_conteoDisparosAcertadosJugador2}");
+            sb.AppendLine("    Ships Sunk: [");
+
+            foreach (var nave in _navesHundidasJugador2)
+            {
+                sb.AppendLine($"        {nave.ObtenerNombre()}: ({nave.FilaInicial},{nave.ColumnaInicial})");
+            }
+
+            sb.Append("    ]");
+            sb.Append(string.Join("", _tableroJugador1));
 
             return sb.ToString();
         }
