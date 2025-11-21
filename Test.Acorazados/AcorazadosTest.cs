@@ -31,11 +31,10 @@ public class AcorazadosTest
         var juegoAcorazado = new JuegoAcorazados();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
-        juegoAcorazado.AgregarJugador();
-        var iniciar = () => juegoAcorazado.Iniciar([], []);
-
-        iniciar.Should().ThrowExactly<Exception>()
-            .WithMessage("No se puede iniciar el juego, debe haber al menos 2 jugadores");
+        var tercerJugador = () => juegoAcorazado.AgregarJugador();
+        
+        tercerJugador.Should().ThrowExactly<Exception>()
+            .WithMessage("No se permite agregar mas jugadores al juego");
     }
 
     [Fact]
@@ -166,10 +165,12 @@ public class AcorazadosTest
             new("Cañonero", 0, 0, "Vertical")
         };
 
+   
+
         var iniciar = () => juegoAcorazado.Iniciar(posicionesJugador1, posicionesJugador2);
 
         iniciar.Should().ThrowExactly<Exception>()
-            .WithMessage("El jugador 2, no ha enviado los barcos para posicionar");
+            .WithMessage("El jugador 2, no ha enviado todos los cañoneros para posicionar");
     }
 }
 
@@ -177,49 +178,51 @@ public class JuegoAcorazados
 {
     private List<string> _jugadores = new();
 
+    public void AgregarJugador()
+    {
+        if(_jugadores.Count == 2)
+            throw new Exception("No se permite agregar mas jugadores al juego");
+
+        _jugadores.Add(_jugadores.Count == 1 ? "2" : "1");
+    }
+    
     public void Iniciar(List<(string tipo, int x, int y, string orientacion)> posicionesBarcosJugador1,
         List<(string tipo, int x, int y, string orientacion)> posicionesBarcosJugador2)
     {
-        ValidarCantidadBarcosJugadores(posicionesBarcosJugador1, posicionesBarcosJugador2);
-    }
-
-    private void ValidarCantidadBarcosJugadores(
-        List<(string tipo, int x, int y, string orientacion)> posicionesBarcosJugador1,
-        List<(string tipo, int x, int y, string orientacion)> posicionesBarcosJugador2)
-    {
-        const int posicionesCañoneros = 4;
-        const int posicionesDestructor = 2;
-
-
-        var FaltanTodosLosBarco = "El jugador {0}, no ha enviado los barcos para posicionar";
-        var FaltanLosCañoneros = "El jugador {0}, no ha enviado todos los cañoneros para posicionar";
-        var FaltanLosDestructores = "El jugador {0}, no ha enviado todos los destructores para posicionar";
-        var FaltanLosPortaviones = "El jugador {0}, no ha enviado todos los portaviones para posicionar";
-
         if (_jugadores.Count != 2)
             throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
 
-        if (posicionesBarcosJugador1.Count == 0)
-            throw new Exception(string.Format(FaltanTodosLosBarco, "1"));
-
-        if (posicionesBarcosJugador1.Count(x => x.tipo == "Cañonero") < posicionesCañoneros)
-            throw new Exception(string.Format(FaltanLosCañoneros, "1"));
-
-        if (posicionesBarcosJugador1.Count(x => x.tipo == "Destructor") < posicionesDestructor)
-            throw new Exception(string.Format(FaltanLosDestructores, "1"));
-
-        if (posicionesBarcosJugador1.Count(x => x.tipo == "Portaviones") < 1)
-            throw new Exception(string.Format(FaltanLosPortaviones, "1"));
-
-        if (posicionesBarcosJugador2.Count == 0)
-            throw new Exception(string.Format(FaltanTodosLosBarco, "2"));
-
-        if (posicionesBarcosJugador2.Count(x => x.tipo == "Cañonero") < posicionesCañoneros)
-            throw new Exception(string.Format(FaltanTodosLosBarco, "2"));
+     
+        ValidarCantidadBarcos(posicionesBarcosJugador1, _jugadores[0]);
+        ValidarCantidadBarcos(posicionesBarcosJugador2, _jugadores[1]);
+        
     }
 
-    public void AgregarJugador()
+    private void ValidarCantidadBarcos(
+        List<(string tipo, int x, int y, string orientacion)> posicionesBarcosJugador, string nombreJugador)
     {
-        _jugadores.Add("Jugador 1");
+        const int cantidadCañoneros = 4;
+        const int cantidadDestructores = 2;
+        const int cantidadPortaAviones = 1;
+        
+        const string faltanTodosLosBarco = "El jugador {0}, no ha enviado los barcos para posicionar";
+        const string faltanLosCañoneros = "El jugador {0}, no ha enviado todos los cañoneros para posicionar";
+        const string faltanLosDestructores = "El jugador {0}, no ha enviado todos los destructores para posicionar";
+        const string faltanLosPortaviones = "El jugador {0}, no ha enviado todos los portaviones para posicionar";
+
+
+        if (posicionesBarcosJugador.Count == 0)
+            throw new Exception(string.Format(faltanTodosLosBarco, nombreJugador));
+
+        if (posicionesBarcosJugador.Count(barco => barco.tipo == "Cañonero") < cantidadCañoneros)
+            throw new Exception(string.Format(faltanLosCañoneros, nombreJugador));
+
+        if (posicionesBarcosJugador.Count(barco => barco.tipo == "Destructor") < cantidadDestructores)
+            throw new Exception(string.Format(faltanLosDestructores, nombreJugador));
+
+        if (posicionesBarcosJugador.Count(barco => barco.tipo == "Portaviones") < cantidadPortaAviones)
+            throw new Exception(string.Format(faltanLosPortaviones, nombreJugador));
     }
+
+
 }
