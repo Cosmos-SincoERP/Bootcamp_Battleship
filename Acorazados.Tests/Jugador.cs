@@ -133,13 +133,10 @@ public class Jugador
         return tablero;
     }
 
-    public (int x, int y) Disparar(int fila, int columna)
-    {
-        return (fila, columna);
-    }
 
     public void RecibirDisparo(int x, int y)
     {
+        
         if (ObtenerElemento(x, y) == "g")
             Tablero[x, y] = "X";
         else if (ObtenerElemento(x, y) == "d")
