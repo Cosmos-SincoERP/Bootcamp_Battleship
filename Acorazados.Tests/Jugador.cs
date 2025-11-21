@@ -140,8 +140,8 @@ public class Jugador
 
     public void RecibirDisparo(int x, int y)
     {
-        if (ObtenerElemento(x, y) != null)
-            Tablero[x, y] = "x";
+        if (ObtenerElemento(x, y) == "g")
+            Tablero[x, y] = "X";
         else
             Tablero[x, y] = "o";
     }
