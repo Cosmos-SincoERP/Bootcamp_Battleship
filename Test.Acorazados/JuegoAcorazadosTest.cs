@@ -245,7 +245,7 @@ public class JuegoAcorazadosTest
     }
     
     [Fact]
-    public void Si_Eljugador2DisparaUnTorpedoEnLaPosicion2_1YNoHundeUnBarco_Debe_ImprimirElTableroDelJugador1Con_X_EnLaPosicion2_1()
+    public void Si_Eljugador2DisparaUnTorpedoEnLaPosicion2_1YNoHundeUnBarco_Debe_NotificarQueElBarcoDelJugador1_SeHundio()
     {
         var tablero = new char[10, 10];
         tablero[2, 1] = 'X';
@@ -254,8 +254,8 @@ public class JuegoAcorazadosTest
     
         juegoAcorazado.Disparar(0, 4);
         juegoAcorazado.FinalizarTurno();
-        juegoAcorazado.Disparar(2, 1);
+        var barcoHundido = juegoAcorazado.Disparar(2, 1);
 
-        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
+        barcoHundido.Should().Be("Se hundio un barco en la coordenada (2,1)");
     }
 }

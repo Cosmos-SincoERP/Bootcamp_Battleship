@@ -55,3 +55,5 @@ PosicionBarco(Barco barco, Coordenada coordenada, Orientacion orientacion)
 [ ] Si inicia el juego solo Posicionando Todos los barcos del jugador 1 y no se posiciona los destructores del jugador 2 debe lanzar una excepcion por falta de posicionamiento de barcos (Assert con Iniciar)
 [ ] Si inicia el juego solo Posicionando Todos los barcos del jugador 1 y no se posiciona los cañoneros  del jugador 2 debe lanzar una excepcion por falta de posicionamiento de barcos (Assert con Iniciar)
 [ ] Si inicia el juego Posicionando todos los barcos del jugador 1 y todos los jugador 2 debe mostrar la flota del jugador 1 (Assert con Imprimir)
+
+[ ] Si un jugador dispara y luego intenta disparar otra vez debe lanzar excepcion

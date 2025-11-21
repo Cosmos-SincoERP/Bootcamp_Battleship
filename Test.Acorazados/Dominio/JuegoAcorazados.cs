@@ -30,23 +30,28 @@ public class JuegoAcorazados
         _listaBarcosJugador2.AddRange(barcosJugador2);
     }
 
-    public void Disparar(int x, int y)
+    public string Disparar(int x, int y)
     {
-
+        var mensaje = string.Empty;
         var tablero = _jugadores[_jugadorContrincante].Tablero;
         var _listaBarcosJugadorContrincante = _jugadorContrincante == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
 
-        var buscarBarco = _listaBarcosJugadorContrincante.FirstOrDefault(barco => barco.Posicion.X == x && barco.Posicion.Y == y);
+        var buscarBarco = _listaBarcosJugadorContrincante.FirstOrDefault(barco => barco.Coordenada.X == x && barco.Coordenada.Y == y);
         if (buscarBarco != null )
         {
-            if(buscarBarco.GetType().Name == "Cañonero")
+            if (buscarBarco.GetType().Name == "Cañonero")
+            {
                 tablero[x, y] = 'X';
+                mensaje = "Se hundio un barco en la coordenada (2,1)";
+            }
             else
                 tablero[x, y] = 'x';
         }
             
         else
             tablero[x, y] = 'o';
+        
+        return mensaje;
     }
 
     public void FinalizarTurno()
