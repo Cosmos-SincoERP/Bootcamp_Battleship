@@ -4,18 +4,18 @@ public abstract class Barco
 {
     public Coordenada Coordenada { get; }
     public char Representacion { get; }
-    public OrientacionBarco? Orientacion { get; }
     public List<Coordenada> CoordenadasDeLaPosicion { get; } = [];
 
     private int _tamaño;
-    private int _impactos = 0;
+    private int _impactos;
+    private OrientacionBarco? _orientacion;
 
     public Barco(Coordenada coordenada, int tamaño, char representacion, OrientacionBarco? orientacion)
     {
         Coordenada = coordenada;
         _tamaño = tamaño;
         Representacion = representacion;
-        Orientacion = orientacion;
+        _orientacion = orientacion;
 
         AgregarCoordenadasDeLaPosicion();
     }
@@ -31,7 +31,7 @@ public abstract class Barco
     
     private void AgregarCoordenadasDeLaPosicion()
     {
-        if (Orientacion == OrientacionBarco.Horizontal)
+        if (_orientacion == OrientacionBarco.Horizontal)
         {
             for (int i = 0; i < _tamaño; i++)
             {

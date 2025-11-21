@@ -7,7 +7,7 @@ public class JuegoAcorazados
     private List<Jugador> _jugadores = [];
     private List<Barco> _listaBarcosJugador1 = [];
     private List<Barco> _listaBarcosJugador2 = [];
-    private int _jugadorActivo = 0;
+    private int _jugadorActivo;
     private int _jugadorContrincante = 1;
 
     public void AgregarJugador()
@@ -34,10 +34,8 @@ public class JuegoAcorazados
     {
         var mensaje = string.Empty;
         var tablero = _jugadores[_jugadorContrincante].Tablero;
-        var _listaBarcosJugadorContrincante = _jugadorContrincante == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
-
-        var barco = _listaBarcosJugadorContrincante.FirstOrDefault(barco => barco.EstaEnLaCoordenada(new(x, y)));
-        if (barco != null )
+        var barco = BuscarBarco(x, y);
+        if (barco != null)
         {
             barco.RegistrarImpacto();
             
@@ -52,7 +50,6 @@ public class JuegoAcorazados
             else
                 tablero[x, y] = 'x';
         }
-            
         else
             tablero[x, y] = 'o';
         
@@ -68,11 +65,10 @@ public class JuegoAcorazados
     public string Imprimir()
     {
         var tablero = _jugadores[_jugadorContrincante].Tablero;
-
         var visualizarTablero = string.Empty;
         for (var x = 0; x < tablero.GetLength(0); x++)
         {
-            for (int y = 0; y < tablero.GetLength(1); y++)
+            for (var y = 0; y < tablero.GetLength(1); y++)
             {
                 visualizarTablero += tablero[x, y];
             }
@@ -108,6 +104,12 @@ public class JuegoAcorazados
 
         if (barcos.Count(barco => barco.GetType().Name == "PortaAviones") < cantidadPortaAviones)
             throw new Exception(string.Format(faltanLosPortaviones, nombreJugador));
+    }
+    
+    private Barco? BuscarBarco(int x, int y)
+    {
+        var listaBarcosJugadorContrincante = _jugadorContrincante == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
+        return listaBarcosJugadorContrincante.FirstOrDefault(barco => barco.EstaEnLaCoordenada(new(x, y)));
     }
 }
 
