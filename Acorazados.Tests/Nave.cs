@@ -3,13 +3,14 @@
 public interface INave
 {
     public int Longitud { get; }
-    public string Valor { get;  }
+    public string Valor { get; }
 }
 
-public abstract class Nave: INave
+public abstract class Nave : INave
 {
-    public int Longitud { get; protected set;}
+    public int Longitud { get; protected set; }
     public string Valor { get; protected set; } = "";
+    public int CantidadDisparosRecibidos { get; set; }
 }
 
 public sealed class Carrier : Nave

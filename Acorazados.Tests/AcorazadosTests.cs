@@ -430,7 +430,7 @@ public class AcorazadosTests
 
     [Fact]
     public void
-        SiJugadorRealizaDisparosHastaHundirDestroyer_Debe_ImprimirTableroDeOponenteConNaveDerriabadaMarcadaConXXX()
+        SiJugador1RealizaUnDisparoEnLaCoordenada91YNaveEsCarrier_Debe_ImprimirTableroDelJugador2ConDisparoRecibidoEnLaCoordenadaMarcadoConx()
     {
         var acorazados = new Acorazados();
         var jugador1 = "jugador 1";
@@ -455,23 +455,20 @@ public class AcorazadosTests
         j2.AgregarGunShip(4, 3);
 
         string expectedTableroJugador2 = " |0|1|2|3|4|5|6|7|8|9|\r\n" +
-                                         "0| |X| | | | | | | | |\r\n" +
-                                         "1| |X| | | | | | | | |\r\n" +
-                                         "2| |X| | | | | | | | |\r\n" +
+                                         "0| |d| | | | | | | | |\r\n" +
+                                         "1| |d| | | | | | | | |\r\n" +
+                                         "2| |d| | | | | | | | |\r\n" +
                                          "3| | | | | | | |g| | |\r\n" +
                                          "4| | | |g| | | | | | |\r\n" +
                                          "5| | | | | | | | | | |\r\n" +
                                          "6| | | | | |g| | | | |\r\n" +
                                          "7| |g| | | | | | | | |\r\n" +
                                          "8| | | | | | | | | | |\r\n" +
-                                         "9|c|c|c|c| | | | | | |\r\n";
+                                         "9|c|x|c|c| | | | | | |\r\n";
 
 
-        acorazados.Disparar(1, 1);
-        acorazados.Disparar(5, 1);
-        acorazados.Disparar(2, 1);
-        acorazados.Disparar(8, 4);
-        acorazados.Disparar(0, 1);
+        acorazados.Disparar(9, 1);
+
 
         j2.ImprimirTablero().Should().Be(expectedTableroJugador2);
     }

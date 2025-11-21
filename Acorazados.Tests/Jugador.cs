@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text;
-
-namespace AcorazadosTests;
+﻿namespace AcorazadosTests;
 
 public class Jugador
 {
@@ -136,11 +133,13 @@ public class Jugador
 
     public void RecibirDisparo(int x, int y)
     {
-        
         if (ObtenerElemento(x, y) == "g")
             Tablero[x, y] = "X";
         else if (ObtenerElemento(x, y) == "d")
+        {
             Tablero[x, y] = "x";
+            new Carrier().CantidadDisparosRecibidos += 1;
+        }
         else
             Tablero[x, y] = "o";
     }
