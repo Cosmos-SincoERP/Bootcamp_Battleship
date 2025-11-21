@@ -16,7 +16,7 @@ public class BattleShipTests
             ("Cañonero", [new Coord(3,0)]),
             ("Destructor", [new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
             ("Destructor", [new Coord(5,0), new Coord(5,1), new Coord(5,2)]),
-            ("Portaavion", [])
+            ("Portaavion", [new Coord(6,0)])
         ]);
 
         action.Should().NotThrow();
@@ -33,7 +33,7 @@ public class BattleShipTests
             ("Cañonero", [new Coord(3,0)]),
             ("Destructor", [new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
             ("Destructor", [new Coord(5,0), new Coord(5,1), new Coord(5,2)]),
-            ("Portaavion", [])
+            ("Portaavion", [new Coord(6,0)])
         ]);
         battleShip.AddPlayer([
             ("Cañonero", [new Coord(0,0)]),
@@ -42,7 +42,7 @@ public class BattleShipTests
             ("Cañonero", [new Coord(3,0)]),
             ("Destructor", [new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
             ("Destructor", [new Coord(5,0), new Coord(5,1), new Coord(5,2)]),
-            ("Portaavion", [])
+            ("Portaavion", [new Coord(6,0)])
         ]);
 
         var action = () => battleShip.AddPlayer([("Cañonero", [])]);
@@ -278,6 +278,24 @@ public class BattleShipTests
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Los destructores deben tener 3 coordenadas.");
     }
+
+    [Fact]
+    public void Si_AgregoUnJugadorConPortaavionesSinCoordendas_Debe_ArrojarExcepcion()
+    {
+        var battleship = new BattleShip();
+        
+        var action = () => battleship.AddPlayer([
+            ("Cañonero", [new Coord(0,0)]),
+            ("Cañonero", [new Coord(1,0)]),
+            ("Cañonero", [new Coord(2,0)]),
+            ("Cañonero", [new Coord(3,0)]),
+            ("Destructor", [new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
+            ("Destructor", [new Coord(5,0), new Coord(5,1), new Coord(5,2)]),
+            ("Portaavion", [])
+        ]);
+
+        action.Should().ThrowExactly<ArgumentException>("Un portaavion tiene 4 coordendas.");
+    }
 }
 
 public class BattleShip
@@ -298,6 +316,8 @@ public class BattleShip
             throw new ArgumentException("Un cañonero solo puede tener una coordenada");
         if (ships.Any(ship => ship.tipo == "Destructor" && ship.coords.Count != 3))
             throw new ArgumentException("Los destructores deben tener 3 coordenadas.");
+        if (ships.Any(ship => ship.coords.Count == 0))
+            throw new ArgumentException("Un portaavion tiene 4 coordendas.");
         _cantidadJugadores++;
     }
 
