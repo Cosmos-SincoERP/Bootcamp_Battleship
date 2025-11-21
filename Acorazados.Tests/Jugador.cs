@@ -140,6 +140,8 @@ public class Jugador
             Tablero[x, y] = "x";
             new Carrier().CantidadDisparosRecibidos += 1;
         }
+        else if (ObtenerElemento(x, y) == "c")
+            Tablero[x, y] = "x";
         else
             Tablero[x, y] = "o";
     }
