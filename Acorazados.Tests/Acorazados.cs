@@ -3,7 +3,7 @@
 public class Acorazados
 {
     public readonly Jugador[] Jugadores = new Jugador[2];
-    private int ContadorJugadores = 0;
+    private int _contadorJugadores = 0;
     public bool EsTurnoJugador1 { get; private set; } = true;
 
     public Jugador BuscarJugador(string aliasJugador) =>
@@ -20,12 +20,12 @@ public class Acorazados
         {
             Tablero = new string[_fila, _columna]
         };
-        Jugadores[ContadorJugadores] = jugador;
-        ContadorJugadores++;
+        Jugadores[_contadorJugadores] = jugador;
+        _contadorJugadores++;
     }
 
 
-    private string[,] _tablero;
+    private readonly string[,] _tablero;
     private readonly int _fila = 10;
     private readonly int _columna = 10;
     public Dictionary<string, string[,]> Tableros { get; set; }
@@ -35,9 +35,6 @@ public class Acorazados
         _tablero = new string[_fila, _columna];
     }
 
-    private bool EsCantidadColumnasIgualA(int columna) => _tablero.GetLength(1) == columna;
-    private bool EsCantidadFilasIgualA(int fila) => _tablero.GetLength(0) == fila;
-
     public string ObtenerElemento(string aliasJugador, int fila, int columna)
     {
         if (ExisteJugador(aliasJugador))
@@ -46,16 +43,16 @@ public class Acorazados
         return "";
     }
 
-    private bool ExisteJugador(string aliasJugador)
-    {
-        return BuscarJugador(aliasJugador) is not null;
-    }
-
     public void Disparar(int fila, int columna)
     {
         Oponente.RecibirDisparo(fila, columna);
         TerminarTurno();
     }
+
+    private bool EsCantidadColumnasIgualA(int columna) => _tablero.GetLength(1) == columna;
+    private bool EsCantidadFilasIgualA(int fila) => _tablero.GetLength(0) == fila;
+
+    private bool ExisteJugador(string aliasJugador) => BuscarJugador(aliasJugador) is { } jugador;
 
     private void TerminarTurno() => EsTurnoJugador1 = !EsTurnoJugador1;
 }

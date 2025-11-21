@@ -381,6 +381,7 @@ public class AcorazadosTests
 
         j2.ImprimirTablero().Should().Be(expected);
     }
+
     [Fact]
     public void
         SiJugador1RealizaUnDisparoEnLaCoordenada11YNaveEsDestroyer_Debe_ImprimirTableroDelJugador2ConDisparoRecibidoEnLaCoordenadaMarcadoConxYTurnoSerDeJugador2()
@@ -425,6 +426,5 @@ public class AcorazadosTests
 
         j2.ImprimirTablero().Should().Be(expected);
         acorazados.EsTurnoJugador1.Should().BeFalse();
-
     }
 }
