@@ -78,9 +78,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
-        List<(Coordenada, Barco, string orientacion)> barcosJugador1 = new()
+        List<(Coordenada, Barco, OrientacionBarco orientacion)> barcosJugador1 = new()
         {
-            (new Coordenada (0, 0), new BarcoPortaviones(),"Horizontal")
+            (new Coordenada (0, 0), new BarcoPortaviones(),OrientacionBarco.Horizontal)
         };
 
         juegoAcorazado.Iniciar(barcosJugador1);
@@ -112,9 +112,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
-        List<(Coordenada, Barco, string orientacion)> barcosJugador1 = new()
+        List<(Coordenada, Barco, OrientacionBarco orientacion)> barcosJugador1 = new()
         {
-            (new Coordenada(1, 0), new BarcoPortaviones(),"Horizontal")
+            (new Coordenada(1, 0), new BarcoPortaviones(),OrientacionBarco.Horizontal)
         };
 
         juegoAcorazado.Iniciar(barcosJugador1);
@@ -147,9 +147,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
-        List<(Coordenada, Barco, string orientacion)> barcosJugador1 = new()
+        List<(Coordenada, Barco, OrientacionBarco orientacion)> barcosJugador1 = new()
         {
-            (new Coordenada(0, 0), new BarcoPortaviones(),"Vertical")
+            (new Coordenada(0, 0), new BarcoPortaviones(),OrientacionBarco.Vertical)
         };
 
         juegoAcorazado.Iniciar(barcosJugador1);
@@ -182,9 +182,9 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
-        List<(Coordenada, Barco, string orientacion)> barcosJugador1 = new()
+        List<(Coordenada, Barco, OrientacionBarco orientacion)> barcosJugador1 = new()
         {
-            (new Coordenada(1, 0), new BarcoPortaviones(),"Vertical")
+            (new Coordenada(1, 0), new BarcoPortaviones(),OrientacionBarco.Vertical)
         };
 
         juegoAcorazado.Iniciar(barcosJugador1);

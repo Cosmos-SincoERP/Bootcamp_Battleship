@@ -3,7 +3,7 @@ namespace Test.BattleShip;
 public class JuegoAcorazados
 {
     public List<(string, char[,])> _jugadores { get; } = new();
-    public void Iniciar(List<(Coordenada, Barco, string orientacion)> barcosJugador1)
+    public void Iniciar(List<(Coordenada, Barco, OrientacionBarco orientacion)> barcosJugador1)
     {
         if (_jugadores.Count != 2)
             throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
@@ -12,24 +12,33 @@ public class JuegoAcorazados
         PosicionarBarcosEnTablero(barcosJugador1, tableroJugador1);
     }
 
-    private static void PosicionarBarcosEnTablero(List<(Coordenada coordenada, Barco barco, string orientacion)> posicionesBarcosJugador1, char[,] tableroJugador1)
+    private static void PosicionarBarcosEnTablero(List<(Coordenada coordenada, Barco barco, OrientacionBarco orientacion)> posicionesBarcosJugador1, char[,] tableroJugador1)
     {
         foreach (var posicionBarco in posicionesBarcosJugador1)
         {
-            if (posicionBarco.orientacion == "Vertical")
+            if (posicionBarco.barco.ElBarcoTieneOrientacion)
             {
-                for (int i = 0; i < posicionBarco.barco.Cantidad; i++)
-                {
-                    AsignarPosicionEnTablero(tableroJugador1, posicionBarco.coordenada.x + i, posicionBarco.coordenada.y, posicionBarco.barco.Valor);
-                }
+                AsignarPosicionEnTablero(tableroJugador1, posicionBarco.coordenada.x, posicionBarco.coordenada.y, posicionBarco.barco.Valor);
             }
             else
             {
-                for (int i = 0; i < posicionBarco.barco.Cantidad; i++)
+                if (posicionBarco.orientacion == OrientacionBarco.Vertical)
                 {
-                    AsignarPosicionEnTablero(tableroJugador1, posicionBarco.coordenada.x, posicionBarco.coordenada.y + i, posicionBarco.barco.Valor);
+                    for (int i = 0; i < posicionBarco.barco.Cantidad; i++)
+                    {
+                        AsignarPosicionEnTablero(tableroJugador1, posicionBarco.coordenada.x + i, posicionBarco.coordenada.y, posicionBarco.barco.Valor);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < posicionBarco.barco.Cantidad; i++)
+                    {
+                        AsignarPosicionEnTablero(tableroJugador1, posicionBarco.coordenada.x, posicionBarco.coordenada.y + i, posicionBarco.barco.Valor);
+                    }
                 }
             }
+
+
         }
     }
 
@@ -57,7 +66,6 @@ public class JuegoAcorazados
             visualizarTablero += $" {i} |";
         }
         visualizarTablero += " \n";
-        Barco a = new BarcoCañonero();
 
         visualizarTablero += "-------------------------------------------| \n";
 
@@ -80,35 +88,43 @@ public class JuegoAcorazados
 
 public abstract class Barco
 {
-    public Barco(int cantidad, char valor)
+    public Barco(int cantidad, char valor, bool eslBarcoTieneOrientacion)
     {
         Cantidad = cantidad;
         Valor = valor;
+        ElBarcoTieneOrientacion = ElBarcoTieneOrientacion;
     }
 
     public int Cantidad { get; set; }
     public char Valor { get; set; }
+    public bool ElBarcoTieneOrientacion { get; set; }
 
 }
 
 public class BarcoCañonero : Barco
 {
-    public BarcoCañonero() : base(1, 'g')
+    public BarcoCañonero() : base(1, 'g', false)
     {
     }
 }
 
 public class BarcoPortaviones : Barco
 {
-    public BarcoPortaviones() : base(4, 'c')
+    public BarcoPortaviones() : base(4, 'c', true)
     {
     }
 }
 
 public class BarcoDestructor : Barco
 {
-    public BarcoDestructor() : base(3, 'd')
+    public BarcoDestructor() : base(3, 'd', true)
     {
     }
 }
 public record Coordenada(int x, int y);
+
+public enum OrientacionBarco
+{
+    Vertical,
+    Horizontal
+}
