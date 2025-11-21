@@ -532,6 +532,30 @@ public class AcorazadosTest
 
     }
     
+    [Fact]
+    public void Si_Jugador1DisparaAlJugador2SinExitoYElJuegoSeHaFinalizadoYSeImprimeReporteJugadorDos_Debe_MostrarVaciaLaListaDeBarcosHundidos()
+    {
+        var acorazados = _acorazadosBuilder
+            .ConstruirJugadorUno("David", tablero =>
+            {
+                tablero.AgregarBarco(Barcos.Canonero, 1,1);
+            } )
+            .ConstruirJugadorDos("Diego", tablero =>
+            {
+                tablero.AgregarBarco(Barcos.Canonero, 1,1);
+                tablero.AgregarBarco(Barcos.Canonero, 1,2);
+            }).Construir();
+        acorazados.Iniciar();
+        acorazados.Disparar(1, 2);
+        acorazados.Disparar(1, 1);
+        var jugador2 = acorazados.ObtenerJugador(1);
+        
+        var reporteGenerado = acorazados.ImprimirReportePorJugador(jugador2);
+        
+        reporteGenerado.Should().Contain("Barcos hundidos: []");
+
+    }
+    
     
     
 }
