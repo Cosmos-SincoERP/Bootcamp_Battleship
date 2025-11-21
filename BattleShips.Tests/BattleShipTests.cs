@@ -44,14 +44,6 @@ public class BattleShipTests
     }
 
     [Fact]
-    public void Si_InicioElJuegoSinJugadores_Debe_ArrojarException()
-    {
-        var action = () => _battleship.Start();
-
-        action.Should().ThrowExactly<NotSupportedException>();
-    }
-
-    [Fact]
     public void Si_AgregoUnJugadorSinBarcos_Debe_ArrojarExcepcion()
     {
         var action = () => _battleship.AddPlayer(new Fleet([]));
@@ -290,5 +282,42 @@ public class BattleShipTests
         ]));
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Un portaavion debe tener 4 coordenadas.");
+    }
+    
+    [Fact]
+    public void Si_InicioElJuegoSinJugadores_Debe_ArrojarException()
+    {
+        var action = () => _battleship.Start();
+
+        action.Should().ThrowExactly<NotSupportedException>();
+    }
+
+    [Fact]
+    public void Si_ImprimoElTableroSinIniciarPartida_Debe_MostrarVacio()
+    {
+        _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0,0)),
+            Gunboat.Create(new Coord(1,0)),
+            Gunboat.Create(new Coord(2,0)),
+            Gunboat.Create(new Coord(3,0)),
+            Destroyer.Create([new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
+            Destroyer.Create([new Coord(5,0),new Coord(5,1), new Coord(5,2)]),
+            AircraftCarrier.Create([new Coord(6,0), new Coord(6,1), new Coord(6,2), new Coord(6,3)])
+        ]));
+        _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0,0)),
+            Gunboat.Create(new Coord(1,0)),
+            Gunboat.Create(new Coord(2,0)),
+            Gunboat.Create(new Coord(3,0)),
+            Destroyer.Create([new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
+            Destroyer.Create([new Coord(5,0),new Coord(5,1), new Coord(5,2)]),
+            AircraftCarrier.Create([new Coord(6,0), new Coord(6,1), new Coord(6,2), new Coord(6,3)])
+        ]));
+
+        var board = _battleship.Print();
+
+        board.Should().Be("");
+
+
     }
 }

@@ -1,6 +1,6 @@
 namespace BattleShips.Tests;
 
-public partial class BattleShip
+public class BattleShip
 {
     private int _cantidadJugadores;
 
@@ -14,5 +14,10 @@ public partial class BattleShip
     public void Start()
     {
         throw new NotSupportedException();
+    }
+
+    public string Print()
+    {
+        return "";
     }
 }
