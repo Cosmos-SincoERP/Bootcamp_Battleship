@@ -603,7 +603,7 @@ public class AcorazadosTest
         var reporteGenerado = acorazados.ImprimirReportePorJugador(jugador2);
         
         reporteGenerado.Should().Contain("Barcos hundidos: [ " +
-                                         "cañonero: (1,1)," +
+                                         "cañonero: (1,1), " +
                                          "cañonero: (1,2) ]");
 
     }

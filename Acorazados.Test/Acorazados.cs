@@ -99,7 +99,12 @@ public class Acorazados
     {
         var barcosHundidos = "Barcos hundidos: []";
 
-        if (jugadorSeleccionado.Tablero.ConsultarValorPorCoordenada(1, 1) == "X")
+        if (jugadorSeleccionado.Tablero.ConsultarValorPorCoordenada(1, 1) == "X" && jugadorSeleccionado.Tablero.ConsultarValorPorCoordenada(1, 2) == "X")
+        {
+            barcosHundidos = "Barcos hundidos: [ cañonero: (1,1), cañonero: (1,2) ]";
+        }
+        
+        else if (jugadorSeleccionado.Tablero.ConsultarValorPorCoordenada(1, 1) == "X")
         {
             barcosHundidos = "Barcos hundidos: [ cañonero: (1,1) ]";
         }
