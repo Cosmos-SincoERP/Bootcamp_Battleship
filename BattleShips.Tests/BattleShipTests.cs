@@ -1,23 +1,24 @@
 ﻿using AwesomeAssertions;
+using BattleShips.Tests.Ships;
 
 namespace BattleShips.Tests;
 
 public class BattleShipTests
 {
+    private readonly BattleShip _battleship = new();
+
     [Fact]
     public void Si_AgregoUnJugador_NoDebe_ArrojarException()
     {
-        var battleship = new BattleShip();
-
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", [new Coord(0,0)]),
-            ("Cañonero", [new Coord(1,0)]),
-            ("Cañonero", [new Coord(2,0)]),
-            ("Cañonero", [new Coord(3,0)]),
-            ("Destructor", [new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
-            ("Destructor", [new Coord(5,0), new Coord(5,1), new Coord(5,2)]),
-            ("Portaavion", [new Coord(6,0), new Coord(6,1), new Coord(6,2), new Coord(6,3)])
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0, 0)),
+            Gunboat.Create(new Coord(1, 0)),
+            Gunboat.Create(new Coord(2, 0)),
+            Gunboat.Create(new Coord(3, 0)),
+            Destroyer.Create([new Coord(4, 0), new Coord(4, 1), new Coord(4, 2)]),
+            Destroyer.Create([new Coord(5, 0), new Coord(5, 1), new Coord(5, 2)]),
+            AircraftCarrier.Create([new Coord(6, 0), new Coord(6, 1), new Coord(6, 2), new Coord(6, 3)])
+        ]));
 
         action.Should().NotThrow();
     }
@@ -25,27 +26,19 @@ public class BattleShipTests
     [Fact]
     public void Si_AgregoTresJugadores_Debe_ArrojarException()
     {
-        var battleShip = new BattleShip();
-        battleShip.AddPlayer([
-            ("Cañonero", [new Coord(0,0)]),
-            ("Cañonero", [new Coord(1,0)]),
-            ("Cañonero", [new Coord(2,0)]),
-            ("Cañonero", [new Coord(3,0)]),
-            ("Destructor", [new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
-            ("Destructor", [new Coord(5,0), new Coord(5,1), new Coord(5,2)]),
-            ("Portaavion", [new Coord(6,0), new Coord(6,1), new Coord(6,2), new Coord(6,3)])
+        var validFleetWith3Gunboats2DestroyersAnd1AircraftCarrier = new Fleet([
+            Gunboat.Create(new Coord(0, 0)),
+            Gunboat.Create(new Coord(1, 0)),
+            Gunboat.Create(new Coord(2, 0)),
+            Gunboat.Create(new Coord(3, 0)),
+            Destroyer.Create([new Coord(4, 0), new Coord(4, 1), new Coord(4, 2)]),
+            Destroyer.Create([new Coord(5, 0), new Coord(5, 1), new Coord(5, 2)]),
+            AircraftCarrier.Create([new Coord(6, 0), new Coord(6, 1), new Coord(6, 2), new Coord(6, 3)])
         ]);
-        battleShip.AddPlayer([
-            ("Cañonero", [new Coord(0,0)]),
-            ("Cañonero", [new Coord(1,0)]),
-            ("Cañonero", [new Coord(2,0)]),
-            ("Cañonero", [new Coord(3,0)]),
-            ("Destructor", [new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
-            ("Destructor", [new Coord(5,0), new Coord(5,1), new Coord(5,2)]),
-            ("Portaavion", [new Coord(6,0), new Coord(6,1), new Coord(6,2), new Coord(6,3)])
-        ]);
+        _battleship.AddPlayer(validFleetWith3Gunboats2DestroyersAnd1AircraftCarrier);
+        _battleship.AddPlayer(validFleetWith3Gunboats2DestroyersAnd1AircraftCarrier);
 
-        var action = () => battleShip.AddPlayer([("Cañonero", [])]);
+        var action = () => _battleship.AddPlayer(validFleetWith3Gunboats2DestroyersAnd1AircraftCarrier);
 
         action.Should().ThrowExactly<NotSupportedException>();
     }
@@ -53,9 +46,7 @@ public class BattleShipTests
     [Fact]
     public void Si_InicioElJuegoSinJugadores_Debe_ArrojarException()
     {
-        var battleShip = new BattleShip();
-
-        var action = () => battleShip.Start();
+        var action = () => _battleship.Start();
 
         action.Should().ThrowExactly<NotSupportedException>();
     }
@@ -63,9 +54,7 @@ public class BattleShipTests
     [Fact]
     public void Si_AgregoUnJugadorSinBarcos_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-
-        var action = () => battleship.AddPlayer([]);
+        var action = () => _battleship.AddPlayer(new Fleet([]));
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Deben ser 4 cañoneros por jugador.");
     }
@@ -73,13 +62,11 @@ public class BattleShipTests
     [Fact]
     public void Si_AgregoUnJugadorCon3Cañoneros_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", [])
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0,0)),
+            Gunboat.Create(new Coord(1,0)),
+            Gunboat.Create(new Coord(2,0))
+        ]));
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Deben ser 4 cañoneros por jugador.");
     }
@@ -87,15 +74,13 @@ public class BattleShipTests
     [Fact]
     public void Si_AgregoUnJugadorCon5Cañoneros_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", [])
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0,0)),
+            Gunboat.Create(new Coord(1,0)),
+            Gunboat.Create(new Coord(2,0)),
+            Gunboat.Create(new Coord(3,0)),
+            Gunboat.Create(new Coord(4,0))
+        ]));
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Deben ser 4 cañoneros por jugador.");
     }
@@ -103,16 +88,13 @@ public class BattleShipTests
     [Fact]
     public void Si_AgregoUnJugadorCon5CañonerosY1Destructor_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-
-
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Destructor", []),
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0,0)),
+            Gunboat.Create(new Coord(1,0)),
+            Gunboat.Create(new Coord(2,0)),
+            Gunboat.Create(new Coord(3,0)),
+            Destroyer.Create([new Coord(4,0), new Coord(4,1), new Coord(4,2)])
+        ]));
 
         action.Should().Throw<ArgumentException>().WithMessage("Deben ser 2 destructores por jugador.");
     }
@@ -120,17 +102,15 @@ public class BattleShipTests
     [Fact]
     public void Si_AgregoUnJugadorCon4CañonerosY3Destructores_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Destructor", []),
-            ("Destructor", []),
-            ("Destructor", [])
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0,0)),
+            Gunboat.Create(new Coord(1,0)),
+            Gunboat.Create(new Coord(2,0)),
+            Gunboat.Create(new Coord(3,0)),
+            Destroyer.Create([new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
+            Destroyer.Create([new Coord(5,0), new Coord(5,1), new Coord(5,2)]),
+            Destroyer.Create(new Coord(6,0), new Coord(6,1), new Coord(6,2))
+        ]));
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Deben ser 2 destructores por jugador.");
     }
@@ -138,15 +118,14 @@ public class BattleShipTests
     [Fact]
     public void Si_AgregoUnJugadorSinNingunPortaavion_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Destructor", []),
-            ("Destructor", [])
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0,0)),
+            Gunboat.Create(new Coord(1,0)),
+            Gunboat.Create(new Coord(2,0)),
+            Gunboat.Create(new Coord(3,0)),
+            Destroyer.Create(new Coord(4,0), new Coord(4,1), new Coord(4,2)),
+            Destroyer.Create(new Coord(5,0), new Coord(5,1), new Coord(5,2))
+        ]));
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Debe ser 1 portaavion por jugador.");
     }
@@ -154,36 +133,32 @@ public class BattleShipTests
     [Fact]
     public void Si_AgregoUnJugadorCon2Portaaviones_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Destructor", []),
-            ("Destructor", []),
-            ("Portaavion", []),
-            ("Portaavion", [])
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0,0)),
+            Gunboat.Create(new Coord(1,0)),
+            Gunboat.Create(new Coord(2,0)),
+            Gunboat.Create(new Coord(3,0)),
+            Destroyer.Create(new Coord(4,0),new Coord(4,1),new Coord(4,2)),
+            Destroyer.Create(new Coord(5,0),new Coord(5,1),new Coord(5,2)),
+            AircraftCarrier.Create([new Coord(6, 0), new Coord(6, 1), new Coord(6, 2), new Coord(6,3)]),
+            AircraftCarrier.Create([new Coord(7, 0), new Coord(7, 1), new Coord(7, 2), new Coord(7,3)]),
+        ]));
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Debe ser 1 portaavion por jugador.");
     }
-    
+
     [Fact]
     public void Si_AgregoUnJugadorConCañonerosSinCoordenadas_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Cañonero", []),
-            ("Destructor", []),
-            ("Destructor", []),
-            ("Portaavion", [])
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(),
+            Gunboat.Create(),
+            Gunboat.Create(),
+            Gunboat.Create(),
+            Destroyer.Create(),
+            Destroyer.Create(),
+            AircraftCarrier.Create()
+        ]));
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Un cañonero solo puede tener una coordenada");
     }
@@ -191,17 +166,15 @@ public class BattleShipTests
     [Fact]
     public void Si_AgregoUnJugadorConCañonerosDe2Coordenadas_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", [new Coord(0, 0), new Coord(0, 1)]),
-            ("Cañonero", [new Coord(1, 0), new Coord(1, 1)]),
-            ("Cañonero", [new Coord(2, 0), new Coord(2, 1)]),
-            ("Cañonero", [new Coord(3, 0), new Coord(3, 1)]),
-            ("Destructor", []),
-            ("Destructor", []),
-            ("Portaavion", [])
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create([new Coord(0, 0), new Coord(0, 1)]),
+            Gunboat.Create([new Coord(1, 0), new Coord(1, 1)]),
+            Gunboat.Create([new Coord(2, 0), new Coord(2, 1)]),
+            Gunboat.Create([new Coord(3, 0), new Coord(3, 1)]),
+            Destroyer.Create(),
+            Destroyer.Create(),
+            AircraftCarrier.Create()
+        ]));
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Un cañonero solo puede tener una coordenada");
     }
@@ -209,72 +182,64 @@ public class BattleShipTests
     [Fact]
     public void Si_AgregoUnJugadorConCañonerosDe3Coordenadas_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", [new Coord(0, 0), new Coord(0, 1), new Coord(0, 2)]),
-            ("Cañonero", [new Coord(1, 0), new Coord(1, 1), new Coord(1, 2)]),
-            ("Cañonero", [new Coord(2, 0), new Coord(2, 1), new Coord(2, 2)]),
-            ("Cañonero", [new Coord(3, 0), new Coord(3, 1), new Coord(3, 2)]),
-            ("Destructor", []),
-            ("Destructor", []),
-            ("Portaavion", [])
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create([new Coord(0, 0), new Coord(0, 1), new Coord(0, 2)]),
+            Gunboat.Create([new Coord(1, 0), new Coord(1, 1), new Coord(1, 2)]),
+            Gunboat.Create([new Coord(2, 0), new Coord(2, 1), new Coord(2, 2)]),
+            Gunboat.Create([new Coord(3, 0), new Coord(3, 1), new Coord(3, 2)]),
+            Destroyer.Create(),
+            Destroyer.Create(),
+            AircraftCarrier.Create()
+        ]));
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Un cañonero solo puede tener una coordenada");
     }
-    
+
     [Fact]
     public void Si_AgregoUnJugadorConDestructoresSinCoordendas_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", [new Coord(0, 0)]),
-            ("Cañonero", [new Coord(1, 0)]),
-            ("Cañonero", [new Coord(2, 0)]),
-            ("Cañonero", [new Coord(3, 0)]),
-            ("Destructor", []),
-            ("Destructor", []),
-            ("Portaavion", []),
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0, 0)),
+            Gunboat.Create(new Coord(1, 0)),
+            Gunboat.Create(new Coord(2, 0)),
+            Gunboat.Create(new Coord(3, 0)),
+            Destroyer.Create(),
+            Destroyer.Create(),
+            AircraftCarrier.Create()
+        ]));
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Los destructores deben tener 3 coordenadas.");
     }
 
-    
+
     [Fact]
     public void Si_AgregoUnJugadorConDestructoresDe4Coordenadas_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", [new Coord(0, 0)]),
-            ("Cañonero", [new Coord(1, 0)]),
-            ("Cañonero", [new Coord(2, 0)]),
-            ("Cañonero", [new Coord(3, 0)]),
-            ("Destructor", [new Coord(3, 0), new Coord(3, 1), new Coord(3, 2), new Coord(3, 3)]),
-            ("Destructor", [new Coord(4, 0), new Coord(4, 1), new Coord(4, 2), new Coord(4, 3)]),
-            ("Portaavion", []),
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0, 0)),
+            Gunboat.Create(new Coord(1, 0)),
+            Gunboat.Create(new Coord(2, 0)),
+            Gunboat.Create(new Coord(3, 0)),
+            Destroyer.Create([new Coord(3, 0), new Coord(3, 1), new Coord(3, 2), new Coord(3, 3)]),
+            Destroyer.Create([new Coord(4, 0), new Coord(4, 1), new Coord(4, 2), new Coord(4, 3)]),
+            AircraftCarrier.Create()
+        ]));
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Los destructores deben tener 3 coordenadas.");
     }
-    
+
     [Fact]
     public void Si_AgregoUnJugadorConDestructoresDe2Coordenadas_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", [new Coord(0, 0)]),
-            ("Cañonero", [new Coord(1, 0)]),
-            ("Cañonero", [new Coord(2, 0)]),
-            ("Cañonero", [new Coord(3, 0)]),
-            ("Destructor", [new Coord(3, 0), new Coord(3, 1)]),
-            ("Destructor", [new Coord(4, 0), new Coord(4, 1)]),
-            ("Portaavion", []),
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0, 0)),
+            Gunboat.Create(new Coord(1, 0)),
+            Gunboat.Create(new Coord(2, 0)),
+            Gunboat.Create(new Coord(3, 0)),
+            Destroyer.Create([new Coord(3, 0), new Coord(3, 1)]),
+            Destroyer.Create([new Coord(4, 0), new Coord(4, 1)]),
+            AircraftCarrier.Create()
+        ]));
 
         action.Should().ThrowExactly<ArgumentException>().WithMessage("Los destructores deben tener 3 coordenadas.");
     }
@@ -282,72 +247,48 @@ public class BattleShipTests
     [Fact]
     public void Si_AgregoUnJugadorConPortaavionesSinCoordendas_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-        
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", [new Coord(0,0)]),
-            ("Cañonero", [new Coord(1,0)]),
-            ("Cañonero", [new Coord(2,0)]),
-            ("Cañonero", [new Coord(3,0)]),
-            ("Destructor", [new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
-            ("Destructor", [new Coord(5,0), new Coord(5,1), new Coord(5,2)]),
-            ("Portaavion", [])
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0, 0)),
+            Gunboat.Create(new Coord(1, 0)),
+            Gunboat.Create(new Coord(2, 0)),
+            Gunboat.Create(new Coord(3, 0)),
+            Destroyer.Create([new Coord(4, 0), new Coord(4, 1), new Coord(4, 2)]),
+            Destroyer.Create([new Coord(5, 0), new Coord(5, 1), new Coord(5, 2)]),
+            AircraftCarrier.Create()
+        ]));
 
-        action.Should().ThrowExactly<ArgumentException>().WithMessage("Un portaavion tiene 4 coordendas.");
+        action.Should().ThrowExactly<ArgumentException>().WithMessage("Un portaavion debe tener 4 coordenadas.");
     }
 
     [Fact]
     public void Si_AgregoUnJugadorConUnPortaavionDe3Coordenadas_Debe_ArrojarExcepcion()
     {
-        var battleship = new BattleShip();
-        
-        var action = () => battleship.AddPlayer([
-            ("Cañonero", [new Coord(0,0)]),
-            ("Cañonero", [new Coord(1,0)]),
-            ("Cañonero", [new Coord(2,0)]),
-            ("Cañonero", [new Coord(3,0)]),
-            ("Destructor", [new Coord(4,0), new Coord(4,1), new Coord(4,2)]),
-            ("Destructor", [new Coord(5,0), new Coord(5,1), new Coord(5,2)]),
-            ("Portaavion", [new Coord(6,0), new Coord(6,1), new Coord(6,2)])
-        ]);
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0, 0)),
+            Gunboat.Create(new Coord(1, 0)),
+            Gunboat.Create(new Coord(2, 0)),
+            Gunboat.Create(new Coord(3, 0)),
+            Destroyer.Create([new Coord(4, 0), new Coord(4, 1), new Coord(4, 2)]),
+            Destroyer.Create([new Coord(5, 0), new Coord(5, 1), new Coord(5, 2)]),
+            AircraftCarrier.Create([new Coord(6, 0), new Coord(6, 1), new Coord(6, 2)])
+        ]));
 
-        action.Should().ThrowExactly<ArgumentException>().WithMessage("Un portaavion tiene 4 coordendas.");
-    }
-}
-
-public class BattleShip
-{
-    private int _cantidadJugadores;
-
-    public void AddPlayer(List<(string tipo, List<Coord> coords)> ships)
-    {
-        if (_cantidadJugadores == 2)
-            throw new NotSupportedException();
-        if (ships.Count(ship => ship.tipo == "Cañonero") != 4)
-            throw new ArgumentException("Deben ser 4 cañoneros por jugador.");
-        if (ships.Count(ship => ship.tipo == "Destructor") != 2)
-            throw new ArgumentException("Deben ser 2 destructores por jugador.");
-        if (ships.Count(ship => ship.tipo == "Portaavion") != 1)
-            throw new ArgumentException("Debe ser 1 portaavion por jugador.");
-        if (ships.Any(ship => ship.tipo == "Cañonero" && ship.coords.Count != 1))
-            throw new ArgumentException("Un cañonero solo puede tener una coordenada");
-        if (ships.Any(ship => ship.tipo == "Destructor" && ship.coords.Count != 3))
-            throw new ArgumentException("Los destructores deben tener 3 coordenadas.");
-        if (ships.Any(ship => ship.tipo == "Portaavion" && (ship.coords.Count == 0 || ship.coords.Count == 3)))
-            throw new ArgumentException("Un portaavion tiene 4 coordendas.");
-        _cantidadJugadores++;
+        action.Should().ThrowExactly<ArgumentException>().WithMessage("Un portaavion debe tener 4 coordenadas.");
     }
 
-    public void Start()
+    [Fact]
+    public void Si_AgregoUnJugadorConUnPortaavionDe5Coordenadas_Debe_ArrojarExcepcion()
     {
-        throw new NotSupportedException();
-    }
-}
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0, 0)),
+            Gunboat.Create(new Coord(1, 0)),
+            Gunboat.Create(new Coord(2, 0)),
+            Gunboat.Create(new Coord(3, 0)),
+            Destroyer.Create([new Coord(4, 0), new Coord(4, 1), new Coord(4, 2)]),
+            Destroyer.Create([new Coord(5, 0), new Coord(5, 1), new Coord(5, 2)]),
+            AircraftCarrier.Create([new Coord(6, 0), new Coord(6, 1), new Coord(6, 2), new Coord(6, 3), new Coord(6, 4)])
+        ]));
 
-public struct Coord
-{
-    public Coord(int x, int y)
-    {
+        action.Should().ThrowExactly<ArgumentException>().WithMessage("Un portaavion debe tener 4 coordenadas.");
     }
 }

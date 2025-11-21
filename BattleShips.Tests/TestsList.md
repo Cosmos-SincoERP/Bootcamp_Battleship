@@ -13,7 +13,6 @@
 * ✅ Para agregar un jugador los cañoneros no pueden tener más de una coordenada
 * ✅ Para agregar un jugador los destructores no deben más de 3 coordenadas.
 * ✅ Para agregar un jugador los destructores no deben tener menos de 3 coordenadas.
-* Para agregar un jugador los portaaviones no deben tener más de 3 coordenadas.
-* Para agregar un jugador los portaaviones no deben tener menos de 3 coordenadas.
-* 
+* ✅ Para agregar un jugador los portaaviones no deben tener más de 3 coordenadas.
+* ✅ Para agregar un jugador los portaaviones no deben tener menos de 3 coordenadas.
 * Si inicia el juego deben estar los aviones en las posiciones indicadas por todos los jugadores.
