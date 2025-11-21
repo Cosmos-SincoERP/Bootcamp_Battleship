@@ -105,6 +105,40 @@ public class AcorazadosTest
         tableroJugador1.Should().Be(tableroEsperado);
     }
 
+    [Fact]
+    public void Si_SeIniciaJuegoYElJugador1PosicionaElPortavionesHorizontalDesdeLaPosicion10_Debe_ImprimirTableroDelJugador1ConElPortavionesPosicionadoDesde00Hasta13()
+    {
+        var juegoAcorazado = new JuegoAcorazados();
+        juegoAcorazado.AgregarJugador("Jugador 1");
+        juegoAcorazado.AgregarJugador("Jugador 2");
+
+        List<(int x, int y, char barco, int cantidadPosiciones)> barcosJugador1 = new()
+        {
+            (1, 0, 'c',4)
+        };
+
+        juegoAcorazado.Iniciar(barcosJugador1);
+
+        string tableroEsperado = "\n" +
+                         "   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | \n" +
+                         "-------------------------------------------| \n" +
+                         " 0 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 1 | c | c | c | c |   |   |   |   |   |   | \n" +
+                         " 2 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 3 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 4 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 5 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 6 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 7 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 8 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 9 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         "-------------------------------------------| \n";
+
+        string tableroJugador1 = juegoAcorazado.Imprimir("Jugador 1");
+
+        tableroJugador1.Should().Be(tableroEsperado);
+    }
+
 
 }
 
