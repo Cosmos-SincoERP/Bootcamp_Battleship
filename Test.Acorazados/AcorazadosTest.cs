@@ -145,14 +145,17 @@ public class AcorazadosTest
 public class JuegoAcorazados
 {
     public List<(string, char[,])> _jugadores { get; } = new();
-    public void Iniciar(List<(int x, int y, char barco, int cantidadPosiciones)> barcosJugador1)
+    public void Iniciar(List<(int x, int y, char valor, int cantidadPosiciones)> barcosJugador1)
     {
         var tableroJugador1 = _jugadores[0].Item2;
 
-        tableroJugador1[0, 0] = 'c';
-        tableroJugador1[0, 1] = 'c';
-        tableroJugador1[0, 2] = 'c';
-        tableroJugador1[0, 3] = 'c';
+        foreach (var barco in barcosJugador1)
+        {
+            for (int i = 0; i < barco.cantidadPosiciones; i++)
+            {
+                tableroJugador1[barco.x, barco.y + i] = barco.valor;
+            }
+        }
 
 
         if (_jugadores.Count != 2)
