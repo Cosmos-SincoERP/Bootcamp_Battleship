@@ -4,6 +4,8 @@ namespace Acorazados.Test;
 
 public class Battleship
 {
+    private bool _enJuego;
+    
     private bool _turnoJugador1 = true;
     
     private bool _jugador1Gano;
@@ -70,6 +72,8 @@ public class Battleship
 
     public void Iniciar(List<Nave> navesJugador1, List<Nave> navesJugador2)
     {
+        _enJuego = true;
+        
         if (navesJugador1.Count == 0 && navesJugador2.Count == 0) return;
 
         UbicarNavesEnTablero(navesJugador1, _tableroJugador1);
@@ -121,6 +125,8 @@ public class Battleship
     {
         if(_jugador1Gano || _jugador2Gano)
             throw new ApplicationException("No puede disparar cuando el juego ya acabó");
+        if(!_enJuego)
+            throw new ApplicationException("No puede disparar cuando el juego no ha comenzado");
         
         var (tableroObjetivo, navesObjetivo) = ObtenerTableroYNavesObjetivo();
     
