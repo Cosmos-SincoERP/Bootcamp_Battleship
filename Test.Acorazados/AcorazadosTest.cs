@@ -19,7 +19,7 @@ public class AcorazadosTest
 
         return tableroEsperado;
     }
-    
+
     [Fact]
     public void Si_NoHayJugadoresYseIniciaElJuego_Debe_LanzarUnaExcepcionPorCantidadDeJugadores()
     {
@@ -48,7 +48,7 @@ public class AcorazadosTest
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
         var tercerJugador = () => juegoAcorazado.AgregarJugador();
-        
+
         tercerJugador.Should().ThrowExactly<Exception>()
             .WithMessage("No se permite agregar mas jugadores al juego");
     }
@@ -195,12 +195,12 @@ public class AcorazadosTest
         tablero[0, 0] = 'o';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
-        
+
         juegoAcorazado.Disparar(0, 0);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
-    
+
     [Fact]
     public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion0_1YNoImpactaUnBarco_Debe_ImprimirElTableroDelJugador2Con_o_EnLaPosicion0_1()
     {
@@ -208,7 +208,7 @@ public class AcorazadosTest
         tablero[0, 1] = 'o';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
-        
+
         juegoAcorazado.Disparar(0, 1);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
@@ -221,51 +221,59 @@ public class AcorazadosTest
         tablero[0, 4] = 'x';
         var tableroEsperado = TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
-        
+
         juegoAcorazado.Disparar(0, 4);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
-
 }
 
 public class JuegoAcorazados
 {
-    private List<string> _jugadores = new();
-    private char[,] _tablero = new char[10, 10];
+    private List<(string, char[,])> _jugadores = new();
+    private List<(string tipo, int x, int y, string orientacion)> _listaPosicionesBarcos = new();
 
     public void AgregarJugador()
     {
-        if(_jugadores.Count == 2)
+        if (_jugadores.Count == 2)
             throw new Exception("No se permite agregar mas jugadores al juego");
 
-        _jugadores.Add(_jugadores.Count == 1 ? "2" : "1");
+        _jugadores.Add((_jugadores.Count == 1 ? "2" : "1", new char[10, 10]));
     }
-    
+
     public void Iniciar(List<(string tipo, int x, int y, string orientacion)> posicionesBarcosJugador1,
         List<(string tipo, int x, int y, string orientacion)> posicionesBarcosJugador2)
     {
         if (_jugadores.Count != 2)
             throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
 
-        ValidarCantidadBarcos(posicionesBarcosJugador1, _jugadores[0]);
-        ValidarCantidadBarcos(posicionesBarcosJugador2, _jugadores[1]);
-        
+        ValidarCantidadBarcos(posicionesBarcosJugador1, _jugadores[0].Item1);
+        ValidarCantidadBarcos(posicionesBarcosJugador2, _jugadores[1].Item1);
+
+        _listaPosicionesBarcos.AddRange(posicionesBarcosJugador2);
     }
-    
+
     public void Disparar(int x, int y)
     {
-        _tablero[x, y] = 'o';
+
+        var tablero = _jugadores[1].Item2;
+
+        if (_listaPosicionesBarcos.Any(barco => barco.x == x && barco.y == y))
+            tablero[x, y] = 'x';
+        else
+            tablero[x, y] = 'o';
     }
-    
+
     public string Imprimir()
     {
+        var tablero = _jugadores[1].Item2;
+
         var visualizarTablero = string.Empty;
-        for (var x = 0; x < _tablero.GetLength(0); x++)
+        for (var x = 0; x < tablero.GetLength(0); x++)
         {
-            for (int y = 0; y < _tablero.GetLength(1); y++)
+            for (int y = 0; y < tablero.GetLength(1); y++)
             {
-                visualizarTablero += _tablero[x, y];
+                visualizarTablero += tablero[x, y];
             }
             visualizarTablero += '\n';
         }
@@ -278,7 +286,7 @@ public class JuegoAcorazados
         const int cantidadCañoneros = 4;
         const int cantidadDestructores = 2;
         const int cantidadPortaAviones = 1;
-        
+
         const string faltanTodosLosBarco = "El jugador {0}, no ha enviado los barcos para posicionar";
         const string faltanLosCañoneros = "El jugador {0}, no ha enviado todos los cañoneros para posicionar";
         const string faltanLosDestructores = "El jugador {0}, no ha enviado todos los destructores para posicionar";
