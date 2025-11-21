@@ -1148,8 +1148,23 @@ public class AcorazadosTest
         var destructor1 = new Nave(2, 3, 2, 5, "d");
 
         acorazados.Iniciar([destructor1], []);
+        
+        acorazados.Disparar(0, 0);
+        acorazados.TerminarTurno();
 
-        var mensajeEsperado = acorazados.Disparar(0, 0);
+        acorazados.Disparar(2, 3);
+        acorazados.TerminarTurno();
+
+        acorazados.Disparar(1, 1);
+        acorazados.TerminarTurno();
+
+        acorazados.Disparar(2, 4);
+        acorazados.TerminarTurno();
+        
+        acorazados.Disparar(2, 2);
+        acorazados.TerminarTurno();
+
+        var mensajeEsperado = acorazados.Disparar(2, 5);
 
         mensajeEsperado.Should().Be("Barco hundido");
     }

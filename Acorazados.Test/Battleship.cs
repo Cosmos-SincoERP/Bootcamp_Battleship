@@ -211,7 +211,12 @@ public class Battleship
         return nave;
     }
 
-    public void TerminarTurno() => _turnoJugador1 = !_turnoJugador1;
+    public void TerminarTurno()
+    {
+        if(_jugador1Gano || _jugador2Gano)
+            throw new ApplicationException("No puede terminar turno cuando el juego ya acabó");
+        _turnoJugador1 = !_turnoJugador1;
+    }
 
     public string Imprimir()
     {
