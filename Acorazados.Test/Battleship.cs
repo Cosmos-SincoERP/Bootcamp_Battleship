@@ -229,6 +229,9 @@ public class Battleship
 
     public string Imprimir()
     {
+        if(!_enJuego)
+            throw new ApplicationException("No puede disparar cuando el juego no ha comenzado");
+        
         if (_jugador1Gano)
         {
             return ImprimirReporteVictoria(
