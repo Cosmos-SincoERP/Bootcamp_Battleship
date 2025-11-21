@@ -38,6 +38,39 @@ public class AcorazadosTest
             .WithMessage("No se puede iniciar el juego, debe haber al menos 2 jugadores");
     }
 
+    [Fact]
+    public void Si_SeIniciaJuegoConDosJugadores_Debe_ImprimirElTableroDelJugadorUnoYDos()
+    {
+        var juegoAcorazado = new JuegoAcorazados();
+        juegoAcorazado.AgregarJugador("Jugador 1");
+        juegoAcorazado.AgregarJugador("Jugador 2");
+        juegoAcorazado.Iniciar();
+
+        string tableroEsperado = "\n" +
+                         "   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | \n" +
+                         "-------------------------------------------| \n" +
+                         " 0 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 1 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 2 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 3 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 4 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 5 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 6 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 7 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 8 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         " 9 |   |   |   |   |   |   |   |   |   |   | \n" +
+                         "-------------------------------------------| \n";
+
+        string tableroJugador1 = juegoAcorazado.Imprimir("Jugador 1");
+        string tableroJugador2 = juegoAcorazado.Imprimir("Jugador 2");
+
+
+
+        tableroJugador1.Should().Be(tableroEsperado);
+        tableroJugador2.Should().Be(tableroEsperado);
+
+    }
+
 }
 
 public class JuegoAcorazados
@@ -52,5 +85,10 @@ public class JuegoAcorazados
     public void AgregarJugador(string nombre)
     {
         _jugadores.Add(nombre);
+    }
+
+    public string Imprimir(string nombreJugador)
+    {
+      throw new NotImplementedException();
     }
 }
