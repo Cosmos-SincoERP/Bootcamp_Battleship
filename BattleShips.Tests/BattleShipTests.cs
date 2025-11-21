@@ -95,12 +95,26 @@ public class BattleShipTests
     }
 
     [Fact]
-    public void Cuando_AgregoUnJugadorSinNingunPortaavion_DebeArrojarExcepcion()
+    public void Cuando_AgregoUnJugadorSinNingunPortaavion_Debe_ArrojarExcepcion()
     {
         var battleship = new BattleShip();
         var action = () => battleship.AddPlayer([
             "Cañonero", "Cañonero", "Cañonero", "Cañonero",
             "Destructor", "Destructor"
+        ]);
+
+        action.Should().ThrowExactly<ArgumentException>("Debe ser 1 portaavion por jugador.");
+    }
+
+    [Fact]
+    public void Cuando_AgregoUnJugadorCon2Portaaviones_Debe_ArrojarExcepcion()
+    {
+        var battleship = new BattleShip();
+        
+        var action = () => battleship.AddPlayer([
+            "Cañonero", "Cañonero", "Cañonero", "Cañonero",
+            "Destructor", "Destructor",
+            "Portaavion", "Portaavion"
         ]);
 
         action.Should().ThrowExactly<ArgumentException>("Debe ser 1 portaavion por jugador.");
@@ -118,7 +132,7 @@ public class BattleShip
             throw new ArgumentException("Deben ser 4 cañoneros por jugador.");
         if (ships.Count(ship => ship == "Destructor") != 2 )
             throw new ArgumentException("Deben ser 2 destructores por jugador.");
-        if (ships.Count(ship => ship == "Portaavion") == 0)
+        if (ships.Count(ship => ship == "Portaavion") != 1)
             throw new ArgumentException("Debe ser 1 portaavion por jugador.");
         _cantidadJugadores++;
         
