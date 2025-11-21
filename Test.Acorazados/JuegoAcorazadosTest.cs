@@ -238,6 +238,7 @@ public class JuegoAcorazadosTest
         var juegoAcorazado = Mocks.MockIniciarJuego();
     
         juegoAcorazado.Disparar(0, 4);
+        juegoAcorazado.FinalizarTurno();
         juegoAcorazado.Disparar(1, 1);
 
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);

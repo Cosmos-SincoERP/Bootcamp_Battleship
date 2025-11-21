@@ -4,20 +4,21 @@ namespace Test.BattleShip.Dominio;
 
 public class JuegoAcorazados
 {
-    private List<Jugador> _jugadores = new();
-    private List<Barco> _listaPosicionesBarcos = new();
+    private List<Jugador> _jugadores = [];
+    private List<Barco> _listaBarcosJugador1 = [];
+    private List<Barco> _listaBarcosJugador2 = [];
+    private int _jugadorActivo = 0;
+    private int _jugadorContrincante = 1;
 
     public void AgregarJugador()
     {
         if (_jugadores.Count == 2)
             throw new Exception("No se permite agregar mas jugadores al juego");
 
-        var nombreJugador = _jugadores.Count == 1 ? "2" : "1"; 
-        _jugadores.Add(new Jugador(nombreJugador, new char[10, 10]));
+        _jugadores.Add(new Jugador(AsignarNombreJugadorPredeterminado()));
     }
 
-    public void Iniciar(List<Barco> barcosJugador1,
-        List<Barco> barcosJugador2)
+    public void Iniciar(List<Barco> barcosJugador1, List<Barco> barcosJugador2)
     {
         if (_jugadores.Count != 2)
             throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
@@ -25,23 +26,31 @@ public class JuegoAcorazados
         ValidarCantidadBarcos(barcosJugador1, _jugadores[0].Nombre);
         ValidarCantidadBarcos(barcosJugador2, _jugadores[1].Nombre);
 
-        _listaPosicionesBarcos.AddRange(barcosJugador2);
+        _listaBarcosJugador1.AddRange(barcosJugador1);
+        _listaBarcosJugador2.AddRange(barcosJugador2);
     }
 
     public void Disparar(int x, int y)
     {
 
-        var tablero = _jugadores[1].Tablero;
+        var tablero = _jugadores[_jugadorContrincante].Tablero;
+        var _listaBarcosJugadorActivo = _jugadorContrincante == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
 
-        if (_listaPosicionesBarcos.Any(barco => barco.Posicion.X == x && barco.Posicion.Y == y))
+        if (_listaBarcosJugadorActivo.Any(barco => barco.Posicion.X == x && barco.Posicion.Y == y))
             tablero[x, y] = 'x';
         else
             tablero[x, y] = 'o';
     }
 
+    public void FinalizarTurno()
+    {
+        _jugadorActivo = _jugadorActivo == 0 ? 1 : 0;
+        _jugadorContrincante = _jugadorContrincante == 0 ? 1 : 0;
+    }
+
     public string Imprimir()
     {
-        var tablero = _jugadores[1].Tablero;
+        var tablero = _jugadores[_jugadorContrincante].Tablero;
 
         var visualizarTablero = string.Empty;
         for (var x = 0; x < tablero.GetLength(0); x++)
@@ -55,8 +64,12 @@ public class JuegoAcorazados
         return visualizarTablero;
     }
 
-    private void ValidarCantidadBarcos(
-        List<Barco> barcos, string nombreJugador)
+    private string AsignarNombreJugadorPredeterminado()
+    {
+        return _jugadores.Count == 1 ? "2" : "1";
+    }
+    
+    private void ValidarCantidadBarcos(List<Barco> barcos, string nombreJugador)
     {
         const int cantidadCañoneros = 4;
         const int cantidadDestructores = 2;
@@ -66,7 +79,6 @@ public class JuegoAcorazados
         const string faltanLosCañoneros = "El jugador {0}, no ha enviado todos los cañoneros para posicionar";
         const string faltanLosDestructores = "El jugador {0}, no ha enviado todos los destructores para posicionar";
         const string faltanLosPortaviones = "El jugador {0}, no ha enviado todos los portaviones para posicionar";
-
 
         if (barcos.Count == 0)
             throw new Exception(string.Format(faltanTodosLosBarco, nombreJugador));
@@ -82,4 +94,9 @@ public class JuegoAcorazados
     }
 }
 
-public record Jugador(string Nombre, char[,] Tablero);
+public class Jugador(string nombre)
+{
+    public string Nombre { get; } = nombre;
+    public char[,] Tablero { get; } = new char[10, 10];
+
+}
