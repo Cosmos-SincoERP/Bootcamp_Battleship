@@ -214,7 +214,19 @@ public class AcorazadosTest
         juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
     }
 
-    
+    [Fact]
+    public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion0_4YGolpeaUnBarco_Debe_ImprimirElTableroDelJugador2Con_x_EnLaPosicion0_4()
+    {
+        var tablero = new char[10, 10];
+        tablero[0, 4] = 'x';
+        var tableroEsperado = TableroEsperado(tablero);
+        var juegoAcorazado = Mocks.MockIniciarJuego();
+        
+        juegoAcorazado.Disparar(0, 4);
+
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
+    }
+
 }
 
 public class JuegoAcorazados
