@@ -119,6 +119,9 @@ public class Battleship
 
     public string? Disparar(int fila, int columna)
     {
+        if(_jugador1Gano || _jugador2Gano)
+            throw new ApplicationException("No puede disparar cuando el juego ya acabó");
+        
         var (tableroObjetivo, navesObjetivo) = ObtenerTableroYNavesObjetivo();
     
         Nave? naveImpactada = UbicarDisparosEnTablero(fila, columna, tableroObjetivo, navesObjetivo);
