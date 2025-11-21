@@ -1293,4 +1293,26 @@ public class AcorazadosTest
 
         tablero.Should().Be(tableroEsperado);
     }
+    
+    [Fact]
+    public void
+        Si_InicioElJuegoConUnCanoneroParaJugador1_YJugador2LoHunde_Jugador2_Gana_Y_TerminoTurno_Debe_LanzarExcepcion()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+
+        var canonero = new Nave(9, 9, 9, 9, "g");
+
+        acorazados.Iniciar([canonero], []);
+        acorazados.Disparar(1, 1);
+        acorazados.TerminarTurno();
+        
+        acorazados.Disparar(9, 9);
+
+        var act = () => acorazados.TerminarTurno();
+        
+        act.Should().Throw<ApplicationException>();
+    }
 }
