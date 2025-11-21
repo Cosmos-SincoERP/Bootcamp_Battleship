@@ -20,6 +20,12 @@ public class Tablero
         Cuadro = new string[10, 10];
         CalcularIndicesMaximos();
     }
+    
+    public void AgregarBarco(Barcos barco, int x, int y, Orientacion orientacion = Orientacion.Horizontal)
+    {
+        LanzarExcepcionSiNumeroPermitidoDeBarcosSuperaLimite(barco);
+        PosicionarBarcoEnCasillas(barco, x, y, orientacion);
+    }
 
     public string DibujarTablero()
     {
@@ -30,41 +36,7 @@ public class Tablero
         
         return dibujoTablero.ToString();
     }
-
-    private void DibujarCuadro(StringBuilder dibujoTablero)
-    {
-        for (int fila = 0; fila <= _indiceYMaximo; fila++)
-        {
-            dibujoTablero.Append($"{fila} ");
-            for (int columna = 0; columna <= _indiceXMaximo; columna++)
-            {
-                var celda =  Cuadro[columna, fila] ?? " ";
-                dibujoTablero.Append($"| {celda} ");
-            }
-            
-            dibujoTablero.Append("|");
-            if(fila != _indiceXMaximo)
-                dibujoTablero.Append("\n");
-                
-        }
-    }
-
-    private void DibujarEncabezado(StringBuilder dibujoTablero)
-    {
-        dibujoTablero.Append("  ");
-        for (int columna = 0; columna <= _indiceXMaximo; columna++)
-        {
-            dibujoTablero.Append($"| {columna} ");
-        }
-        dibujoTablero.Append("|\n");
-    }
-
-    public void AgregarBarco(Barcos barco, int x, int y, Orientacion orientacion = Orientacion.Horizontal)
-    {
-        LanzarExcepcionSiNumeroPermitidoDeBarcosSuperaLimite(barco);
-        PosicionarBarcoEnCasillas(barco, x, y, orientacion);
-    }
-
+    
     public string ConsultarValorPorCoordenada(int x, int y) => Cuadro[x, y];
 
     public string RecibirDisparo(int x, int y)
@@ -83,6 +55,60 @@ public class Tablero
 
         return TiroAlAgua(x, y);
     }
+    
+    public bool ExistenBarcos() => _listaBarcos.Any();
+
+    public bool BarcosNoHundidos() => _listaBarcos.Any(a => !a.EstaHundido);
+
+    public int ObtenerDisparosTotales()
+        => Cuadro.Cast<string>()
+            .Count(x => !string.IsNullOrEmpty(x) && TableroDisparado(x));
+
+    public int ObtenerDisparosFallidos()
+        => Cuadro.Cast<string>()
+            .Count(x => !string.IsNullOrEmpty(x) && x == MarcaTiroAlAgua);
+    
+    public int ObtenerDisparosExitosos()
+        => Cuadro.Cast<string>()
+            .Count(x => !string.IsNullOrEmpty(x) && TableroDisparadoExitosamente(x));
+    
+    public List<Barcos> ConsultarBarcosHundidos() => _listaBarcos.Where(barco => barco.EstaHundido).ToList();
+    private static bool TableroDisparado(string x) => x is MarcaTiroAlAgua or MarcaTiroExitoso or MarcaBarcoHundido;
+    private static bool TableroDisparadoExitosamente(string x) => x is MarcaTiroExitoso or MarcaBarcoHundido;
+
+    private void DibujarEncabezado(StringBuilder dibujo)
+    {
+        dibujo.Append("  ");
+        
+        for (var columna = 0; columna <= _indiceXMaximo; columna++)
+            dibujo.Append($"| {columna} ");
+    
+        dibujo.Append("|\n");
+    }
+
+    private void DibujarCuadro(StringBuilder dibujo)
+    {
+        for (var fila = 0; fila <= _indiceYMaximo; fila++)
+        {
+            DibujarFila(dibujo, fila);
+        
+            if (fila != _indiceYMaximo)
+                dibujo.Append('\n');
+        }
+    }
+
+    private void DibujarFila(StringBuilder dibujo, int fila)
+    {
+        dibujo.Append($"{fila} ");
+    
+        for (var columna = 0; columna <= _indiceXMaximo; columna++)
+        {
+            var celda = Cuadro[columna, fila] ?? " ";
+            dibujo.Append($"| {celda} ");
+        }
+    
+        dibujo.Append('|');
+    }
 
     private bool EsTiroExitoso(int x, int y) => Cuadro[x, y] != null;
 
@@ -96,7 +122,7 @@ public class Tablero
     private string HundirBarco(Barcos barco)
     {
         foreach (var coordenadaBarco in barco.Coordenadas) Cuadro[coordenadaBarco.X, coordenadaBarco.Y] = MarcaBarcoHundido;
-        _listaBarcos.Remove(barco);
+        barco.HundirBarco();
         return MensajeBarcoHundido;
     }
 
@@ -127,23 +153,25 @@ public class Tablero
 
     private void PosicionarBarcoEnCasillas(Barcos barco, int x, int y, Orientacion orientacion)
     {
-        for (var i = 1; i <= barco.Casillas; i++)
+        for (var casilla = 1; casilla <= barco.Casillas; casilla++)
         {
-            if (i > 1)
-            {
-                if (orientacion == Orientacion.Vertical) y++;
-                if (orientacion == Orientacion.Horizontal) x++;
-            }
-            
+            AumentarCasillaSegunPosicion(ref x, ref y, orientacion, casilla);
             LanzarExcepcionSiCoordenadaEstaFueraDeLimiteDelTablero(x, y);
-
             LanzarExcepcionSiSeSobreponeUnBarco(x, y);
-            
-            Cuadro[x, y] = barco.Simbolo;
-            barco.Coordenadas.Add(new Coordenada(x,y));
+            AgregarCasillaBarcoEnTablero(barco, x, y);
+            barco.AgregarCoordenada(new Coordenada(x,y));
         }
         
         _listaBarcos.Add(barco);
+    }
+
+    private void AgregarCasillaBarcoEnTablero(Barcos barco, int x, int y) => Cuadro[x, y] = barco.Simbolo;
+
+    private static void AumentarCasillaSegunPosicion(ref int x, ref int y, Orientacion orientacion, int casilla)
+    {
+        if (casilla <= 1) return;
+        if (orientacion == Orientacion.Vertical) y++;
+        if (orientacion == Orientacion.Horizontal) x++;
     }
 
     private void LanzarExcepcionSiCoordenadaEstaFueraDeLimiteDelTablero(int x, int y)
@@ -169,19 +197,4 @@ public class Tablero
         _indiceXMaximo = Cuadro.GetLength(0) - 1;
         _indiceYMaximo = Cuadro.GetLength(1) - 1;
     }
-
-    public bool ExistenBarcos()
-        => _listaBarcos.Any();
-
-    public int ObtenerDisparosTotales()
-        => Cuadro.Cast<string>()
-            .Count(x => !string.IsNullOrEmpty(x) && (x == MarcaTiroAlAgua || x == MarcaTiroExitoso || x == MarcaBarcoHundido));
-    
-    public int ObtenerDisparosFallidos()
-        => Cuadro.Cast<string>()
-            .Count(x => !string.IsNullOrEmpty(x) && x == MarcaTiroAlAgua);
-    
-    public int ObtenerDisparosExitosos()
-        => Cuadro.Cast<string>()
-            .Count(x => !string.IsNullOrEmpty(x) && x == MarcaTiroExitoso || x == MarcaBarcoHundido);
 }

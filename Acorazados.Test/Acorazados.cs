@@ -33,10 +33,16 @@ public class Acorazados
         return respuesta;
     }
     
-    public string Imprimir()
+    public string ImprimirTableroJugadorEnTurno()
     {
         var jugadorActual = ObtenerJugadorEnTurnoActual();
-        return DibujarTableroJugador(jugadorActual);
+        return jugadorActual.ImprimirTablero();
+    }
+    
+    public string ImprimirReporte()
+    {
+        LanzarExcepcionSiJuegoNoHaSidoFinalizado();
+        return string.Empty;
     }
     
     private Jugador ObtenerJugadorOponente()
@@ -69,7 +75,7 @@ public class Acorazados
 
     private void VerificarJuegoFinalizado(Jugador jugadorOponente)
     {
-        if(!jugadorOponente.Tablero.ExistenBarcos())
+        if(!jugadorOponente.Tablero.BarcosNoHundidos())
             FinalizarJuego();
         
         else
@@ -79,44 +85,7 @@ public class Acorazados
     private void IniciarJuego() => EstadoJuego = EstadoJuego.EnCurso;
     private void FinalizarJuego() => EstadoJuego = EstadoJuego.Finalizado;
 
-    private string DibujarTableroJugador(Jugador jugadorActual)
-    {
-        var tableroJugador = new StringBuilder();
-        
-        AgregarLineaJugador(jugadorActual, tableroJugador);
-        AgregarDibujoTablero(jugadorActual, tableroJugador);
-        
-        return tableroJugador.ToString();
-    }
-
-    private static void AgregarLineaJugador(Jugador jugadorActual, StringBuilder tableroJugador) => tableroJugador.Append($"  Jugador: {jugadorActual.Nombre}\n");
-
-    private static void AgregarDibujoTablero(Jugador jugadorActual, StringBuilder tableroJugador) => tableroJugador.Append(jugadorActual.Tablero.DibujarTablero());
-
     private Jugador ObtenerJugadorEnTurnoActual() => ObtenerJugador(_indiceJugadorActual);
-
-    public string ImprimirReportePorJugador(Jugador jugadorSeleccionado)
-    {
-        var barcosHundidos = "Barcos hundidos: []";
-
-        if (jugadorSeleccionado.Tablero.ConsultarValorPorCoordenada(1, 1) == "X" && jugadorSeleccionado.Tablero.ConsultarValorPorCoordenada(1, 2) == "X")
-        {
-            barcosHundidos = "Barcos hundidos: [ cañonero: (1,1), cañonero: (1,2) ]";
-        }
-        
-        else if (jugadorSeleccionado.Tablero.ConsultarValorPorCoordenada(1, 1) == "X")
-        {
-            barcosHundidos = "Barcos hundidos: [ cañonero: (1,1) ]";
-        }
-        
-        
-        
-        LanzarExcepcionSiJuegoNoHaSidoFinalizado();
-        return $"Disparos totales: {jugadorSeleccionado.Tablero.ObtenerDisparosTotales()} " +
-               $"\n Fallidos: {jugadorSeleccionado.Tablero.ObtenerDisparosFallidos()}" +
-               $"\n Exitosos: {jugadorSeleccionado.Tablero.ObtenerDisparosExitosos()}" +
-               $"\n {barcosHundidos}";
-    }
 
     private void LanzarExcepcionSiJuegoNoHaSidoFinalizado()
     {

@@ -232,7 +232,7 @@ public class AcorazadosTest
             }).Construir();
         acorazados.Iniciar();
     
-        acorazados.Imprimir().Should().Be(tableroEsperado);
+        acorazados.ImprimirTableroJugadorEnTurno().Should().Be(tableroEsperado);
     }
     
     [Fact]
@@ -263,7 +263,7 @@ public class AcorazadosTest
         acorazados.Iniciar();
         acorazados.Disparar(2, 2);
     
-        acorazados.Imprimir().Should().Be(tableroEsperado);
+        acorazados.ImprimirTableroJugadorEnTurno().Should().Be(tableroEsperado);
     }
     
     [Fact]
@@ -296,7 +296,7 @@ public class AcorazadosTest
         acorazados.Disparar(2, 2);
         acorazados.Disparar(3, 2);
 
-        acorazados.Imprimir().Should().Be(tableroEsperado);
+        acorazados.ImprimirTableroJugadorEnTurno().Should().Be(tableroEsperado);
 
     }
     
@@ -328,7 +328,7 @@ public class AcorazadosTest
         acorazados.Iniciar();
         acorazados.Disparar(1, 1);
     
-        acorazados.Imprimir().Should().Be(tableroEsperado);
+        acorazados.ImprimirTableroJugadorEnTurno().Should().Be(tableroEsperado);
     }
     
     [Fact]
@@ -360,7 +360,7 @@ public class AcorazadosTest
         acorazados.Iniciar();
         acorazados.Disparar(1, 1);
     
-        acorazados.Imprimir().Should().Be(tableroEsperado);
+        acorazados.ImprimirTableroJugadorEnTurno().Should().Be(tableroEsperado);
     }
 
     [Fact]
@@ -377,7 +377,7 @@ public class AcorazadosTest
             }).Construir();
         acorazados.Iniciar();
 
-        Action resultado = () => acorazados.ImprimirReportePorJugador(acorazados.ObtenerJugador(0));
+        Action resultado = () => acorazados.ImprimirReporte();
         
         resultado.Should().ThrowExactly<InvalidOperationException>().WithMessage("El juego no se ha finalizado");
     }
@@ -397,10 +397,9 @@ public class AcorazadosTest
         acorazados.Iniciar();
         
         acorazados.Disparar(1, 1);
-        var jugador2 = acorazados.ObtenerJugador(1);
         
-        var reporteGenerado = acorazados.ImprimirReportePorJugador(jugador2);
-        reporteGenerado.Should().Contain("Disparos totales: 1");
+        var reporteJugador2 = acorazados.ObtenerJugador(1).ImprimirReporte();
+        reporteJugador2.Should().Contain("Disparos totales: 1");
 
     }
     
@@ -423,9 +422,8 @@ public class AcorazadosTest
         acorazados.Disparar(1, 2);
         acorazados.Disparar(1, 2);
         
-        var jugador2 = acorazados.ObtenerJugador(1);
+        var reporteGenerado = acorazados.ObtenerJugador(1).ImprimirReporte();
         
-        var reporteGenerado = acorazados.ImprimirReportePorJugador(jugador2);
         reporteGenerado.Should().Contain("Disparos totales: 2");
 
     }
@@ -446,9 +444,8 @@ public class AcorazadosTest
         acorazados.Disparar(1, 3);
         acorazados.Disparar(1, 2);
         acorazados.Disparar(1, 1);
-        var jugador2 = acorazados.ObtenerJugador(1);
         
-        var reporteGenerado = acorazados.ImprimirReportePorJugador(jugador2);
+        var reporteGenerado = acorazados.ObtenerJugador(1).ImprimirReporte();
         
         reporteGenerado.Should().Contain("Disparos totales: 2");
         reporteGenerado.Should().Contain("Fallidos: 1");
@@ -472,9 +469,8 @@ public class AcorazadosTest
         acorazados.Disparar(1, 2);
         acorazados.Disparar(1, 2);
         acorazados.Disparar(1, 1);
-        var jugador2 = acorazados.ObtenerJugador(1);
         
-        var reporteGenerado = acorazados.ImprimirReportePorJugador(jugador2);
+        var reporteGenerado = acorazados.ObtenerJugador(1).ImprimirReporte();
         
         reporteGenerado.Should().Contain("Disparos totales: 2");
         reporteGenerado.Should().Contain("Fallidos: 2");
@@ -499,7 +495,7 @@ public class AcorazadosTest
         acorazados.Disparar(1, 1);
         var jugador2 = acorazados.ObtenerJugador(1);
         
-        var reporteGenerado = acorazados.ImprimirReportePorJugador(jugador2);
+        var reporteGenerado = acorazados.ObtenerJugador(1).ImprimirReporte();
         
         reporteGenerado.Should().Contain("Disparos totales: 2");
         reporteGenerado.Should().Contain("Exitosos: 1");
@@ -523,9 +519,8 @@ public class AcorazadosTest
         acorazados.Disparar(1, 2);
         acorazados.Disparar(1, 2);
         acorazados.Disparar(1, 1);
-        var jugador2 = acorazados.ObtenerJugador(1);
         
-        var reporteGenerado = acorazados.ImprimirReportePorJugador(jugador2);
+        var reporteGenerado = acorazados.ObtenerJugador(1).ImprimirReporte();
         
         reporteGenerado.Should().Contain("Disparos totales: 2");
         reporteGenerado.Should().Contain("Exitosos: 2");
@@ -550,7 +545,7 @@ public class AcorazadosTest
         acorazados.Disparar(1, 1);
         var jugador2 = acorazados.ObtenerJugador(1);
         
-        var reporteGenerado = acorazados.ImprimirReportePorJugador(jugador2);
+        var reporteGenerado = acorazados.ObtenerJugador(1).ImprimirReporte();
         
         reporteGenerado.Should().Contain("Barcos hundidos: []");
 
@@ -572,11 +567,10 @@ public class AcorazadosTest
         acorazados.Iniciar();
         acorazados.Disparar(1, 1);
         acorazados.Disparar(1, 1);
-        var jugador2 = acorazados.ObtenerJugador(1);
+        var reporte1 = acorazados.ObtenerJugador(0).ImprimirReporte();
+        var report2 = acorazados.ObtenerJugador(1).ImprimirReporte();
         
-        var reporteGenerado = acorazados.ImprimirReportePorJugador(jugador2);
-        
-        reporteGenerado.Should().Contain("Barcos hundidos: [ " +
+        report2.Should().Contain("Barcos hundidos: [ " +
                                          "cañonero: (1,1) ]");
 
     }
@@ -598,12 +592,12 @@ public class AcorazadosTest
         acorazados.Disparar(1, 1);
         acorazados.Disparar(1, 3);
         acorazados.Disparar(1, 2);
-        var jugador2 = acorazados.ObtenerJugador(1);
         
-        var reporteGenerado = acorazados.ImprimirReportePorJugador(jugador2);
+        var reporteGenerado1 = acorazados.ObtenerJugador(0).ImprimirReporte();
+        var reporteGenerado = acorazados.ObtenerJugador(1).ImprimirReporte();
         
         reporteGenerado.Should().Contain("Barcos hundidos: [ " +
-                                         "cañonero: (1,1), " +
+                                         "cañonero: (1,1)," +
                                          "cañonero: (1,2) ]");
 
     }
