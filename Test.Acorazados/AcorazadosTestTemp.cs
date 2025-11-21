@@ -2,12 +2,12 @@ using AwesomeAssertions;
 
 namespace Test.BattleShip;
 
-public class AcorazadosTest
+public class AcorazadosTestTemp
 {
     [Fact]
     public void Si_NoHayJugadoresYSeIniciaElJuego_Debe_LanzarUnaExcepcionPorCantidadDeJugadores()
     {
-        var juegoAcorazado = new JuegoAcorazados();
+        var juegoAcorazado = new JuegoAcorazadosTemp();
         var iniciar = () => juegoAcorazado.Iniciar([], []);
 
         iniciar.Should().Throw<Exception>()
@@ -17,7 +17,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_HaySoloUnJugadoreYSeIniciaElJuego_Debe_LanzarUnaExcepcionPorCantidadDeJugadores()
     {
-        var juegoAcorazado = new JuegoAcorazados();
+        var juegoAcorazado = new JuegoAcorazadosTemp();
         juegoAcorazado.AgregarJugador("Jugador 1");
         var iniciar = () => juegoAcorazado.Iniciar([], []);
 
@@ -28,7 +28,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_TresJugadoreYSeIniciaElJuego_Debe_LanzarUnaExcepcionPorCantidadDeJugadores()
     {
-        var juegoAcorazado = new JuegoAcorazados();
+        var juegoAcorazado = new JuegoAcorazadosTemp();
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
         juegoAcorazado.AgregarJugador("Jugador 3");
@@ -41,7 +41,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeIniciaJuegoConDosJugadores_Debe_ImprimirElTableroDelJugadorUnoYDos()
     {
-        var juegoAcorazado = new JuegoAcorazados();
+        var juegoAcorazado = new JuegoAcorazadosTemp();
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
         juegoAcorazado.Iniciar([], []);
@@ -74,7 +74,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeIniciaJuegoYElJugador1PosicionaElPortavionesHorizontalDesdeLaPosicion00_Debe_ImprimirTableroDelJugador1ConElPortavionesPosicionadoDesde00Hasta03()
     {
-        var juegoAcorazado = new JuegoAcorazados();
+        var juegoAcorazado = new JuegoAcorazadosTemp();
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
@@ -108,7 +108,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeIniciaJuegoYElJugador1PosicionaElPortavionesHorizontalDesdeLaPosicion10_Debe_ImprimirTableroDelJugador1ConElPortavionesPosicionadoDesde00Hasta13()
     {
-        var juegoAcorazado = new JuegoAcorazados();
+        var juegoAcorazado = new JuegoAcorazadosTemp();
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
@@ -143,7 +143,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeIniciaJuegoYElJugador1PosicionaElPortavionesVerticalDesdeLaPosicion00_Debe_ImprimirTableroDelJugador1ConElPortavionesPosicionadoDesde00Hasta30()
     {
-        var juegoAcorazado = new JuegoAcorazados();
+        var juegoAcorazado = new JuegoAcorazadosTemp();
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
@@ -178,7 +178,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeIniciaJuegoYElJugador1PosicionaElPortavionesVerticalDesdeLaPosicion10_Debe_ImprimirTableroDelJugador1ConElPortavionesPosicionadoDesde00Hasta40()
     {
-        var juegoAcorazado = new JuegoAcorazados();
+        var juegoAcorazado = new JuegoAcorazadosTemp();
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 
@@ -212,7 +212,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeIniciaJuegoConDosJugadoresYPosicionaLasNaves_Debe_ImprimirTableroDeLosJugadoresConLosBarcosPosicionado()
     {
-        var juegoAcorazado = new JuegoAcorazados();
+        var juegoAcorazado = new JuegoAcorazadosTemp();
         juegoAcorazado.AgregarJugador("Jugador 1");
         juegoAcorazado.AgregarJugador("Jugador 2");
 

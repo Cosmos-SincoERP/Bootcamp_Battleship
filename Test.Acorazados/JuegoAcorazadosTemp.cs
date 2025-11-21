@@ -1,6 +1,6 @@
 namespace Test.BattleShip;
 
-public class JuegoAcorazados
+public class JuegoAcorazadosTemp
 {
     public List<(string, char[,])> _jugadores { get; } = new();
     public void Iniciar(List<(Coordenada, Barco, OrientacionBarco orientacion)> barcosJugador1, List<(Coordenada, Barco, OrientacionBarco orientacion)> barcosJugador2)
