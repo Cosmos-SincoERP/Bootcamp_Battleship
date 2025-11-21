@@ -310,7 +310,15 @@ public class JuegoAcorazadosTest
     public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion7_4YHundeUnBarco_Debe_NotificarQueElBarcoDelJugador2_SeHundio()
     {
         var juegoAcorazado = Mocks.MockIniciarJuego();
-    
+        juegoAcorazado.Disparar(9, 4);
+        juegoAcorazado.FinalizarTurno();
+        juegoAcorazado.Disparar(0, 0);
+        juegoAcorazado.FinalizarTurno();
+        juegoAcorazado.Disparar(8, 4);
+        juegoAcorazado.FinalizarTurno();
+        juegoAcorazado.Disparar(0, 1);
+        juegoAcorazado.FinalizarTurno();
+        
         var barcoHundido = juegoAcorazado.Disparar(7, 4);
 
         barcoHundido.Should().Be("Se hundio un barco en la coordenada (7,4)");
