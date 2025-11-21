@@ -18,8 +18,10 @@ public class AcorazadosTest
 
 public class JuegoAcorazados
 {
+    public List<string> _jugadores { get; } = new();
     public void Iniciar()
     {
-        throw new NotImplementedException();
+        if (!_jugadores.Any())
+            throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
     }
 }
