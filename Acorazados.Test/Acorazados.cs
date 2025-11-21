@@ -100,7 +100,8 @@ public class Acorazados
         LanzarExcepcionSiJuegoNoHaSidoFinalizado();
         return $"Disparos totales: {jugadorSeleccionado.Tablero.ObtenerDisparosTotales()} " +
                $"\n Fallidos: {jugadorSeleccionado.Tablero.ObtenerDisparosFallidos()}" +
-               $"\n Exitosos: {jugadorSeleccionado.Tablero.ObtenerDisparosExitosos()}";
+               $"\n Exitosos: {jugadorSeleccionado.Tablero.ObtenerDisparosExitosos()}" +
+               $"\n Barcos hundidos: []";
     }
 
     private void LanzarExcepcionSiJuegoNoHaSidoFinalizado()
