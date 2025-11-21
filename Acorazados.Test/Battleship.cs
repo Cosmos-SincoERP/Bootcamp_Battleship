@@ -119,35 +119,72 @@ public class Battleship
 
     public string? Disparar(int fila, int columna)
     {
-        Nave? nave = _turnoJugador1
-            ? UbicarDisparosEnTablero(fila, columna, _tableroJugador2, _navesJugador2)
-            : UbicarDisparosEnTablero(fila, columna, _tableroJugador1, _navesJugador1);
+        var (tableroObjetivo, navesObjetivo) = ObtenerTableroYNavesObjetivo();
+    
+        Nave? naveImpactada = UbicarDisparosEnTablero(fila, columna, tableroObjetivo, navesObjetivo);
+    
+        ActualizarEstadisticasDisparo(naveImpactada);
+    
+        if (NaveHundida(naveImpactada))
+        {
+            AgregarNaveHundida(naveImpactada);
+        }
+    
+        VerificarGanadores();
+    
+        return NaveHundida(naveImpactada) ? "Barco hundido" : string.Empty;
+    }
 
+    private (List<string> tablero, List<Nave> naves) ObtenerTableroYNavesObjetivo()
+    {
+        return _turnoJugador1 
+            ? (_tableroJugador2, _navesJugador2) 
+            : (_tableroJugador1, _navesJugador1);
+    }
+
+    private void ActualizarEstadisticasDisparo(Nave? naveImpactada)
+    {
         if (_turnoJugador1)
         {
             _conteoDisparosJugador1++;
-            _conteoDisparosAcertadosJugador1 =
-                nave == null ? _conteoDisparosAcertadosJugador1 : _conteoDisparosAcertadosJugador1 + 1;
-            if (nave?.CantidadDisparosRecibidos == nave?.ObtenerTamano())
-                if (nave != null)
-                    _navesHundidasJugador1.Add(nave);
+            if (naveImpactada != null)
+            {
+                _conteoDisparosAcertadosJugador1++;
+            }
         }
         else
         {
             _conteoDisparosJugador2++;
-            _conteoDisparosAcertadosJugador2 =
-                nave == null ? _conteoDisparosAcertadosJugador2 : _conteoDisparosAcertadosJugador2 + 1;
-            if (nave?.CantidadDisparosRecibidos == nave?.ObtenerTamano())
-                if (nave != null)
-                    _navesHundidasJugador2.Add(nave);
+            if (naveImpactada != null)
+            {
+                _conteoDisparosAcertadosJugador2++;
+            }
         }
-        
-
-        _jugador1Gano = _navesJugador2.Count != 0 && _navesJugador2.All(naveRecorrida => naveRecorrida.CantidadDisparosRecibidos == naveRecorrida.ObtenerTamano());
-        _jugador2Gano = _navesJugador1.Count != 0 && _navesJugador1.All(naveRecorrida => naveRecorrida.CantidadDisparosRecibidos == naveRecorrida.ObtenerTamano());
-
-        return nave?.CantidadDisparosRecibidos == nave?.ObtenerTamano() ? "Barco hundido" : string.Empty;
     }
+
+    private bool NaveHundida(Nave? nave) => nave != null && nave.CantidadDisparosRecibidos == nave.ObtenerTamano();
+
+    private void AgregarNaveHundida(Nave? nave)
+    {
+        if (_turnoJugador1)
+        {
+            _navesHundidasJugador1.Add(nave);
+        }
+        else
+        {
+            _navesHundidasJugador2.Add(nave);
+        }
+    }
+
+    private void VerificarGanadores()
+    {
+        _jugador1Gano = TodasLasNavesHundidas(_navesJugador2);
+        _jugador2Gano = TodasLasNavesHundidas(_navesJugador1);
+    }
+
+    private bool TodasLasNavesHundidas(List<Nave> naves) =>
+        naves.Count > 0 && 
+        naves.All(nave => nave.CantidadDisparosRecibidos == nave.ObtenerTamano());
 
     private Nave? UbicarDisparosEnTablero(int fila, int columna, List<string> tablero, List<Nave> navesJugador)
     {
