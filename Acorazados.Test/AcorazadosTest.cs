@@ -1366,4 +1366,18 @@ public class AcorazadosTest
         
         act.Should().Throw<ApplicationException>();
     }
+    
+    [Fact]
+    public void
+        Si_NoInicioElJuego_E_IntentoImprimir_Debe_LanzarExcepcion()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+
+        var act = () => acorazados.Imprimir();
+        
+        act.Should().Throw<ApplicationException>();
+    }
 }
