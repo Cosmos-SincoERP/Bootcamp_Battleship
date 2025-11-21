@@ -4,6 +4,22 @@ namespace Test.BattleShip;
 
 public class AcorazadosTest
 {
+    public static string TableroEsperado(char[,] tablero)
+    {
+        var tableroEsperado = string.Empty;
+        for (var x = 0; x < tablero.GetLength(0); x++)
+        {
+            for (int y = 0; y < tablero.GetLength(1); y++)
+            {
+                tableroEsperado += tablero[x, y];
+            }
+
+            tableroEsperado += '\n';
+        }
+
+        return tableroEsperado;
+    }
+    
     [Fact]
     public void Si_NoHayJugadoresYseIniciaElJuego_Debe_LanzarUnaExcepcionPorCantidadDeJugadores()
     {
@@ -165,18 +181,53 @@ public class AcorazadosTest
             new("Cañonero", 0, 0, "Vertical")
         };
 
-   
 
         var iniciar = () => juegoAcorazado.Iniciar(posicionesJugador1, posicionesJugador2);
 
         iniciar.Should().ThrowExactly<Exception>()
             .WithMessage("El jugador 2, no ha enviado todos los cañoneros para posicionar");
     }
+
+    [Fact]
+    public void Si_Eljugador1DisparaUnTorpedoEnLaPosicion0_0YNoImpactaUnBarco_Debe_ImprimirElTableroDelJugador2Con_o_EnLaPosicion0_0()
+    {
+        var juegoAcorazado = new JuegoAcorazados();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
+        List<(string tipo, int x, int y, string orientacion)> posicionesJugador1 = new()
+        {
+            new("Cañonero", 2, 1, ""),
+            new("Cañonero", 1, 3, ""),
+            new("Cañonero", 5, 2, ""),
+            new("Cañonero", 7, 6, ""),
+            new("Destructor", 1, 5, "Horizontal"),
+            new("Destructor", 7, 2, "Vertical"),
+            new("Portaviones", 2, 7, "Horizontal"),
+        };
+        List<(string tipo, int x, int y, string orientacion)> posicionesJugador2 = new()
+        {
+            new("Cañonero", 1, 8, ""),
+            new("Cañonero", 1, 3, ""),
+            new("Cañonero", 2, 5, ""),
+            new("Cañonero", 4, 5, ""),
+            new("Destructor", 7, 4, "Horizontal"),
+            new("Destructor", 4, 7, "Vertical"),
+            new("Portaviones", 0, 4, "Vertical"),
+        };
+        var tablero = new char[10, 10];
+        tablero[0, 0] = 'o';
+        var tableroEsperado = TableroEsperado(tablero);
+        
+        juegoAcorazado.Iniciar(posicionesJugador1, posicionesJugador2);
+
+        juegoAcorazado.Imprimir().Should().Be(tableroEsperado);
+    }
 }
 
 public class JuegoAcorazados
 {
     private List<string> _jugadores = new();
+    private char[,] _tablero = new char[10, 10];
 
     public void AgregarJugador()
     {
@@ -192,10 +243,23 @@ public class JuegoAcorazados
         if (_jugadores.Count != 2)
             throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
 
-     
         ValidarCantidadBarcos(posicionesBarcosJugador1, _jugadores[0]);
         ValidarCantidadBarcos(posicionesBarcosJugador2, _jugadores[1]);
         
+    }
+    
+    public string Imprimir()
+    {
+        var visualizarTablero = string.Empty;
+        for (var x = 0; x < _tablero.GetLength(0); x++)
+        {
+            for (int y = 0; y < _tablero.GetLength(1); y++)
+            {
+                visualizarTablero += _tablero[x, y];
+            }
+            visualizarTablero += '\n';
+        }
+        return visualizarTablero;
     }
 
     private void ValidarCantidadBarcos(
@@ -223,6 +287,4 @@ public class JuegoAcorazados
         if (posicionesBarcosJugador.Count(barco => barco.tipo == "Portaviones") < cantidadPortaAviones)
             throw new Exception(string.Format(faltanLosPortaviones, nombreJugador));
     }
-
-
 }
