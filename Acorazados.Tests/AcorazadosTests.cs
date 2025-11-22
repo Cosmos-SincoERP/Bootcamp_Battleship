@@ -543,4 +543,19 @@ public class AcorazadosTests
         caller.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("No se puede superponer una nave");
     }
+
+    [Fact]
+    public void Si_JugadorIntentaSuperPonerUnDestroyer_Debe_LanzarExepcion()
+    {
+        var acorazados = new Acorazados();
+        var jugador1 = "jugador 1";
+        acorazados.AgregarJugador(jugador1);
+        var j1 = acorazados.BuscarJugador(jugador1);
+        j1.AgregarDestroyer(5, 0, Orientacion.Horizontal);
+
+        var caller = () => j1.AgregarDestroyer(5, 0, Orientacion.Horizontal);
+
+        caller.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("No se puede superponer una nave");
+    }
 }
