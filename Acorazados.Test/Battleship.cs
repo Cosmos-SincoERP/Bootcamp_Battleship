@@ -133,7 +133,7 @@ public class Battleship
         if(!_enJuego)
             throw new ApplicationException("No puede disparar cuando el juego no ha comenzado");
 
-        if (fila >= 9)
+        if (fila > 9 || columna > 9)
         {
             throw new ApplicationException("Las coordenadas dadas para el disparo estan fuera del limite del tablero");
         }
