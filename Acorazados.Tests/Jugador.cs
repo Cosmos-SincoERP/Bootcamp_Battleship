@@ -22,8 +22,8 @@ public class Jugador
     {
         if (EsMaxCantidadGunShipsPermitido())
             LanzaExcepcionSiSuperaLimiteTipoNave();
-        if (ObtenerElemento(fila, columna) != null)
-            throw new InvalidOperationException("No se puede superponer una nave");
+        if (EstaNavePosicionadaEnCoordenada(fila, columna))
+            LanzarExepcionPorNaveSuperpuesta();
         Tablero[fila, columna] = new GunShip().Valor;
         _cantidadGunships++;
     }
@@ -93,8 +93,8 @@ public class Jugador
     private void PosicionarNave(INave nave, Orientacion orientacion, int fila, int columna)
     {
         var longitud = nave.Longitud;
-        if (ObtenerElemento(fila, columna) != null)
-            throw new InvalidOperationException("No se puede superponer una nave");
+        if (EstaNavePosicionadaEnCoordenada(fila, columna))
+            LanzarExepcionPorNaveSuperpuesta();
 
         for (var posicion = 0; posicion < longitud; posicion++)
         {
@@ -103,6 +103,11 @@ public class Jugador
             Tablero[siguienteFila, siguienteColumna] = nave.Valor;
         }
     }
+
+    private static void LanzarExepcionPorNaveSuperpuesta() =>
+        throw new InvalidOperationException("No se puede superponer una nave");
+
+    private bool EstaNavePosicionadaEnCoordenada(int fila, int columna) => ObtenerElemento(fila, columna) != null;
 
 
     private void LanzarExcepcionSiSuperaLimitesTablero(int fila, int columna, int longitud,
