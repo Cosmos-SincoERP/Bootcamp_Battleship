@@ -566,6 +566,8 @@ public class AcorazadosTests
         var jugador1 = "jugador 1";
         var jugador2 = "jugador 2";
         acorazados.AgregarJugador(jugador1);
+        acorazados.AgregarJugador(jugador2);
+
         var j1 = acorazados.BuscarJugador(jugador1);
         j1.AgregarCarrier(9, 0, Orientacion.Horizontal);
         j1.AgregarDestroyer(0, 1, Orientacion.Vertical);
@@ -582,8 +584,10 @@ public class AcorazadosTests
         j2.AgregarGunShip(3, 7);
         j2.AgregarGunShip(4, 3);
 
+
         acorazados.Disparar(9, 1);
-        acorazados.Disparar(5, 3);
+        acorazados.Disparar(4, 7);
+
 
         var caller = () => acorazados.Disparar(9, 1);
 

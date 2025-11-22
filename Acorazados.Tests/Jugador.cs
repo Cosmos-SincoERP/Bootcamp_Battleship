@@ -73,6 +73,8 @@ public class Jugador
 
     public void RecibirDisparo(int x, int y)
     {
+        if (Tablero[x, y] == "x")
+            throw new InvalidOperationException("No se puede disparar al mismo punto");
         var casilla = ObtenerElemento(x, y);
         if (casilla == "g")
             Tablero[x, y] = "X";
