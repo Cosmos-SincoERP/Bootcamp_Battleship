@@ -34,12 +34,17 @@ public class Acorazados
 
     public void Disparar(int fila, int columna)
     {
+        if (Estado != EstadoJuego.EnCurso)
+        {
+            throw new InvalidOperationException("El juego no ha comenzado.");
+        }
         Oponente.RecibirDisparo(fila, columna);
         TerminarTurno();
     }
 
     private int _contadorJugadores;
     private Jugador Oponente => EsTurnoJugador1 ? Jugadores[1] : Jugadores[0];
+    public EstadoJuego Estado { get; private set; } = EstadoJuego.Posicionamiento;
     private readonly string[,] _tablero;
     private readonly int _fila = 10;
     private readonly int _columna = 10;
@@ -53,5 +58,7 @@ public class Acorazados
     {
         if(Jugadores.Any(jugador => !jugador.HaPosicionadoTodasLasNaves()))
             throw new InvalidOperationException("No se puede iniciar el juego hasta que todos los jugadores hayan posicionado su flota completa");
+
+        Estado = EstadoJuego.EnCurso;
     }
 }
