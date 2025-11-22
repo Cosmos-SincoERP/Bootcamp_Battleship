@@ -22,6 +22,8 @@ public class Jugador
     {
         if (EsMaxCantidadGunShipsPermitido())
             LanzaExcepcionSiSuperaLimiteTipoNave();
+        if (ObtenerElemento(fila, columna) != null)
+            throw new InvalidOperationException("No se puede superponer una nave");
         Tablero[fila, columna] = new GunShip().Valor;
         _cantidadGunships++;
     }
