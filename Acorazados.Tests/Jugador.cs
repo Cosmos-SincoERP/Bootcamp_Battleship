@@ -93,7 +93,8 @@ public class Jugador
     private void PosicionarNave(INave nave, Orientacion orientacion, int fila, int columna)
     {
         var longitud = nave.Longitud;
-
+        if (ObtenerElemento(fila, columna) != null)
+            throw new InvalidOperationException("No se puede superponer una nave");
 
         for (var posicion = 0; posicion < longitud; posicion++)
         {
