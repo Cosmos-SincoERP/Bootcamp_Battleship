@@ -507,4 +507,25 @@ public class AcorazadosTests
         caller.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("cantidad máxima de destroyer alcanzada");
     }
+
+    [Fact]
+    public void Si_JugadorIntentaAgregarMasDe4GunShips_Debe_LanzarExepcion()
+    {
+        var acorazados = new Acorazados();
+        var jugador1 = "jugador 1";
+
+        acorazados.AgregarJugador(jugador1);
+        var j1 = acorazados.BuscarJugador(jugador1);
+        j1.AgregarGunShip(5, 0);
+        j1.AgregarGunShip(2, 0);
+        j1.AgregarGunShip(6, 5);
+        j1.AgregarGunShip(4, 4);
+
+
+        var caller = () => j1.AgregarGunShip(0, 0);
+
+
+        caller.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("Cantidad máxima de gunships alcanzada");
+    }
 }
