@@ -1415,22 +1415,13 @@ public class AcorazadosTest
         act.Should().Throw<ApplicationException>("El juego requiere de dos jugadores para iniciar");
     }
     
-    [Fact]
-    public void Si_IntentoDispararFueraDelTablero_Debe_LanzarExcepcion()
-    {
-        var acorazados = new Battleship();
-
-        acorazados.AddPlayer("Alejandra");
-        acorazados.AddPlayer("Paula");
-        acorazados.Iniciar([], []);
-
-        var act = () => acorazados.Disparar(10, 5);
-        
-        act.Should().Throw<ApplicationException>("Las coordenadas dadas para el disparo estan fuera del limite del tablero");
-    }
     
-    [Fact]
-    public void Si_IntentoDispararEnUnValorColumnaMayorA0_Debe_LanzarExcepcion()
+    [Theory]
+    [InlineData(5,10)]
+    [InlineData(10,5)]
+    [InlineData(-1,5)]
+    [InlineData(5,-1)]
+    public void Si_IntentoDispararFueraDelTablero_Debe_LanzarExcepcion(int fila, int columna)
     {
         var acorazados = new Battleship();
 
@@ -1438,7 +1429,7 @@ public class AcorazadosTest
         acorazados.AddPlayer("Paula");
         acorazados.Iniciar([], []);
 
-        var act = () => acorazados.Disparar(5, 10);
+        var act = () => acorazados.Disparar(fila, columna);
         
         act.Should().Throw<ApplicationException>("Las coordenadas dadas para el disparo estan fuera del limite del tablero");
     }

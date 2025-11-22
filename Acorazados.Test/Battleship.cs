@@ -128,16 +128,8 @@ public class Battleship
 
     public string? Disparar(int fila, int columna)
     {
-        if(_jugador1Gano || _jugador2Gano)
-            throw new ApplicationException("No puede disparar cuando el juego ya acabó");
-        if(!_enJuego)
-            throw new ApplicationException("No puede disparar cuando el juego no ha comenzado");
+        ValidarDisparo(fila, columna);
 
-        if (fila > 9 || columna > 9)
-        {
-            throw new ApplicationException("Las coordenadas dadas para el disparo estan fuera del limite del tablero");
-        }
-        
         var (tableroObjetivo, navesObjetivo) = ObtenerTableroYNavesObjetivo();
     
         Nave? naveImpactada = UbicarDisparosEnTablero(fila, columna, tableroObjetivo, navesObjetivo);
@@ -153,6 +145,20 @@ public class Battleship
     
         return NaveHundida(naveImpactada) ? "Barco hundido" : string.Empty;
     }
+
+    private void ValidarDisparo(int fila, int columna)
+    {
+        if(_jugador1Gano || _jugador2Gano)
+            throw new ApplicationException("No puede disparar cuando el juego ya acabó");
+        
+        if(!_enJuego)
+            throw new ApplicationException("No puede disparar cuando el juego no ha comenzado");
+
+        if (!EsUnaCoordenadaValida(fila, columna))
+            throw new ApplicationException("Las coordenadas dadas para el disparo estan fuera del limite del tablero");
+    }
+
+    private static bool EsUnaCoordenadaValida(int fila, int columna) => fila >= 0 && fila <= 9 && columna >= 0 && columna <= 9;
 
     private (List<string> tablero, List<Nave> naves) ObtenerTableroYNavesObjetivo()
     {
