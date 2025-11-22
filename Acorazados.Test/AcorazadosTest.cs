@@ -1389,6 +1389,6 @@ public class AcorazadosTest
 
         var act = () => acorazados.TerminarTurno();
         
-        act.Should().Throw<ApplicationException>();
+        act.Should().Throw<ApplicationException>("No puede terminar turno cuando el juego no ha comenzado");
     }
 }

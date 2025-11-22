@@ -224,6 +224,10 @@ public class Battleship
     {
         if(_jugador1Gano || _jugador2Gano)
             throw new ApplicationException("No puede terminar turno cuando el juego ya acabó");
+        
+        if(!_enJuego)
+            throw new ApplicationException("No puede terminar turno cuando el juego no ha comenzado");
+        
         _turnoJugador1 = !_turnoJugador1;
     }
 
