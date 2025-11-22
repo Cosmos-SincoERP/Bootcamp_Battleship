@@ -68,6 +68,8 @@ public class Battleship
             _jugador1 = name;
         else if (_jugador2 == "")
             _jugador2 = name;
+        else
+            throw new ApplicationException("No se pueden agregar mas de dos jugadores");
     }
 
     public void Iniciar(List<Nave> navesJugador1, List<Nave> navesJugador2)
