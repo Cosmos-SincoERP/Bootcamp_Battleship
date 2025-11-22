@@ -132,6 +132,11 @@ public class Battleship
             throw new ApplicationException("No puede disparar cuando el juego ya acabó");
         if(!_enJuego)
             throw new ApplicationException("No puede disparar cuando el juego no ha comenzado");
+
+        if (fila >= 9)
+        {
+            throw new ApplicationException("Las coordenadas dadas para el disparo estan fuera del limite del tablero");
+        }
         
         var (tableroObjetivo, navesObjetivo) = ObtenerTableroYNavesObjetivo();
     
