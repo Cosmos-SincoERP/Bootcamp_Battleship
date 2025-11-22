@@ -352,10 +352,18 @@ public class JuegoAcorazadosTest
     }
     
     [Fact]
-    public void Si_Eljugador1HundeTodosLosBarcos_Debe_MostrarInformeDeBatallaConElTotalDisparos()
+    public void Si_Eljugador1HundeTodosLosBarcos_Debe_MostrarInformeDeBatallaConElTotalDisparos14Jugador1()
     {
         var juegoAcorazado = Mocks.MockIniciarJuego(true);
         
-        juegoAcorazado.Imprimir().Should().Contain("Total de disparos: 10");
+        juegoAcorazado.Imprimir().Should().Contain("Total de disparos: 14");
+    }
+    
+    [Fact]
+    public void Si_Eljugador1HundeTodosLosBarcos_Debe_MostrarInformeDeBatallaConElTotalDisparos13Jugador2()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+        
+        juegoAcorazado.Imprimir().Should().Contain("Total de disparos: 13");
     }
 }

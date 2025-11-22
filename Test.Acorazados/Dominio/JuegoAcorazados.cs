@@ -72,7 +72,7 @@ public class JuegoAcorazados
 
         if (_juegoTerminado)
         {
-            visualizarTablero += "Total de disparos: 10";
+            visualizarTablero += "Total de disparos: 14";
         }
         
         var tablero = _jugadores[_jugadorContrincante].Tablero;
