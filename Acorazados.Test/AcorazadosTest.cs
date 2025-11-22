@@ -1404,4 +1404,15 @@ public class AcorazadosTest
         
         act.Should().Throw<ApplicationException>("No se pueden agregar mas de dos jugadores");
     }
+    
+    [Fact]
+    public void Si_IntentoIniciarElJuegoSinJugadores_Debe_LanzarExcepcion()
+    {
+        var acorazados = new Battleship();
+        
+        var act = () => acorazados.Iniciar([], []);
+        
+        act.Should().Throw<ApplicationException>("El juego requiere de dos jugadores para iniciar");
+    }
+
 }
