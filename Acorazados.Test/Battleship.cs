@@ -74,6 +74,9 @@ public class Battleship
 
     public void Iniciar(List<Nave> navesJugador1, List<Nave> navesJugador2)
     {
+        if (string.IsNullOrEmpty(_jugador1) || string.IsNullOrEmpty(_jugador2))
+            throw new ApplicationException("El juego requiere de dos jugadores para iniciar");
+        
         _enJuego = true;
         
         if (navesJugador1.Count == 0 && navesJugador2.Count == 0) return;
