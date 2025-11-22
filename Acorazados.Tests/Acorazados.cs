@@ -48,4 +48,9 @@ public class Acorazados
     private bool EsCantidadFilasIgualA(int fila) => _tablero.GetLength(0) == fila;
     private bool ExisteJugador(string aliasJugador) => BuscarJugador(aliasJugador) is { } jugador;
     private void TerminarTurno() => EsTurnoJugador1 = !EsTurnoJugador1;
+
+    public void IniciarJuego()
+    {
+        
+    }
 }

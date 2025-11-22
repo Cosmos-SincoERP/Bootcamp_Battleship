@@ -642,4 +642,31 @@ public class AcorazadosTests
 
         j2.ImprimirTablero().Should().Be(expectedTableroJugador2);
     }
+
+    [Fact]
+    public void Si_SeIntentaIniciarElJuegoSinQueAmbosJugadoresHayanPosicionadoSusNaves_Debe_LanzarUnaExccepcion()
+    {
+        var acorazados = new Acorazados();
+        acorazados.AgregarJugador("jugador 1");
+        acorazados.AgregarJugador("jugador 2");
+
+        var jugador1 = acorazados.BuscarJugador("jugador 1");
+        jugador1.AgregarGunShip(0, 0);
+
+        var jugador2 = acorazados.BuscarJugador("jugador 2");
+        jugador2.AgregarCarrier(0, 0, Orientacion.Horizontal);
+        jugador2.AgregarDestroyer(1, 0, Orientacion.Horizontal);
+        jugador2.AgregarDestroyer(2, 0, Orientacion.Horizontal);
+        jugador2.AgregarGunShip(3, 0);
+        jugador2.AgregarGunShip(4, 0);
+        jugador2.AgregarGunShip(5, 0);
+        jugador2.AgregarGunShip(6, 0);
+
+        var caller = () => acorazados.IniciarJuego();
+
+
+        caller.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage(
+                "No se puede iniciar el juego hasta que todos los jugadores hayan posicionado su flota completa");
+    }
 }
