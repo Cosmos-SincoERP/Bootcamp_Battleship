@@ -4,13 +4,14 @@ public interface INave
 {
     public int Longitud { get; }
     public string Valor { get; }
+    public int MaxPermitidos { get; }
 }
 
 public abstract class Nave : INave
 {
     public int Longitud { get; protected set; }
     public string Valor { get; protected set; } = "";
-    public int CantidadDisparosRecibidos { get; set; }
+    public int MaxPermitidos { get; set; }
 }
 
 public sealed class Carrier : Nave
@@ -19,6 +20,7 @@ public sealed class Carrier : Nave
     {
         Longitud = 4;
         Valor = "c";
+        MaxPermitidos = 1;
     }
 }
 

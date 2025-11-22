@@ -4,6 +4,7 @@ public class Jugador
 {
     private int _longitudColumnas;
     private int _longitudFilas;
+    private int _cantidadCarriers=0;
 
     public Jugador(string alias)
     {
@@ -12,7 +13,6 @@ public class Jugador
 
     public string Alias { get; private set; }
     public string[,] Tablero { get; init; }
-    public int TotalDisparos { get; private set; }
 
     public string ObtenerElemento(int fila, int columna) => Tablero[fila, columna];
     public void AgregarGunShip(int fila, int columna) => Tablero[fila, columna] = new GunShip().Valor;
@@ -25,8 +25,11 @@ public class Jugador
 
     public void AgregarCarrier(int fila, int columna, Orientacion orientacion)
     {
+        if (_cantidadCarriers >= new Carrier().MaxPermitidos)
+            throw new InvalidOperationException("Cantidad máxima de Carrier alcanzada");
         LanzarExcepcionSiSuperaLimitesTablero(fila, columna, new Carrier().Longitud, orientacion);
         PosicionarNave(new Carrier(), orientacion, fila, columna);
+        _cantidadCarriers++;
     }
 
     public string ImprimirTablero()
@@ -64,6 +67,7 @@ public class Jugador
     private void PosicionarNave(INave nave, Orientacion orientacion, int fila, int columna)
     {
         var longitud = nave.Longitud;
+
 
         for (var posicion = 0; posicion < longitud; posicion++)
         {

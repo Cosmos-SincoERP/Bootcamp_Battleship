@@ -478,15 +478,15 @@ public class AcorazadosTests
     {
         var acorazados = new Acorazados();
         var jugador1 = "jugador 1";
-        var jugador2 = "jugador 2";
+
         acorazados.AgregarJugador(jugador1);
         var j1 = acorazados.BuscarJugador(jugador1);
         j1.AgregarCarrier(9, 0, Orientacion.Horizontal);
 
-        var caller = () => j1.AgregarCarrier(9, 0, Orientacion.Horizontal);
+        var caller = () => j1.AgregarCarrier(5, 1, Orientacion.Horizontal);
 
 
-        caller.Should().ThrowExactly<IndexOutOfRangeException>()
-            .WithMessage($"No se permite agregar más de 1 Carrier");
+        caller.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("Cantidad máxima de Carrier alcanzada");
     }
 }
