@@ -472,4 +472,21 @@ public class AcorazadosTests
 
         j2.ImprimirTablero().Should().Be(expectedTableroJugador2);
     }
+
+    [Fact]
+    public void Si_JugadorIntentaAgregarMasDe1Carrier_Debe_LanzarExepcion()
+    {
+        var acorazados = new Acorazados();
+        var jugador1 = "jugador 1";
+        var jugador2 = "jugador 2";
+        acorazados.AgregarJugador(jugador1);
+        var j1 = acorazados.BuscarJugador(jugador1);
+        j1.AgregarCarrier(9, 0, Orientacion.Horizontal);
+
+        var caller = () => j1.AgregarCarrier(9, 0, Orientacion.Horizontal);
+
+
+        caller.Should().ThrowExactly<IndexOutOfRangeException>()
+            .WithMessage($"No se permite agregar más de 1 Carrier");
+    }
 }

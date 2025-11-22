@@ -12,6 +12,7 @@ public class Jugador
 
     public string Alias { get; private set; }
     public string[,] Tablero { get; init; }
+    public int TotalDisparos { get; private set; }
 
     public string ObtenerElemento(int fila, int columna) => Tablero[fila, columna];
     public void AgregarGunShip(int fila, int columna) => Tablero[fila, columna] = new GunShip().Valor;
