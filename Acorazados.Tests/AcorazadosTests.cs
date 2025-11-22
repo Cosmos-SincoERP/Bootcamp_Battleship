@@ -558,4 +558,36 @@ public class AcorazadosTests
         caller.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("No se puede superponer una nave");
     }
+
+    [Fact]
+    public void Si_JugadorDisparaEnPosicion11EIntentaDispararNuevamenteEnPosicion11_Debe_LanzarExepcion()
+    {
+        var acorazados = new Acorazados();
+        var jugador1 = "jugador 1";
+        var jugador2 = "jugador 2";
+        acorazados.AgregarJugador(jugador1);
+        var j1 = acorazados.BuscarJugador(jugador1);
+        j1.AgregarCarrier(9, 0, Orientacion.Horizontal);
+        j1.AgregarDestroyer(0, 1, Orientacion.Vertical);
+        j1.AgregarGunShip(7, 1);
+        j1.AgregarGunShip(8, 8);
+        j1.AgregarGunShip(5, 1);
+        j1.AgregarGunShip(4, 3);
+
+        var j2 = acorazados.BuscarJugador(jugador2);
+        j2.AgregarCarrier(9, 0, Orientacion.Horizontal);
+        j2.AgregarDestroyer(0, 1, Orientacion.Vertical);
+        j2.AgregarGunShip(7, 1);
+        j2.AgregarGunShip(6, 5);
+        j2.AgregarGunShip(3, 7);
+        j2.AgregarGunShip(4, 3);
+
+        acorazados.Disparar(9, 1);
+        acorazados.Disparar(5, 3);
+
+        var caller = () => acorazados.Disparar(9, 1);
+
+        caller.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("No se puede disparar al mismo punto");
+    }
 }
