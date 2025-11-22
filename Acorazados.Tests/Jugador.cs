@@ -10,6 +10,7 @@ public class Jugador
 
     public string Alias { get; private set; }
     public string[,] Tablero { get; init; }
+    private List<NavePosicionada> _naves = new();
 
     public Jugador(string alias)
     {
@@ -76,12 +77,35 @@ public class Jugador
         if (EstaCasillaConDisparo(x, y))
             LanzarExcepcionNoSePuedeDispararALaMismaCoordenada();
         var casilla = ObtenerElemento(x, y);
-        if (casilla == "g")
-            Tablero[x, y] = "X";
-        else if (casilla is "d" or "c")
+        if (casilla is "d" or "c")
             Tablero[x, y] = "x";
+        else if (casilla == "g")
+            Tablero[x, y] = "X";
         else
             Tablero[x, y] = "o";
+
+        MarcaNaveHundida(x, y);
+    }
+
+    private void MarcaNaveHundida(int fila, int columna)
+    {
+        var nave = _naves.FirstOrDefault(nave =>
+            nave.Posiciones.Any(posicion => posicion.fila == fila && posicion.columna == columna));
+        if (nave == null)
+            return;
+        if (!EsNaveHundida(nave))
+            return;
+
+        foreach (var posicion in nave.Posiciones)
+        {
+            Tablero[posicion.fila, posicion.columna] = "X";
+        }
+    }
+
+    private bool EsNaveHundida(NavePosicionada nave)
+    {
+        return nave.Posiciones.All(posicion =>
+            Tablero[posicion.fila, posicion.columna] == "x" || Tablero[posicion.fila, posicion.columna] == "X");
     }
 
 
@@ -99,6 +123,8 @@ public class Jugador
     private void PosicionarNave(INave nave, Orientacion orientacion, int fila, int columna)
     {
         var longitud = nave.Longitud;
+        var posiciones = new List<(int fila, int columna)>();
+
         if (EstaNavePosicionadaEnCoordenada(fila, columna))
             LanzarExepcionPorNaveSuperpuesta();
 
@@ -107,7 +133,14 @@ public class Jugador
             var siguienteFila = EsPosicionVertical(orientacion) ? fila + posicion : fila;
             var siguienteColumna = EsPosicionHorizontal(orientacion) ? columna + posicion : columna;
             Tablero[siguienteFila, siguienteColumna] = nave.Valor;
+            posiciones.Add((siguienteFila, siguienteColumna));
         }
+
+        _naves.Add(new NavePosicionada
+        {
+            Tipo = nave.Valor,
+            Posiciones = posiciones
+        });
     }
 
 

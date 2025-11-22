@@ -43,3 +43,9 @@ public sealed class GunShip : Nave
         MaxPermitidos = 4;
     }
 }
+
+public class NavePosicionada
+{
+    public object Tipo { get; set; }
+    public List<(int fila, int columna)> Posiciones { get; set; }
+}
