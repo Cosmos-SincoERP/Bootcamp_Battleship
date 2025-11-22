@@ -1414,5 +1414,18 @@ public class AcorazadosTest
         
         act.Should().Throw<ApplicationException>("El juego requiere de dos jugadores para iniciar");
     }
+    
+    [Fact]
+    public void Si_IntentoDispararFueraDelTablero_Debe_LanzarExcepcion()
+    {
+        var acorazados = new Battleship();
 
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+        acorazados.Iniciar([], []);
+
+        var act = () => acorazados.Disparar(10, 5);
+        
+        act.Should().Throw<ApplicationException>("Las coordenadas dadas para el disparo estan fuera del limite del tablero");
+    }
 }
