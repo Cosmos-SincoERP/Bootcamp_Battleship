@@ -1391,4 +1391,17 @@ public class AcorazadosTest
         
         act.Should().Throw<ApplicationException>("No puede terminar turno cuando el juego no ha comenzado");
     }
+    
+    [Fact]
+    public void Si_IntentoAgregaTresJugadores_Debe_LanzarExcepcion()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+
+        var act = () => acorazados.AddPlayer("Ruben");
+        
+        act.Should().Throw<ApplicationException>("No se pueden agregar mas de dos jugadores");
+    }
 }
