@@ -528,4 +528,19 @@ public class AcorazadosTests
         caller.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("Cantidad máxima de tipo de nave alcanzada");
     }
+
+    [Fact]
+    public void Si_JugadorIntentaSuperPonerUnaNave_Debe_LanzarExepcion()
+    {
+        var acorazados = new Acorazados();
+        var jugador1 = "jugador 1";
+        acorazados.AgregarJugador(jugador1);
+        var j1 = acorazados.BuscarJugador(jugador1);
+        j1.AgregarGunShip(5, 0);
+
+        var caller = () => j1.AgregarGunShip(5, 0);
+
+        caller.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("No se puede superponer una nave");
+    }
 }
