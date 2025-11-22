@@ -1428,4 +1428,18 @@ public class AcorazadosTest
         
         act.Should().Throw<ApplicationException>("Las coordenadas dadas para el disparo estan fuera del limite del tablero");
     }
+    
+    [Fact]
+    public void Si_IntentoDispararEnUnValorColumnaMayorA0_Debe_LanzarExcepcion()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+        acorazados.Iniciar([], []);
+
+        var act = () => acorazados.Disparar(5, 10);
+        
+        act.Should().Throw<ApplicationException>("Las coordenadas dadas para el disparo estan fuera del limite del tablero");
+    }
 }
