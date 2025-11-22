@@ -487,7 +487,7 @@ public class AcorazadosTests
 
 
         caller.Should().ThrowExactly<InvalidOperationException>()
-            .WithMessage("Cantidad máxima de Carrier alcanzada");
+            .WithMessage("Cantidad máxima de tipo de nave alcanzada");
     }
 
     [Fact]
@@ -505,7 +505,7 @@ public class AcorazadosTests
 
 
         caller.Should().ThrowExactly<InvalidOperationException>()
-            .WithMessage("cantidad máxima de destroyer alcanzada");
+            .WithMessage("Cantidad máxima de tipo de nave alcanzada");
     }
 
     [Fact]
@@ -526,6 +526,6 @@ public class AcorazadosTests
 
 
         caller.Should().ThrowExactly<InvalidOperationException>()
-            .WithMessage("Cantidad máxima de Gunships alcanzada");
+            .WithMessage("Cantidad máxima de tipo de nave alcanzada");
     }
 }

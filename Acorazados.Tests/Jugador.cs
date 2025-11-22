@@ -8,41 +8,45 @@ public class Jugador
     private int _cantidadDestroyers;
     private int _cantidadGunships;
 
+    public string Alias { get; private set; }
+    public string[,] Tablero { get; init; }
+
     public Jugador(string alias)
     {
         Alias = alias;
     }
 
-    public string Alias { get; private set; }
-    public string[,] Tablero { get; init; }
-
     public string ObtenerElemento(int fila, int columna) => Tablero[fila, columna];
+
     public void AgregarGunShip(int fila, int columna)
     {
-        if (_cantidadGunships >= new GunShip().MaxPermitidos)
-            throw new InvalidOperationException("Cantidad máxima de Gunships alcanzada");
+        if (EsMaxCantidadGunShipsPermitido())
+            LanzaExcepcionSiSuperaLimiteTipoNave();
         Tablero[fila, columna] = new GunShip().Valor;
         _cantidadGunships++;
     }
 
+
     public void AgregarDestroyer(int fila, int columna, Orientacion orientacion)
     {
-        if (_cantidadDestroyers >= new Destroyer().MaxPermitidos)
-            throw new InvalidOperationException("Cantidad máxima de Destroyer alcanzada");
+        if (EsMaxCantidadDestroyerPermitido())
+            LanzaExcepcionSiSuperaLimiteTipoNave();
 
         LanzarExcepcionSiSuperaLimitesTablero(fila, columna, new Destroyer().Longitud, orientacion);
         PosicionarNave(new Destroyer(), orientacion, fila, columna);
         _cantidadDestroyers++;
     }
 
+
     public void AgregarCarrier(int fila, int columna, Orientacion orientacion)
     {
-        if (_cantidadCarriers >= new Carrier().MaxPermitidos)
-            throw new InvalidOperationException("Cantidad máxima de Carrier alcanzada");
+        if (EsMaxCantidadCarriersPermitido())
+            LanzaExcepcionSiSuperaLimiteTipoNave();
         LanzarExcepcionSiSuperaLimitesTablero(fila, columna, new Carrier().Longitud, orientacion);
         PosicionarNave(new Carrier(), orientacion, fila, columna);
         _cantidadCarriers++;
     }
+
 
     public string ImprimirTablero()
     {
@@ -75,6 +79,14 @@ public class Jugador
         else
             Tablero[x, y] = "o";
     }
+
+    private bool EsMaxCantidadGunShipsPermitido() => _cantidadGunships >= new GunShip().MaxPermitidos;
+
+    private bool EsMaxCantidadDestroyerPermitido() => _cantidadDestroyers >= new Destroyer().MaxPermitidos;
+    private bool EsMaxCantidadCarriersPermitido() => _cantidadCarriers >= new Carrier().MaxPermitidos;
+
+    private void LanzaExcepcionSiSuperaLimiteTipoNave() =>
+        throw new InvalidOperationException("Cantidad máxima de tipo de nave alcanzada");
 
     private void PosicionarNave(INave nave, Orientacion orientacion, int fila, int columna)
     {
