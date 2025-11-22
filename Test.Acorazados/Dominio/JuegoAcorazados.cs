@@ -9,6 +9,7 @@ public class JuegoAcorazados
     private List<Barco> _listaBarcosJugador2 = [];
     private int _jugadorActivo;
     private int _jugadorContrincante = 1;
+    private bool _juegoTerminado;
 
     public void AgregarJugador()
     {
@@ -60,12 +61,21 @@ public class JuegoAcorazados
     {
         _jugadorActivo = _jugadorActivo == 0 ? 1 : 0;
         _jugadorContrincante = _jugadorContrincante == 0 ? 1 : 0;
+
+        if(ListaBarcosJugadorContrincante().All(barco => barco.SeHundio()))
+            _juegoTerminado = true;
     }
 
     public string Imprimir()
     {
-        var tablero = _jugadores[_jugadorContrincante].Tablero;
         var visualizarTablero = string.Empty;
+
+        if (_juegoTerminado)
+        {
+            visualizarTablero += "Total de disparos: 10";
+        }
+        
+        var tablero = _jugadores[_jugadorContrincante].Tablero;
         for (var x = 0; x < tablero.GetLength(0); x++)
         {
             for (var y = 0; y < tablero.GetLength(1); y++)
@@ -106,11 +116,8 @@ public class JuegoAcorazados
             throw new Exception(string.Format(faltanLosPortaviones, nombreJugador));
     }
     
-    private Barco? BuscarBarco(int x, int y)
-    {
-        var listaBarcosJugadorContrincante = _jugadorContrincante == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
-        return listaBarcosJugadorContrincante.FirstOrDefault(barco => barco.EstaEnLaCoordenada(new(x, y)));
-    }
+    private List<Barco> ListaBarcosJugadorContrincante() => _jugadorContrincante == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
+    private Barco? BuscarBarco(int x, int y) => ListaBarcosJugadorContrincante().FirstOrDefault(barco => barco.EstaEnLaCoordenada(new(x, y)));
 }
 
 public class Jugador(string nombre)

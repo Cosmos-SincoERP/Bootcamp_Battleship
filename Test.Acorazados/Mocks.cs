@@ -5,6 +5,13 @@ namespace Test.BattleShip;
 
 public class Mocks
 {
+    private static Dictionary<string, int> _tamañoBarcos = new()
+    {
+        { "Cañonero", 1 },
+        { "Destructor", 3 },
+        { "PortaAviones", 4 },
+    };
+    
     public static JuegoAcorazados MockIniciarJuego(bool disparos = false)
     {
         var juegoAcorazado = new JuegoAcorazados();
@@ -38,10 +45,19 @@ public class Mocks
 
         foreach (var barcos in barcosJugador2)
         {
-            juegoAcorazado.Disparar(barcos.Coordenada.X, barcos.Coordenada.Y);
-            juegoAcorazado.FinalizarTurno();
-            juegoAcorazado.Disparar(0 + new Random().Next(0, 10), 0);
-            juegoAcorazado.FinalizarTurno();
+            var tamaño = _tamañoBarcos[barcos.GetType().Name];
+            for (var i = 0; i < tamaño ; i++)
+            {
+                if(barcos.Orientacion == OrientacionBarco.Horizontal)
+                    juegoAcorazado.Disparar(barcos.Coordenada.X + i, barcos.Coordenada.Y);
+                else
+                    juegoAcorazado.Disparar(barcos.Coordenada.X, barcos.Coordenada.Y + i);
+                
+                juegoAcorazado.FinalizarTurno();
+                juegoAcorazado.Disparar(0 + new Random().Next(0, 10), 0);
+                juegoAcorazado.FinalizarTurno();
+            }
+            
         }
         
         return juegoAcorazado;
