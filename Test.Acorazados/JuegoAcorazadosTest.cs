@@ -6,21 +6,7 @@ namespace Test.BattleShip;
 
 public class JuegoAcorazadosTest
 {
-    public static string TableroEsperado(char[,] tablero)
-    {
-        var tableroEsperado = string.Empty;
-        for (var x = 0; x < tablero.GetLength(0); x++)
-        {
-            for (int y = 0; y < tablero.GetLength(1); y++)
-            {
-                tableroEsperado += tablero[x, y];
-            }
 
-            tableroEsperado += '\n';
-        }
-
-        return tableroEsperado;
-    }
 
     [Fact]
     public void Si_NoHayJugadoresYseIniciaElJuego_Debe_LanzarUnaExcepcionPorCantidadDeJugadores()
@@ -195,7 +181,7 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[0, 0] = 'o';
-        var tableroEsperado = TableroEsperado(tablero);
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
 
         juegoAcorazado.Disparar(0, 0);
@@ -208,7 +194,7 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[0, 1] = 'o';
-        var tableroEsperado = TableroEsperado(tablero);
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
 
         juegoAcorazado.Disparar(0, 1);
@@ -221,7 +207,7 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[4, 0] = 'x';
-        var tableroEsperado = TableroEsperado(tablero);
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
 
         juegoAcorazado.Disparar(4, 0);
@@ -234,7 +220,7 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[1, 1] = 'o';
-        var tableroEsperado = TableroEsperado(tablero);
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
     
         juegoAcorazado.Disparar(0, 4);
@@ -249,7 +235,7 @@ public class JuegoAcorazadosTest
     {
         var tablero = new char[10, 10];
         tablero[2, 1] = 'X';
-        var tableroEsperado = TableroEsperado(tablero);
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
     
         juegoAcorazado.Disparar(0, 4);
@@ -278,7 +264,7 @@ public class JuegoAcorazadosTest
         tablero[4, 7] = 'X';
         tablero[4, 8] = 'X';
         tablero[4, 9] = 'X';
-        var tableroEsperado = TableroEsperado(tablero);
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = Mocks.MockIniciarJuego();
 
         juegoAcorazado.Disparar(4, 9);

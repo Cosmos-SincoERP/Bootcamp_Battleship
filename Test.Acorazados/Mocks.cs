@@ -34,4 +34,20 @@ public class Mocks
         juegoAcorazado.Iniciar(barcosJugador1, barcosJugador2);
         return juegoAcorazado;
     }
+    
+    public static string TableroEsperado(char[,] tablero)
+    {
+        var tableroEsperado = string.Empty;
+        for (var x = 0; x < tablero.GetLength(0); x++)
+        {
+            for (int y = 0; y < tablero.GetLength(1); y++)
+            {
+                tableroEsperado += tablero[x, y];
+            }
+
+            tableroEsperado += '\n';
+        }
+
+        return tableroEsperado;
+    }
 }
