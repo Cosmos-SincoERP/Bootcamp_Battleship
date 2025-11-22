@@ -1433,4 +1433,24 @@ public class AcorazadosTest
         
         act.Should().Throw<ApplicationException>("Las coordenadas dadas para el disparo estan fuera del limite del tablero");
     }
+    
+    [Fact]
+    public void Si_IntentoDispararDosVecesEnLaMismaCoordenada_Debe_LanzarExcepcion()
+    {
+        var acorazados = new Battleship();
+
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+        acorazados.Iniciar([], []);
+
+        acorazados.Disparar(5, 5);
+        acorazados.TerminarTurno();
+        
+        acorazados.Disparar(3, 3);
+        acorazados.TerminarTurno();
+
+        var act = () => acorazados.Disparar(5, 5);
+        
+        act.Should().Throw<ApplicationException>("Ya disparaste en esa misma coordenada. Usa otra por favor.");
+    }
 }
