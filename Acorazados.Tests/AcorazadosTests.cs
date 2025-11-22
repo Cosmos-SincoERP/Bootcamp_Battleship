@@ -489,4 +489,22 @@ public class AcorazadosTests
         caller.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("Cantidad máxima de Carrier alcanzada");
     }
+
+    [Fact]
+    public void Si_JugadorIntentaAgregarMasDe2Destroyer_Debe_LanzarExepcion()
+    {
+        var acorazados = new Acorazados();
+        var jugador1 = "jugador 1";
+
+        acorazados.AgregarJugador(jugador1);
+        var j1 = acorazados.BuscarJugador(jugador1);
+        j1.AgregarDestroyer(2, 0, Orientacion.Vertical);
+        j1.AgregarDestroyer(7, 0, Orientacion.Horizontal);
+
+        var caller = () => j1.AgregarDestroyer(5, 1, Orientacion.Horizontal);
+
+
+        caller.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("Cantidad máxima de Destroyer alcanzada");
+    }
 }
