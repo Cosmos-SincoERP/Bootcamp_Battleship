@@ -1,5 +1,4 @@
-﻿using System.Net.NetworkInformation;
-using AwesomeAssertions;
+﻿using AwesomeAssertions;
 
 namespace Acorazados.Test;
 
@@ -1377,6 +1376,18 @@ public class AcorazadosTest
         acorazados.AddPlayer("Paula");
 
         var act = () => acorazados.Imprimir();
+        
+        act.Should().Throw<ApplicationException>();
+    }
+    
+    [Fact]
+    public void Si_NoInicioElJuego_E_IntentoTerminaTurno_Debe_LanzarExcepcion()
+    {
+        var acorazados = new Battleship();
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+
+        var act = () => acorazados.TerminarTurno();
         
         act.Should().Throw<ApplicationException>();
     }
