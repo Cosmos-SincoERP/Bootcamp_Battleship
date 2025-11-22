@@ -73,8 +73,8 @@ public class Jugador
 
     public void RecibirDisparo(int x, int y)
     {
-        if (Tablero[x, y] == "x")
-            throw new InvalidOperationException("No se puede disparar al mismo punto");
+        if (EstaCasillaConDisparo(x, y))
+            LanzarExcepcionNoSePuedeDispararALaMismaCoordenada();
         var casilla = ObtenerElemento(x, y);
         if (casilla == "g")
             Tablero[x, y] = "X";
@@ -84,13 +84,17 @@ public class Jugador
             Tablero[x, y] = "o";
     }
 
+
+    private bool EstaCasillaConDisparo(int x, int y)
+    {
+        return Tablero[x, y] == "x";
+    }
+
     private bool EsMaxCantidadGunShipsPermitido() => _cantidadGunships >= new GunShip().MaxPermitidos;
 
     private bool EsMaxCantidadDestroyerPermitido() => _cantidadDestroyers >= new Destroyer().MaxPermitidos;
     private bool EsMaxCantidadCarriersPermitido() => _cantidadCarriers >= new Carrier().MaxPermitidos;
 
-    private void LanzaExcepcionSiSuperaLimiteTipoNave() =>
-        throw new InvalidOperationException("Cantidad máxima de tipo de nave alcanzada");
 
     private void PosicionarNave(INave nave, Orientacion orientacion, int fila, int columna)
     {
@@ -106,11 +110,17 @@ public class Jugador
         }
     }
 
-    private static void LanzarExepcionPorNaveSuperpuesta() =>
-        throw new InvalidOperationException("No se puede superponer una nave");
 
     private bool EstaNavePosicionadaEnCoordenada(int fila, int columna) => ObtenerElemento(fila, columna) != null;
 
+    private void LanzarExcepcionNoSePuedeDispararALaMismaCoordenada() =>
+        throw new InvalidOperationException("No se puede disparar al mismo punto");
+
+    private void LanzaExcepcionSiSuperaLimiteTipoNave() =>
+        throw new InvalidOperationException("Cantidad máxima de tipo de nave alcanzada");
+
+    private void LanzarExepcionPorNaveSuperpuesta() =>
+        throw new InvalidOperationException("No se puede superponer una nave");
 
     private void LanzarExcepcionSiSuperaLimitesTablero(int fila, int columna, int longitud,
         Orientacion orientacion)
