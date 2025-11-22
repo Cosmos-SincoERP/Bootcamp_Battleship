@@ -33,13 +33,16 @@ public class JuegoAcorazados
 
     public string Disparar(int x, int y)
     {
+        
         var mensaje = string.Empty;
-        var tablero = _jugadores[_jugadorContrincante].Tablero;
+        var disparoAcertado = false;
+        var tablero = ObtenerJugadorContrincante().Tablero;
         var barco = BuscarBarco(x, y);
+        
         if (barco != null)
         {
+            disparoAcertado = true;
             barco.RegistrarImpacto();
-            
             if (barco.SeHundio())
             {
                 foreach (var coordenada in barco.CoordenadasDeLaPosicion)
@@ -54,16 +57,18 @@ public class JuegoAcorazados
         else
             tablero[x, y] = 'o';
         
+        ObtenerJugadorActivo().DisparoRealizado(disparoAcertado);
+        
         return mensaje;
     }
 
     public void FinalizarTurno()
     {
-        _jugadorActivo = _jugadorActivo == 0 ? 1 : 0;
-        _jugadorContrincante = _jugadorContrincante == 0 ? 1 : 0;
-
         if(ListaBarcosJugadorContrincante().All(barco => barco.SeHundio()))
             _juegoTerminado = true;
+        
+        _jugadorActivo = _jugadorActivo == 0 ? 1 : 0;
+        _jugadorContrincante = _jugadorContrincante == 0 ? 1 : 0;
     }
 
     public string Imprimir()
@@ -72,25 +77,38 @@ public class JuegoAcorazados
 
         if (_juegoTerminado)
         {
-            visualizarTablero += "Total de disparos: 14";
+            foreach (var jugador in _jugadores)
+            {
+                visualizarTablero += $"Total de disparos: {jugador.ContadorDisparos} \n";  
+                visualizarTablero += $"Disparos fallidos: {jugador.ContadorDisparosFallidos} \n";
+                visualizarTablero += $"Disparos acertados: {jugador.ContadorDisparosAcertados} \n";
+                visualizarTablero += VisualizarTablero(visualizarTablero, jugador.Tablero);
+            }
+        }
+        else
+        {
+            visualizarTablero += VisualizarTablero(visualizarTablero, ObtenerJugadorContrincante().Tablero);
         }
         
-        var tablero = _jugadores[_jugadorContrincante].Tablero;
+        return visualizarTablero;
+    }
+
+    private string VisualizarTablero(string visualizar, char[,] tablero)
+    {
         for (var x = 0; x < tablero.GetLength(0); x++)
         {
             for (var y = 0; y < tablero.GetLength(1); y++)
             {
-                visualizarTablero += tablero[x, y];
+                visualizar += tablero[x, y];
             }
-            visualizarTablero += '\n';
+            visualizar += '\n';
         }
-        return visualizarTablero;
+        return visualizar;
     }
 
-    private string AsignarNombreJugadorPredeterminado()
-    {
-        return _jugadores.Count == 1 ? "2" : "1";
-    }
+    private Jugador ObtenerJugadorActivo() => _jugadores[_jugadorActivo];
+    private Jugador ObtenerJugadorContrincante() => _jugadores[_jugadorContrincante];
+    private string AsignarNombreJugadorPredeterminado() => _jugadores.Count == 1 ? "2" : "1";
     
     private void ValidarCantidadBarcos(List<Barco> barcos, string nombreJugador)
     {
@@ -118,11 +136,4 @@ public class JuegoAcorazados
     
     private List<Barco> ListaBarcosJugadorContrincante() => _jugadorContrincante == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
     private Barco? BuscarBarco(int x, int y) => ListaBarcosJugadorContrincante().FirstOrDefault(barco => barco.EstaEnLaCoordenada(new(x, y)));
-}
-
-public class Jugador(string nombre)
-{
-    public string Nombre { get; } = nombre;
-    public char[,] Tablero { get; } = new char[10, 10];
-
 }

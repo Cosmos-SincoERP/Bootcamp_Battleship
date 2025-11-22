@@ -352,7 +352,7 @@ public class JuegoAcorazadosTest
     }
     
     [Fact]
-    public void Si_Eljugador1HundeTodosLosBarcos_Debe_MostrarInformeDeBatallaConElTotalDisparos14Jugador1()
+    public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarInformeDeBatallaConElTotalDisparos14Jugador2()
     {
         var juegoAcorazado = Mocks.MockIniciarJuego(true);
         
@@ -360,10 +360,18 @@ public class JuegoAcorazadosTest
     }
     
     [Fact]
-    public void Si_Eljugador1HundeTodosLosBarcos_Debe_MostrarInformeDeBatallaConElTotalDisparos13Jugador2()
+    public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarInformeDeBatallaConDisparosFallidos0()
     {
         var juegoAcorazado = Mocks.MockIniciarJuego(true);
         
-        juegoAcorazado.Imprimir().Should().Contain("Total de disparos: 13");
+        juegoAcorazado.Imprimir().Should().Contain("Disparos fallidos: 0");
+    }
+    
+    [Fact]
+    public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarInformeDeBatallaConDisparosAcertados14()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+        
+        juegoAcorazado.Imprimir().Should().Contain("Disparos acertados: 14");
     }
 }
