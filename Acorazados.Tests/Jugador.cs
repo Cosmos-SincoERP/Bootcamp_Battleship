@@ -87,6 +87,15 @@ public class Jugador
         MarcaNaveHundida(x, y);
     }
 
+    public bool HaPosicionadoTodasLasNaves()
+    {
+        bool carriersListos = _cantidadCarriers == new Carrier().MaxPermitidos;
+        bool destroyersListos = _cantidadDestroyers == new Destroyer().MaxPermitidos;
+        bool gunshipsListos = _cantidadGunships == new GunShip().MaxPermitidos;
+
+        return carriersListos && destroyersListos && gunshipsListos;
+    }
+
     private void MarcaNaveHundida(int fila, int columna)
     {
         var nave = _naves.FirstOrDefault(nave =>

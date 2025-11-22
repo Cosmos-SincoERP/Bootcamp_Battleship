@@ -51,6 +51,7 @@ public class Acorazados
 
     public void IniciarJuego()
     {
-        
+        if(Jugadores.Any(jugador => !jugador.HaPosicionadoTodasLasNaves()))
+            throw new InvalidOperationException("No se puede iniciar el juego hasta que todos los jugadores hayan posicionado su flota completa");
     }
 }
