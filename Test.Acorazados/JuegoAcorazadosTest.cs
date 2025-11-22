@@ -350,4 +350,12 @@ public class JuegoAcorazadosTest
 
         barcoHundido.Should().Be("Se hundio un barco en la coordenada (4,0)");
     }
+    
+    [Fact]
+    public void Si_Eljugador1HundeTodosLosBarcos_Debe_MostrarInformeDeBatallaConElTotalDisparos()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+        
+        juegoAcorazado.Imprimir().Should().Contain("Total de disparos: 10");
+    }
 }

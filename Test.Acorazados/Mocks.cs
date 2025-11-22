@@ -5,7 +5,7 @@ namespace Test.BattleShip;
 
 public class Mocks
 {
-    public static JuegoAcorazados MockIniciarJuego()
+    public static JuegoAcorazados MockIniciarJuego(bool disparos = false)
     {
         var juegoAcorazado = new JuegoAcorazados();
         juegoAcorazado.AgregarJugador();
@@ -32,6 +32,18 @@ public class Mocks
         };
         
         juegoAcorazado.Iniciar(barcosJugador1, barcosJugador2);
+        
+        if (!disparos)
+            return juegoAcorazado;
+
+        foreach (var barcos in barcosJugador2)
+        {
+            juegoAcorazado.Disparar(barcos.Coordenada.X, barcos.Coordenada.Y);
+            juegoAcorazado.FinalizarTurno();
+            juegoAcorazado.Disparar(0 + new Random().Next(0, 10), 0);
+            juegoAcorazado.FinalizarTurno();
+        }
+        
         return juegoAcorazado;
     }
     
