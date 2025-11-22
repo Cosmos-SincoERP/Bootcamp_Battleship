@@ -505,6 +505,6 @@ public class AcorazadosTests
 
 
         caller.Should().ThrowExactly<InvalidOperationException>()
-            .WithMessage("Cantidad máxima de Destroyer alcanzada");
+            .WithMessage("cantidad máxima de destroyer alcanzada");
     }
 }

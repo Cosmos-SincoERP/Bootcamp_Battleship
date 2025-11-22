@@ -30,6 +30,7 @@ public sealed class Destroyer : Nave
     {
         Longitud = 3;
         Valor = "d";
+        MaxPermitidos = 2;
     }
 }
 

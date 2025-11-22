@@ -4,7 +4,8 @@ public class Jugador
 {
     private int _longitudColumnas;
     private int _longitudFilas;
-    private int _cantidadCarriers=0;
+    private int _cantidadCarriers;
+    private int _cantidadDestroyers;
 
     public Jugador(string alias)
     {
@@ -19,8 +20,12 @@ public class Jugador
 
     public void AgregarDestroyer(int fila, int columna, Orientacion orientacion)
     {
+        if (_cantidadDestroyers >= new Destroyer().MaxPermitidos)
+            throw new InvalidOperationException("Cantidad máxima de Destroyer alcanzada");
+
         LanzarExcepcionSiSuperaLimitesTablero(fila, columna, new Destroyer().Longitud, orientacion);
         PosicionarNave(new Destroyer(), orientacion, fila, columna);
+        _cantidadDestroyers++;
     }
 
     public void AgregarCarrier(int fila, int columna, Orientacion orientacion)
