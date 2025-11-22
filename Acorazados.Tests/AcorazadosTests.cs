@@ -526,6 +526,6 @@ public class AcorazadosTests
 
 
         caller.Should().ThrowExactly<InvalidOperationException>()
-            .WithMessage("Cantidad máxima de gunships alcanzada");
+            .WithMessage("Cantidad máxima de Gunships alcanzada");
     }
 }

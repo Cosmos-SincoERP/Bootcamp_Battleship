@@ -6,6 +6,7 @@ public class Jugador
     private int _longitudFilas;
     private int _cantidadCarriers;
     private int _cantidadDestroyers;
+    private int _cantidadGunships;
 
     public Jugador(string alias)
     {
@@ -16,7 +17,13 @@ public class Jugador
     public string[,] Tablero { get; init; }
 
     public string ObtenerElemento(int fila, int columna) => Tablero[fila, columna];
-    public void AgregarGunShip(int fila, int columna) => Tablero[fila, columna] = new GunShip().Valor;
+    public void AgregarGunShip(int fila, int columna)
+    {
+        if (_cantidadGunships >= new GunShip().MaxPermitidos)
+            throw new InvalidOperationException("Cantidad máxima de Gunships alcanzada");
+        Tablero[fila, columna] = new GunShip().Valor;
+        _cantidadGunships++;
+    }
 
     public void AgregarDestroyer(int fila, int columna, Orientacion orientacion)
     {

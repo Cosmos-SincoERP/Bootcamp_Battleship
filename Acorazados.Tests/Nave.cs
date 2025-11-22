@@ -40,5 +40,6 @@ public sealed class GunShip : Nave
     {
         Longitud = 1;
         Valor = "g";
+        MaxPermitidos = 4;
     }
 }
