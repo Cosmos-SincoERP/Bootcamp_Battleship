@@ -10,6 +10,8 @@ public class Jugador
 
     public string Alias { get; private set; }
     public string[,] Tablero { get; init; }
+    public object DisparosTotales { get; set; }
+
     private List<NavePosicionada> _naves = new();
 
     public Jugador(string alias)

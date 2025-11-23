@@ -656,7 +656,7 @@ public class AcorazadosTests
                                          "8| | | | | |d|d|d| | |\r\n" +
                                          "9|c|x|c|c| | | | | | |\r\n";
 
-        acorazados.IniciarJuego();
+ 
         acorazados.Disparar(1, 1);
         acorazados.Disparar(5, 1);
         acorazados.Disparar(2, 1);
@@ -719,5 +719,42 @@ public class AcorazadosTests
         
         accionDeDisparar.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("El juego no ha comenzado.");
+    }
+    
+    //
+    [Fact]
+    public void Si_UnJugadorRealizaVariosDisparos_Debe_RegistrarElNumeroTotalDeTiros()
+    {
+        var acorazados = new Acorazados();
+        acorazados.AgregarJugador("jugador 1");
+        acorazados.AgregarJugador("jugador 2");
+
+        var j1 = acorazados.BuscarJugador("jugador 1");
+        j1.AgregarCarrier(9, 0, Orientacion.Horizontal);
+        j1.AgregarDestroyer(0, 1, Orientacion.Vertical);
+        j1.AgregarDestroyer(3, 1, Orientacion.Horizontal);
+        j1.AgregarGunShip(7, 1);
+        j1.AgregarGunShip(8, 8);
+        j1.AgregarGunShip(5, 1);
+        j1.AgregarGunShip(4, 3);
+        
+        var j2 = acorazados.BuscarJugador("jugador 2");
+        j2.AgregarCarrier(9, 0, Orientacion.Horizontal);
+        j2.AgregarDestroyer(0, 1, Orientacion.Vertical);
+        j2.AgregarDestroyer(8, 5, Orientacion.Horizontal);
+        j2.AgregarGunShip(7, 1);
+        j2.AgregarGunShip(6, 5);
+        j2.AgregarGunShip(3, 7);
+        j2.AgregarGunShip(4, 3);
+  
+        
+        acorazados.IniciarJuego();
+
+        acorazados.Disparar(0, 0); 
+        acorazados.Disparar(0, 0); 
+        acorazados.Disparar(1, 1); 
+        
+        j1.DisparosTotales.Should().Be(2);
+        j2.DisparosTotales.Should().Be(1);
     }
 }
