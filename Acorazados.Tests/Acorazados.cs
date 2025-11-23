@@ -38,8 +38,7 @@ public class Acorazados
         {
             throw new InvalidOperationException("El juego no ha comenzado.");
         }
-        var jugadorActual = EsTurnoJugador1 ? Jugadores[0] : Jugadores[1];
-        jugadorActual.RealizarDisparo();
+        JugadorActual.RealizarDisparo();
         Oponente.RecibirDisparo(fila, columna);
         TerminarTurno();
     }
@@ -47,6 +46,7 @@ public class Acorazados
     private int _contadorJugadores;
     private Jugador Oponente => EsTurnoJugador1 ? Jugadores[1] : Jugadores[0];
     public EstadoJuego Estado { get; private set; } = EstadoJuego.Posicionamiento;
+    private Jugador JugadorActual => EsTurnoJugador1 ? Jugadores[0] : Jugadores[1];
     private readonly string[,] _tablero;
     private readonly int _fila = 10;
     private readonly int _columna = 10;
