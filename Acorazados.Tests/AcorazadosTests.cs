@@ -826,4 +826,70 @@ public class AcorazadosTests
         j1.Fallos.Should().Be(2);
         j2.Fallos.Should().Be(0);
     }
+
+    //TIMPO
+    [Fact]
+    public void Si_UnJugadorHundeLaUltimaNaveDelOponente_Debe_GanarElJuego()
+    {
+        var acorazados = new Acorazados();
+        var aliasJugador1 = "jugador 1";
+        var aliasJugador2 = "jugador 2";
+        
+        acorazados.AgregarJugador(aliasJugador1);
+        acorazados.AgregarJugador(aliasJugador2);
+        
+        var jugador1 = acorazados.BuscarJugador(aliasJugador1);
+        jugador1.AgregarCarrier(9, 0, Orientacion.Horizontal);
+        jugador1.AgregarDestroyer(0, 1, Orientacion.Vertical);
+        jugador1.AgregarDestroyer(3, 1, Orientacion.Horizontal);
+        jugador1.AgregarGunShip(7, 1);
+        jugador1.AgregarGunShip(8, 8);
+        jugador1.AgregarGunShip(5, 1);
+        jugador1.AgregarGunShip(4, 3);
+        
+        var jugador2 = acorazados.BuscarJugador("jugador 2");
+        jugador2.AgregarCarrier(8, 5, Orientacion.Horizontal);
+        jugador2.AgregarDestroyer(7, 1, Orientacion.Vertical);
+        jugador2.AgregarDestroyer(1, 1, Orientacion.Horizontal);
+        jugador2.AgregarGunShip(7, 3);
+        jugador2.AgregarGunShip(6, 5);
+        jugador2.AgregarGunShip(3, 0);
+        jugador2.AgregarGunShip(4, 3);
+        
+        acorazados.IniciarJuego();  
+        
+        acorazados.Disparar(3, 0); // Hundir G
+        acorazados.Disparar(0, 1); 
+        acorazados.Disparar(1, 1); 
+        acorazados.Disparar(0, 2);
+        acorazados.Disparar(1, 2); 
+        acorazados.Disparar(0, 3);
+        acorazados.Disparar(1, 3); // Hundir D 
+        acorazados.Disparar(0, 4);
+        acorazados.Disparar(1, 7); 
+        acorazados.Disparar(0, 5); 
+        acorazados.Disparar(2, 7); 
+        acorazados.Disparar(0, 6);
+        acorazados.Disparar(3, 7); // Hundir D 
+        acorazados.Disparar(0, 7);
+   
+        acorazados.Disparar(4, 3); // Hundir G
+        acorazados.Disparar(0, 8);
+        acorazados.Disparar(6, 5); // Hundir g 
+        acorazados.Disparar(0, 9);
+        
+        acorazados.Disparar(8, 5); //C 
+        acorazados.Disparar(1, 0);
+        acorazados.Disparar(8, 6); // C 
+        acorazados.Disparar(1, 1);
+        acorazados.Disparar(8, 7); // C 
+        acorazados.Disparar(1, 2); //C
+        acorazados.Disparar(8, 8); // C 
+        acorazados.Disparar(1, 3);
+        
+        acorazados.Disparar(7, 3); //Hundir ultimo g
+        
+        acorazados.Ganador.Should().Be(aliasJugador1);
+        acorazados.Estado.Should().Be(EstadoJuego.Finalizado);
+    }
 }

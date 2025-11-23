@@ -46,6 +46,8 @@ public class Acorazados
     private Jugador Oponente => EsTurnoJugador1 ? Jugadores[1] : Jugadores[0];
     public EstadoJuego Estado { get; private set; } = EstadoJuego.Posicionamiento;
     private Jugador JugadorActual => EsTurnoJugador1 ? Jugadores[0] : Jugadores[1];
+    public string Ganador { get; set; }
+
     private readonly string[,] _tablero;
     private readonly int _fila = 10;
     private readonly int _columna = 10;
