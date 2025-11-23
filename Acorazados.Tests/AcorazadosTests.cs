@@ -795,7 +795,6 @@ public class AcorazadosTests
     [Fact]
     public void Si_UnJugadorDisparaAlAgua_Debe_RegistrarElNumeroDeFallos()
     {
-        // Arrange
         var acorazados = new Acorazados();
         acorazados.AgregarJugador("jugador 1");
         acorazados.AgregarJugador("jugador 2");
@@ -821,11 +820,10 @@ public class AcorazadosTests
         acorazados.IniciarJuego();
   
         acorazados.Disparar(7, 2); 
-        acorazados.Disparar(0, 0); 
+        acorazados.Disparar(3, 1); 
         acorazados.Disparar(7, 7); 
         
         j1.Fallos.Should().Be(2);
         j2.Fallos.Should().Be(0);
     }
-
 }

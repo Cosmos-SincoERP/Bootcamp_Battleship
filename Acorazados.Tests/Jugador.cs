@@ -27,6 +27,8 @@ public class Jugador
         var resultado = oponente.RecibirDisparo(fila, columna);
         if (resultado is "x" or "X")
             Aciertos++;
+        if (resultado == "o")
+            Fallos++;
     }
 
     public string ObtenerElemento(int fila, int columna) => Tablero[fila, columna];
