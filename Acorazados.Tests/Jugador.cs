@@ -36,7 +36,7 @@ public class Jugador
             LanzaExcepcionSiSuperaLimiteTipoNave();
         if (EstaNavePosicionadaEnCoordenada(fila, columna))
             LanzarExepcionPorNaveSuperpuesta();
-        Tablero[fila, columna] = new GunShip().Valor;
+        PosicionarNave(new GunShip(), Orientacion.Horizontal, fila, columna);
         _cantidadGunships++;
     }
 
@@ -88,16 +88,14 @@ public class Jugador
         if (EstaCasillaConDisparo(x, y))
             LanzarExcepcionNoSePuedeDispararALaMismaCoordenada();
         var casilla = ObtenerElemento(x, y);
-        if (casilla is "d" or "c")
+        if (casilla is "d" or "c" or "g")
         {
             Tablero[x, y] = "x";
-            MarcaNaveHundida(x, y);
+            if (MarcaNaveHundida(x, y))
+            {
+                return "X";
+            }
             return "x";
-        }
-        else if (casilla == "g")
-        {
-            Tablero[x, y] = "X";
-            return "X";
         }
         Tablero[x, y] = "o";
         return "o";
@@ -112,19 +110,20 @@ public class Jugador
         return carriersListos && destroyersListos && gunshipsListos;
     }
 
-    private void MarcaNaveHundida(int fila, int columna)
+    private bool MarcaNaveHundida(int fila, int columna)
     {
         var nave = _naves.FirstOrDefault(nave =>
             nave.Posiciones.Any(posicion => posicion.fila == fila && posicion.columna == columna));
         if (nave == null)
-            return;
+            return false;
         if (!EsNaveHundida(nave))
-            return;
+            return false;
 
         foreach (var posicion in nave.Posiciones)
         {
             Tablero[posicion.fila, posicion.columna] = "X";
         }
+        return true;
     }
 
     private bool EsNaveHundida(NavePosicionada nave)
