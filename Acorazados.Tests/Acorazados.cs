@@ -38,8 +38,7 @@ public class Acorazados
         {
             throw new InvalidOperationException("El juego no ha comenzado.");
         }
-        JugadorActual.RealizarDisparo();
-        Oponente.RecibirDisparo(fila, columna);
+        JugadorActual.DispararA(Oponente, fila, columna);
         TerminarTurno();
     }
 

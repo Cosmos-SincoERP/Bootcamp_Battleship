@@ -20,9 +20,12 @@ public class Jugador
         Alias = alias;
     }
 
-    public void RealizarDisparo()
+    public void DispararA(Jugador oponente, int fila, int columna)
     {
         DisparosTotales++;
+        var resultado = oponente.RecibirDisparo(fila, columna);
+        if (resultado is "x" or "X")
+            Aciertos++;
     }
 
     public string ObtenerElemento(int fila, int columna) => Tablero[fila, columna];
@@ -80,19 +83,24 @@ public class Jugador
         return tablero;
     }
 
-    public void RecibirDisparo(int x, int y)
+    public string RecibirDisparo(int x, int y)
     {
         if (EstaCasillaConDisparo(x, y))
             LanzarExcepcionNoSePuedeDispararALaMismaCoordenada();
         var casilla = ObtenerElemento(x, y);
         if (casilla is "d" or "c")
+        {
             Tablero[x, y] = "x";
+            MarcaNaveHundida(x, y);
+            return "x";
+        }
         else if (casilla == "g")
+        {
             Tablero[x, y] = "X";
-        else
-            Tablero[x, y] = "o";
-
-        MarcaNaveHundida(x, y);
+            return "X";
+        }
+        Tablero[x, y] = "o";
+        return "o";
     }
 
     public bool HaPosicionadoTodasLasNaves()
@@ -128,7 +136,8 @@ public class Jugador
 
     private bool EstaCasillaConDisparo(int x, int y)
     {
-        return Tablero[x, y] == "x";
+        var casilla = Tablero[x, y];
+        return casilla == "x" || casilla == "X" || casilla == "o";
     }
 
     private bool EsMaxCantidadGunShipsPermitido() => _cantidadGunships >= new GunShip().MaxPermitidos;

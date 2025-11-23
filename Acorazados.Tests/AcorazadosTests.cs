@@ -786,9 +786,9 @@ public class AcorazadosTests
         acorazados.IniciarJuego();
         acorazados.Disparar(0, 0); 
         acorazados.Disparar(8, 8); 
-        acorazados.Disparar(8, 8); 
+        acorazados.Disparar(7, 1); 
         
         j1.Aciertos.Should().Be(1);
-        j2.Aciertos.Should().Be(0);
+        j2.Aciertos.Should().Be(1);
     }
 }
