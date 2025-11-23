@@ -12,6 +12,7 @@ public class Jugador
     public string[,] Tablero { get; init; }
     public int DisparosTotales { get; private set; }
     public int Aciertos { get; private set; }
+    public int Fallos { get; set; }
 
     private List<NavePosicionada> _naves = new();
 
