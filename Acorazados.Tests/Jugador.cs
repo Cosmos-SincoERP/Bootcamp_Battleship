@@ -25,9 +25,9 @@ public class Jugador
     {
         DisparosTotales++;
         var resultado = oponente.RecibirDisparo(fila, columna);
-        if (resultado is "x" or "X")
+        if (resultado is ResultadoDisparo.Tocado or ResultadoDisparo.Hundido)
             Aciertos++;
-        if (resultado == "o")
+        if (resultado == ResultadoDisparo.Agua)
             Fallos++;
     }
 
@@ -86,22 +86,22 @@ public class Jugador
         return tablero;
     }
 
-    public string RecibirDisparo(int x, int y)
+    public ResultadoDisparo RecibirDisparo(int x, int y)
     {
         if (EstaCasillaConDisparo(x, y))
             LanzarExcepcionNoSePuedeDispararALaMismaCoordenada();
         var casilla = ObtenerElemento(x, y);
         if (casilla is "d" or "c" or "g")
         {
-            Tablero[x, y] = "x";
+            Tablero[x, y] = ResultadoDisparo.Tocado.ValorDisparo();
             if (MarcaNaveHundida(x, y))
             {
-                return "X";
+                return ResultadoDisparo.Hundido;
             }
-            return "x";
+            return ResultadoDisparo.Tocado;
         }
-        Tablero[x, y] = "o";
-        return "o";
+        Tablero[x, y] = ResultadoDisparo.Agua.ValorDisparo();
+        return ResultadoDisparo.Agua;
     }
 
     public bool HaPosicionadoTodasLasNaves()
@@ -124,7 +124,7 @@ public class Jugador
 
         foreach (var posicion in nave.Posiciones)
         {
-            Tablero[posicion.fila, posicion.columna] = "X";
+            Tablero[posicion.fila, posicion.columna] = ResultadoDisparo.Hundido.ValorDisparo();
         }
         return true;
     }
@@ -132,14 +132,14 @@ public class Jugador
     private bool EsNaveHundida(NavePosicionada nave)
     {
         return nave.Posiciones.All(posicion =>
-            Tablero[posicion.fila, posicion.columna] == "x" || Tablero[posicion.fila, posicion.columna] == "X");
+            Tablero[posicion.fila, posicion.columna] == ResultadoDisparo.Tocado.ValorDisparo() || Tablero[posicion.fila, posicion.columna] == ResultadoDisparo.Hundido.ValorDisparo());
     }
 
 
     private bool EstaCasillaConDisparo(int x, int y)
     {
         var casilla = Tablero[x, y];
-        return casilla == "x" || casilla == "X" || casilla == "o";
+        return casilla == ResultadoDisparo.Tocado.ValorDisparo() || casilla == ResultadoDisparo.Hundido.ValorDisparo() || casilla == ResultadoDisparo.Agua.ValorDisparo();
     }
 
     private bool EsMaxCantidadGunShipsPermitido() => _cantidadGunships >= new GunShip().MaxPermitidos;
