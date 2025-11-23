@@ -61,7 +61,9 @@ public class Battleship
     private List<Nave> _navesHundidasJugador1 = new();
     
     private List<Nave> _navesHundidasJugador2 = new();
-
+    
+    private HashSet<(int fila, int columna)> _disparosRealizados = new();
+        
     public void AddPlayer(string name)
     {
         if (_jugador1 == "")
@@ -129,7 +131,9 @@ public class Battleship
     public string? Disparar(int fila, int columna)
     {
         ValidarDisparo(fila, columna);
-
+        
+        _disparosRealizados.Add((fila, columna));
+        
         var (tableroObjetivo, navesObjetivo) = ObtenerTableroYNavesObjetivo();
     
         Nave? naveImpactada = UbicarDisparosEnTablero(fila, columna, tableroObjetivo, navesObjetivo);
@@ -156,6 +160,9 @@ public class Battleship
 
         if (!EsUnaCoordenadaValida(fila, columna))
             throw new ApplicationException("Las coordenadas dadas para el disparo estan fuera del limite del tablero");
+        
+        if (_disparosRealizados.Contains((fila, columna)))
+            throw new ApplicationException("Ya disparaste en esa coordenada");
     }
 
     private static bool EsUnaCoordenadaValida(int fila, int columna) => fila >= 0 && fila <= 9 && columna >= 0 && columna <= 9;
