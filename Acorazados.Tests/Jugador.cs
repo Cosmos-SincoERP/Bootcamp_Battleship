@@ -10,13 +10,18 @@ public class Jugador
 
     public string Alias { get; private set; }
     public string[,] Tablero { get; init; }
-    public object DisparosTotales { get; set; }
+    public int DisparosTotales { get; private set; }
 
     private List<NavePosicionada> _naves = new();
 
     public Jugador(string alias)
     {
         Alias = alias;
+    }
+
+    public void RealizarDisparo()
+    {
+        DisparosTotales++;
     }
 
     public string ObtenerElemento(int fila, int columna) => Tablero[fila, columna];

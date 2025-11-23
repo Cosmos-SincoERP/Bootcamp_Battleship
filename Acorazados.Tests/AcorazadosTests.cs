@@ -752,9 +752,11 @@ public class AcorazadosTests
 
         acorazados.Disparar(0, 0); 
         acorazados.Disparar(0, 0); 
+        acorazados.Disparar(2, 2); 
         acorazados.Disparar(1, 1); 
+        acorazados.Disparar(2, 3); 
         
-        j1.DisparosTotales.Should().Be(2);
-        j2.DisparosTotales.Should().Be(1);
+        j1.DisparosTotales.Should().Be(3);
+        j2.DisparosTotales.Should().Be(2);
     }
 }
