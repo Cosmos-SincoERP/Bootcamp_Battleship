@@ -864,13 +864,13 @@ public class AcorazadosTests
         acorazados.Disparar(0, 2);
         acorazados.Disparar(1, 2); 
         acorazados.Disparar(0, 3);
-        acorazados.Disparar(1, 3); // Hundir D 
+        acorazados.Disparar(1, 3); // Hundir D
         acorazados.Disparar(0, 4);
-        acorazados.Disparar(1, 7); 
-        acorazados.Disparar(0, 5); 
-        acorazados.Disparar(2, 7); 
+        acorazados.Disparar(7, 1);
+        acorazados.Disparar(0, 5);
+        acorazados.Disparar(8, 1);
         acorazados.Disparar(0, 6);
-        acorazados.Disparar(3, 7); // Hundir D 
+        acorazados.Disparar(9, 1); // Hundir D
         acorazados.Disparar(0, 7);
    
         acorazados.Disparar(4, 3); // Hundir G

@@ -39,7 +39,11 @@ public class Acorazados
             throw new InvalidOperationException("El juego no ha comenzado.");
         }
         JugadorActual.DispararA(Oponente, fila, columna);
-        TerminarTurno();
+        VerificarVictoria();
+        if (Estado != EstadoJuego.Finalizado)
+        {
+            TerminarTurno();
+        }
     }
 
     private int _contadorJugadores;
@@ -56,6 +60,15 @@ public class Acorazados
     private bool EsCantidadFilasIgualA(int fila) => _tablero.GetLength(0) == fila;
     private bool ExisteJugador(string aliasJugador) => BuscarJugador(aliasJugador) is { } jugador;
     private void TerminarTurno() => EsTurnoJugador1 = !EsTurnoJugador1;
+
+    private void VerificarVictoria()
+    {
+        if (Oponente.TodasLasNavesHundidas())
+        {
+            Ganador = JugadorActual.Alias;
+            Estado = EstadoJuego.Finalizado;
+        }
+    }
 
     public void IniciarJuego()
     {

@@ -113,6 +113,13 @@ public class Jugador
         return carriersListos && destroyersListos && gunshipsListos;
     }
 
+    public bool TodasLasNavesHundidas()
+    {
+        if (_naves.Count == 0)
+            return false;
+        return _naves.All(nave => EsNaveHundida(nave));
+    }
+
     private bool MarcaNaveHundida(int fila, int columna)
     {
         var nave = _naves.FirstOrDefault(nave =>
