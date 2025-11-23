@@ -8,22 +8,18 @@ public class JuegoAcorazados
     private List<Barco> _listaBarcosJugador1 = [];
     private List<Barco> _listaBarcosJugador2 = [];
     private int _jugadorActivo;
-    private int _jugadorContrincante = 1;
+    private int _jugadorEnemigo = 1;
     private bool _juegoTerminado;
 
     public void AgregarJugador()
     {
-        if (_jugadores.Count == 2)
-            throw new Exception("No se permite agregar mas jugadores al juego");
-
+        ValidacionesParaAgregarJugador();
         _jugadores.Add(new Jugador(AsignarNombreJugadorPredeterminado()));
     }
-
+    
     public void Iniciar(List<Barco> barcosJugador1, List<Barco> barcosJugador2)
     {
-        if (_jugadores.Count != 2)
-            throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
-
+        ValidarCantidadDeJugadores();
         ValidarCantidadBarcos(barcosJugador1, _jugadores[0].Nombre);
         ValidarCantidadBarcos(barcosJugador2, _jugadores[1].Nombre);
 
@@ -36,7 +32,7 @@ public class JuegoAcorazados
         
         var mensaje = string.Empty;
         var disparoAcertado = false;
-        var tablero = ObtenerJugadorContrincante().Tablero;
+        var tablero = ObtenerJugadorEnemigo().Tablero;
         var barco = BuscarBarco(x, y);
         
         if (barco != null)
@@ -64,11 +60,11 @@ public class JuegoAcorazados
 
     public void FinalizarTurno()
     {
-        if(ListaBarcosJugadorContrincante().All(barco => barco.SeHundio()))
+        if(ListaBarcosJugadorEnemigo().All(barco => barco.SeHundio()))
             _juegoTerminado = true;
         
-        _jugadorActivo = _jugadorActivo == 0 ? 1 : 0;
-        _jugadorContrincante = _jugadorContrincante == 0 ? 1 : 0;
+        CambiarJugadorActivo();
+        CambiarJugadorEnemigo();
     }
 
     public string Imprimir()
@@ -87,7 +83,7 @@ public class JuegoAcorazados
         }
         else
         {
-            visualizarTablero += VisualizarTablero(visualizarTablero, ObtenerJugadorContrincante().Tablero);
+            visualizarTablero += VisualizarTablero(visualizarTablero, ObtenerJugadorEnemigo().Tablero);
         }
         
         return visualizarTablero;
@@ -105,10 +101,26 @@ public class JuegoAcorazados
         }
         return visualizar;
     }
-
-    private Jugador ObtenerJugadorActivo() => _jugadores[_jugadorActivo];
-    private Jugador ObtenerJugadorContrincante() => _jugadores[_jugadorContrincante];
+    
+    private void ValidacionesParaAgregarJugador()
+    {
+        if (_jugadores.Count == 2)
+            throw new Exception("No se permite agregar mas jugadores al juego");
+    }
+    
+    private void ValidarCantidadDeJugadores()
+    {
+        if (_jugadores.Count != 2)
+            throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
+    }
+    
     private string AsignarNombreJugadorPredeterminado() => _jugadores.Count == 1 ? "2" : "1";
+    private void CambiarJugadorActivo() => _jugadorActivo = _jugadorActivo == 0 ? 1 : 0;
+    private void CambiarJugadorEnemigo() => _jugadorEnemigo = _jugadorEnemigo == 0 ? 1 : 0;
+    private Jugador ObtenerJugadorActivo() => _jugadores[_jugadorActivo];
+    private Jugador ObtenerJugadorEnemigo() => _jugadores[_jugadorEnemigo];
+    private List<Barco> ListaBarcosJugadorEnemigo() => _jugadorEnemigo == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
+    private Barco? BuscarBarco(int x, int y) => ListaBarcosJugadorEnemigo().FirstOrDefault(barco => barco.EstaEnLaCoordenada(new(x, y)));
     
     private void ValidarCantidadBarcos(List<Barco> barcos, string nombreJugador)
     {
@@ -134,6 +146,4 @@ public class JuegoAcorazados
             throw new Exception(string.Format(faltanLosPortaviones, nombreJugador));
     }
     
-    private List<Barco> ListaBarcosJugadorContrincante() => _jugadorContrincante == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
-    private Barco? BuscarBarco(int x, int y) => ListaBarcosJugadorContrincante().FirstOrDefault(barco => barco.EstaEnLaCoordenada(new(x, y)));
 }
