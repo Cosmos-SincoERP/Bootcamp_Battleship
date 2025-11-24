@@ -24,9 +24,8 @@ public class Tablero(int tamaño)
         return visualizar;
     }
 
-    public bool Buscar(Coordenada coordenada)
+    public char Buscar(Coordenada coordenada)
     {
-        char valor = _plataforma[coordenada.X, coordenada.Y];
-        return valor == 'X' || valor == 'o' || valor == 'x';
+        return _plataforma[coordenada.X, coordenada.Y];   
     }
 }

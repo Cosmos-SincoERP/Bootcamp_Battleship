@@ -43,12 +43,27 @@ public class Mocks
         if (!disparos)
             return juegoAcorazado;
 
+        var random = new Random();
+
+        var coordenadasDisparosJugador1 = new List<Coordenada>();
+        for (int x = 0; x < 10; x++)
+        {
+            for (int y = 0; y < 10; y++)
+            {
+                coordenadasDisparosJugador1.Add(new Coordenada(x, y));
+            }
+        }
+
+
+
         foreach (var barcos in barcosJugador1)
         {
             var tamaño = _tamañoBarcos[barcos.GetType().Name];
             for (var i = 0; i < tamaño; i++)
             {
-                juegoAcorazado.Disparar(new Coordenada(0 + new Random().Next(0, 10), 0 + new Random().Next(0, 10)));
+                var coordenada = coordenadasDisparosJugador1[0];
+                coordenadasDisparosJugador1.RemoveAt(0);
+                juegoAcorazado.Disparar(coordenada);
                 juegoAcorazado.FinalizarTurno();
 
                 if (barcos.Orientacion == OrientacionBarco.Horizontal)

@@ -1,3 +1,4 @@
+using System.Drawing;
 using Test.BattleShip.Dominio.Barcos;
 
 namespace Test.BattleShip.Dominio;
@@ -38,8 +39,7 @@ public class Juego
         var barco = jugadorEnemigo.BuscarBarco(coordenada);
         var tablero = jugadorEnemigo.Tablero;
 
-        if (tablero.Buscar(coordenada))
-            throw new Exception($"El jugador ya lanzo un disparo en la coordenada ({coordenada.X},{coordenada.Y})");
+        ValidarSiTableroYaTieneUnDisparoEnCoordenada(coordenada, tablero);
 
         if (barco != null)
         {
@@ -57,6 +57,16 @@ public class Juego
         MarcarDisparoRealizadoEnTurno();
 
         return mensaje;
+    }
+
+    private static void ValidarSiTableroYaTieneUnDisparoEnCoordenada(Coordenada coordenada, Tablero tablero)
+    {
+        List<char> valoresABuscarEnTablero = new() { 'X', 'o', 'x' };
+
+        var valorEnCoordenada = tablero.Buscar(coordenada);
+
+        if (valoresABuscarEnTablero.Contains(valorEnCoordenada))
+            throw new Exception($"El jugador ya lanzo un disparo en la coordenada ({coordenada.X},{coordenada.Y})");
     }
 
     public void FinalizarTurno()
