@@ -58,12 +58,11 @@ public class Jugador(string nombre)
 
     private static void ValidarCoordenadas(List<Barco> barcos, string nombreJugador)
     {
-        barcos.Where(barco => barco.Coordenada.X > 9)
+        barcos.Where(barco => barco.Coordenada.X > 9 || barco.Coordenada.X < 0)
             .ToList()
             .ForEach(barco =>
             {
                 throw new Exception($"El jugador {nombreJugador}, ha enviado un barco con coordenadas invalidas ({barco.Coordenada.X},{barco.Coordenada.Y})");
             });
-
     }
 }
