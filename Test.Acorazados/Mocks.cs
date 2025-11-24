@@ -154,4 +154,29 @@ public class Mocks
 
         return juegoAcorazado;
     }
+
+    internal static object MockIniciarJuegoConBarcoEnCoordenadaNoValidas()
+    {
+        var juegoAcorazado = new Juego();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
+        var barcosJugador1 = new List<Barco>
+        {
+            new Cañonero(new(-1, 1)),
+            new Cañonero(new(1, 1)),
+            new Cañonero(new(5, 2)),
+            new Cañonero(new(7, 6)),
+            new Destructor(new(1, 15), OrientacionBarco.Horizontal),
+            new Destructor(new(7, 2), OrientacionBarco.Vertical),
+            new PortaAviones(new(2, 7), OrientacionBarco.Horizontal)
+        };
+        var barcosJugador2 = new List<Barco>
+        {
+            new Cañonero(new(1, 8))
+        };
+
+        juegoAcorazado.Iniciar([(0, barcosJugador1), (1, barcosJugador2)]);
+
+        return juegoAcorazado;
+    }
 }
