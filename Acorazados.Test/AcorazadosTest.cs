@@ -592,16 +592,138 @@ public class AcorazadosTest
         acorazados.Disparar(1, 1);
         acorazados.Disparar(1, 3);
         acorazados.Disparar(1, 2);
-        
+
         var reporteGenerado1 = acorazados.ObtenerJugador(0).ImprimirReporte();
         var reporteGenerado = acorazados.ObtenerJugador(1).ImprimirReporte();
-        
+
         reporteGenerado.Should().Contain("Barcos hundidos: [ " +
                                          "cañonero: (1,1)," +
                                          "cañonero: (1,2) ]");
 
     }
-    
-    
-    
+
+    [Fact]
+    public void Si_SeJuegaUnaPartidaCompletaConMultiplesBarcosYDisparos_Debe_ImprimirReporteCompletoDeAmbosJugadores()
+    {
+        var acorazados = _acorazadosBuilder
+            .ConstruirJugadorUno("David", tablero =>
+            {
+                tablero.AgregarBarco(Barcos.Canonero, 1,1, Orientacion.Horizontal);
+                tablero.AgregarBarco(Barcos.Canonero, 3,3, Orientacion.Horizontal);
+                tablero.AgregarBarco(Barcos.Destructor, 5,5, Orientacion.Horizontal);
+                tablero.AgregarBarco(Barcos.Destructor, 7,7, Orientacion.Vertical);
+            })
+            .ConstruirJugadorDos("Diego", tablero =>
+            {
+                tablero.AgregarBarco(Barcos.Canonero, 2,2, Orientacion.Horizontal);
+                tablero.AgregarBarco(Barcos.Canonero, 8,8, Orientacion.Horizontal);
+                tablero.AgregarBarco(Barcos.Destructor, 4,4, Orientacion.Vertical);
+                tablero.AgregarBarco(Barcos.Portaaviones, 0,0, Orientacion.Horizontal);
+            }).Construir();
+
+        acorazados.Iniciar();
+
+        // Jugador 1 dispara al Jugador 2
+        acorazados.Disparar(2, 2); // Canonero - Hundido
+
+        // Jugador 2 dispara al Jugador 1
+        acorazados.Disparar(9, 9); // Agua
+
+        // Jugador 1 dispara al Jugador 2
+        acorazados.Disparar(9, 9); // Agua
+
+        // Jugador 2 dispara al Jugador 1
+        acorazados.Disparar(1, 1); // Canonero - Hundido
+
+        // Jugador 1 dispara al Jugador 2
+        acorazados.Disparar(4, 4); // Destructor - Tiro exitoso
+
+        // Jugador 2 dispara al Jugador 1
+        acorazados.Disparar(3, 3); // Canonero - Hundido
+
+        // Jugador 1 dispara al Jugador 2
+        acorazados.Disparar(5, 4); // Destructor - Tiro exitoso
+
+        // Jugador 2 dispara al Jugador 1
+        acorazados.Disparar(5, 5); // Destructor - Tiro exitoso
+
+        // Jugador 1 dispara al Jugador 2
+        acorazados.Disparar(6, 4); // Destructor - Hundido
+
+        // Jugador 2 dispara al Jugador 1
+        acorazados.Disparar(6, 5); // Destructor - Tiro exitoso
+
+        // Jugador 1 dispara al Jugador 2
+        acorazados.Disparar(0, 0); // Portaaviones - Tiro exitoso
+
+        // Jugador 2 dispara al Jugador 1
+        acorazados.Disparar(7, 5); // Destructor - Hundido
+
+        // Jugador 1 dispara al Jugador 2
+        acorazados.Disparar(1, 0); // Portaaviones - Tiro exitoso
+
+        // Jugador 2 dispara al Jugador 1
+        acorazados.Disparar(7, 7); // Destructor - Tiro exitoso
+
+        // Jugador 1 dispara al Jugador 2
+        acorazados.Disparar(2, 0); // Portaaviones - Tiro exitoso
+
+        // Jugador 2 dispara al Jugador 1
+        acorazados.Disparar(8, 7); // Destructor - Tiro exitoso
+
+        // Jugador 1 dispara al Jugador 2
+        acorazados.Disparar(3, 0); // Portaaviones - Hundido
+
+        // Jugador 2 dispara al Jugador 1
+        acorazados.Disparar(9, 7); // Destructor - Hundido
+        
+        // Jugador 1 dispara al Jugador 2
+        acorazados.Disparar(8, 8); // Portaaviones - Hundido
+        
+        // Jugador 2 dispara al Jugador 1
+        acorazados.Disparar(0, 1); // Destructor - Hundido
+        
+        // Jugador 1 dispara al Jugador 2
+        acorazados.Disparar(4, 5); // Destructor - Tiro exitoso
+        
+        // Jugador 2 dispara al Jugador 1
+        acorazados.Disparar(0, 2); // Destructor - Hundido
+        
+        // Jugador 1 dispara al Jugador 2
+        acorazados.Disparar(4, 6); // Destructor - Tiro exitoso
+
+      
+        acorazados.EstadoJuego.Should().Be(EstadoJuego.Finalizado);
+        
+        var reporteJugador1 = acorazados.ObtenerJugador(0).ImprimirReporte();
+        Console.WriteLine("\n=== REPORTE JUGADOR 1 (DAVID) ===");
+        Console.WriteLine(reporteJugador1);
+        
+        var reporteJugador2 = acorazados.ObtenerJugador(1).ImprimirReporte();
+        Console.WriteLine("\n=== REPORTE JUGADOR 2 (DIEGO) - GANADOR ===");
+        Console.WriteLine(reporteJugador2);
+
+        // Verificar estadísticas del Jugador 1
+        reporteJugador1.Should().Contain("Disparos totales: 11");
+        reporteJugador1.Should().Contain("Exitosos: 6");
+        reporteJugador1.Should().Contain("Fallidos: 5");
+
+        // Verificar estadísticas del Jugador 2
+        reporteJugador2.Should().Contain("Disparos totales: 12");
+        reporteJugador2.Should().Contain("Exitosos: 9");
+        reporteJugador2.Should().Contain("Fallidos: 3");
+
+        // Verificar barcos hundidos del Jugador 2
+        reporteJugador2.Should().Contain("cañonero: (2,2)");
+        reporteJugador2.Should().Contain("destructor: (4,4)");
+        reporteJugador2.Should().Contain("portaaviones: (0,0)");
+
+        // Verificar barcos hundidos del Jugador 1
+        reporteJugador1.Should().Contain("cañonero: (1,1)");
+        reporteJugador1.Should().Contain("cañonero: (3,3)");
+        reporteJugador1.Should().Contain("destructor: (5,5)");
+    }
+
+
+
 }
