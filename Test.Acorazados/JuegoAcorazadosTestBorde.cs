@@ -61,4 +61,17 @@ public class JuegoAcorazadosTestBorde
 
         juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado un barco Cañonero en la posicion (2,2) que ya esta ocupada");
     }
+
+    [Fact]
+    public void Si_Eljugador1PosionaDosBarcoCañoneroDondeYaPosicionanorOtroBarcoEnLaMismaPosicion_Debe_LanzarExcepcion()
+    {
+        var tablero = new char[10, 10];
+        tablero[0, 0] = 'o';
+        var tableroEsperado = Mocks.TableroEsperado(tablero);
+        var juegoAcorazado = () => Mocks.MockIniciarJuegoConBarcoDeDiferentesTipoEnPosicionesOcupadas();
+
+
+
+        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado un barco en una posicion que ya esta ocupada, Cañonero (2,2) ");
+    }
 }
