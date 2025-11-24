@@ -102,7 +102,6 @@ public class Acorazados
         {
             resultado += $"Gunship: ({GunShips.fila},{GunShips.columna})\r\n";
         }
-
         resultado += "]";
         return resultado;
     }
