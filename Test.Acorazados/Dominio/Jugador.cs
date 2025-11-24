@@ -11,7 +11,7 @@ public class Jugador(string nombre)
     public string Nombre { get; } = nombre;
     public Tablero Tablero { get; } = new(10);
 
-    public void AgregarDisparo(bool esAcertado)
+    public void AgregarDisparoRealizado(bool esAcertado)
     {
         _cantidadDisparos++;
         if (esAcertado)
@@ -36,19 +36,10 @@ public class Jugador(string nombre)
 
     public (bool, string) AtaqueDelJugadorEnemigo(Coordenada coordenada)
     {
-        var mensaje = string.Empty;
-        var disparoAcertado = false;
         var barco = BuscarBarco(coordenada);
-        if (barco != null)
-        {
-            disparoAcertado = true;
-            mensaje = VerificarSiElBarcoFueHundidoYMarcarEnElTablero(coordenada, barco);
-        }
-        else
-            Tablero.MarcarRepresentacionEnElTablero(coordenada, 'o');
-        return (disparoAcertado,mensaje);
+        return MarcarDisparo(coordenada, barco);
     }
-    
+
     public bool TodosLosBarcosEstanHundidos() => _barcos.All(barco => barco.SeHundio());
 
     public string ObtenerInformacionDeBarcosHundidos()
@@ -122,6 +113,21 @@ public class Jugador(string nombre)
             throw new Exception($"El jugador {nombre} ha enviado barcos que existen en la coordenada:" + string.Join(", ", coordenadasRepetidas));
     }
     
+    private (bool, string) MarcarDisparo(Coordenada coordenada, Barco? barco)
+    {
+        var mensaje = string.Empty;
+        var disparoAcertado = false;
+        if (barco != null)
+        {
+            disparoAcertado = true;
+            mensaje = VerificarSiElBarcoFueHundidoYMarcarEnElTablero(coordenada, barco);
+        }
+        else
+            Tablero.MarcarRepresentacionEnElTablero(coordenada, 'o');
+
+        return (disparoAcertado, mensaje);
+    }
+    
     private string VerificarSiElBarcoFueHundidoYMarcarEnElTablero(Coordenada coordenada, Barco barco)
     {
         var mensaje = string.Empty;
@@ -140,7 +146,4 @@ public class Jugador(string nombre)
 
         return $"Se hundio un barco en la coordenada ({barco.Coordenada.X},{barco.Coordenada.Y})";
     }
-
-
-
 }

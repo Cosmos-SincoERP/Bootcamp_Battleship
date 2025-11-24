@@ -5,6 +5,7 @@ public class Tablero(int tamaño)
     private readonly char[,] _plataforma = new char[tamaño, tamaño];
 
     public int ObtenerTamañoEnX() => _plataforma.GetLength(0);
+    
     public int ObtenerTamañoEnY() => _plataforma.GetLength(1);
 
     public bool HayUnaMarca(Coordenada coordenada) => _plataforma[coordenada.X, coordenada.Y] != '\0';

@@ -114,7 +114,7 @@ public class Juego
         var jugadorActivo = ObtenerJugadorActivo();
         var jugadorEnemigo = ObtenerJugadorEnemigo();
         var resultado = jugadorEnemigo.AtaqueDelJugadorEnemigo(coordenada);
-        jugadorActivo.AgregarDisparo(resultado.Item1);
+        jugadorActivo.AgregarDisparoRealizado(resultado.Item1);
         return resultado.Item2;
     }
 }
