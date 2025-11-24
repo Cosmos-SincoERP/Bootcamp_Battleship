@@ -405,4 +405,20 @@ public class JuegoAcorazadosTest
 
         juegoAcorazado.Imprimir().Should().Contain("PortaAviones: (2,7)");
     }
+    
+    [Fact]
+    public void Si_Eljugador1NoHundeElPortaAvion_Debe_MostrarEnElInformeDeBatallaLasCasillasDelPortaAvionQueNoFueImpactada()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+
+        juegoAcorazado.Imprimir().Should().Contain(" c ");
+    }
+    
+    [Fact]
+    public void Si_Eljugador1NoHundeElPortaAvion_Debe_MostrarEnElInformeDeBatallaLasCasillasDelDesctructorQueNoFueImpactada()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+
+        juegoAcorazado.Imprimir().Should().Contain(" d ");
+    }
 }
