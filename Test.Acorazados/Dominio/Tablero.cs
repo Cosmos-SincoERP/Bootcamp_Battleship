@@ -1,3 +1,4 @@
+
 namespace Test.BattleShip.Dominio;
 
 public class Tablero(int tamaño)
@@ -21,5 +22,11 @@ public class Tablero(int tamaño)
         }
 
         return visualizar;
+    }
+
+    public bool Buscar(Coordenada coordenada)
+    {
+        char valor = _plataforma[coordenada.X, coordenada.Y];
+        return valor == 'o';
     }
 }

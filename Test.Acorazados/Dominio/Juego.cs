@@ -38,6 +38,9 @@ public class Juego
         var barco = jugadorEnemigo.BuscarBarco(coordenada);
         var tablero = jugadorEnemigo.Tablero;
 
+        if(tablero.Buscar(coordenada))
+            throw new Exception($"El jugador ya lanzo un disparo en la coordenada (0,4)");
+
         if (barco != null)
         {
             disparoAcertado = true;
