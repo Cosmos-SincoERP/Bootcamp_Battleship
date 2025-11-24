@@ -1,9 +1,12 @@
-﻿namespace BattleshipsTDD;
+﻿using System.Collections.ObjectModel;
+
+namespace BattleshipsTDD;
 
 public class Jugador
 {
     public char[,] Tablero { get; set; }
-    public Informe Informe { private get; set; } = new Informe();
+    private readonly Informe _Informe = new();
+    private Barco _barcoAsignado;
 
     public Jugador(char[,] tableroInicial)
     {
@@ -12,39 +15,14 @@ public class Jugador
 
     public Informe ObtenerInforme()
     {
-        Informe.RepresentacionTablero = Serializador.SerializarTablero(Tablero);
-        return Informe;
-    }
-    
-    public void RecibirDisparo (bool disparaAcertado)
-    {
-        if (disparaAcertado)
-            IncrementarDisparosAsertados();
-        else
-            IncrementarDisparosFallados();
-
-        IncrementarDisparosRecibidosTotales();
-    }
-    
-    public void RegistrarBarcoUndido(TipoBarco tipoBarco,Coordenada coordenada) 
-    {
-        Informe.AgregarBarcoUndido(tipoBarco, coordenada);
+        _Informe.ModificarRepresentacionTablero(Serializador.SerializarTablero(Tablero));
+        return _Informe;
     }
 
-    private void IncrementarDisparosRecibidosTotales()
+    public void RegistrarBarco(Barco barco)
     {
-        Informe.DisparosRecibidos++;
+        _barcoAsignado = barco;
     }
 
-    private void IncrementarDisparosFallados()
-    {
-        Informe.DisparosFalladosEnemigo++;
-    }
-
-    private void IncrementarDisparosAsertados()
-    {
-        Informe.DisparosAsertadosEnemigo++;
-    }
-    
-    
+    public Barco ObtenerBarco() => _barcoAsignado;
 }

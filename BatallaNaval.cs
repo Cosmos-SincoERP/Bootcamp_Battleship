@@ -4,58 +4,30 @@ namespace BattleshipsTDD;
 
 public class BatallaNaval
 {
-    private char[,] _tableroGenerico;
-    private Dictionary<int,Jugador> _jugadores = new();
+    private char[,] _tableroVacio;
+    private Dictionary<int, Jugador> _jugadores = new();
     private int _jugadorActual;
 
     public BatallaNaval(int filasTablero = 10, int columnasTablero = 10)
     {
-        _tableroGenerico = new char[filasTablero, columnasTablero];
-        LlenarTableroGenericoConEspacios();
-    }
-
-    private void LlenarTableroGenericoConEspacios()
-    {
-        for (int i = 0; i < _tableroGenerico.GetLength(1); i++)
-        {
-            for (int j = 0; j < _tableroGenerico.GetLength(0); j++)
-            {
-                _tableroGenerico[i, j] = ' ';
-            }
-        }
-    }
-
-    public string Print(int jugador = 1)
-    {
-       return ObtenerInformeJugador(jugador).RepresentacionTablero;
-    }
-
-    private char[,] ObtenerTableroJugador(int jugador)
-    {
-        return _jugadores.GetValueOrDefault(jugador)!.Tablero;
-    }
-    private Informe ObtenerInformeJugador(int jugador)
-    {
-        return _jugadores.GetValueOrDefault(jugador).ObtenerInforme();
-    }
-    
-    private Jugador ObtenerJugador(int jugador)
-    {
-        return _jugadores.GetValueOrDefault(jugador)!;
+        _tableroVacio = new char[filasTablero, columnasTablero];
+        InicializarTableroVacio();
     }
 
     public void AddPlayer()
     {
-        _jugadores.Add(_jugadores.Count + 1, new Jugador((char[,])_tableroGenerico.Clone()));
+        _jugadores.Add(_jugadores.Count + 1, new Jugador((char[,])_tableroVacio.Clone()));
     }
 
     public void ColocarBarco(int jugador, int columna, int fila, TipoBarco tipo, TipoOrientacion? orientacion = null)
     {
         var longitudDelBarco = CalcularLogitudBarco(tipo);
         char[,] tableroActual = ObtenerTableroJugador(jugador);
+        var barco = new Barco();
 
         while (longitudDelBarco is not 0)
         {
+            barco.AgregarParte(new(fila, columna));
             tableroActual![columna, fila] = (char)tipo;
             if (orientacion == TipoOrientacion.Vertical)
                 columna++;
@@ -63,15 +35,15 @@ public class BatallaNaval
                 fila++;
             longitudDelBarco--;
         }
+
+        AgregarBarcoJugador(jugador, barco);
     }
 
-    private static int CalcularLogitudBarco(TipoBarco tipo) =>
-        tipo switch
-        {
-            TipoBarco.PortaAviones => 4,
-            TipoBarco.Destructor => 3,
-            TipoBarco.Cañonero => 1
-        };
+
+    public string Print(int jugador = 1)
+    {
+        return ObtenerInformeJugador(jugador).RepresentacionTablero;
+    }
 
     public void Start()
     {
@@ -84,14 +56,25 @@ public class BatallaNaval
         var JugadorAtacado = ObtenerJugador(identificarJugadorAAtacar);
         var posicionAtacada = JugadorAtacado.Tablero[columna, fila];
         var barcoFueInpactado = posicionAtacada != ' ';
-        
+
+        var informe = JugadorAtacado.ObtenerInforme();
+
         if (barcoFueInpactado)
         {
             if (posicionAtacada is (char)TipoBarco.PortaAviones or (char)TipoBarco.Destructor)
+            {
                 JugadorAtacado.Tablero[columna, fila] = 'x';
+                var barco = JugadorAtacado.ObtenerBarco();
+                barco.UndirParte(new(fila, columna));
+
+                if (barco.EstaElBarcoDestruido())
+                {
+                    ModificarTableroAlDestruirBarco(JugadorAtacado);
+                }
+            }
             else
             {
-                JugadorAtacado.RegistrarBarcoUndido((TipoBarco)posicionAtacada, new Coordenada(fila, columna));
+                informe.RegistrarBarcoUndido((TipoBarco)posicionAtacada, new Coordenada(fila, columna));
                 JugadorAtacado.Tablero[columna, fila] = 'X';
             }
         }
@@ -100,13 +83,71 @@ public class BatallaNaval
             JugadorAtacado.Tablero[columna, fila] = 'o';
         }
 
-        JugadorAtacado.RecibirDisparo(barcoFueInpactado);
+        RegistrarDisparoEnInforme(barcoFueInpactado, informe);
     }
+
 
     public void EndTurn()
     {
         _jugadorActual = ObtenerSiguienteJugador();
     }
+
+    public Dictionary<int, Informe> InformeGeneral()
+    {
+        return _jugadores.ToDictionary(jugador => jugador.Key, jugador => jugador.Value.ObtenerInforme());
+    }
+
+
+    private void InicializarTableroVacio()
+    {
+        for (int i = 0; i < _tableroVacio.GetLength(1); i++)
+        {
+            for (int j = 0; j < _tableroVacio.GetLength(0); j++)
+            {
+                _tableroVacio[i, j] = ' ';
+            }
+        }
+    }
+
+
+    private char[,] ObtenerTableroJugador(int jugador)
+    {
+        return _jugadores.GetValueOrDefault(jugador)!.Tablero;
+    }
+
+    private Informe ObtenerInformeJugador(int jugador)
+    {
+        return _jugadores.GetValueOrDefault(jugador).ObtenerInforme();
+    }
+
+    private Jugador ObtenerJugador(int jugador)
+    {
+        return _jugadores.GetValueOrDefault(jugador)!;
+    }
+
+
+    private void AgregarBarcoJugador(int jugador, Barco barco)
+    {
+        ObtenerJugador(jugador).RegistrarBarco(barco);
+    }
+
+    private static int CalcularLogitudBarco(TipoBarco tipo) =>
+        tipo switch
+        {
+            TipoBarco.PortaAviones => 4,
+            TipoBarco.Destructor => 3,
+            TipoBarco.Cañonero => 1
+        };
+
+
+    private static void ModificarTableroAlDestruirBarco(Jugador JugadorAtacado)
+    {
+        foreach (var parte in JugadorAtacado.ObtenerBarco().ObtenerPartes())
+        {
+            JugadorAtacado.Tablero[parte.Coordenada.Columna, parte.Coordenada.Fila] = 'X';
+        }
+    }
+
 
     private int ObtenerSiguienteJugador()
     {
@@ -114,8 +155,13 @@ public class BatallaNaval
         return _jugadorActual + 1;
     }
 
-    public Dictionary<int,Informe> InformeGeneral()
-    {    
-        return  _jugadores.ToDictionary(jugador => jugador.Key, jugador => jugador.Value.ObtenerInforme());
+    private void RegistrarDisparoEnInforme(bool disparaAcertado, Informe informe)
+    {
+        if (disparaAcertado)
+            informe.IncrementarDisparosAsertados();
+        else
+            informe.IncrementarDisparosFallados();
+
+        informe.IncrementarDisparosRecibidosTotales();
     }
 }
