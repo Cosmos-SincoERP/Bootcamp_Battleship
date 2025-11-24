@@ -134,4 +134,15 @@ public class JuegoAcorazadosTestBorde
 
         disparar.Should().ThrowExactly<Exception>().WithMessage("El juego no ha sido iniciado");
     }
+
+    [Fact]
+    public void Si_JuegoNoEstaIniciadoYSeImprime_Debe_LanzarExcepcion()
+    {
+        var juegoAcorazado = new Juego();
+
+        var disparar = () => juegoAcorazado.Imprimir();
+
+
+        disparar.Should().ThrowExactly<Exception>().WithMessage("El juego no ha sido iniciado");
+    }
 }
