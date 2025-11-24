@@ -87,6 +87,23 @@ public class Acorazados
 
     public string ImprimirReporte()
     {
-        return "";
+        var resultado = $"Total disparos:{JugadorActual.DisparosTotales}\r\n" +
+                        $"Total fallos:{JugadorActual.Fallos}\r\n" +
+                        $"Total aciertos:{JugadorActual.Aciertos}\r\n" +
+                        "Barcos hundidos:[\r\n" +
+                        $"Carrier: ({Oponente.NaveHundida.Carrier.SingleOrDefault().fila},{Oponente.NaveHundida.Carrier.SingleOrDefault().columna})\r\n";
+
+        foreach (var Destroyer in Oponente.NaveHundida.Destroyer.OrderByDescending(nave=>nave.fila))
+        {
+            resultado += $"Destroyer: ({Destroyer.fila},{Destroyer.columna})\r\n";
+        }
+
+        foreach (var GunShips in Oponente.NaveHundida.GunShips.OrderByDescending(nave=>nave.fila))
+        {
+            resultado += $"Gunship: ({GunShips.fila},{GunShips.columna})\r\n";
+        }
+
+        resultado += "]";
+        return resultado;
     }
 }

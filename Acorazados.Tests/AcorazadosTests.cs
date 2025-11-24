@@ -1070,11 +1070,11 @@ public class AcorazadosTests
                           "Barcos hundidos:[\r\n" +
                           "Carrier: (8,5)\r\n" +
                           "Destroyer: (7,1)\r\n" +
-                          "Destroyer (1,1)\r\n" +
+                          "Destroyer: (1,1)\r\n" +
                           "Gunship: (7,3)\r\n" +
                           "Gunship: (6,5)\r\n" +
-                          "Gunship: (3,0)\r\n" +
                           "Gunship: (4,3)\r\n" +
+                          "Gunship: (3,0)\r\n" +
                           "]";
 
 
