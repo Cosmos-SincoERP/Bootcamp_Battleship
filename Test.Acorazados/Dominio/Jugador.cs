@@ -7,7 +7,7 @@ public class Jugador(string nombre)
     private int _cantidadDisparos;
     private int _cantidadDisparosFallidos;
     private int _cantidadDisparosAcertados;
-    private List<Barco> _barcos = [];
+    private readonly List<Barco> _barcos = [];
     public string Nombre { get; } = nombre;
     public Tablero Tablero { get; } = new(10);
 
@@ -23,7 +23,7 @@ public class Jugador(string nombre)
     public void AgregarFlotaDeBarcos(List<Barco> flotaBarcos)
     {
         ValidarSiHayCoordenadaPorFueraDelLimite(flotaBarcos, Nombre);
-        ValidarsSiExisteUnBarcoEnLaCoordenada(flotaBarcos, Nombre);
+        ValidarSiExisteUnBarcoEnLaCoordenada(flotaBarcos, Nombre);
         ValidarFlotaCañoneros(flotaBarcos);
         ValidarFlotaDestructores(flotaBarcos);
         ValidarFlotaPortaAviones(flotaBarcos);
@@ -34,7 +34,21 @@ public class Jugador(string nombre)
     public string ObtenerInformacionDeDisparos() =>
         $"Total de disparos: {_cantidadDisparos} \nDisparos fallidos: {_cantidadDisparosFallidos} \nDisparos acertados: {_cantidadDisparosAcertados}\n";
 
-    public Barco? BuscarBarco(Coordenada coordenada) => _barcos.FirstOrDefault(barco => barco.EstaEnLaCoordenada(coordenada));
+    public (bool, string) AtaqueDelJugadorEnemigo(Coordenada coordenada)
+    {
+        var mensaje = string.Empty;
+        var disparoAcertado = false;
+        var barco = BuscarBarco(coordenada);
+        if (barco != null)
+        {
+            disparoAcertado = true;
+            mensaje = VerificarSiElBarcoFueHundidoYMarcarEnElTablero(coordenada, barco);
+        }
+        else
+            Tablero.MarcarRepresentacionEnElTablero(coordenada, 'o');
+        return (disparoAcertado,mensaje);
+    }
+    
     public bool TodosLosBarcosEstanHundidos() => _barcos.All(barco => barco.SeHundio());
 
     public string ObtenerInformacionDeBarcosHundidos()
@@ -47,7 +61,7 @@ public class Jugador(string nombre)
         return mensaje;
     } 
     
-    public void MarcarEnElTableroLasCasillasDeLosBarcosAflote()
+    public void MarcarEnElTableroLasCasillasDeLosBarcosAFlote()
     {
         _barcos.ForEach(barco =>
         {
@@ -58,6 +72,8 @@ public class Jugador(string nombre)
         });
     }
 
+    private Barco? BuscarBarco(Coordenada coordenada) => _barcos.FirstOrDefault(barco => barco.EstaEnLaCoordenada(coordenada));
+    
     private void ValidarFlotaCañoneros(List<Barco> flotaCañoneros)
     {
         if (flotaCañoneros.Count(barco => barco.GetType().Name == nameof(Cañonero)) < (int)FlotaBarcos.Cañonero)
@@ -93,7 +109,7 @@ public class Jugador(string nombre)
             throw new Exception($"El jugador {nombreJugador} ha enviado un barco con coordenadas invalidas, " + string.Join(", ", coordenadaNoValida));
     }
 
-    private void ValidarsSiExisteUnBarcoEnLaCoordenada(List<Barco> flotaBarcos, string nombre)
+    private void ValidarSiExisteUnBarcoEnLaCoordenada(List<Barco> flotaBarcos, string nombre)
     {
         var coordenadasRepetidas = flotaBarcos
             .SelectMany(barco => barco.CoordenadasDeLaPosicion)
@@ -102,8 +118,29 @@ public class Jugador(string nombre)
             .Select(grupo => $"({grupo.Key.X},{grupo.Key.Y})")
             .ToList();
 
-        if (coordenadasRepetidas.Any())
+        if (coordenadasRepetidas.Count != 0)
             throw new Exception($"El jugador {nombre} ha enviado barcos que existen en la coordenada:" + string.Join(", ", coordenadasRepetidas));
     }
+    
+    private string VerificarSiElBarcoFueHundidoYMarcarEnElTablero(Coordenada coordenada, Barco barco)
+    {
+        var mensaje = string.Empty;
+        barco.MarcarImpacto();
+        if (barco.SeHundio())
+            mensaje = MarcarBarcoHundido(barco);
+        else
+            Tablero.MarcarRepresentacionEnElTablero(coordenada, 'x');
+        return mensaje;
+    }
+    
+    private string MarcarBarcoHundido(Barco barco)
+    {
+        foreach (var coordenada in barco.CoordenadasDeLaPosicion)
+            Tablero.MarcarRepresentacionEnElTablero(coordenada, 'X');
+
+        return $"Se hundio un barco en la coordenada ({barco.Coordenada.X},{barco.Coordenada.Y})";
+    }
+
+
 
 }

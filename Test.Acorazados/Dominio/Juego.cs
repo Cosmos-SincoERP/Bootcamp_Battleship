@@ -4,7 +4,7 @@ namespace Test.BattleShip.Dominio;
 
 public class Juego
 {
-    private List<Jugador> _jugadores = [];
+    private readonly List<Jugador> _jugadores = [];
     private int _jugadorActivo;
     private int _jugadorEnemigo = 1;
     private bool _juegoTerminado;
@@ -66,64 +66,55 @@ public class Juego
 
         foreach (var jugador in _jugadores)
         {
-            jugador.MarcarEnElTableroLasCasillasDeLosBarcosAflote();
+            jugador.MarcarEnElTableroLasCasillasDeLosBarcosAFlote();
             informe += $"Jugador {jugador.Nombre}  \n";
             informe += $"{jugador.ObtenerInformacionDeDisparos()} \n";
             informe += $"Barcos Hundidos: {jugador.ObtenerInformacionDeBarcosHundidos()} \n";
+            informe += "---------------------------------- \n";
             informe += jugador.Tablero.Visualizar();
+            informe += "---------------------------------- \n";
         }
         return informe;
     }
+    
+    private string AsignarNombreJugadorPredeterminado() => _jugadores.Count == 1 ? "2" : "1";
+    
+    private void CambiarJugadorActivo() => _jugadorActivo = _jugadorActivo == 0 ? 1 : 0;
+    
+    private void CambiarJugadorEnemigo() => _jugadorEnemigo = _jugadorEnemigo == 0 ? 1 : 0;
+    
+    private Jugador ObtenerJugadorActivo() => _jugadores[_jugadorActivo];
+    
+    private Jugador ObtenerJugadorEnemigo() => _jugadores[_jugadorEnemigo];
+   
+    private void MarcarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = true;
+    
+    private void LimpiarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = false;
+    
     private void ValidacionesParaAgregarJugador()
     {
         if (_jugadores.Count == 2)
             throw new Exception("No se permite agregar mas jugadores al juego");
     }
+   
     private void ValidarCantidadDeJugadores()
     {
         if (_jugadores.Count != 2)
             throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
     }
-    private string AsignarNombreJugadorPredeterminado() => _jugadores.Count == 1 ? "2" : "1";
-    private void CambiarJugadorActivo() => _jugadorActivo = _jugadorActivo == 0 ? 1 : 0;
-    private void CambiarJugadorEnemigo() => _jugadorEnemigo = _jugadorEnemigo == 0 ? 1 : 0;
-    private Jugador ObtenerJugadorActivo() => _jugadores[_jugadorActivo];
-    private Jugador ObtenerJugadorEnemigo() => _jugadores[_jugadorEnemigo];
     
-    private string AtaqueDelJugador(Coordenada coordenada)
-    {
-        var mensaje = string.Empty;
-        var disparoAcertado = false;
-        var jugadorActivo = ObtenerJugadorActivo();
-        var jugadorEnemigo = ObtenerJugadorEnemigo();
-        var barco = jugadorEnemigo.BuscarBarco(coordenada);
-        if (barco != null)
-        {
-            disparoAcertado = true;
-            barco.MarcarImpacto();
-            if (barco.SeHundio())
-                mensaje = MarcarBarcoHundido(barco, jugadorEnemigo.Tablero);
-            else
-                jugadorEnemigo.Tablero.MarcarRepresentacionEnElTablero(coordenada, 'x');
-        }
-        else
-            jugadorEnemigo.Tablero.MarcarRepresentacionEnElTablero(coordenada, 'o');
-        
-        jugadorActivo.AgregarDisparo(disparoAcertado);
-        return mensaje;
-    }
-    private string MarcarBarcoHundido(Barco barco, Tablero tablero)
-    {
-        foreach (var coordenada in barco.CoordenadasDeLaPosicion)
-            tablero.MarcarRepresentacionEnElTablero(coordenada, 'X');
-
-        return $"Se hundio un barco en la coordenada ({barco.Coordenada.X},{barco.Coordenada.Y})";
-    }
-    private void MarcarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = true;
-    private void LimpiarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = false;
     private void ValidarSiJugadorYaDisparo()
     {
         if (_disparoYaSeRealizoEnTurno)
             throw new Exception("El jugador ya ha realizado un disparo en este turno");
+    }
+    
+    private string AtaqueDelJugador(Coordenada coordenada)
+    {
+        var jugadorActivo = ObtenerJugadorActivo();
+        var jugadorEnemigo = ObtenerJugadorEnemigo();
+        var resultado = jugadorEnemigo.AtaqueDelJugadorEnemigo(coordenada);
+        jugadorActivo.AgregarDisparo(resultado.Item1);
+        return resultado.Item2;
     }
 }

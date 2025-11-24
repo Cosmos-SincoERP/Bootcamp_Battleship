@@ -7,7 +7,7 @@ public abstract class Barco
     public char Representacion { get; }
     public OrientacionBarco? Orientacion { get; }
 
-    private int _tamaño;
+    private readonly int _tamaño;
     private int _impactos;
 
     protected Barco(Coordenada coordenada, int tamaño, char representacion, OrientacionBarco? orientacion)
