@@ -5,7 +5,17 @@ public class Acorazados
     public bool EsTurnoJugador1 { get; private set; } = true;
     public string Ganador { get; set; }
     public EstadoJuego Estado { get; private set; } = EstadoJuego.Posicionamiento;
-    public Acorazados() => _tablero = new string[_fila, _columna];
+
+    public Acorazados() : this(10, 10)
+    {
+    }
+
+    public Acorazados(int fila, int columna)
+    {
+        _fila = fila;
+        _columna = columna;
+        _tablero = new string[_fila, _columna];
+    }
 
     private readonly Jugador[] _jugadores = new Jugador[2];
     private int _contadorJugadores;
@@ -66,6 +76,22 @@ public class Acorazados
             TerminarTurno();
     }
 
+    public string ImprimirReporte()
+    {
+        var resultado = $"Total disparos:{JugadorActual.DisparosTotales}\r\n" +
+                        $"Total fallos:{JugadorActual.Fallos}\r\n" +
+                        $"Total aciertos:{JugadorActual.Aciertos}\r\n" +
+                        "Barcos hundidos:[\r\n" +
+                        $"Carrier: ({Oponente.NaveHundida.Carrier.SingleOrDefault().fila},{Oponente.NaveHundida.Carrier.SingleOrDefault().columna})\r\n";
+
+        resultado = AgregarResultadoNaveDestruida(resultado, Oponente.NaveHundida.Destroyer, "Destroyer");
+        resultado = AgregarResultadoNaveDestruida(resultado, Oponente.NaveHundida.GunShips, "Gunship");
+
+
+        resultado += "]";
+        return resultado;
+    }
+
     private bool JuegoNoHaComenzado() => Estado != EstadoJuego.EnCurso;
 
     private bool JugadorNoHaPosicionadoTodasLasNaves() =>
@@ -85,24 +111,11 @@ public class Acorazados
         }
     }
 
-    public string ImprimirReporte()
+
+    private string AgregarResultadoNaveDestruida(string resultado, List<(int fila, int columna)> naveDestruida,
+        string nombre)
     {
-        var resultado = $"Total disparos:{JugadorActual.DisparosTotales}\r\n" +
-                        $"Total fallos:{JugadorActual.Fallos}\r\n" +
-                        $"Total aciertos:{JugadorActual.Aciertos}\r\n" +
-                        "Barcos hundidos:[\r\n" +
-                        $"Carrier: ({Oponente.NaveHundida.Carrier.SingleOrDefault().fila},{Oponente.NaveHundida.Carrier.SingleOrDefault().columna})\r\n";
-
-        foreach (var Destroyer in Oponente.NaveHundida.Destroyer.OrderByDescending(nave=>nave.fila))
-        {
-            resultado += $"Destroyer: ({Destroyer.fila},{Destroyer.columna})\r\n";
-        }
-
-        foreach (var GunShips in Oponente.NaveHundida.GunShips.OrderByDescending(nave=>nave.fila))
-        {
-            resultado += $"Gunship: ({GunShips.fila},{GunShips.columna})\r\n";
-        }
-        resultado += "]";
-        return resultado;
+        return naveDestruida.OrderByDescending(nave => nave.fila).Aggregate(resultado,
+            (current, coordenadaNave) => current + $"{nombre}: ({coordenadaNave.fila},{coordenadaNave.columna})\r\n");
     }
 }

@@ -4,7 +4,6 @@ public interface INave
 {
     public int Longitud { get; }
     public string Valor { get; }
-    public int MaxPermitidos { get; }
 }
 
 public abstract class Nave : INave
