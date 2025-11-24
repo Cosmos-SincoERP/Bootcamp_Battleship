@@ -417,4 +417,40 @@ public class BattleShipTests
         });
         currentBoard.Should().Be(expectedBoardFirstPlayer);
     }
+
+    [Fact]
+    public void Si_ElPrimerYSegundoJugadorTerminanTurno_Debe_MostrarElTableroDelSegundoJugadorEnLaImpresion()
+    {
+        _battleship.AddPlayer(_defaultFleetWithValidPositions);
+        _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0,0)),
+            Gunboat.Create(new Coord(0,1)),
+            Gunboat.Create(new Coord(0,2)),
+            Gunboat.Create(new Coord(0,3)),
+            Destroyer.Create([new Coord(0,4), new Coord(0,5), new Coord(0,6)]),
+            Destroyer.Create([new Coord(0,7),new Coord(0,8), new Coord(0,9)]),
+            AircraftCarrier.Create([new Coord(1,0), new Coord(1,1), new Coord(1,2), new Coord(1,3)])
+        ]));
+        _battleship.Start();
+        _battleship.EndTurn();
+        _battleship.EndTurn();
+
+        var board = _battleship.Print();
+        
+        var expectedBoard = string.Join(Environment.NewLine, new[]
+        {
+            "  0 1 2 3 4 5 6 7 8 9 ",
+            "0 g g g g d d d d d d ",
+            "1 c c c c | | | | | | ",
+            "2 | | | | | | | | | | ",
+            "3 | | | | | | | | | | ",
+            "4 | | | | | | | | | | ",
+            "5 | | | | | | | | | | ",
+            "6 | | | | | | | | | | ",
+            "7 | | | | | | | | | | ",
+            "8 | | | | | | | | | | ",
+            "9 | | | | | | | | | | ",
+        });
+        board.Should().Be(expectedBoard);
+    }
 }

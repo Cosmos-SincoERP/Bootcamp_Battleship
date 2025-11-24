@@ -17,4 +17,7 @@
 * ✅ Para agregar un jugador los portaaviones no deben tener menos de 3 coordenadas.
 * ✅ Si imprimen el tablero sin iniciar no debe haber nada.
 * ✅ Si inicia el juego deben estar los aviones en las posiciones indicadas por todos los jugadores.
+* ✅Si inicia el juego y se imprime el tablero debe mostrar el del segundo jugador (porque el primero inicia disparando).
+* ✅Si inicia el juego, el jugador uno pasa de turno y se imprima el tablero debe mostrar el del primer jugador.
+* ✅Si inicia el juego, ambos jugadores pasan turno y se imprime el tablero debe mostrar el del segundo jugador.
 * Si el jugador 1 dispara 

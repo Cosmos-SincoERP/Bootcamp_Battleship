@@ -44,6 +44,6 @@ public class BattleShip
 
     public void EndTurn()
     {
-        _attackedPlayer = 1;
+        _attackedPlayer = _attackedPlayer == 1 ? 2 : 1;
     }
 }
