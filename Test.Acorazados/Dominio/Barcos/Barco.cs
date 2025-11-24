@@ -3,33 +3,32 @@ namespace Test.BattleShip.Dominio.Barcos;
 public abstract class Barco
 {
     public Coordenada Coordenada { get; }
-    public char Representacion { get; }
     public List<Coordenada> CoordenadasDeLaPosicion { get; } = [];
+    public char Representacion { get; }
     public OrientacionBarco? Orientacion { get; }
 
     private int _tamaño;
     private int _impactos;
 
-    public Barco(Coordenada coordenada, int tamaño, char representacion, OrientacionBarco? orientacion)
+    protected Barco(Coordenada coordenada, int tamaño, char representacion, OrientacionBarco? orientacion)
     {
         Coordenada = coordenada;
         _tamaño = tamaño;
         Representacion = representacion;
         Orientacion = orientacion;
-
-        AgregarCoordenadasDeLaPosicion();
+        AgregarCoordenadasParaPosicionar();
     }
-
+    
     public bool EstaEnLaCoordenada(Coordenada coordenada) =>
         CoordenadasDeLaPosicion.Any(coordenadaEnLaPosicion =>
             coordenadaEnLaPosicion.X == coordenada.X
             && coordenadaEnLaPosicion.Y == coordenada.Y
         );
 
-    public void RegistrarImpacto() => _impactos++;
+    public void MarcarImpacto() => _impactos++;
     public bool SeHundio() => _tamaño == _impactos;
 
-    private void AgregarCoordenadasDeLaPosicion()
+    private void AgregarCoordenadasParaPosicionar()
     {
         for (int i = 0; i < _tamaño; i++)
         {
@@ -39,4 +38,11 @@ public abstract class Barco
                 CoordenadasDeLaPosicion.Add(new(Coordenada.X, Coordenada.Y + i));
         }
     }
+}
+
+public enum FlotaBarcos
+{
+    Cañonero = 4,
+    Destructor = 2,
+    PortaAviones = 1
 }

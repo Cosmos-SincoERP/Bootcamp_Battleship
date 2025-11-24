@@ -11,7 +11,7 @@ public class Mocks
         { "Destructor", 3 },
         { "PortaAviones", 4 },
     };
-    
+
     public static JuegoAcorazados MockIniciarJuego(bool disparos = false)
     {
         var juegoAcorazado = new JuegoAcorazados();
@@ -25,7 +25,7 @@ public class Mocks
             new Cañonero(new(7, 6)),
             new Destructor(new(1, 5), OrientacionBarco.Horizontal),
             new Destructor(new(7, 2), OrientacionBarco.Vertical),
-            new PortaAviones(new (2, 7), OrientacionBarco.Horizontal)
+            new PortaAviones(new(2, 7), OrientacionBarco.Horizontal)
         };
         var barcosJugador2 = new List<Barco>
         {
@@ -33,36 +33,36 @@ public class Mocks
             new Cañonero(new(1, 3)),
             new Cañonero(new(2, 5)),
             new Cañonero(new(4, 5)),
-            new Destructor(new( 7, 4), OrientacionBarco.Horizontal),
-            new Destructor(new( 4, 7), OrientacionBarco.Vertical),
+            new Destructor(new(7, 4), OrientacionBarco.Horizontal),
+            new Destructor(new(4, 7), OrientacionBarco.Vertical),
             new PortaAviones(new(4, 0), OrientacionBarco.Vertical)
         };
-        
-        juegoAcorazado.Iniciar(barcosJugador1, barcosJugador2);
-        
+
+        juegoAcorazado.Iniciar([(0, barcosJugador1), (1, barcosJugador2)]);
+
         if (!disparos)
             return juegoAcorazado;
 
         foreach (var barcos in barcosJugador1)
         {
             var tamaño = _tamañoBarcos[barcos.GetType().Name];
-            for (var i = 0; i < tamaño ; i++)
+            for (var i = 0; i < tamaño; i++)
             {
                 juegoAcorazado.Disparar(0 + new Random().Next(0, 10), 0 + new Random().Next(0, 10));
                 juegoAcorazado.FinalizarTurno();
-                
-                if(barcos.Orientacion == OrientacionBarco.Horizontal)
+
+                if (barcos.Orientacion == OrientacionBarco.Horizontal)
                     juegoAcorazado.Disparar(barcos.Coordenada.X + i, barcos.Coordenada.Y);
                 else
                     juegoAcorazado.Disparar(barcos.Coordenada.X, barcos.Coordenada.Y + i);
-                
+
                 juegoAcorazado.FinalizarTurno();
             }
         }
-        
+
         return juegoAcorazado;
     }
-    
+
     public static string TableroEsperado(char[,] tablero)
     {
         var tableroEsperado = string.Empty;

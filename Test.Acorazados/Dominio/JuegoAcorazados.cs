@@ -5,8 +5,6 @@ namespace Test.BattleShip.Dominio;
 public class JuegoAcorazados
 {
     private List<Jugador> _jugadores = [];
-    private List<Barco> _listaBarcosJugador1 = [];
-    private List<Barco> _listaBarcosJugador2 = [];
     private int _jugadorActivo;
     private int _jugadorEnemigo = 1;
     private bool _juegoTerminado;
@@ -17,19 +15,18 @@ public class JuegoAcorazados
         _jugadores.Add(new Jugador(AsignarNombreJugadorPredeterminado()));
     }
     
-    public void Iniciar(List<Barco> barcosJugador1, List<Barco> barcosJugador2)
+    public void Iniciar(List<(int indexJugador, List<Barco> barcos)> flotas)
     {
         ValidarCantidadDeJugadores();
-        ValidarCantidadBarcos(barcosJugador1, _jugadores[0].Nombre);
-        ValidarCantidadBarcos(barcosJugador2, _jugadores[1].Nombre);
 
-        _listaBarcosJugador1.AddRange(barcosJugador1);
-        _listaBarcosJugador2.AddRange(barcosJugador2);
+        foreach (var (indexJugador, barcos) in flotas)
+        {
+            _jugadores[indexJugador].FlotaDeBarcos(barcos);
+        }
     }
 
     public string Disparar(int x, int y)
     {
-        
         var mensaje = string.Empty;
         var disparoAcertado = false;
         var tablero = ObtenerJugadorEnemigo().Tablero;
@@ -38,7 +35,7 @@ public class JuegoAcorazados
         if (barco != null)
         {
             disparoAcertado = true;
-            barco.RegistrarImpacto();
+            barco.MarcarImpacto();
             if (barco.SeHundio())
             {
                 foreach (var coordenada in barco.CoordenadasDeLaPosicion)
@@ -53,7 +50,7 @@ public class JuegoAcorazados
         else
             tablero[x, y] = 'o';
         
-        ObtenerJugadorActivo().DisparoRealizado(disparoAcertado);
+        ObtenerJugadorActivo().AgregarDisparo(disparoAcertado);
         
         return mensaje;
     }
@@ -75,9 +72,9 @@ public class JuegoAcorazados
         {
             foreach (var jugador in _jugadores)
             {
-                visualizarTablero += $"Total de disparos: {jugador.ContadorDisparos} \n";  
-                visualizarTablero += $"Disparos fallidos: {jugador.ContadorDisparosFallidos} \n";
-                visualizarTablero += $"Disparos acertados: {jugador.ContadorDisparosAcertados} \n";
+                visualizarTablero += $"{jugador.ObtenerTotalDisparos()} \n";  
+                visualizarTablero += $"{jugador.ObtenerTotalDisparosFallidos()} \n";
+                visualizarTablero += $"{jugador.ObtenerTotalDisparosAcertados()} \n";
                 visualizarTablero += VisualizarTablero(visualizarTablero, jugador.Tablero);
             }
         }
@@ -119,31 +116,7 @@ public class JuegoAcorazados
     private void CambiarJugadorEnemigo() => _jugadorEnemigo = _jugadorEnemigo == 0 ? 1 : 0;
     private Jugador ObtenerJugadorActivo() => _jugadores[_jugadorActivo];
     private Jugador ObtenerJugadorEnemigo() => _jugadores[_jugadorEnemigo];
-    private List<Barco> ListaBarcosJugadorEnemigo() => _jugadorEnemigo == 0 ? _listaBarcosJugador1 : _listaBarcosJugador2;
+    private List<Barco> ListaBarcosJugadorEnemigo() => _jugadores[_jugadorEnemigo].Barcos;
     private Barco? BuscarBarco(int x, int y) => ListaBarcosJugadorEnemigo().FirstOrDefault(barco => barco.EstaEnLaCoordenada(new(x, y)));
-    
-    private void ValidarCantidadBarcos(List<Barco> barcos, string nombreJugador)
-    {
-        const int cantidadCañoneros = 4;
-        const int cantidadDestructores = 2;
-        const int cantidadPortaAviones = 1;
-
-        const string faltanTodosLosBarco = "El jugador {0}, no ha enviado los barcos para posicionar";
-        const string faltanLosCañoneros = "El jugador {0}, no ha enviado todos los cañoneros para posicionar";
-        const string faltanLosDestructores = "El jugador {0}, no ha enviado todos los destructores para posicionar";
-        const string faltanLosPortaviones = "El jugador {0}, no ha enviado todos los portaviones para posicionar";
-
-        if (barcos.Count == 0)
-            throw new Exception(string.Format(faltanTodosLosBarco, nombreJugador));
-
-        if (barcos.Count(barco => barco.GetType().Name == "Cañonero") < cantidadCañoneros)
-            throw new Exception(string.Format(faltanLosCañoneros, nombreJugador));
-
-        if (barcos.Count(barco => barco.GetType().Name == "Destructor") < cantidadDestructores)
-            throw new Exception(string.Format(faltanLosDestructores, nombreJugador));
-
-        if (barcos.Count(barco => barco.GetType().Name == "PortaAviones") < cantidadPortaAviones)
-            throw new Exception(string.Format(faltanLosPortaviones, nombreJugador));
-    }
     
 }
