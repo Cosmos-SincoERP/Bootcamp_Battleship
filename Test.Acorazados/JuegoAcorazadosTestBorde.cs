@@ -79,9 +79,8 @@ public class JuegoAcorazadosTestBorde
         var juegoAcorazado = Mocks.MockIniciarJuego();
 
         juegoAcorazado.Disparar(new Coordenada(0, 4));
-        juegoAcorazado.Disparar(new Coordenada(0, 4));
         var barcoHundido = () => juegoAcorazado.Disparar(new Coordenada(2, 1));
 
-        barcoHundido.Should().ThrowExactly<Exception>().WithMessage("El jugador no puede lanzar dos disparos en el mismo turno");
+        barcoHundido.Should().ThrowExactly<Exception>().WithMessage("El jugador ya ha realizado un disparo en este turno");
     }
 }

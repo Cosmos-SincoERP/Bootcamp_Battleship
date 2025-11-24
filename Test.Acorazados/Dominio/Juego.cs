@@ -8,6 +8,7 @@ public class Juego
     private int _jugadorActivo;
     private int _jugadorEnemigo = 1;
     private bool _juegoTerminado;
+    private bool _disparoEnCurso = false;
 
     public void AgregarJugador()
     {
@@ -26,9 +27,14 @@ public class Juego
     }
 
     public string Disparar(Coordenada coordenada)
-    { 
+    {
         var jugadorActivo = ObtenerJugadorActivo();
         var jugadorEnemigo = ObtenerJugadorEnemigo();
+
+        if (_disparoEnCurso)
+            throw new Exception("El jugador ya ha realizado un disparo en este turno");
+
+
         var disparoAcertado = false;
         var mensaje = string.Empty;
         var barco = jugadorEnemigo.BuscarBarco(coordenada);
@@ -48,6 +54,8 @@ public class Juego
 
         jugadorActivo.AgregarDisparo(disparoAcertado);
 
+        _disparoEnCurso = true;
+
         return mensaje;
     }
 
@@ -58,6 +66,7 @@ public class Juego
 
         CambiarJugadorActivo();
         CambiarJugadorEnemigo();
+        _disparoEnCurso = false;
     }
 
     public string Imprimir()
