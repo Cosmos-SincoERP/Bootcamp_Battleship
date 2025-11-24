@@ -95,4 +95,18 @@ public class JuegoAcorazadosTestBorde
 
         barcoHundido.Should().ThrowExactly<Exception>().WithMessage("El jugador ya lanzo un disparo en la coordenada (0,4)");
     }
+
+    [Fact]
+    public void Si_Eljugador1DisparaDosTorpedosABarcoYaEncontradoEnLaMismaPosicion_Debe_LanzarExcepcion()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego();
+
+        juegoAcorazado.Disparar(new Coordenada(1, 8));
+        juegoAcorazado.FinalizarTurno();
+        juegoAcorazado.Disparar(new Coordenada(1, 5));
+        juegoAcorazado.FinalizarTurno();
+        var barcoHundido = () => juegoAcorazado.Disparar(new Coordenada(1, 8));
+
+        barcoHundido.Should().ThrowExactly<Exception>().WithMessage("El jugador ya lanzo un disparo en la coordenada (0,4)");
+    }
 }
