@@ -58,7 +58,7 @@ public class Jugador(string nombre)
 
     private static void ValidarCoordenadas(List<Barco> barcos, string nombreJugador)
     {
-        barcos.Where(barco => barco.Coordenada.X > 9 || barco.Coordenada.X < 0 || barco.Coordenada.Y > 9)
+        barcos.Where(barco => barco.Coordenada.X > 9 || barco.Coordenada.X < 0 || barco.Coordenada.Y > 9 || barco.Coordenada.Y < 0)
             .ToList()
             .ForEach(barco =>
             {
