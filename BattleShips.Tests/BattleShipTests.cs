@@ -314,6 +314,23 @@ public class BattleShipTests
     }
 
     [Fact]
+    public void Si_AgregoUnJugadorConDiferentesBarcosEnLasMismasCoordenadas_Debe_ArrojarExcepcion()
+    {
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0, 0)),
+            Gunboat.Create(new Coord(1, 0)),
+            Gunboat.Create(new Coord(0, 0)),
+            Gunboat.Create(new Coord(1, 0)),
+            Destroyer.Create([new Coord(4, 0), new Coord(4, 1), new Coord(4, 2)]),
+            Destroyer.Create([new Coord(4, 0), new Coord(4, 1), new Coord(4, 2)]),
+            AircraftCarrier.Create([new Coord(4, 0), new Coord(4, 1), new Coord(4, 2), new Coord(4, 3)])
+        ]));
+
+        action.Should().ThrowExactly<ArgumentException>()
+            .WithMessage("No se pueden posicionar diferentes barcos en la misma coordenada.");
+    }
+
+    [Fact]
     public void Si_InicioElJuegoSinJugadores_Debe_ArrojarException()
     {
         var action = () => _battleship.Start();

@@ -17,7 +17,7 @@
 * ✅ Para agregar un jugador los portaaviones no deben tener menos de 3 coordenadas.
 * ✅ Para agregar un jugador sus destructores no deben tener coordenadas separadas.
 * ✅ Para agregar un jugador sus portaaviones no deben tener coordenadas separadas.
-* Para agregar un jugador sus barcos no pueden coincidir en sus coordenadas.
+* ✅ Para agregar un jugador sus barcos no pueden coincidir en sus coordenadas.
 * Para agregar un jugador sus barcos deben estar en vertical o horizontal.
 * ✅ Si imprimen el tablero sin iniciar no debe haber nada.
 * ✅ Si inicia el juego deben estar los aviones en las posiciones indicadas por todos los jugadores.
