@@ -161,6 +161,6 @@ public class JuegoAcorazadosTestBorde
 
         var disparar = () => juegoAcorazado.FinalizarTurno();
 
-        disparar.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 debe disparar antes de finalizar el turno");
+        disparar.Should().ThrowExactly<Exception>().WithMessage("No se puede finalizar el turno si no se ha realizado un disparo");
     }
 }

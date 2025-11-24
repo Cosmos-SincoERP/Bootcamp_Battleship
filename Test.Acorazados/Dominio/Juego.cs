@@ -1,4 +1,3 @@
-using System.Drawing;
 using Test.BattleShip.Dominio.Barcos;
 
 namespace Test.BattleShip.Dominio;
@@ -20,7 +19,7 @@ public class Juego
 
     public void Iniciar(List<(int indexJugador, List<Barco> barcos)> flotas)
     {
-        _juegoInicializo = true;
+        InicializarEstadoJuego();
 
         ValidarCantidadDeJugadores();
 
@@ -30,9 +29,11 @@ public class Juego
         }
     }
 
+
     public string Disparar(Coordenada coordenada)
     {
         ValidarEstadoJuego();
+
         ValidarSiJugadorYaDisparo();
 
         var jugadorActivo = ObtenerJugadorActivo();
@@ -82,6 +83,11 @@ public class Juego
     public void FinalizarTurno()
     {
         ValidarEstadoJuego();
+
+        if (!_disparoYaSeRealizoEnTurno)
+            throw new Exception("No se puede finalizar el turno si no se ha realizado un disparo");
+
+
 
         if (ListaBarcosJugadorEnemigo().All(barco => barco.SeHundio()))
             _juegoTerminado = true;
@@ -150,5 +156,6 @@ public class Juego
             throw new Exception("El jugador ya ha realizado un disparo en este turno");
     }
 
-}
+    private void InicializarEstadoJuego() => _juegoInicializo = true;
 
+}
