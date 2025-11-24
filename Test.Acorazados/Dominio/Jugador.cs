@@ -37,6 +37,18 @@ public class Jugador(string nombre)
         $"Total de disparos: {_cantidadDisparos} \n Disparos fallidos: {_cantidadDisparosFallidos} \n Disparos acertados: {_cantidadDisparosAcertados}";
 
     public Barco? BuscarBarco(Coordenada coordenada) => Barcos.FirstOrDefault(barco => barco.EstaEnLaCoordenada(coordenada));
+    public bool TodosLosBarcosEstanHundidos() => Barcos.All(barco => barco.SeHundio());
+
+    public string ObtenerInformacionDeBarcosHundidos()
+    {
+        var mensaje = string.Empty;
+        Barcos.Where(barco => barco.SeHundio())
+            .ToList()
+            .ForEach(barco => mensaje += $"{barco.GetType().Name}: ({barco.Coordenada.X},{barco.Coordenada.Y}) \n");
+        
+        return mensaje;
+    } 
+        
 
     private void ValidarFlotaCañoneros(List<Barco> flotaCañoneros)
     {

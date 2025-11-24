@@ -58,7 +58,7 @@ public class Juego
 
     public void FinalizarTurno()
     {
-        if (ListaBarcosJugadorEnemigo().All(barco => barco.SeHundio()))
+        if (ObtenerJugadorEnemigo().TodosLosBarcosEstanHundidos())
             _juegoTerminado = true;
         else
         {
@@ -83,14 +83,16 @@ public class Juego
     private string InformeBatalla()
     {
         var informe = "------- Informe de batalla -------- \n";
-        var jugadorGanador = ObtenerJugadorActivo();
-        var jugadorPerdedor = ObtenerJugadorEnemigo();
         
-        informe += $"Ganador: Jugador {jugadorGanador.Nombre}  \n";
-        informe += $"{jugadorGanador.ObtenerInformacionDeDisparos()} \n";
-        
-        
+        informe += $"Ganador: Jugador {ObtenerJugadorActivo().Nombre} \n";
 
+        foreach (var jugador in _jugadores)
+        {
+            informe += $"Jugador {jugador.Nombre}  \n";
+            informe += $"{jugador.ObtenerInformacionDeDisparos()} \n";
+            informe += $"Barcos Hundidos: {jugador.ObtenerInformacionDeBarcosHundidos()} \n";
+            
+        }
         return informe;
     }
     private void ValidacionesParaAgregarJugador()
@@ -98,7 +100,6 @@ public class Juego
         if (_jugadores.Count == 2)
             throw new Exception("No se permite agregar mas jugadores al juego");
     }
-
     private void ValidarCantidadDeJugadores()
     {
         if (_jugadores.Count != 2)
@@ -109,7 +110,6 @@ public class Juego
     private void CambiarJugadorEnemigo() => _jugadorEnemigo = _jugadorEnemigo == 0 ? 1 : 0;
     private Jugador ObtenerJugadorActivo() => _jugadores[_jugadorActivo];
     private Jugador ObtenerJugadorEnemigo() => _jugadores[_jugadorEnemigo];
-    private List<Barco> ListaBarcosJugadorEnemigo() => ObtenerJugadorEnemigo().Barcos;
     private string MarcarBarcoHundido(Barco barco, Tablero tablero)
     {
         foreach (var coordenada in barco.CoordenadasDeLaPosicion)
@@ -117,7 +117,6 @@ public class Juego
 
         return $"Se hundio un barco en la coordenada ({barco.Coordenada.X},{barco.Coordenada.Y})";
     }
-
     private void MarcarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = true;
     private void LimpiarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = false;
     private void ValidarSiJugadorYaDisparo()
