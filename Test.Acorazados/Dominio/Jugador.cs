@@ -4,12 +4,11 @@ namespace Test.BattleShip.Dominio;
 
 public class Jugador(string nombre)
 {
-    private string _nombre = nombre;
     private int _cantidadDisparos;
     private int _cantidadDisparosFallidos;
     private int _cantidadDisparosAcertados;
-    private static readonly (int tamañoMinimo, int tamañoMaximo) _tamañoLimite = (0, 9);
 
+    public string Nombre { get; } = nombre;
     public Tablero Tablero { get; } = new(10);
     public List<Barco> Barcos { get; } = [];
 
@@ -24,8 +23,8 @@ public class Jugador(string nombre)
 
     public void AgregarFlotaDeBarcos(List<Barco> flotaBarcos)
     {
-        ValidarSiHayCoordenadaPorFueraDelLimite(flotaBarcos, _nombre);
-        ValidarsSiExisteUnBarcoEnLaCoordenada(flotaBarcos, _nombre);
+        ValidarSiHayCoordenadaPorFueraDelLimite(flotaBarcos, Nombre);
+        ValidarsSiExisteUnBarcoEnLaCoordenada(flotaBarcos, Nombre);
 
         ValidarFlotaCañoneros(flotaBarcos);
         ValidarFlotaDestructores(flotaBarcos);
@@ -42,28 +41,28 @@ public class Jugador(string nombre)
     private void ValidarFlotaCañoneros(List<Barco> flotaCañoneros)
     {
         if (flotaCañoneros.Count(barco => barco.GetType().Name == nameof(Cañonero)) < (int)FlotaBarcos.Cañonero)
-            throw new Exception($"El jugador {_nombre}, no ha enviado todos los cañoneros para posicionar");
+            throw new Exception($"El jugador {Nombre}, no ha enviado todos los cañoneros para posicionar");
     }
 
     private void ValidarFlotaDestructores(List<Barco> flotaDestructores)
     {
         if (flotaDestructores.Count(barco => barco.GetType().Name == nameof(FlotaBarcos.Destructor)) < (int)FlotaBarcos.Destructor)
-            throw new Exception($"El jugador {_nombre}, no ha enviado todos los destructores para posicionar");
+            throw new Exception($"El jugador {Nombre}, no ha enviado todos los destructores para posicionar");
     }
 
     private void ValidarFlotaPortaAviones(List<Barco> flotaPortaviones)
     {
         if (flotaPortaviones.Count(barco => barco.GetType().Name == nameof(FlotaBarcos.PortaAviones)) < (int)FlotaBarcos.PortaAviones)
-            throw new Exception($"El jugador {_nombre}, no ha enviado todos los portaviones para posicionar");
+            throw new Exception($"El jugador {Nombre}, no ha enviado todos los portaviones para posicionar");
     }
 
-    private static void ValidarSiHayCoordenadaPorFueraDelLimite(List<Barco> barcos, string nombreJugador)
+    private void ValidarSiHayCoordenadaPorFueraDelLimite(List<Barco> barcos, string nombreJugador)
     {
-        List<string> coordenadaNoValida = new List<string>();
-        barcos.Where(barco => barco.Coordenada.X > _tamañoLimite.tamañoMaximo ||
-                                barco.Coordenada.X < _tamañoLimite.tamañoMinimo ||
-                                barco.Coordenada.Y > _tamañoLimite.tamañoMaximo ||
-                                barco.Coordenada.Y < _tamañoLimite.tamañoMinimo)
+        var coordenadaNoValida = new List<string>();
+        barcos.Where(barco => barco.Coordenada.X > Tablero.ObtenerTamañoEnX() ||
+                                barco.Coordenada.X < 0 ||
+                                barco.Coordenada.Y > Tablero.ObtenerTamañoEnY() ||
+                                barco.Coordenada.Y < 0)
             .ToList()
             .ForEach(barco =>
             {

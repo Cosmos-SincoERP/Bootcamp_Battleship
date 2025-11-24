@@ -7,6 +7,10 @@ public class Tablero(int tamaño)
     public void MarcarRepresentacionEnElTablero(Coordenada coordenada, char simbolo) =>
         _plataforma[coordenada.X, coordenada.Y] = simbolo;
 
+    public int ObtenerTamañoEnX() => _plataforma.GetLength(0);
+    
+    public int ObtenerTamañoEnY() => _plataforma.GetLength(1);
+    
     public string Visualizar()
     {
         var visualizar = string.Empty;
