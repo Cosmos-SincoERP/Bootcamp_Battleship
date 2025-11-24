@@ -34,8 +34,6 @@ public class Jugador(string nombre)
         Barcos.AddRange(flotaBarcos);
     }
 
-
-
     public string ObtenerInformacionDeDisparos() =>
         $"Total de disparos: {_cantidadDisparos} \n Disparos fallidos: {_cantidadDisparosFallidos} \n Disparos acertados: {_cantidadDisparosAcertados}";
 

@@ -117,7 +117,6 @@ public class Juego
 
     private void MarcarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = true;
     private void LimpiarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = false;
-
     private void ValidarSiJugadorYaDisparo()
     {
         if (_disparoYaSeRealizoEnTurno)

@@ -56,9 +56,7 @@ public class JuegoAcorazadosTestBorde
         tablero[0, 0] = 'o';
         var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = () => Mocks.MockIniciarJuegoConBarcoEnPosicionesOcupadas();
-
-
-
+        
         juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado barcos que existen en la coordenada:(2,2)");
     }
 
