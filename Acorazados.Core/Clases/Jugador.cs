@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Acorazados.Test;
+namespace Acorazados.Core.Clases;
 
 public class Jugador(string nombre)
 {

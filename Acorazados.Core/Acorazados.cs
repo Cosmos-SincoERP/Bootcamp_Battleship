@@ -1,6 +1,7 @@
-﻿using System.Text;
+﻿using Acorazados.Core.Clases;
+using Acorazados.Core.Enum;
 
-namespace Acorazados.Test;
+namespace Acorazados.Core;
 
 public class Acorazados
 {

@@ -1,4 +1,6 @@
-﻿namespace Acorazados.Test;
+﻿using Acorazados.Core.Clases;
+
+namespace Acorazados.Core.Interfaces;
 
 public interface IAcorazadosBuilder
 {

@@ -1,4 +1,6 @@
-﻿using AwesomeAssertions;
+﻿using Acorazados.Core.Clases;
+using Acorazados.Core.Enum;
+using AwesomeAssertions;
 
 namespace Acorazados.Test;
 

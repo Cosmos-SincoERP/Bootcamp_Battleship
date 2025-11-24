@@ -1,14 +1,17 @@
-﻿namespace Acorazados.Test;
+﻿using Acorazados.Core.Clases;
+using Acorazados.Core.Interfaces;
+
+namespace Acorazados.Test;
 
 public class AcorazadosBuilder : IAcorazadosBuilder
 {
-    private readonly Acorazados _acorazados = new();
+    private readonly Core.Acorazados _acorazados = new();
 
     public IAcorazadosBuilder ConstruirJugadorUno(string nombre, Action<Tablero> configurarBarcos) => ConstruirJugador(nombre, configurarBarcos, 0);
 
     public IAcorazadosBuilder ConstruirJugadorDos(string nombre, Action<Tablero> configurarBarcos) => ConstruirJugador(nombre, configurarBarcos, 1);
 
-    public Acorazados Construir()
+    public Core.Acorazados Construir()
         => _acorazados;
 
     private IAcorazadosBuilder ConstruirJugador(string nombre, Action<Tablero> configurarBarcos, int indice)

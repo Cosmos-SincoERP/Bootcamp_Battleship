@@ -1,4 +1,4 @@
-﻿namespace Acorazados.Test;
+﻿namespace Acorazados.Core.Enum;
 
 public enum TiposBarcos
 {

@@ -1,4 +1,7 @@
-﻿using AwesomeAssertions;
+﻿using Acorazados.Core.Clases;
+using Acorazados.Core.Enum;
+using Acorazados.Core.Interfaces;
+using AwesomeAssertions;
 
 namespace Acorazados.Test;
 
@@ -9,7 +12,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_AgregoUnJugador_Debe_ExistirUnJugadorConUnTablero()
     {
-        var acorazados = new Acorazados();
+        var acorazados = new Core.Acorazados();
         acorazados.AgregarJugador("David");
 
         var jugador = acorazados.ObtenerJugador(0);
@@ -21,7 +24,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_AgregoMasDeDosJugadores_Debe_LanzarExcepcion()
     {
-        var acorazados = new Acorazados();
+        var acorazados = new Core.Acorazados();
         acorazados.AgregarJugador("David");
         acorazados.AgregarJugador("Diego");
 
@@ -33,7 +36,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_InicialElJuegoYUnoDeLosDosJugadoresNoTieneBarcos_Debe_GenerarExcepcion()
     {
-        var acorazados = new Acorazados();
+        var acorazados = new Core.Acorazados();
         acorazados.AgregarJugador("David");
         acorazados.AgregarJugador("Diego");
         var jugadorUno = acorazados.ObtenerJugador(0);
@@ -50,7 +53,7 @@ public class AcorazadosTest
     [Fact]
     public void Si_InicializoElJuego_Debe_EstadoSerNoIniciado()
     {
-        var acorazados = new Acorazados();
+        var acorazados = new Core.Acorazados();
         acorazados.EstadoJuego.Should().Be(EstadoJuego.NoIniciado);
     }
 

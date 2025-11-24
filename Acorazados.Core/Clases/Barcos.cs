@@ -1,4 +1,6 @@
-﻿namespace Acorazados.Test;
+﻿using Acorazados.Core.Enum;
+
+namespace Acorazados.Core.Clases;
 
 public class Barcos(TiposBarcos tipo, string nombre, int casillas, string simbolo, int cantidadPermitida)
 {
