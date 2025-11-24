@@ -48,8 +48,9 @@ public class Acorazados
 
     private string DibujarReporteDelJuego()
     {
+        var jugadorGanador = "El jugador ganador es: David ";
         var reporte = DibujarInformacionDetalladaJugadores();
-        return reporte;
+        return jugadorGanador + reporte;
     }
 
     private string DibujarInformacionDetalladaJugadores()
