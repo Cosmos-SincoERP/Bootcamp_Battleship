@@ -4,7 +4,7 @@ namespace Test.BattleShip.Dominio;
 
 public class Juego
 {
-    private List<Jugador> _jugadores = [];
+    private readonly List<Jugador> _jugadores = [];
     private int _jugadorActivo;
     private int _jugadorEnemigo = 1;
     private bool _juegoTerminado;
@@ -35,33 +35,9 @@ public class Juego
         ValidarEstadoJuego();
 
         ValidarSiJugadorYaDisparo();
-
-        var jugadorActivo = ObtenerJugadorActivo();
-        var jugadorEnemigo = ObtenerJugadorEnemigo();
-
-        var disparoAcertado = false;
-        var mensaje = string.Empty;
-        var barco = jugadorEnemigo.BuscarBarco(coordenada);
-        var tablero = jugadorEnemigo.Tablero;
-
-        ValidarSiTableroYaTieneUnDisparoEnCoordenada(coordenada, tablero);
-
-        if (barco != null)
-        {
-            disparoAcertado = true;
-            barco.MarcarImpacto();
-            if (barco.SeHundio())
-                mensaje = MarcarBarcoHundido(barco, tablero);
-            else
-                tablero.MarcarRepresentacionEnElTablero(coordenada, 'x');
-        }
-        else
-            tablero.MarcarRepresentacionEnElTablero(coordenada, 'o');
-
-        jugadorActivo.AgregarDisparo(disparoAcertado);
+        var ataque = AtaqueDelJugador(coordenada);
         MarcarDisparoRealizadoEnTurno();
-
-        return mensaje;
+        return ataque;
     }
 
     private void ValidarEstadoJuego()
@@ -86,15 +62,14 @@ public class Juego
 
         if (!_disparoYaSeRealizoEnTurno)
             throw new Exception("No se puede finalizar el turno si no se ha realizado un disparo");
-
-
-
-        if (ListaBarcosJugadorEnemigo().All(barco => barco.SeHundio()))
+        if (ObtenerJugadorEnemigo().TodosLosBarcosEstanHundidos())
             _juegoTerminado = true;
-
-        CambiarJugadorActivo();
-        CambiarJugadorEnemigo();
-        LimpiarDisparoRealizadoEnTurno();
+        else
+        {
+            CambiarJugadorActivo();
+            CambiarJugadorEnemigo();
+            LimpiarDisparoRealizadoEnTurno();
+        }
     }
 
     public string Imprimir()
@@ -104,58 +79,74 @@ public class Juego
         var informacion = string.Empty;
 
         if (_juegoTerminado)
-            informacion = ReporteBatalla();
+            informacion = InformeBatalla();
         else
             informacion += ObtenerJugadorEnemigo().Tablero.Visualizar();
 
         return informacion;
     }
 
-    private string ReporteBatalla()
+    private string InformeBatalla()
     {
-        var reporte = string.Empty;
+        var informe = "------- Informe de batalla -------- \n";
+        informe += $"Ganador: Jugador {ObtenerJugadorActivo().Nombre} \n";
+        informe += "---------------------------------- \n";
+
         foreach (var jugador in _jugadores)
         {
-            reporte += jugador.ObtenerInformacionDeDisparos();
-            reporte += jugador.Tablero.Visualizar();
+            jugador.MarcarEnElTableroLasCasillasDeLosBarcosAFlote();
+            informe += $"Jugador {jugador.Nombre}  \n";
+            informe += $"{jugador.ObtenerInformacionDeDisparos()} \n";
+            informe += $"Barcos Hundidos: {jugador.ObtenerInformacionDeBarcosHundidos()} \n";
+            informe += "---------------------------------- \n";
+            informe += jugador.Tablero.Visualizar();
+            informe += "---------------------------------- \n";
         }
-
-        return reporte;
+        return informe;
     }
-
+    
+    private string AsignarNombreJugadorPredeterminado() => _jugadores.Count == 1 ? "2" : "1";
+    
+    private void CambiarJugadorActivo() => _jugadorActivo = _jugadorActivo == 0 ? 1 : 0;
+    
+    private void CambiarJugadorEnemigo() => _jugadorEnemigo = _jugadorEnemigo == 0 ? 1 : 0;
+    
+    private Jugador ObtenerJugadorActivo() => _jugadores[_jugadorActivo];
+    
+    private Jugador ObtenerJugadorEnemigo() => _jugadores[_jugadorEnemigo];
+   
+    private void MarcarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = true;
+    
+    private void LimpiarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = false;
+    
     private void ValidacionesParaAgregarJugador()
     {
         if (_jugadores.Count == 2)
             throw new Exception("No se permite agregar mas jugadores al juego");
     }
-
+   
     private void ValidarCantidadDeJugadores()
     {
         if (_jugadores.Count != 2)
             throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
     }
-    private string AsignarNombreJugadorPredeterminado() => _jugadores.Count == 1 ? "2" : "1";
-    private void CambiarJugadorActivo() => _jugadorActivo = _jugadorActivo == 0 ? 1 : 0;
-    private void CambiarJugadorEnemigo() => _jugadorEnemigo = _jugadorEnemigo == 0 ? 1 : 0;
-    private Jugador ObtenerJugadorActivo() => _jugadores[_jugadorActivo];
-    private Jugador ObtenerJugadorEnemigo() => _jugadores[_jugadorEnemigo];
-    private List<Barco> ListaBarcosJugadorEnemigo() => ObtenerJugadorEnemigo().Barcos;
-    private string MarcarBarcoHundido(Barco barco, Tablero tablero)
-    {
-        foreach (var coordenada in barco.CoordenadasDeLaPosicion)
-            tablero.MarcarRepresentacionEnElTablero(coordenada, 'X');
-
-        return $"Se hundio un barco en la coordenada ({barco.Coordenada.X},{barco.Coordenada.Y})";
-    }
-
-    private void MarcarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = true;
-    private void LimpiarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = false;
+    
     private void ValidarSiJugadorYaDisparo()
     {
         if (_disparoYaSeRealizoEnTurno)
             throw new Exception("El jugador ya ha realizado un disparo en este turno");
     }
-
+    
+    private string AtaqueDelJugador(Coordenada coordenada)
+    {
+        var jugadorActivo = ObtenerJugadorActivo();
+        var jugadorEnemigo = ObtenerJugadorEnemigo();
+        var resultado = jugadorEnemigo.AtaqueDelJugadorEnemigo(coordenada);
+        jugadorActivo.AgregarDisparoRealizado(resultado.Item1);
+        return resultado.Item2;
+    }
+    
     private void InicializarEstadoJuego() => _juegoInicializo = true;
+
 
 }

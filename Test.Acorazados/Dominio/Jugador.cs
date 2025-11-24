@@ -4,16 +4,14 @@ namespace Test.BattleShip.Dominio;
 
 public class Jugador(string nombre)
 {
-    private string _nombre = nombre;
     private int _cantidadDisparos;
     private int _cantidadDisparosFallidos;
     private int _cantidadDisparosAcertados;
-    private static readonly (int tamañoMinimo, int tamañoMaximo) _tamañoLimite = (0, 9);
-
+    private readonly List<Barco> _barcos = [];
+    public string Nombre { get; } = nombre;
     public Tablero Tablero { get; } = new(10);
-    public List<Barco> Barcos { get; } = [];
 
-    public void AgregarDisparo(bool esAcertado)
+    public void AgregarDisparoRealizado(bool esAcertado)
     {
         _cantidadDisparos++;
         if (esAcertado)
@@ -24,46 +22,74 @@ public class Jugador(string nombre)
 
     public void AgregarFlotaDeBarcos(List<Barco> flotaBarcos)
     {
-        ValidarSiHayCoordenadaPorFueraDelLimite(flotaBarcos, _nombre);
-        ValidarsSiExisteUnBarcoEnLaCoordenada(flotaBarcos, _nombre);
-
+        ValidarSiHayCoordenadaPorFueraDelLimite(flotaBarcos, Nombre);
+        ValidarSiExisteUnBarcoEnLaCoordenada(flotaBarcos, Nombre);
         ValidarFlotaCañoneros(flotaBarcos);
         ValidarFlotaDestructores(flotaBarcos);
         ValidarFlotaPortaAviones(flotaBarcos);
 
-        Barcos.AddRange(flotaBarcos);
+        _barcos.AddRange(flotaBarcos);
     }
 
     public string ObtenerInformacionDeDisparos() =>
-        $"Total de disparos: {_cantidadDisparos} \n Disparos fallidos: {_cantidadDisparosFallidos} \n Disparos acertados: {_cantidadDisparosAcertados}";
+        $"Total de disparos: {_cantidadDisparos} \nDisparos fallidos: {_cantidadDisparosFallidos} \nDisparos acertados: {_cantidadDisparosAcertados}\n";
 
-    public Barco? BuscarBarco(Coordenada coordenada) => Barcos.FirstOrDefault(barco => barco.EstaEnLaCoordenada(coordenada));
+    public (bool, string) AtaqueDelJugadorEnemigo(Coordenada coordenada)
+    {
+        var barco = BuscarBarco(coordenada);
+        return MarcarDisparo(coordenada, barco);
+    }
 
+    public bool TodosLosBarcosEstanHundidos() => _barcos.All(barco => barco.SeHundio());
+
+    public string ObtenerInformacionDeBarcosHundidos()
+    {
+        var mensaje = string.Empty;
+        _barcos.Where(barco => barco.SeHundio())
+            .ToList()
+            .ForEach(barco => mensaje += $"{barco.GetType().Name}: ({barco.Coordenada.X},{barco.Coordenada.Y}) \n");
+        
+        return mensaje;
+    } 
+    
+    public void MarcarEnElTableroLasCasillasDeLosBarcosAFlote()
+    {
+        _barcos.ForEach(barco =>
+        {
+            foreach (var coordenada in barco.CoordenadasDeLaPosicion.Where(coordenada => !Tablero.HayUnaMarca(coordenada)))
+            {
+                Tablero.MarcarRepresentacionEnElTablero(coordenada, barco.Representacion);
+            }
+        });
+    }
+
+    private Barco? BuscarBarco(Coordenada coordenada) => _barcos.FirstOrDefault(barco => barco.EstaEnLaCoordenada(coordenada));
+    
     private void ValidarFlotaCañoneros(List<Barco> flotaCañoneros)
     {
         if (flotaCañoneros.Count(barco => barco.GetType().Name == nameof(Cañonero)) < (int)FlotaBarcos.Cañonero)
-            throw new Exception($"El jugador {_nombre}, no ha enviado todos los cañoneros para posicionar");
+            throw new Exception($"El jugador {Nombre}, no ha enviado todos los cañoneros para posicionar");
     }
 
     private void ValidarFlotaDestructores(List<Barco> flotaDestructores)
     {
         if (flotaDestructores.Count(barco => barco.GetType().Name == nameof(FlotaBarcos.Destructor)) < (int)FlotaBarcos.Destructor)
-            throw new Exception($"El jugador {_nombre}, no ha enviado todos los destructores para posicionar");
+            throw new Exception($"El jugador {Nombre}, no ha enviado todos los destructores para posicionar");
     }
 
     private void ValidarFlotaPortaAviones(List<Barco> flotaPortaviones)
     {
         if (flotaPortaviones.Count(barco => barco.GetType().Name == nameof(FlotaBarcos.PortaAviones)) < (int)FlotaBarcos.PortaAviones)
-            throw new Exception($"El jugador {_nombre}, no ha enviado todos los portaviones para posicionar");
+            throw new Exception($"El jugador {Nombre}, no ha enviado todos los portaviones para posicionar");
     }
 
-    private static void ValidarSiHayCoordenadaPorFueraDelLimite(List<Barco> barcos, string nombreJugador)
+    private void ValidarSiHayCoordenadaPorFueraDelLimite(List<Barco> barcos, string nombreJugador)
     {
-        List<string> coordenadaNoValida = new List<string>();
-        barcos.Where(barco => barco.Coordenada.X > _tamañoLimite.tamañoMaximo ||
-                                barco.Coordenada.X < _tamañoLimite.tamañoMinimo ||
-                                barco.Coordenada.Y > _tamañoLimite.tamañoMaximo ||
-                                barco.Coordenada.Y < _tamañoLimite.tamañoMinimo)
+        var coordenadaNoValida = new List<string>();
+        barcos.Where(barco => barco.Coordenada.X > Tablero.ObtenerTamañoEnX() ||
+                                barco.Coordenada.X < 0 ||
+                                barco.Coordenada.Y > Tablero.ObtenerTamañoEnY() ||
+                                barco.Coordenada.Y < 0)
             .ToList()
             .ForEach(barco =>
             {
@@ -74,7 +100,7 @@ public class Jugador(string nombre)
             throw new Exception($"El jugador {nombreJugador} ha enviado un barco con coordenadas invalidas, " + string.Join(", ", coordenadaNoValida));
     }
 
-    private void ValidarsSiExisteUnBarcoEnLaCoordenada(List<Barco> flotaBarcos, string nombre)
+    private void ValidarSiExisteUnBarcoEnLaCoordenada(List<Barco> flotaBarcos, string nombre)
     {
         var coordenadasRepetidas = flotaBarcos
             .SelectMany(barco => barco.CoordenadasDeLaPosicion)
@@ -83,7 +109,41 @@ public class Jugador(string nombre)
             .Select(grupo => $"({grupo.Key.X},{grupo.Key.Y})")
             .ToList();
 
-        if (coordenadasRepetidas.Any())
+        if (coordenadasRepetidas.Count != 0)
             throw new Exception($"El jugador {nombre} ha enviado barcos que existen en la coordenada:" + string.Join(", ", coordenadasRepetidas));
+    }
+    
+    private (bool, string) MarcarDisparo(Coordenada coordenada, Barco? barco)
+    {
+        var mensaje = string.Empty;
+        var disparoAcertado = false;
+        if (barco != null)
+        {
+            disparoAcertado = true;
+            mensaje = VerificarSiElBarcoFueHundidoYMarcarEnElTablero(coordenada, barco);
+        }
+        else
+            Tablero.MarcarRepresentacionEnElTablero(coordenada, 'o');
+
+        return (disparoAcertado, mensaje);
+    }
+    
+    private string VerificarSiElBarcoFueHundidoYMarcarEnElTablero(Coordenada coordenada, Barco barco)
+    {
+        var mensaje = string.Empty;
+        barco.MarcarImpacto();
+        if (barco.SeHundio())
+            mensaje = MarcarBarcoHundido(barco);
+        else
+            Tablero.MarcarRepresentacionEnElTablero(coordenada, 'x');
+        return mensaje;
+    }
+    
+    private string MarcarBarcoHundido(Barco barco)
+    {
+        foreach (var coordenada in barco.CoordenadasDeLaPosicion)
+            Tablero.MarcarRepresentacionEnElTablero(coordenada, 'X');
+
+        return $"Se hundio un barco en la coordenada ({barco.Coordenada.X},{barco.Coordenada.Y})";
     }
 }
