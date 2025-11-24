@@ -31,7 +31,6 @@ public class Jugador(string nombre)
         ValidarFlotaDestructores(flotaBarcos);
         ValidarFlotaPortaAviones(flotaBarcos);
 
-
         Barcos.AddRange(flotaBarcos);
     }
 

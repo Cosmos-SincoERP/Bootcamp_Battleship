@@ -72,4 +72,16 @@ public class JuegoAcorazadosTestBorde
 
         juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado barcos con las siguientes posiciones repetidas:(2,2), (1,5)");
     }
+
+    [Fact]
+    public void Si_Eljugador1DisparaDosTorpedosEnElMismoTurno_Debe_LanzarExcepcion()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego();
+
+        juegoAcorazado.Disparar(new Coordenada(0, 4));
+        juegoAcorazado.Disparar(new Coordenada(0, 4));
+        var barcoHundido = () => juegoAcorazado.Disparar(new Coordenada(2, 1));
+
+        barcoHundido.Should().ThrowExactly<Exception>().WithMessage("El jugador no puede lanzar dos disparos en el mismo turno");
+    }
 }
