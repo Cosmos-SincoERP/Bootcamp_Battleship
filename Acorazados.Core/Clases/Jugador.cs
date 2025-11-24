@@ -8,21 +8,19 @@ public class Jugador(string nombre)
     public string Nombre { get; } = nombre;
 
     public string ImprimirReporte() =>
+        AgregarLineaJugador() +
         AgregarLineaDisparosTotales() +
         AgregarLineaDisparosFallidos() +
         AgregarLineaDisparosExitosos() +
         AgregarLineasBarcosHundidos();
 
-    public string ImprimirTablero()
-    {
-        var tableroJugador = new StringBuilder();
-        AgregarLineaJugador(tableroJugador);
-        AgregarDibujoTablero(tableroJugador);
-        return tableroJugador.ToString();
-    }
+    public string ImprimirTablero() =>
+        AgregarLineaJugador() +
+        AgregarDibujoTablero();
     
-    private void AgregarLineaJugador(StringBuilder tableroJugador) => tableroJugador.Append($"  Jugador: {Nombre}\n");
-    private void AgregarDibujoTablero(StringBuilder tableroJugador) => tableroJugador.Append(Tablero.DibujarTablero());
+    
+    private string AgregarLineaJugador() => $"  Jugador: {Nombre}\n";
+    private string AgregarDibujoTablero() => Tablero.DibujarTablero();
     private string AgregarLineaDisparosTotales() => $"Disparos totales: {Tablero.ObtenerDisparosTotales()} ";
     private string AgregarLineaDisparosFallidos() => $"\n Fallidos: {Tablero.ObtenerDisparosFallidos()}";
     private string AgregarLineaDisparosExitosos() => $"\n Exitosos: {Tablero.ObtenerDisparosExitosos()}";

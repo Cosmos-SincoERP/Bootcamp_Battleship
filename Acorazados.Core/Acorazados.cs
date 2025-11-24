@@ -43,7 +43,14 @@ public class Acorazados
     public string ImprimirReporte()
     {
         LanzarExcepcionSiJuegoNoHaSidoFinalizado();
-        return string.Empty;
+        var reporteCompleto = string.Empty;
+
+        foreach (var jugador in Jugadores)
+        {
+            reporteCompleto += jugador.ImprimirReporte();
+        }
+        
+        return reporteCompleto;
     }
     
     private Jugador ObtenerJugadorOponente()

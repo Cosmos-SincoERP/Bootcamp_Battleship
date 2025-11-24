@@ -479,8 +479,7 @@ public class AcorazadosTest
         acorazados.Disparar(1, 1);
         acorazados.Disparar(1, 3);
         acorazados.Disparar(1, 2);
-
-        var reporteGenerado1 = acorazados.ObtenerJugador(0).ImprimirReporte();
+        
         var reporteGenerado = acorazados.ObtenerJugador(1).ImprimirReporte();
 
         reporteGenerado.Should().Contain("Barcos hundidos: [ " +
@@ -506,7 +505,6 @@ public class AcorazadosTest
                 tablero.AgregarBarco(Barcos.Destructor, 4, 4, Orientacion.Vertical);
                 tablero.AgregarBarco(Barcos.Portaaviones, 0, 0, Orientacion.Horizontal);
             }).Construir();
-
         acorazados.Iniciar();
 
         // Jugador 1 dispara al Jugador 2
@@ -578,32 +576,29 @@ public class AcorazadosTest
         // Jugador 1 dispara al Jugador 2
         acorazados.Disparar(4, 6); // Destructor - Tiro exitoso
         
-        var reporteJugador1 = acorazados.ObtenerJugador(0).ImprimirReporte();
-       
-
-        var reporteJugador2 = acorazados.ObtenerJugador(1).ImprimirReporte();
         
-        acorazados.EstadoJuego.Should().Be(EstadoJuego.Finalizado);
+        var reporte = acorazados.ImprimirReporte();
 
-        // Verificar estadísticas del Jugador 1
-        reporteJugador1.Should().Contain("Disparos totales: 11");
-        reporteJugador1.Should().Contain("Exitosos: 6");
-        reporteJugador1.Should().Contain("Fallidos: 5");
-
-        // Verificar estadísticas del Jugador 2
-        reporteJugador2.Should().Contain("Disparos totales: 12");
-        reporteJugador2.Should().Contain("Exitosos: 9");
-        reporteJugador2.Should().Contain("Fallidos: 3");
-
-        // Verificar barcos hundidos del Jugador 2
-        reporteJugador2.Should().Contain("cañonero: (2,2)");
-        reporteJugador2.Should().Contain("destructor: (4,4)");
-        reporteJugador2.Should().Contain("portaaviones: (0,0)");
-
-        // Verificar barcos hundidos del Jugador 1
-        reporteJugador1.Should().Contain("cañonero: (1,1)");
-        reporteJugador1.Should().Contain("cañonero: (3,3)");
-        reporteJugador1.Should().Contain("destructor: (5,5)");
+        //Estadísticas del jugador 1
+        reporte.Should().Contain("  Jugador: David\n" +
+                                 "Disparos totales: 11 \n" +
+                                 " Fallidos: 5\n" +
+                                 " Exitosos: 6\n" +
+                                 " Barcos hundidos: [ " +
+                                 "cañonero: (1,1)," +
+                                 "cañonero: (3,3)," +
+                                 "destructor: (5,5) ]");
+        
+         //Estadísticas del jugador 2
+         reporte.Should().Contain("  Jugador: Diego\n" +
+                                  "Disparos totales: 12 \n" +
+                                  " Fallidos: 3\n" +
+                                  " Exitosos: 9\n" +
+                                  " Barcos hundidos: [ " +
+                                  "cañonero: (2,2)," +
+                                  "cañonero: (8,8)," +
+                                  "destructor: (4,4)," +
+                                  "portaaviones: (0,0) ]");
     }
 
     [Fact]
