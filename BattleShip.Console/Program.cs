@@ -113,7 +113,7 @@ class Program
             new Cañonero(new Coordenada(6, 0)),
             new Destructor(new Coordenada(0, 2), OrientacionBarco.Horizontal),
             new Destructor(new Coordenada(5, 2), OrientacionBarco.Vertical),
-            new PortaAviones(new Coordenada(0, 0), OrientacionBarco.Horizontal)
+            new PortaAviones(new Coordenada(5, 6), OrientacionBarco.Horizontal)
         };
 
         // Flota del Jugador 2
