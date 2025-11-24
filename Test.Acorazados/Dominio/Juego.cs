@@ -10,6 +10,7 @@ public class Juego
     private int _jugadorEnemigo = 1;
     private bool _juegoTerminado;
     private bool _disparoYaSeRealizoEnTurno;
+    private bool _juegoInicializo;
 
     public void AgregarJugador()
     {
@@ -19,6 +20,8 @@ public class Juego
 
     public void Iniciar(List<(int indexJugador, List<Barco> barcos)> flotas)
     {
+        _juegoInicializo = true;
+
         ValidarCantidadDeJugadores();
 
         foreach (var (indexJugador, barcos) in flotas)
@@ -29,6 +32,7 @@ public class Juego
 
     public string Disparar(Coordenada coordenada)
     {
+        ValidarEstadoJuego();
         ValidarSiJugadorYaDisparo();
 
         var jugadorActivo = ObtenerJugadorActivo();
@@ -57,6 +61,12 @@ public class Juego
         MarcarDisparoRealizadoEnTurno();
 
         return mensaje;
+    }
+
+    private void ValidarEstadoJuego()
+    {
+        if (!_juegoInicializo)
+            throw new Exception("El juego no ha sido iniciado");
     }
 
     private static void ValidarSiTableroYaTieneUnDisparoEnCoordenada(Coordenada coordenada, Tablero tablero)
@@ -137,3 +147,4 @@ public class Juego
     }
 
 }
+

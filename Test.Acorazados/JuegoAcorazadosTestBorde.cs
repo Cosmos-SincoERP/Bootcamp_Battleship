@@ -133,6 +133,5 @@ public class JuegoAcorazadosTestBorde
 
 
         disparar.Should().ThrowExactly<Exception>().WithMessage("El juego no ha sido iniciado");
-
     }
 }
