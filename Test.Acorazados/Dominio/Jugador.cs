@@ -75,22 +75,22 @@ public class Jugador(string nombre)
 
     private void ValidarFlotaDestructores(List<Barco> flotaDestructores)
     {
-        if (flotaDestructores.Count(barco => barco.GetType().Name == nameof(FlotaBarcos.Destructor)) < (int)FlotaBarcos.Destructor)
+        if (flotaDestructores.Count(barco => barco.GetType().Name == nameof(Destructor)) < (int)FlotaBarcos.Destructor)
             throw new Exception($"El jugador {Nombre}, no ha enviado todos los destructores para posicionar");
     }
 
     private void ValidarFlotaPortaAviones(List<Barco> flotaPortaviones)
     {
-        if (flotaPortaviones.Count(barco => barco.GetType().Name == nameof(FlotaBarcos.PortaAviones)) < (int)FlotaBarcos.PortaAviones)
+        if (flotaPortaviones.Count(barco => barco.GetType().Name == nameof(PortaAviones)) < (int)FlotaBarcos.PortaAviones)
             throw new Exception($"El jugador {Nombre}, no ha enviado todos los portaviones para posicionar");
     }
 
     private void ValidarSiHayCoordenadaPorFueraDelLimite(List<Barco> barcos, string nombreJugador)
     {
         var coordenadaNoValida = new List<string>();
-        barcos.Where(barco => barco.Coordenada.X > Tablero.ObtenerTamañoEnX() ||
+        barcos.Where(barco => barco.Coordenada.X >= Tablero.ObtenerTamañoEnX() ||
                                 barco.Coordenada.X < 0 ||
-                                barco.Coordenada.Y > Tablero.ObtenerTamañoEnY() ||
+                                barco.Coordenada.Y >= Tablero.ObtenerTamañoEnY() ||
                                 barco.Coordenada.Y < 0)
             .ToList()
             .ForEach(barco =>
