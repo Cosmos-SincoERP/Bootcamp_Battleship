@@ -44,24 +44,17 @@ public class Tablero
     {
         LanzarExcepcionSiCoordenadaEstaFueraDeLimiteDelTablero(x,y);
         
-        if (!string.IsNullOrWhiteSpace(Cuadro[x, y]) && (Cuadro[x, y] == MarcaTiroAlAgua || Cuadro[x, y] == MarcaBarcoHundido || Cuadro[x, y] == MarcaTiroExitoso))
+        if (TiroImpactado(x, y))
         {
-            throw new InvalidOperationException("Este coordenada ya recibio disparo");
-        }
-
-        if (EsTiroExitoso(x, y))
-        {
+            LanzarExcepcionCuandoCoordenadaYaRecibioDisparo(x, y);
             var barco = ConsultarBarcoPorCoordenada(x, y);
             
-            if (SeDebeHundirBarco(x, y, barco))
-                return HundirBarco(barco);
-            
-            return TiroExitoso(x, y);
+            return SeDebeHundirBarco(x, y, barco) ? HundirBarco(barco) : TiroExitoso(x, y);
         }
 
         return TiroAlAgua(x, y);
     }
-    
+
     public bool ExistenBarcos() => _listaBarcos.Any();
 
     public bool BarcosNoHundidos() => _listaBarcos.Any(a => !a.EstaHundido);
@@ -116,7 +109,7 @@ public class Tablero
         dibujo.Append('|');
     }
 
-    private bool EsTiroExitoso(int x, int y) => Cuadro[x, y] != null;
+    private bool TiroImpactado(int x, int y) => ConsultarValorPorCoordenada(x, y) != null;
 
     private bool SeDebeHundirBarco(int x, int y, Barcos? barco) => ObtenerCasillasAtacadas(x, y, barco) == barco.Casillas;
 
@@ -179,11 +172,23 @@ public class Tablero
         if (orientacion == Orientacion.Vertical) y++;
         if (orientacion == Orientacion.Horizontal) x++;
     }
-
+    
+    private void CalcularIndicesMaximos()
+    {
+        _indiceXMaximo = Cuadro.GetLength(0) - 1;
+        _indiceYMaximo = Cuadro.GetLength(1) - 1;
+    }
+    
     private void LanzarExcepcionSiCoordenadaEstaFueraDeLimiteDelTablero(int x, int y)
     {
         if (x > _indiceXMaximo || y > _indiceYMaximo || x < 0 || y < 0)
             throw new InvalidOperationException("La coordenada excede el limite del tablero");
+    }
+    
+    private void LanzarExcepcionCuandoCoordenadaYaRecibioDisparo(int x, int y)
+    {
+        if (Cuadro[x, y] == MarcaTiroAlAgua || Cuadro[x, y] == MarcaBarcoHundido || Cuadro[x, y] == MarcaTiroExitoso)
+            throw new InvalidOperationException("Este coordenada ya recibio disparo");
     }
 
     private void LanzarExcepcionSiSeSobreponeUnBarco(int x, int y)
@@ -196,11 +201,5 @@ public class Tablero
     {
         if (_listaBarcos.Count(x => x.Tipo == barco.Tipo) == barco.CantidadPermitida)
             throw new InvalidOperationException($"No se puede adicionar otro {barco.Nombre}");
-    }
-    
-    private void CalcularIndicesMaximos()
-    {
-        _indiceXMaximo = Cuadro.GetLength(0) - 1;
-        _indiceYMaximo = Cuadro.GetLength(1) - 1;
     }
 }
