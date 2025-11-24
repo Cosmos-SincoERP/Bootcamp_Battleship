@@ -135,4 +135,23 @@ public class Mocks
 
         return juegoAcorazado;
     }
+
+    public static object MockIniciarJuegoConBarcoEnCoordenadaYMenorA0()
+    {
+        var juegoAcorazado = new Juego();
+        juegoAcorazado.AgregarJugador();
+        juegoAcorazado.AgregarJugador();
+        var barcosJugador1 = new List<Barco>
+        {
+            new Cañonero(new(1, -1))
+        };
+        var barcosJugador2 = new List<Barco>
+        {
+            new Cañonero(new(1, 8))
+        };
+
+        juegoAcorazado.Iniciar([(0, barcosJugador1), (1, barcosJugador2)]);
+
+        return juegoAcorazado;
+    }
 }

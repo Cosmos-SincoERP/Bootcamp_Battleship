@@ -29,4 +29,12 @@ public class JuegoAcorazadosTestBorde
 
         juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1, ha enviado un barco con coordenadas invalidas (1,11)");
     }
+
+    [Fact]
+    public void Si_IniciaElJuegoYSePosicionanBarcoEnUnaCoordenadaEnYMenorA0_Debe_LanzarExcepcion()
+    {
+        var juegoAcorazado = () => Mocks.MockIniciarJuegoConBarcoEnCoordenadaYMenorA0();
+
+        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1, ha enviado un barco con coordenadas invalidas (1,11)");
+    }
 }
