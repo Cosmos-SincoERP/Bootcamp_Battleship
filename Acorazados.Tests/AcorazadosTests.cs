@@ -371,7 +371,7 @@ public class AcorazadosTests
         j2.AgregarGunShip(6, 5);
         j2.AgregarGunShip(3, 7);
         j2.AgregarGunShip(4, 3);
-        
+
         string expected = " |0|1|2|3|4|5|6|7|8|9|\r\n" +
                           "0| |d| | | | | | | | |\r\n" +
                           "1| |x| | | | | | | | |\r\n" +
@@ -400,7 +400,7 @@ public class AcorazadosTests
         var jugador2 = "jugador 2";
         acorazados.AgregarJugador(jugador1);
         acorazados.AgregarJugador(jugador2);
-        
+
         var j1 = acorazados.BuscarJugador(jugador1);
         j1.AgregarCarrier(9, 0, Orientacion.Horizontal);
         j1.AgregarDestroyer(0, 1, Orientacion.Vertical);
@@ -449,7 +449,7 @@ public class AcorazadosTests
         var jugador2 = "jugador 2";
         acorazados.AgregarJugador(jugador1);
         acorazados.AgregarJugador(jugador2);
-        
+
         var j1 = acorazados.BuscarJugador(jugador1);
         j1.AgregarCarrier(9, 0, Orientacion.Horizontal);
         j1.AgregarDestroyer(0, 1, Orientacion.Vertical);
@@ -656,7 +656,7 @@ public class AcorazadosTests
                                          "8| | | | | |d|d|d| | |\r\n" +
                                          "9|c|x|c|c| | | | | | |\r\n";
 
- 
+
         acorazados.Disparar(1, 1);
         acorazados.Disparar(5, 1);
         acorazados.Disparar(2, 1);
@@ -672,10 +672,10 @@ public class AcorazadosTests
         var acorazados = new Acorazados();
         acorazados.AgregarJugador("jugador 1");
         acorazados.AgregarJugador("jugador 2");
-        
+
         var jugador1 = acorazados.BuscarJugador("jugador 1");
         jugador1.AgregarGunShip(0, 0);
-        
+
         var jugador2 = acorazados.BuscarJugador("jugador 2");
         jugador2.AgregarCarrier(0, 0, Orientacion.Horizontal);
         jugador2.AgregarDestroyer(1, 0, Orientacion.Horizontal);
@@ -684,11 +684,12 @@ public class AcorazadosTests
         jugador2.AgregarGunShip(4, 0);
         jugador2.AgregarGunShip(5, 0);
         jugador2.AgregarGunShip(6, 0);
-        
+
         var accionDeIniciar = () => acorazados.IniciarJuego();
-        
+
         accionDeIniciar.Should().ThrowExactly<InvalidOperationException>()
-            .WithMessage("No se puede iniciar el juego hasta que todos los jugadores hayan posicionado su flota completa");
+            .WithMessage(
+                "No se puede iniciar el juego hasta que todos los jugadores hayan posicionado su flota completa");
     }
 
     [Fact]
@@ -697,30 +698,30 @@ public class AcorazadosTests
         var acorazados = new Acorazados();
         acorazados.AgregarJugador("jugador 1");
         acorazados.AgregarJugador("jugador 2");
-        
-        var jugador1= acorazados.BuscarJugador("jugador 1");
+
+        var jugador1 = acorazados.BuscarJugador("jugador 1");
         jugador1.AgregarCarrier(0, 0, Orientacion.Horizontal);
         jugador1.AgregarDestroyer(1, 0, Orientacion.Horizontal);
-        jugador1.AgregarDestroyer(2, 0, Orientacion.Horizontal);    
+        jugador1.AgregarDestroyer(2, 0, Orientacion.Horizontal);
         jugador1.AgregarGunShip(3, 0);
         jugador1.AgregarGunShip(4, 0);
         jugador1.AgregarGunShip(8, 0);
-        
+
         var jugador2 = acorazados.BuscarJugador("jugador 2");
         jugador2.AgregarCarrier(0, 0, Orientacion.Horizontal);
         jugador2.AgregarDestroyer(1, 0, Orientacion.Horizontal);
         jugador2.AgregarDestroyer(2, 0, Orientacion.Horizontal);
-        jugador2.AgregarGunShip(3, 0); 
-        jugador2.AgregarGunShip(4, 0); 
-        jugador2.AgregarGunShip(5, 0); 
+        jugador2.AgregarGunShip(3, 0);
+        jugador2.AgregarGunShip(4, 0);
+        jugador2.AgregarGunShip(5, 0);
         jugador2.AgregarGunShip(6, 0);
 
         var accionDeDisparar = () => acorazados.Disparar(0, 0);
-        
+
         accionDeDisparar.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("El juego no ha comenzado.");
     }
-    
+
     //
     [Fact]
     public void Si_UnJugadorRealizaVariosDisparos_Debe_RegistrarElNumeroTotalDeTiros()
@@ -737,7 +738,7 @@ public class AcorazadosTests
         j1.AgregarGunShip(8, 8);
         j1.AgregarGunShip(5, 1);
         j1.AgregarGunShip(4, 3);
-        
+
         var j2 = acorazados.BuscarJugador("jugador 2");
         j2.AgregarCarrier(9, 0, Orientacion.Horizontal);
         j2.AgregarDestroyer(0, 1, Orientacion.Vertical);
@@ -746,18 +747,18 @@ public class AcorazadosTests
         j2.AgregarGunShip(6, 5);
         j2.AgregarGunShip(3, 7);
         j2.AgregarGunShip(4, 3);
-  
-        
+
+
         acorazados.IniciarJuego();
 
-        acorazados.Disparar(0, 0); 
-        acorazados.Disparar(0, 0); 
-        acorazados.Disparar(1, 1); 
-        
+        acorazados.Disparar(0, 0);
+        acorazados.Disparar(0, 0);
+        acorazados.Disparar(1, 1);
+
         j1.DisparosTotales.Should().Be(2);
         j2.DisparosTotales.Should().Be(1);
     }
-    
+
     [Fact]
     public void Si_UnJugadorAciertaUnDisparo_Debe_RegistrarElNumeroDeAciertos()
     {
@@ -773,7 +774,7 @@ public class AcorazadosTests
         j1.AgregarGunShip(8, 8);
         j1.AgregarGunShip(5, 1);
         j1.AgregarGunShip(4, 3);
-        
+
         var j2 = acorazados.BuscarJugador("jugador 2");
         j2.AgregarCarrier(9, 0, Orientacion.Horizontal);
         j2.AgregarDestroyer(0, 1, Orientacion.Vertical);
@@ -782,23 +783,23 @@ public class AcorazadosTests
         j2.AgregarGunShip(6, 5);
         j2.AgregarGunShip(3, 7);
         j2.AgregarGunShip(4, 3);
-        
+
         acorazados.IniciarJuego();
-        acorazados.Disparar(0, 0); 
-        acorazados.Disparar(8, 8); 
-        acorazados.Disparar(7, 1); 
-        
+        acorazados.Disparar(0, 0);
+        acorazados.Disparar(8, 8);
+        acorazados.Disparar(7, 1);
+
         j1.Aciertos.Should().Be(1);
         j2.Aciertos.Should().Be(1);
     }
-    
+
     [Fact]
     public void Si_UnJugadorDisparaAlAgua_Debe_RegistrarElNumeroDeFallos()
     {
         var acorazados = new Acorazados();
         acorazados.AgregarJugador("jugador 1");
         acorazados.AgregarJugador("jugador 2");
-        
+
         var j1 = acorazados.BuscarJugador("jugador 1");
         j1.AgregarCarrier(9, 0, Orientacion.Horizontal);
         j1.AgregarDestroyer(0, 1, Orientacion.Vertical);
@@ -807,7 +808,7 @@ public class AcorazadosTests
         j1.AgregarGunShip(8, 8);
         j1.AgregarGunShip(5, 1);
         j1.AgregarGunShip(4, 3);
-        
+
         var j2 = acorazados.BuscarJugador("jugador 2");
         j2.AgregarCarrier(9, 0, Orientacion.Horizontal);
         j2.AgregarDestroyer(0, 1, Orientacion.Vertical);
@@ -816,13 +817,13 @@ public class AcorazadosTests
         j2.AgregarGunShip(6, 5);
         j2.AgregarGunShip(3, 7);
         j2.AgregarGunShip(4, 3);
-        
+
         acorazados.IniciarJuego();
-  
-        acorazados.Disparar(7, 2); 
-        acorazados.Disparar(3, 1); 
-        acorazados.Disparar(7, 7); 
-        
+
+        acorazados.Disparar(7, 2);
+        acorazados.Disparar(3, 1);
+        acorazados.Disparar(7, 7);
+
         j1.Fallos.Should().Be(2);
         j2.Fallos.Should().Be(0);
     }
@@ -834,10 +835,10 @@ public class AcorazadosTests
         var acorazados = new Acorazados();
         var aliasJugador1 = "jugador 1";
         var aliasJugador2 = "jugador 2";
-        
+
         acorazados.AgregarJugador(aliasJugador1);
         acorazados.AgregarJugador(aliasJugador2);
-        
+
         var jugador1 = acorazados.BuscarJugador(aliasJugador1);
         jugador1.AgregarCarrier(9, 0, Orientacion.Horizontal);
         jugador1.AgregarDestroyer(0, 1, Orientacion.Vertical);
@@ -846,7 +847,7 @@ public class AcorazadosTests
         jugador1.AgregarGunShip(8, 8);
         jugador1.AgregarGunShip(5, 1);
         jugador1.AgregarGunShip(4, 3);
-        
+
         var jugador2 = acorazados.BuscarJugador("jugador 2");
         jugador2.AgregarCarrier(8, 5, Orientacion.Horizontal);
         jugador2.AgregarDestroyer(7, 1, Orientacion.Vertical);
@@ -855,14 +856,14 @@ public class AcorazadosTests
         jugador2.AgregarGunShip(6, 5);
         jugador2.AgregarGunShip(3, 0);
         jugador2.AgregarGunShip(4, 3);
-        
-        acorazados.IniciarJuego();  
-        
+
+        acorazados.IniciarJuego();
+
         acorazados.Disparar(3, 0); // Hundir G
-        acorazados.Disparar(0, 1); 
-        acorazados.Disparar(1, 1); 
+        acorazados.Disparar(0, 1);
+        acorazados.Disparar(1, 1);
         acorazados.Disparar(0, 2);
-        acorazados.Disparar(1, 2); 
+        acorazados.Disparar(1, 2);
         acorazados.Disparar(0, 3);
         acorazados.Disparar(1, 3); // Hundir D
         acorazados.Disparar(0, 4);
@@ -872,12 +873,12 @@ public class AcorazadosTests
         acorazados.Disparar(0, 6);
         acorazados.Disparar(9, 1); // Hundir D
         acorazados.Disparar(0, 7);
-   
+
         acorazados.Disparar(4, 3); // Hundir G
         acorazados.Disparar(0, 8);
         acorazados.Disparar(6, 5); // Hundir g 
         acorazados.Disparar(0, 9);
-        
+
         acorazados.Disparar(8, 5); //C 
         acorazados.Disparar(1, 0);
         acorazados.Disparar(8, 6); // C 
@@ -886,10 +887,45 @@ public class AcorazadosTests
         acorazados.Disparar(1, 2); //C
         acorazados.Disparar(8, 8); // C 
         acorazados.Disparar(1, 3);
-        
+
         acorazados.Disparar(7, 3); //Hundir ultimo g
-        
+
         acorazados.Ganador.Should().Be(aliasJugador1);
         acorazados.Estado.Should().Be(EstadoJuego.Finalizado);
+    }
+
+    [Fact]
+    public void Si_UnJugadorAciertaUnDisparoAUnGunShip_Debe_RegistrarLaCoordenada()
+    {
+        var acorazados = new Acorazados();
+        acorazados.AgregarJugador("jugador 1");
+        acorazados.AgregarJugador("jugador 2");
+
+        var j1 = acorazados.BuscarJugador("jugador 1");
+        j1.AgregarCarrier(9, 0, Orientacion.Horizontal);
+        j1.AgregarDestroyer(0, 1, Orientacion.Vertical);
+        j1.AgregarDestroyer(3, 1, Orientacion.Horizontal);
+        j1.AgregarGunShip(7, 1);
+        j1.AgregarGunShip(8, 8);
+        j1.AgregarGunShip(5, 1);
+        j1.AgregarGunShip(4, 3);
+
+        var j2 = acorazados.BuscarJugador("jugador 2");
+        j2.AgregarCarrier(9, 0, Orientacion.Horizontal);
+        j2.AgregarDestroyer(0, 1, Orientacion.Vertical);
+        j2.AgregarDestroyer(8, 5, Orientacion.Horizontal);
+        j2.AgregarGunShip(7, 1);
+        j2.AgregarGunShip(6, 5);
+        j2.AgregarGunShip(3, 7);
+        j2.AgregarGunShip(4, 3);
+
+        acorazados.IniciarJuego();
+        acorazados.Disparar(7, 1);
+
+        j2.NaveHundida.GunShips.Should().BeEquivalentTo(new List<(int fila, int columna)>
+            {
+                (1, 7)
+            }
+        );
     }
 }

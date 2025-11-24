@@ -13,6 +13,8 @@ public class Jugador
     public int DisparosTotales { get; private set; }
     public int Aciertos { get; private set; }
     public int Fallos { get; set; }
+    public BarcosHundidos NaveHundida { get; set; }
+
 
     private List<NavePosicionada> _naves = new();
 
@@ -98,8 +100,10 @@ public class Jugador
             {
                 return ResultadoDisparo.Hundido;
             }
+
             return ResultadoDisparo.Tocado;
         }
+
         Tablero[x, y] = ResultadoDisparo.Agua.ValorDisparo();
         return ResultadoDisparo.Agua;
     }
@@ -133,20 +137,23 @@ public class Jugador
         {
             Tablero[posicion.fila, posicion.columna] = ResultadoDisparo.Hundido.ValorDisparo();
         }
+
         return true;
     }
 
     private bool EsNaveHundida(NavePosicionada nave)
     {
         return nave.Posiciones.All(posicion =>
-            Tablero[posicion.fila, posicion.columna] == ResultadoDisparo.Tocado.ValorDisparo() || Tablero[posicion.fila, posicion.columna] == ResultadoDisparo.Hundido.ValorDisparo());
+            Tablero[posicion.fila, posicion.columna] == ResultadoDisparo.Tocado.ValorDisparo() ||
+            Tablero[posicion.fila, posicion.columna] == ResultadoDisparo.Hundido.ValorDisparo());
     }
 
 
     private bool EstaCasillaConDisparo(int x, int y)
     {
         var casilla = Tablero[x, y];
-        return casilla == ResultadoDisparo.Tocado.ValorDisparo() || casilla == ResultadoDisparo.Hundido.ValorDisparo() || casilla == ResultadoDisparo.Agua.ValorDisparo();
+        return casilla == ResultadoDisparo.Tocado.ValorDisparo() ||
+               casilla == ResultadoDisparo.Hundido.ValorDisparo() || casilla == ResultadoDisparo.Agua.ValorDisparo();
     }
 
     private bool EsMaxCantidadGunShipsPermitido() => _cantidadGunships >= new GunShip().MaxPermitidos;
@@ -257,4 +264,9 @@ public class Jugador
         tablero += "\r\n";
         return tablero;
     }
+}
+
+public class BarcosHundidos
+{
+    public List<(int fila, int columna)>? GunShips { get; set; }
 }
