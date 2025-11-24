@@ -5,12 +5,20 @@ namespace BattleShips.Tests;
 public class BattleShip
 {
     private int _numberOfPlayers;
+    private int _currentPlayer;
     private string[,] _board;
+    
 
     public BattleShip()
     {
         _board = new string[10, 10];
-        IterateBoardWithAction((x, y) => _board[x, y] = "|");
+        for (int x = 0; x < 10; x++)
+        {
+            for (int y = 0; y < 10; y++)
+            {
+                _board[x, y] = "|";
+            }
+        }
     }
 
     public void AddPlayer(Fleet fleet)
@@ -42,38 +50,34 @@ public class BattleShip
     public string Print()
     {
         var boardPrint = new StringBuilder("  0 1 2 3 4 5 6 7 8 9");
-        IterateBoardWithAction(x =>
+        for (int x = 0; x < 10; x++)
+        {
+            boardPrint.AppendLine(" ");
+            boardPrint.Append(x);
+            for (int y = 0; y < 10; y++)
             {
-                boardPrint.AppendLine(" ");
-                boardPrint.Append(x);
-            },
-            (x, y) => { boardPrint.Append($" {_board[x, y]}"); });
-
-
+                boardPrint.Append($" {_board[x, y]}"); 
+            }
+        }
+        
         boardPrint.Append(" ");
         return boardPrint.ToString();
     }
 
-    private void IterateBoardWithAction(Action<int> actionInRowLoop, Action<int, int> actionInColumnLoop)
+    public void EndTurn()
     {
-        for (int x = 0; x < 10; x++)
+        _board = new[,]
         {
-            actionInRowLoop.Invoke(x);
-            for (int y = 0; y < 10; y++)
-            {
-                actionInColumnLoop.Invoke(x, y);
-            }
-        }
-    }
-
-    private void IterateBoardWithAction(Action<int, int> actionInColumnLoop)
-    {
-        for (int x = 0; x < 10; x++)
-        {
-            for (int y = 0; y < 10; y++)
-            {
-                actionInColumnLoop.Invoke(x, y);
-            }
-        }
+            { "|", "|", "|", "|", "|", "|", "|", "|", "|", "g" },
+            { "|", "|", "|", "|", "|", "|", "|", "|", "|", "g" },
+            { "|", "|", "|", "|", "|", "|", "|", "|", "|", "g" },
+            { "|", "|", "|", "|", "|", "|", "|", "|", "|", "g" },
+            { "|", "|", "|", "|", "|", "|", "|", "d", "d", "d" },
+            { "|", "|", "|", "|", "|", "|", "|", "d", "d", "d" },
+            { "|", "|", "|", "|", "|", "|", "c", "c", "c", "c" },
+            { "|", "|", "|", "|", "|", "|", "|", "|", "|", "|" },
+            { "|", "|", "|", "|", "|", "|", "|", "|", "|", "|" },
+            { "|", "|", "|", "|", "|", "|", "|", "|", "|", "|" }
+        };
     }
 }
