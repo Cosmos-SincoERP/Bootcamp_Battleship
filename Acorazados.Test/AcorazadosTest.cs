@@ -690,4 +690,25 @@ public class AcorazadosTest
                                  "8 |   |   |   |   |   |   |   |   | X |   |\n" +
                                  "9 |   |   |   |   |   |   |   |   |   | o |");
     }
+
+    [Fact]
+    public void Si_AlFInalizarElJuegoGanoElJugador1_Debe_MostrarEnElInformeQueJugador1FueElGanador()
+    {
+        var acorazados = _acorazadosBuilder
+            .ConstruirJugadorUno("David", tablero =>
+            {
+                tablero.AgregarBarco(Barcos.Canonero, 1, 1, Orientacion.Horizontal);
+            })
+            .ConstruirJugadorDos("Diego", tablero =>
+            {
+                tablero.AgregarBarco(Barcos.Canonero, 2, 2, Orientacion.Horizontal);
+            })
+            .Construir();
+        acorazados.Iniciar();
+        acorazados.Disparar(2, 2);
+        
+        var reporte = acorazados.ImprimirReporte();
+
+        reporte.Should().Contain("El jugador ganador es: David");
+    }
 }

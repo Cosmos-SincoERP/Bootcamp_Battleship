@@ -1026,23 +1026,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\diego.gonzalez\\.nuget\\packages\\": {},
+    "C:\\Users\\DAVID.CUBIDES\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Sinco\\Cosmos\\KataAcorazados\\Acorazados.Test\\Acorazados.Test.csproj",
+      "projectUniqueName": "C:\\Users\\DAVID.CUBIDES\\RiderProjects\\KataAcorazados\\Acorazados.Test\\Acorazados.Test.csproj",
       "projectName": "Acorazados.Test",
-      "projectPath": "C:\\Sinco\\Cosmos\\KataAcorazados\\Acorazados.Test\\Acorazados.Test.csproj",
-      "packagesPath": "C:\\Users\\diego.gonzalez\\.nuget\\packages\\",
-      "outputPath": "C:\\Sinco\\Cosmos\\KataAcorazados\\Acorazados.Test\\obj\\",
+      "projectPath": "C:\\Users\\DAVID.CUBIDES\\RiderProjects\\KataAcorazados\\Acorazados.Test\\Acorazados.Test.csproj",
+      "packagesPath": "C:\\Users\\DAVID.CUBIDES\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DAVID.CUBIDES\\RiderProjects\\KataAcorazados\\Acorazados.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\diego.gonzalez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DAVID.CUBIDES\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1057,8 +1057,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Sinco\\Cosmos\\KataAcorazados\\Acorazados.Core\\Acorazados.Core.csproj": {
-              "projectPath": "C:\\Sinco\\Cosmos\\KataAcorazados\\Acorazados.Core\\Acorazados.Core.csproj"
+            "C:\\Users\\DAVID.CUBIDES\\RiderProjects\\KataAcorazados\\Acorazados.Core\\Acorazados.Core.csproj": {
+              "projectPath": "C:\\Users\\DAVID.CUBIDES\\RiderProjects\\KataAcorazados\\Acorazados.Core\\Acorazados.Core.csproj"
             }
           }
         }
@@ -1120,7 +1120,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
