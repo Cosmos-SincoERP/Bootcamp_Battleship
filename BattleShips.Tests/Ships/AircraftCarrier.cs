@@ -1,9 +1,10 @@
 namespace BattleShips.Tests.Ships;
 
-public class AircraftCarrier(List<Coord> coords) : Ship
+public class AircraftCarrier(List<Coord> coords) : Ship(coords)
 {
     private const string UnPortaavionDebeTener4Coordenadas = "Un portaavion debe tener 4 coordenadas.";
-
+    private protected override char Abbreviation => 'c';
+    
     public static Ship Create(params List<Coord> coords)
     {
         if (coords.Count != 4)
@@ -11,4 +12,5 @@ public class AircraftCarrier(List<Coord> coords) : Ship
         
         return new AircraftCarrier(coords);
     }
+
 }

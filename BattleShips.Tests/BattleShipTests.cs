@@ -349,6 +349,42 @@ public class BattleShipTests
     }
 
     [Fact]
+    public void
+        Si_SeIniciaUnJuegoConFlotasAlFinalDelTableroDeAmbosJugadores_Debe_MostrarElTableroDelSegundoJugadorEnLaImpresion()
+    {
+        var fleet = new Fleet([
+            Gunboat.Create(new Coord(0, 5)),
+            Gunboat.Create(new Coord(1, 5)),
+            Gunboat.Create(new Coord(2, 5)),
+            Gunboat.Create(new Coord(3, 5)),
+            Destroyer.Create([new Coord(4, 5), new Coord(5, 5), new Coord(6, 5)]),
+            Destroyer.Create([new Coord(7, 5), new Coord(8, 5), new Coord(9, 5)]),
+            AircraftCarrier.Create([new Coord(6, 6), new Coord(7, 6), new Coord(8, 6), new Coord(9, 6)])
+        ]);
+        _battleship.AddPlayer(fleet);
+        _battleship.AddPlayer(fleet);
+        _battleship.Start();
+
+        var board = _battleship.Print();
+        
+        var expectedBoardSecondPlayer = string.Join(Environment.NewLine, new[]
+        {
+            "  0 1 2 3 4 5 6 7 8 9 ",
+            "0 | | | | | g | | | | ",
+            "1 | | | | | g | | | | ",
+            "2 | | | | | g | | | | ",
+            "3 | | | | | g | | | | ",
+            "4 | | | | | d | | | | ",
+            "5 | | | | | d | | | | ",
+            "6 | | | | | d c | | | ",
+            "7 | | | | | d c | | | ",
+            "8 | | | | | d c | | | ",
+            "9 | | | | | d c | | | ",
+        });
+        board.Should().Be(expectedBoardSecondPlayer);
+    }
+    
+    [Fact]
     public void Si_ElPrimerJugadorTerminaElTurnoYSeImprimeElTablero_Debe_MostrarElTableroDelPrimerJugador()
     {
         _battleship.AddPlayer(new Fleet([
@@ -365,21 +401,20 @@ public class BattleShipTests
         _battleship.EndTurn();
         var currentBoard = _battleship.Print();
     
-        var expectedBoardSecondPlayer = string.Join(Environment.NewLine, new[]
+        var expectedBoardFirstPlayer = string.Join(Environment.NewLine, new[]
         {
             "  0 1 2 3 4 5 6 7 8 9 ",
-            "0 g | | | | | | | | | ",
-            "1 g | | | | | | | | | ",
-            "2 g | | | | | | | | | ",
-            "3 g | | | | | | | | | ",
-            "4 d d d | | | | | | | ",
-            "5 d d d | | | | | | | ",
-            "6 c c c c | | | | | | ",
+            "0 | | | | | | | | | g ",
+            "1 | | | | | | | | | g ",
+            "2 | | | | | | | | | g ",
+            "3 | | | | | | | | | g ",
+            "4 | | | | | | | d d d ",
+            "5 | | | | | | | d d d ",
+            "6 | | | | | | c c c c ",
             "7 | | | | | | | | | | ",
             "8 | | | | | | | | | | ",
             "9 | | | | | | | | | | ",
         });
-
-        currentBoard.Should().Be(expectedBoardSecondPlayer);
+        currentBoard.Should().Be(expectedBoardFirstPlayer);
     }
 }
