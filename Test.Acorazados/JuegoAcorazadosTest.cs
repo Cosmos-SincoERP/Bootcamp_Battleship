@@ -357,4 +357,52 @@ public class JuegoAcorazadosTest
 
         juegoAcorazado.Imprimir().Should().Contain("Cañonero: (2,1)");
     }
+    
+    [Fact]
+    public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarEnElInformeDeBatallaElCañoneroDeLaPosicion_1_3_QueHundio()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+
+        juegoAcorazado.Imprimir().Should().Contain("Cañonero: (1,3)");
+    }
+    
+    [Fact]
+    public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarEnElInformeDeBatallaElCañoneroDeLaPosicion_5_2_QueHundio()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+
+        juegoAcorazado.Imprimir().Should().Contain("Cañonero: (5,2)");
+    }
+    
+    [Fact]
+    public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarEnElInformeDeBatallaElCañoneroDeLaPosicion_7_6_QueHundio()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+
+        juegoAcorazado.Imprimir().Should().Contain("Cañonero: (7,6)");
+    }
+    
+    [Fact]
+    public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarEnElInformeDeBatallaElDestructorDeLaPosicion_7_4_QueHundio()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+
+        juegoAcorazado.Imprimir().Should().Contain("Destructor: (1,5)");
+    }
+    
+    [Fact]
+    public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarEnElInformeDeBatallaElCañoneroDeLaPosicion_4_7_QueHundio()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+
+        juegoAcorazado.Imprimir().Should().Contain("Destructor: (7,2)");
+    }
+    
+    [Fact]
+    public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarEnElInformeDeBatallaElPortaAvionesDeLaPosicion_4_0_QueHundio()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+
+        juegoAcorazado.Imprimir().Should().Contain("PortaAviones: (2,7)");
+    }
 }
