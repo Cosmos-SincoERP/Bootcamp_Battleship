@@ -48,11 +48,14 @@ public class Acorazados
 
     private string DibujarReporteDelJuego()
     {
-        var jugador = Jugadores.Where(b => b.Tablero.BarcosNoHundidos()).FirstOrDefault();
-        var jugadorGanador = $"El jugador ganador es: {jugador.Nombre} ";
+        var jugadorGanador = DibujarJugadorGanador();
         var reporte = DibujarInformacionDetalladaJugadores();
         return jugadorGanador + reporte;
     }
+
+    private string DibujarJugadorGanador() => $"El jugador ganador es: {ObtenerJugadorGanador().Nombre} ";
+
+    private Jugador ObtenerJugadorGanador() => Jugadores.First(b => b.Tablero.BarcosNoHundidos());
 
     private string DibujarInformacionDetalladaJugadores()
     {
