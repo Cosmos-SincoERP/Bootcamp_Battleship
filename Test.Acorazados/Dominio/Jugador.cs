@@ -25,7 +25,7 @@ public class Jugador(string nombre)
     public void AgregarFlotaDeBarcos(List<Barco> flotaBarcos)
     {
         ValidarSiHayCoordenadaPorFueraDelLimite(flotaBarcos, _nombre);
-        ValidarsSiHayCoordenadasPosicionadasRepetidas(flotaBarcos, _nombre);
+        ValidarsSiExisteUnBarcoEnLaCoordenada(flotaBarcos, _nombre);
 
         ValidarFlotaCañoneros(flotaBarcos);
         ValidarFlotaDestructores(flotaBarcos);
@@ -76,7 +76,7 @@ public class Jugador(string nombre)
             throw new Exception($"El jugador {nombreJugador} ha enviado un barco con coordenadas invalidas, " + string.Join(", ", coordenadaNoValida));
     }
 
-    private void ValidarsSiHayCoordenadasPosicionadasRepetidas(List<Barco> flotaBarcos, string nombre)
+    private void ValidarsSiExisteUnBarcoEnLaCoordenada(List<Barco> flotaBarcos, string nombre)
     {
         var coordenadasRepetidas = flotaBarcos
             .SelectMany(barco => barco.CoordenadasDeLaPosicion)
@@ -86,6 +86,6 @@ public class Jugador(string nombre)
             .ToList();
 
         if (coordenadasRepetidas.Any())
-            throw new Exception($"El jugador {nombre} ha enviado barcos con las siguientes posiciones repetidas:" + string.Join(", ", coordenadasRepetidas));
+            throw new Exception($"El jugador {nombre} ha enviado barcos que existen en la coordenada:" + string.Join(", ", coordenadasRepetidas));
     }
 }

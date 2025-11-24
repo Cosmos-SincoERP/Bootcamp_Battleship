@@ -8,7 +8,7 @@ public class Juego
     private int _jugadorActivo;
     private int _jugadorEnemigo = 1;
     private bool _juegoTerminado;
-    private bool _disparoYaSeRealizoEnTurno = false;
+    private bool _disparoYaSeRealizoEnTurno;
 
     public void AgregarJugador()
     {

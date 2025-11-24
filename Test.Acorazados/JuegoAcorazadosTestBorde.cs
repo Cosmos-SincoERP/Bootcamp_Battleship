@@ -59,7 +59,7 @@ public class JuegoAcorazadosTestBorde
 
 
 
-        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado barcos con las siguientes posiciones repetidas:(2,2)");
+        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado barcos que existen en la coordenada:(2,2)");
     }
 
     [Fact]
@@ -70,7 +70,7 @@ public class JuegoAcorazadosTestBorde
         var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = () => Mocks.MockIniciarJuegoConBarcoDeDiferentesTipoEnPosicionesOcupadas();
 
-        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado barcos con las siguientes posiciones repetidas:(2,2), (1,5)");
+        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado barcos que existen en la coordenada:(2,2), (1,5)");
     }
 
     [Fact]
