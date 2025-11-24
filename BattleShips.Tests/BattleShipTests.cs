@@ -297,6 +297,23 @@ public class BattleShipTests
     }
 
     [Fact]
+    public void Si_AgregoUnJugadorConUnPortaavionesDeCoordenadasSeparadas_Debe_ArrojarExcepcion()
+    {
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0, 0)),
+            Gunboat.Create(new Coord(1, 0)),
+            Gunboat.Create(new Coord(2, 0)),
+            Gunboat.Create(new Coord(3, 0)),
+            Destroyer.Create([new Coord(4, 0), new Coord(4, 1), new Coord(4, 2)]),
+            Destroyer.Create([new Coord(5, 1), new Coord(5, 2), new Coord(5, 3)]),
+            AircraftCarrier.Create([new Coord(6, 0), new Coord(6, 2), new Coord(7, 4), new Coord(7,6)])
+        ]));
+
+        action.Should().ThrowExactly<ArgumentException>()
+            .WithMessage("Los portaaviones deben tener sus coordenadas secuenciales.");
+    }
+
+    [Fact]
     public void Si_InicioElJuegoSinJugadores_Debe_ArrojarException()
     {
         var action = () => _battleship.Start();
