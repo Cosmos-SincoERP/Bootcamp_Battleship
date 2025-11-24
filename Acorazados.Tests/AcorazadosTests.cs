@@ -955,7 +955,11 @@ public class AcorazadosTests
         j2.AgregarGunShip(4, 3);
 
         acorazados.IniciarJuego();
-        acorazados.Disparar(0, 2);
+        acorazados.Disparar(2, 1);
+        acorazados.Disparar(5, 2);
+        acorazados.Disparar(1, 1);
+        acorazados.Disparar(4, 7);
+        acorazados.Disparar(0, 1);
 
         j2.NaveHundida.Destroyer.Should().BeEquivalentTo(new List<(int fila, int columna)>
             {

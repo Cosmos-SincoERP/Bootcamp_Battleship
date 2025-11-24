@@ -49,8 +49,9 @@ public class NavePosicionada
     public object TipoNave { get; set; }
     public List<(int fila, int columna)> Posiciones { get; set; }
 }
+
 public class NavesHundidas
 {
     public List<(int fila, int columna)> GunShips { get; } = [];
-    public List<(int fila, int columna)> Destroyer { get; set; }
+    public List<(int fila, int columna)> Destroyer { get; } = [];
 }
