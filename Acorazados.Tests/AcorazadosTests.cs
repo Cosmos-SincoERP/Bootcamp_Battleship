@@ -998,11 +998,11 @@ public class AcorazadosTests
         acorazados.Disparar(4, 2);
         acorazados.Disparar(9, 0);
         acorazados.Disparar(8, 4);
-        acorazados.Disparar(9, 4);
+        acorazados.Disparar(9, 3);
         acorazados.Disparar(7, 5);
         acorazados.Disparar(9, 2);
 
-        j2.NaveHundida.Destroyer.Should().BeEquivalentTo(new List<(int fila, int columna)>
+        j2.NaveHundida.Carrier.Should().BeEquivalentTo(new List<(int fila, int columna)>
             {
                 (9, 0)
             }

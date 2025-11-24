@@ -143,8 +143,11 @@ public class Jugador
             Tablero[posicion.fila, posicion.columna] = ResultadoDisparo.Hundido.ValorDisparo();
             if ((string)nave.TipoNave == new GunShip().Valor)
                 NaveHundida.GunShips.Add(new ValueTuple<int, int>(posicion.fila, posicion.columna));
-            else if (nave.Posiciones[0].fila == posicion.fila && nave.Posiciones[0].columna == posicion.columna)
+            else if ((string)nave.TipoNave == new Destroyer().Valor && nave.Posiciones[0].fila == posicion.fila &&
+                     nave.Posiciones[0].columna == posicion.columna)
                 NaveHundida.Destroyer.Add(new ValueTuple<int, int>(posicion.fila, posicion.columna));
+            else if (nave.Posiciones[0].fila == posicion.fila && nave.Posiciones[0].columna == posicion.columna)
+                NaveHundida.Carrier.Add(new ValueTuple<int, int>(posicion.fila, posicion.columna));
         }
 
         return true;
