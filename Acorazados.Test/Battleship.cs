@@ -78,11 +78,14 @@ public class Battleship
     {
         if (string.IsNullOrEmpty(_jugador1) || string.IsNullOrEmpty(_jugador2))
             throw new ApplicationException("El juego requiere de dos jugadores para iniciar");
+        if(navesJugador1.Count>0)
+            if(!EsUnaCoordenadaValida(navesJugador1[0].FilaInicial,  navesJugador1[0].ColumnaInicial))
+                throw new ApplicationException("Las coordenadas dadas para pintar el Canonero estan fuera del limite del tablero");
         
         _enJuego = true;
         
         if (navesJugador1.Count == 0 && navesJugador2.Count == 0) return;
-
+        
         UbicarNavesEnTablero(navesJugador1, _tableroJugador1);
 
         UbicarNavesEnTablero(navesJugador2, _tableroJugador2);

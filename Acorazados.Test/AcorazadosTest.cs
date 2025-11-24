@@ -1454,7 +1454,7 @@ public class AcorazadosTest
         act.Should().Throw<ApplicationException>("Ya disparaste en esa misma coordenada. Usa otra por favor.");
     }
     [Fact]
-    public void Si_IntentoCrearUnCanoneroFueraDelTablero_Debe_LanzarExcepcion()
+    public void Si_IntentoIniciarYCrearUnCanoneroFueraDelTablero_Debe_LanzarExcepcion()
     {
         var acorazados = new Battleship();
         acorazados.AddPlayer("Alejandra");
@@ -1463,7 +1463,7 @@ public class AcorazadosTest
         
         var act = () => acorazados.Iniciar([canonero], []);
         
-        act.Should().Throw<ApplicationException>("Las coordenadas dadas para pintar la nave estan fuera del limite del tablero");
+        act.Should().Throw<ApplicationException>("Las coordenadas dadas para pintar el Canonero estan fuera del limite del tablero");
         
     }
 }
