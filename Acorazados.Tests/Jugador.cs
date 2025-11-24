@@ -13,7 +13,7 @@ public class Jugador
     public int DisparosTotales { get; private set; }
     public int Aciertos { get; private set; }
     public int Fallos { get; set; }
-    public BarcosHundidos NaveHundida { get; set; }
+    public BarcosHundidos NaveHundida { get; init; } = new();
 
 
     private List<NavePosicionada> _naves = new();
@@ -136,6 +136,7 @@ public class Jugador
         foreach (var posicion in nave.Posiciones)
         {
             Tablero[posicion.fila, posicion.columna] = ResultadoDisparo.Hundido.ValorDisparo();
+            NaveHundida.GunShips.Add(new ValueTuple<int, int>(posicion.fila, posicion.columna));
         }
 
         return true;
@@ -268,5 +269,5 @@ public class Jugador
 
 public class BarcosHundidos
 {
-    public List<(int fila, int columna)>? GunShips { get; set; }
+    public List<(int fila, int columna)> GunShips { get; } = [];
 }

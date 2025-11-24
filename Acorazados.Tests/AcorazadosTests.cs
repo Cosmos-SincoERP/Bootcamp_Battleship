@@ -924,7 +924,7 @@ public class AcorazadosTests
 
         j2.NaveHundida.GunShips.Should().BeEquivalentTo(new List<(int fila, int columna)>
             {
-                (1, 7)
+                (7, 1)
             }
         );
     }

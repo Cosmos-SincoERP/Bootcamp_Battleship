@@ -38,6 +38,7 @@ public class Acorazados
         {
             throw new InvalidOperationException("El juego no ha comenzado.");
         }
+
         JugadorActual.DispararA(Oponente, fila, columna);
         VerificarVictoria();
         if (Estado != EstadoJuego.Finalizado)
@@ -72,8 +73,9 @@ public class Acorazados
 
     public void IniciarJuego()
     {
-        if(Jugadores.Any(jugador => !jugador.HaPosicionadoTodasLasNaves()))
-            throw new InvalidOperationException("No se puede iniciar el juego hasta que todos los jugadores hayan posicionado su flota completa");
+        if (Jugadores.Any(jugador => !jugador.HaPosicionadoTodasLasNaves()))
+            throw new InvalidOperationException(
+                "No se puede iniciar el juego hasta que todos los jugadores hayan posicionado su flota completa");
 
         Estado = EstadoJuego.EnCurso;
     }
