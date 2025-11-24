@@ -47,7 +47,14 @@ public class BatallaNaval
 
     public void Start()
     {
+        LanzarExcepcionSiHayMenosDeDosJugadores();
         _jugadorActual = 1;
+    }
+
+    private void LanzarExcepcionSiHayMenosDeDosJugadores()
+    {
+        if (_jugadores.Count < 2)
+            throw new InvalidOperationException("El juego no puede iniciar sin almenos dos jugadores");
     }
 
     public void Fire(int fila, int columna)

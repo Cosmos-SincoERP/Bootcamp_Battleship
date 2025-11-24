@@ -784,6 +784,19 @@ public class BattleshipsTest
         barcosUndidos[0].Should().BeEquivalentTo((TipoBarco.PortaAviones, new Coordenada(5, 5)));
         barcosUndidos[1].Should().BeEquivalentTo((TipoBarco.Cañonero, new Coordenada(1, 1)));
     }
+    [Fact]
+    public void
+        Si_SeIniciaElJuegoSinAlMenosDosJugadores_Debe_LanzarExcepcion()
+    {
+        //Arrange
+        var batallaNaval = new BatallaNaval();
+        
+        //Act
+        Action action = () => batallaNaval.Start();
+        
+        //Assert 
+        action.Should().ThrowExactly<InvalidOperationException>().WithMessage("El juego no puede iniciar sin almenos dos jugadores");
+    }
 }
 
 public class Coordenada
