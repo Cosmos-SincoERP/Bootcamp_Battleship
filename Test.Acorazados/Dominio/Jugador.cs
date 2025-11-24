@@ -67,7 +67,10 @@ public class Jugador(string nombre)
             .ToList()
             .ForEach(barco =>
             {
-                throw new Exception($"El jugador {nombreJugador}, ha enviado un barco con coordenadas invalidas ({barco.Coordenada.X},{barco.Coordenada.Y})");
+                coordenadaNoValida.Add($"{barco.GetType().Name}({barco.Coordenada.X},{barco.Coordenada.Y})");
             });
+
+        if (coordenadaNoValida.Any())
+            throw new Exception($"El jugador {nombreJugador} ha enviado un barco con coordenadas invalidas, " + string.Join(", ", coordenadaNoValida));
     }
 }
