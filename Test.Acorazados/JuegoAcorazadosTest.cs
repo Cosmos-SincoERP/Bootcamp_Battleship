@@ -68,11 +68,11 @@ public class JuegoAcorazadosTest
 
         var posicionesJugador1 = new List<Barco>
         {
-            new Cañonero(new(0, 0)),
-            new Cañonero(new(0, 0)),
-            new Cañonero(new(0, 0)),
-            new Cañonero(new(0, 0)),
-            new Destructor(new(0, 0), OrientacionBarco.Vertical),
+            new Cañonero(new(1, 0)),
+            new Cañonero(new(2, 0)),
+            new Cañonero(new(3, 0)),
+            new Cañonero(new(4, 0)),
+            new Destructor(new(5, 5), OrientacionBarco.Vertical),
         };
 
         var iniciar = () => juegoAcorazado.Iniciar([(0, posicionesJugador1)]);
@@ -91,12 +91,12 @@ public class JuegoAcorazadosTest
 
         var posicionesJugador1 = new List<Barco>
         {
-            new Cañonero(new(0, 0)),
-            new Cañonero(new(0, 0)),
-            new Cañonero(new(0, 0)),
-            new Cañonero(new(0, 0)),
-            new Destructor(new(0, 0), OrientacionBarco.Vertical),
-            new Destructor(new(0, 0), OrientacionBarco.Vertical),
+            new Cañonero(new(1, 0)),
+            new Cañonero(new(2, 0)),
+            new Cañonero(new(3, 0)),
+            new Cañonero(new(4, 0)),
+            new Destructor(new(5, 4), OrientacionBarco.Vertical),
+            new Destructor(new(6, 5), OrientacionBarco.Vertical),
         };
 
         var iniciar = () => juegoAcorazado.Iniciar([(0, posicionesJugador1)]);
@@ -115,13 +115,13 @@ public class JuegoAcorazadosTest
 
         var posicionesJugador1 = new List<Barco>
         {
-            new Cañonero(new(0, 0)),
-            new Cañonero(new(0, 0)),
-            new Cañonero(new(0, 0)),
-            new Cañonero(new(0, 0)),
-            new Destructor(new(0, 0), OrientacionBarco.Vertical),
-            new Destructor(new(0, 0), OrientacionBarco.Vertical),
-            new PortaAviones(new(0, 0), OrientacionBarco.Horizontal),
+            new Cañonero(new(1, 0)),
+            new Cañonero(new(2, 0)),
+            new Cañonero(new(3, 0)),
+            new Cañonero(new(4, 0)),
+            new Destructor(new(5, 4), OrientacionBarco.Vertical),
+            new Destructor(new(6, 5), OrientacionBarco.Vertical),
+            new PortaAviones(new(7, 2), OrientacionBarco.Horizontal),
         };
 
         var posicionesJugador2 = new List<Barco>

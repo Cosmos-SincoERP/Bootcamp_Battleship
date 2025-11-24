@@ -25,6 +25,7 @@ public class Jugador(string nombre)
     public void AgregarFlotaDeBarcos(List<Barco> flotaBarcos)
     {
         ValidarCoordenadas(flotaBarcos, _nombre);
+        ValidarCoordenadasPosicionadas(flotaBarcos, _nombre);
 
         ValidarFlotaCañoneros(flotaBarcos);
         ValidarFlotaDestructores(flotaBarcos);
@@ -33,6 +34,8 @@ public class Jugador(string nombre)
 
         Barcos.AddRange(flotaBarcos);
     }
+
+
 
     public string ObtenerInformacionDeDisparos() =>
         $"Total de disparos: {_cantidadDisparos} \n Disparos fallidos: {_cantidadDisparosFallidos} \n Disparos acertados: {_cantidadDisparosAcertados}";
@@ -72,5 +75,17 @@ public class Jugador(string nombre)
 
         if (coordenadaNoValida.Any())
             throw new Exception($"El jugador {nombreJugador} ha enviado un barco con coordenadas invalidas, " + string.Join(", ", coordenadaNoValida));
+    }
+
+    private void ValidarCoordenadasPosicionadas(List<Barco> flotaBarcos, string nombre)
+    {
+        var hayRepetidas = flotaBarcos
+            .SelectMany(barco => barco.CoordenadasDeLaPosicion)
+            .GroupBy(coordenada => new { coordenada.X, coordenada.Y })
+            .Any(grupo => grupo.Count() > 1);
+
+
+        if (hayRepetidas)
+            throw new Exception($"El jugador {nombre} ha enviado un barco Cañonero en la posicion (2,2) que ya esta ocupada");
     }
 }

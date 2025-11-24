@@ -50,7 +50,7 @@ public class JuegoAcorazadosTestBorde
 
     [Fact]
     public void
-    Si_Eljugador1PosionaUnBarcoDondeYaHayUnBarco_Debe_LanzarExcepcion()
+    Si_Eljugador1PosionaUnBarcoCañoneroDondeYaPosicionanorOtroBarcoEnLaMismaPosicion_Debe_LanzarExcepcion()
     {
         var tablero = new char[10, 10];
         tablero[0, 0] = 'o';
@@ -59,6 +59,6 @@ public class JuegoAcorazadosTestBorde
 
 
 
-        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado un barco en una posicion que ya esta ocupada");
+        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado un barco Cañonero en la posicion (2,2) que ya esta ocupada");
     }
 }
