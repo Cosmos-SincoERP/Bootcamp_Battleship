@@ -317,6 +317,14 @@ public class JuegoAcorazadosTest
 
         barcoHundido.Should().Be("Se hundio un barco en la coordenada (4,0)");
     }
+    
+    [Fact]
+    public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarInformeDeBatallaQueEsElGanador()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+
+        juegoAcorazado.Imprimir().Should().Contain("Ganador: Jugador 2");
+    }
 
     [Fact]
     public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarInformeDeBatallaConElTotalDisparos14Jugador2()
@@ -343,10 +351,10 @@ public class JuegoAcorazadosTest
     }
     
     [Fact]
-    public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarInformeDeBatallaQueEsElGanador()
+    public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarEnElInformeDeBatallaElCañoneroDeLaPosicion_2_1_QueHundio()
     {
         var juegoAcorazado = Mocks.MockIniciarJuego(true);
 
-        juegoAcorazado.Imprimir().Should().Contain("Ganador: Jugador 2");
+        juegoAcorazado.Imprimir().Should().Contain("Cañonero: (2,1)");
     }
 }
