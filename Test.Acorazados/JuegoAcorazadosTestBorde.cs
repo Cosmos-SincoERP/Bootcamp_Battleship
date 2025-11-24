@@ -153,4 +153,14 @@ public class JuegoAcorazadosTestBorde
 
         disparar.Should().ThrowExactly<Exception>().WithMessage("El juego no ha sido iniciado");
     }
+
+    [Fact]
+    public void Si_JuegoEstaIniciadoYFinalizoTurno_Debe_LanzarExcepcion()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego();
+
+        var disparar = () => juegoAcorazado.FinalizarTurno();
+
+        disparar.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 debe disparar antes de finalizar el turno");
+    }
 }
