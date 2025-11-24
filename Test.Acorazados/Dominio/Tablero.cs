@@ -6,11 +6,11 @@ public class Tablero(int tamaño)
     private readonly char[,] _plataforma = new char[tamaño, tamaño];
 
     public int ObtenerTamañoEnX() => _plataforma.GetLength(0);
-    
+
     public int ObtenerTamañoEnY() => _plataforma.GetLength(1);
 
     public bool HayUnaMarca(Coordenada coordenada) => _plataforma[coordenada.X, coordenada.Y] != '\0';
-    
+
     public void MarcarRepresentacionEnElTablero(Coordenada coordenada, char simbolo) =>
         _plataforma[coordenada.X, coordenada.Y] = simbolo;
 
@@ -29,11 +29,4 @@ public class Tablero(int tamaño)
 
         return visualizar;
     }
-
-    public char Buscar(Coordenada coordenada)
-    {
-        return _plataforma[coordenada.X, coordenada.Y];   
-    }
-    
-    
 }

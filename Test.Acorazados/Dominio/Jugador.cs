@@ -36,6 +36,8 @@ public class Jugador(string nombre)
 
     public (bool, string) AtaqueDelJugadorEnemigo(Coordenada coordenada)
     {
+        ValidarSiTableroYaTieneUnDisparoEnCoordenada(coordenada);
+
         var barco = BuscarBarco(coordenada);
         return MarcarDisparo(coordenada, barco);
     }
@@ -48,10 +50,10 @@ public class Jugador(string nombre)
         _barcos.Where(barco => barco.SeHundio())
             .ToList()
             .ForEach(barco => mensaje += $"{barco.GetType().Name}: ({barco.Coordenada.X},{barco.Coordenada.Y}) \n");
-        
+
         return mensaje;
-    } 
-    
+    }
+
     public void MarcarEnElTableroLasCasillasDeLosBarcosAFlote()
     {
         _barcos.ForEach(barco =>
@@ -64,7 +66,7 @@ public class Jugador(string nombre)
     }
 
     private Barco? BuscarBarco(Coordenada coordenada) => _barcos.FirstOrDefault(barco => barco.EstaEnLaCoordenada(coordenada));
-    
+
     private void ValidarFlotaCañoneros(List<Barco> flotaCañoneros)
     {
         if (flotaCañoneros.Count(barco => barco.GetType().Name == nameof(Cañonero)) < (int)FlotaBarcos.Cañonero)
@@ -112,7 +114,7 @@ public class Jugador(string nombre)
         if (coordenadasRepetidas.Count != 0)
             throw new Exception($"El jugador {nombre} ha enviado barcos que existen en la coordenada:" + string.Join(", ", coordenadasRepetidas));
     }
-    
+
     private (bool, string) MarcarDisparo(Coordenada coordenada, Barco? barco)
     {
         var mensaje = string.Empty;
@@ -127,7 +129,7 @@ public class Jugador(string nombre)
 
         return (disparoAcertado, mensaje);
     }
-    
+
     private string VerificarSiElBarcoFueHundidoYMarcarEnElTablero(Coordenada coordenada, Barco barco)
     {
         var mensaje = string.Empty;
@@ -138,12 +140,18 @@ public class Jugador(string nombre)
             Tablero.MarcarRepresentacionEnElTablero(coordenada, 'x');
         return mensaje;
     }
-    
+
     private string MarcarBarcoHundido(Barco barco)
     {
         foreach (var coordenada in barco.CoordenadasDeLaPosicion)
             Tablero.MarcarRepresentacionEnElTablero(coordenada, 'X');
 
         return $"Se hundio un barco en la coordenada ({barco.Coordenada.X},{barco.Coordenada.Y})";
+    }
+
+    private void ValidarSiTableroYaTieneUnDisparoEnCoordenada(Coordenada coordenada)
+    {
+        if (Tablero.HayUnaMarca(coordenada))
+            throw new Exception($"El jugador ya lanzo un disparo en la coordenada ({coordenada.X},{coordenada.Y})");
     }
 }

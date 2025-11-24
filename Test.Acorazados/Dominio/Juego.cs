@@ -46,16 +46,6 @@ public class Juego
             throw new Exception("El juego no ha sido iniciado");
     }
 
-    private static void ValidarSiTableroYaTieneUnDisparoEnCoordenada(Coordenada coordenada, Tablero tablero)
-    {
-        List<char> valoresABuscarEnTablero = new() { 'X', 'o', 'x' };
-
-        var valorEnCoordenada = tablero.Buscar(coordenada);
-
-        if (valoresABuscarEnTablero.Contains(valorEnCoordenada))
-            throw new Exception($"El jugador ya lanzo un disparo en la coordenada ({coordenada.X},{coordenada.Y})");
-    }
-
     public void FinalizarTurno()
     {
         ValidarEstadoJuego();
@@ -147,6 +137,4 @@ public class Juego
     }
     
     private void InicializarEstadoJuego() => _juegoInicializo = true;
-
-
 }
