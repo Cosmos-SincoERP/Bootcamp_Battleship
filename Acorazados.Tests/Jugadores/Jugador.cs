@@ -3,10 +3,11 @@
 public class Jugador
 {
     public string Alias { get; private set; }
-    public int Aciertos { get; private set; }
-    public int DisparosTotales { get; private set; }
+    public int Aciertos { get; set; }
+    public int DisparosTotales { get; set; } = 0;
     public string[,] Tablero { get; init; }
     public int Fallos { get; set; }
+
     public NavesHundidas NaveHundida { get; init; } = new();
 
     public Jugador(string alias)
@@ -19,12 +20,12 @@ public class Jugador
     private int _cantidadCarriers;
     private int _cantidadDestroyers;
     private int _cantidadGunships;
-    private readonly List<NavePosicionada> _naves = [];
+    public readonly List<NavePosicionada> _naves = [];
 
-    public void DispararA(Jugador oponente, int fila, int columna)
-    {
+    public void ValidarDisparo(ResultadoDisparo resultado)
+    {   
         AumentarDisparos();
-        var resultado = oponente.RecibirDisparo(fila, columna);
+        
         if (resultado is ResultadoDisparo.Tocado or ResultadoDisparo.Hundido)
             AumentarAciertos();
         if (resultado == ResultadoDisparo.Agua)

@@ -56,7 +56,11 @@ public class Acorazados
         if (JuegoNoHaComenzado())
             throw new InvalidOperationException("El juego no ha comenzado.");
 
-        JugadorActual.DispararA(Oponente, fila, columna);
+        var resultado = Oponente.RecibirDisparo(fila, columna);
+
+        JugadorActual.ValidarDisparo(resultado);
+
+
         VerificarVictoria();
         if (Estado != EstadoJuego.Finalizado)
             TerminarTurno();
@@ -79,5 +83,10 @@ public class Acorazados
             Ganador = JugadorActual.Alias;
             Estado = EstadoJuego.Finalizado;
         }
+    }
+
+    public string ImprimirReporte()
+    {
+        return "";
     }
 }
