@@ -724,6 +724,127 @@ public class AcorazadosTest
         reporteJugador1.Should().Contain("destructor: (5,5)");
     }
 
+    [Fact]
+public void Si_SeJuegaUnaPartidaCompletaConMultiplesBarcosYDisparos_Debe_ImprimirReporteYTableroFinal()
+{
+   
+    var tableroEsperadoJugador1 =
+        "  Jugador: David\n" +
+        "  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n" +
+        "0 |   |   |   |   |   |   |   |   |   |   |\n" +
+        "1 | o | X |   |   |   |   |   |   |   |   |\n" +
+        "2 | o |   |   |   |   |   |   |   |   |   |\n" +
+        "3 |   |   |   | X |   |   |   |   |   |   |\n" +
+        "4 |   |   |   |   |   |   |   |   |   |   |\n" +
+        "5 |   |   |   |   |   | X | X | X |   |   |\n" +
+        "6 |   |   |   |   |   |   |   |   |   |   |\n" +
+        "7 |   |   |   |   |   |   |   | x | o | o |\n" +
+        "8 |   |   |   |   |   |   |   | d |   |   |\n" +
+        "9 |   |   |   |   |   |   |   | d |   | o |";
+
+   
+    var tableroEsperadoJugador2 =
+        "  Jugador: Diego\n" +
+        "  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n" +
+        "0 | X | X | X | X |   |   |   |   |   |   |\n" +
+        "1 |   |   |   |   |   |   |   |   |   |   |\n" +
+        "2 |   |   | X |   |   |   |   |   |   |   |\n" +
+        "3 |   |   |   |   |   |   |   |   |   |   |\n" +
+        "4 |   |   |   |   | X |   |   |   |   |   |\n" +
+        "5 |   |   |   |   | X |   |   |   |   |   |\n" +
+        "6 |   |   |   |   | X |   |   |   |   |   |\n" +
+        "7 |   |   |   |   |   |   |   |   |   |   |\n" +
+        "8 |   |   |   |   |   |   |   |   | X |   |\n" +
+        "9 |   |   |   |   |   |   |   |   |   | o |";
+
+   
+    var acorazados = _acorazadosBuilder
+        .ConstruirJugadorUno("David", tablero =>
+        {
+            tablero.AgregarBarco(Barcos.Canonero, 1,1, Orientacion.Horizontal);
+            tablero.AgregarBarco(Barcos.Canonero, 3,3, Orientacion.Horizontal);
+            tablero.AgregarBarco(Barcos.Destructor, 5,5, Orientacion.Horizontal);
+            tablero.AgregarBarco(Barcos.Destructor, 7,7, Orientacion.Vertical);
+        })
+        .ConstruirJugadorDos("Diego", tablero =>
+        {
+            tablero.AgregarBarco(Barcos.Canonero, 2,2, Orientacion.Horizontal);
+            tablero.AgregarBarco(Barcos.Canonero, 8,8, Orientacion.Horizontal);
+            tablero.AgregarBarco(Barcos.Destructor, 4,4, Orientacion.Vertical);
+            tablero.AgregarBarco(Barcos.Portaaviones, 0,0, Orientacion.Horizontal);
+        })
+        .Construir();
+
+    acorazados.Iniciar();
+
+    
+    acorazados.Disparar(2, 2); 
+    acorazados.Disparar(9, 9); 
+    acorazados.Disparar(9, 9); 
+    acorazados.Disparar(1, 1); 
+    acorazados.Disparar(4, 4); 
+    acorazados.Disparar(3, 3); 
+    acorazados.Disparar(5, 4); 
+    acorazados.Disparar(5, 5); 
+    acorazados.Disparar(6, 4); 
+    acorazados.Disparar(6, 5); 
+    acorazados.Disparar(0, 0);
+    acorazados.Disparar(7, 5); 
+    acorazados.Disparar(1, 0); 
+    acorazados.Disparar(7, 7); 
+    acorazados.Disparar(2, 0); 
+    acorazados.Disparar(8, 7); 
+    acorazados.Disparar(3, 0); 
+    acorazados.Disparar(9, 7); 
+    acorazados.Disparar(8, 8);
+    acorazados.Disparar(0, 1); 
+    acorazados.Disparar(4, 5); 
+    acorazados.Disparar(0, 2);
+    acorazados.Disparar(4, 6); 
+
+    acorazados.EstadoJuego.Should().Be(EstadoJuego.Finalizado);
+
+   
+    var reporteJugador1 = acorazados.ObtenerJugador(0).ImprimirReporte();
+    var tableroJugador1 = acorazados.ObtenerJugador(0).ImprimirTablero();
+
+    var reporteJugador2 = acorazados.ObtenerJugador(1).ImprimirReporte();
+    var tableroJugador2 = acorazados.ObtenerJugador(1).ImprimirTablero();
+    
+    Console.WriteLine("\n=== REPORTE JUGADOR 1 (DAVID) ===");
+    Console.WriteLine(reporteJugador1);
+    Console.WriteLine("\n=== TABLERO FINAL JUGADOR 1 ===");
+    Console.WriteLine(tableroJugador1);
+
+    Console.WriteLine("\n=== REPORTE JUGADOR 2 (DIEGO) ===");
+    Console.WriteLine(reporteJugador2);
+    Console.WriteLine("\n=== TABLERO FINAL JUGADOR 2 ===");
+    Console.WriteLine(tableroJugador2);
+
+   
+    reporteJugador1.Should().Contain("Disparos totales: 11");
+    reporteJugador1.Should().Contain("Exitosos: 6");
+    reporteJugador1.Should().Contain("Fallidos: 5");
+
+    reporteJugador2.Should().Contain("Disparos totales: 12");
+    reporteJugador2.Should().Contain("Exitosos: 9");
+    reporteJugador2.Should().Contain("Fallidos: 3");
+
+    
+    reporteJugador2.Should().Contain("cañonero: (2,2)");
+    reporteJugador2.Should().Contain("destructor: (4,4)");
+    reporteJugador2.Should().Contain("portaaviones: (0,0)");
+
+    reporteJugador1.Should().Contain("cañonero: (1,1)");
+    reporteJugador1.Should().Contain("cañonero: (3,3)");
+    reporteJugador1.Should().Contain("destructor: (5,5)");
+
+    
+    tableroJugador1.Should().Be(tableroEsperadoJugador1);
+    tableroJugador2.Should().Be(tableroEsperadoJugador2);
+}
+
+
 
 
 }
