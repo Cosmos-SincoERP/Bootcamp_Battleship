@@ -46,4 +46,9 @@ public class BattleShip
     {
         _attackedPlayer = _attackedPlayer == 1 ? 2 : 1;
     }
+
+    public void Fire(Coord coord)
+    {
+        CurrentBoard[0, 0] = "o";
+    }
 }
