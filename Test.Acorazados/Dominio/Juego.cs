@@ -91,6 +91,8 @@ public class Juego
 
     public string Imprimir()
     {
+        ValidarEstadoJuego();
+
         var informacion = string.Empty;
 
         if (_juegoTerminado)
