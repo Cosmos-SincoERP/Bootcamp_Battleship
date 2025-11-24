@@ -10,7 +10,8 @@ public class Destroyer(List<Coord> coords) : Ship(coords)
     {
         ThrowExcepcionIfCoordsCountIsDifferentOfThree(coords);
         ThrowExceptionIfCoordsAreNotSequential(coords);
-
+        ThrowExceptionIfCoordsIsInDiagonal(coords);
+        
         return new Destroyer(coords);
     }
 
@@ -27,5 +28,13 @@ public class Destroyer(List<Coord> coords) : Ship(coords)
                 ? newest
                 : throw new ArgumentException(LosDestructoresDebenTenerSusCoordenadasSecuenciales)
         );
+    }   
+    
+    private static void ThrowExceptionIfCoordsIsInDiagonal(List<Coord> coords)
+    {
+        coords.Aggregate((old, newest) => 
+            newest.IsNeighbourInDiagonal(old)
+                ? throw new ArgumentException("Los barcos solo pueden posicionarse en vertical o horizontal") 
+                : newest);
     }
 }

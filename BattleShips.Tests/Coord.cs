@@ -10,9 +10,14 @@ public record struct Coord(int x, int y)
         var differenceInX = Math.Abs(PositionX - coordEvaluate.PositionX);
         var differenceInY = Math.Abs(PositionY - coordEvaluate.PositionY);
 
-        if (differenceInX > 1 || differenceInY > 1)
-            return false;
+        return differenceInX <= 1 && differenceInY <= 1;
+    }
 
-        return true;
+    public bool IsNeighbourInDiagonal(Coord coordEvaluate)
+    {
+        var differenceInX = Math.Abs(PositionX - coordEvaluate.PositionX);
+        var differenceInY = Math.Abs(PositionY - coordEvaluate.PositionY);
+
+        return differenceInX == 1 && differenceInY == 1;
     }
 }

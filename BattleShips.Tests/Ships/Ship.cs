@@ -2,7 +2,7 @@ namespace BattleShips.Tests.Ships;
 
 public abstract class Ship(List<Coord> coords)
 {
-    public IReadOnlyCollection<Coord> Coords = coords;
+    public readonly IReadOnlyCollection<Coord> Coords = coords;
     private protected abstract char Abbreviation { get; }
     public void LocateInBoard(string[,] board)
     {
