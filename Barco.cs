@@ -4,8 +4,8 @@ namespace BattleshipsTDD;
 
 public class Barco
 {
-    private List<ParteBarco> _partes = new();
     public Coordenada CoordenadaInicial { get; }
+    private List<ParteBarco> _partes = new();
 
     public Barco(Coordenada coordenadaInicial)
     {
@@ -42,5 +42,5 @@ public class Barco
 public class ParteBarco
 {
     public Coordenada Coordenada { get; set; }
-    public bool Undida { get; set; } = false;
+    public bool Undida { get; set; }
 }

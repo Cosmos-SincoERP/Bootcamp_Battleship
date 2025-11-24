@@ -431,7 +431,7 @@ public class BattleshipsTest
 
         //Act
         batallaNaval.Fire(fila: 1, columna: 1);
-        batallaNaval.Fire(fila: 2, columna: 1);
+        batallaNaval.Fire(fila: 1, columna: 2);
         string tablero = batallaNaval.Print(jugador: 2);
 
         //Assert 
@@ -676,8 +676,8 @@ public class BattleshipsTest
             orientacion: TipoOrientacion.Horizontal);
         batallaNaval.Start();
         batallaNaval.Fire(fila: 5, columna: 5);
-        batallaNaval.Fire(fila: 6, columna: 5);
-        batallaNaval.Fire(fila: 7, columna: 5);
+        batallaNaval.Fire(fila: 5, columna: 6);
+        batallaNaval.Fire(fila: 5, columna: 7);
         batallaNaval.EndTurn();
 
         //Act
@@ -711,9 +711,9 @@ public class BattleshipsTest
         batallaNaval.ColocarBarco(jugador: 2, fila: 5, columna: 5, tipo: TipoBarco.Destructor,
             orientacion: TipoOrientacion.Horizontal);
         batallaNaval.Start();
-        batallaNaval.Fire(fila: 6, columna: 5);
+        batallaNaval.Fire(fila: 5, columna: 6);
         batallaNaval.Fire(fila: 5, columna: 5);
-        batallaNaval.Fire(fila: 7, columna: 5);
+        batallaNaval.Fire(fila: 5, columna: 7);
         batallaNaval.EndTurn();
 
         //Act
@@ -753,10 +753,10 @@ public class BattleshipsTest
             orientacion: TipoOrientacion.Horizontal);
         batallaNaval.ColocarBarco(jugador: 2, fila: 1, columna: 1, tipo: TipoBarco.Cañonero);
         batallaNaval.Start();
-        batallaNaval.Fire(fila: 6, columna: 5);
+        batallaNaval.Fire(fila: 5, columna: 6);
         batallaNaval.Fire(fila: 5, columna: 5);
-        batallaNaval.Fire(fila: 7, columna: 5);
-        batallaNaval.Fire(fila: 8, columna: 5);
+        batallaNaval.Fire(fila: 5, columna: 7);
+        batallaNaval.Fire(fila: 5, columna: 8);
         batallaNaval.Fire(fila: 1, columna: 1);
         batallaNaval.EndTurn();
 
@@ -826,5 +826,22 @@ public class BattleshipsTest
         //Assert 
         action.Should().ThrowExactly<InvalidOperationException>().WithMessage("No se puede colocar barco en coordenadas");
     }
+    
+    [Fact]
+    public void
+        Si_SeRealizaUnDisparoSinIniciarElJuego_Debe_LanzarExcepcion()
+    {
+        //Arrange
+        var batallaNaval = new BatallaNaval(filasTablero:2,columnasTablero:2);
+        batallaNaval.AddPlayer();
+        
+        //Act
+        Action action = () => batallaNaval.Fire(fila: 1, columna: 1);
+        
+        //Assert 
+        action.Should().ThrowExactly<InvalidOperationException>().WithMessage("No se puede disparar si el juego no ha iniciado");
+    }
+
+    
 
 }

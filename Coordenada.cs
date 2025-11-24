@@ -2,8 +2,8 @@ namespace BattleshipsTDD;
 
 public class Coordenada
 {
-    public int Fila { get; set; }
-    public int Columna { get; set; }
+    public int Fila { get; }
+    public int Columna { get; }
 
     public Coordenada(int fila, int columna)
     {

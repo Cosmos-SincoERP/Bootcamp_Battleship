@@ -4,18 +4,18 @@ namespace BattleshipsTDD;
 
 public class Jugador
 {
-    public char[,] Tablero { get; set; }
+    public Tablero Tablero { get; set; }
     private readonly Informe _Informe = new();
     private List<Barco> _barcosAsignados = new();
 
-    public Jugador(char[,] tableroInicial)
+    public Jugador(Tablero tableroInicial)
     {
         Tablero = tableroInicial;
     }
 
     public Informe ObtenerInforme()
     {
-        _Informe.ModificarRepresentacionTablero(Serializador.SerializarTablero(Tablero));
+        _Informe.ModificarRepresentacionTablero(Tablero.TableroSerializado);
         return _Informe;
     }
 

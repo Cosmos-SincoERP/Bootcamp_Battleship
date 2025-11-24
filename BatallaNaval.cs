@@ -4,56 +4,52 @@ namespace BattleshipsTDD;
 
 public class BatallaNaval
 {
-    private char[,] _tableroVacio;
+    // private char[,] _tableroVacio;
     private Dictionary<int, Jugador> _jugadores = new();
     private int _jugadorActual;
+    private bool _juegoIniciado;
+    private int _dimensionFilasTablero = 10;
+    private int _dimensionColumnasTablero = 10;
 
-    public BatallaNaval(int filasTablero = 10, int columnasTablero = 10)
+
+    public BatallaNaval()
     {
-        _tableroVacio = new char[filasTablero, columnasTablero];
-        InicializarTableroVacio();
+    }
+
+    public BatallaNaval(int filasTablero, int columnasTablero)
+    {
+        _dimensionFilasTablero = filasTablero;
+        _dimensionColumnasTablero = columnasTablero;
     }
 
     public void AddPlayer()
     {
-        _jugadores.Add(_jugadores.Count + 1, new Jugador((char[,])_tableroVacio.Clone()));
+        // char[,] tableroDeJugador = (char[,])_tableroVacio.Clone();
+        _jugadores.Add(_jugadores.Count + 1, new Jugador(new(_dimensionFilasTablero, _dimensionColumnasTablero)));
     }
 
     public void ColocarBarco(int jugador, int columna, int fila, TipoBarco tipo, TipoOrientacion? orientacion = null)
     {
         LanzarExcepcionSiElJugadorNoExiste(jugador);
         LanzaExcepcionSiSeColocaBarcoEnCoordenadaNoValida(columna, fila);
-        
+
         var longitudDelBarco = CalcularLogitudBarco(tipo);
-        char[,] tableroActual = ObtenerTableroJugador(jugador);
-        Barco barco = new (new(fila,columna));
+        Tablero tableroActual = ObtenerTableroJugador(jugador);
+        Barco barco = new(new(fila, columna));
 
         while (longitudDelBarco is not 0)
         {
             barco.AgregarParte(new(fila, columna));
-            tableroActual![columna, fila] = (char)tipo;
+            tableroActual.AsignarCaracterEnTablero(new(fila,columna), (char)tipo);
             if (orientacion == TipoOrientacion.Vertical)
-                columna++;
-            if (orientacion == TipoOrientacion.Horizontal)
                 fila++;
+            if (orientacion == TipoOrientacion.Horizontal)
+                columna++;
             longitudDelBarco--;
         }
 
-        AgregarBarcoJugador(jugador, barco);
+        AsignarBarcoAJugador(jugador, barco);
     }
-
-    private void LanzaExcepcionSiSeColocaBarcoEnCoordenadaNoValida(int columna, int fila)
-    {
-        if (fila > _tableroVacio.GetLength(0) || columna > _tableroVacio.GetLength(1))
-            throw new InvalidOperationException("No se puede colocar barco en coordenadas");
-    }
-
-    private void LanzarExcepcionSiElJugadorNoExiste(int jugador)
-    {
-        if (!_jugadores.ContainsKey(jugador))
-            throw new InvalidOperationException("No se puede colocar barco en tablero de jugador inexistente");
-    }
-
 
     public string Print(int jugador = 1)
     {
@@ -63,24 +59,33 @@ public class BatallaNaval
     public void Start()
     {
         LanzarExcepcionSiHayMenosDeDosJugadores();
+        _juegoIniciado = true;
         _jugadorActual = 1;
     }
 
     public void Fire(int fila, int columna)
     {
+        LanzarExcepcionSiElJuegoNoHaIniciado();
+
         var identificarJugadorAAtacar = ObtenerSiguienteJugador();
         var JugadorAtacado = ObtenerJugador(identificarJugadorAAtacar);
-        var posicionAtacada = JugadorAtacado.Tablero[columna, fila];
+        var tableroJugadorAtacado = JugadorAtacado.Tablero;
+        var posicionAtacada = tableroJugadorAtacado.ObtenerCaracterDeTablero(new(fila,columna));
         var barcoFueInpactado = posicionAtacada != ' ';
 
+        var coordenadaAtaque = new Coordenada(fila,columna);
+        var tipoAtaque = 'o';
         var informe = JugadorAtacado.ObtenerInforme();
+
 
         if (barcoFueInpactado)
         {
             if (posicionAtacada is (char)TipoBarco.PortaAviones or (char)TipoBarco.Destructor)
             {
-                JugadorAtacado.Tablero[columna, fila] = 'x';
-                var barco = JugadorAtacado.ObtenerBarcoPorCoordenada(new(fila,columna));
+                tipoAtaque = 'x';
+                tableroJugadorAtacado.AsignarCaracterEnTablero(coordenadaAtaque, 'x');
+                // JugadorAtacado.Tablero[columna, fila] = 'x';
+                var barco = JugadorAtacado.ObtenerBarcoPorCoordenada(new(fila, columna));
                 barco.UndirParte(new(fila, columna));
 
                 if (barco.EstaDestruido())
@@ -91,16 +96,24 @@ public class BatallaNaval
             }
             else
             {
+                tipoAtaque = 'X';
+                tableroJugadorAtacado.AsignarCaracterEnTablero(new Coordenada(columna, fila), tipoAtaque);
                 informe.RegistrarBarcoUndido((TipoBarco)posicionAtacada, new Coordenada(fila, columna));
-                JugadorAtacado.Tablero[columna, fila] = 'X';
             }
         }
         else
         {
-            JugadorAtacado.Tablero[columna, fila] = 'o';
+            tableroJugadorAtacado.AsignarCaracterEnTablero(new Coordenada(columna, fila), tipoAtaque);
         }
+        
 
         RegistrarDisparoEnInforme(barcoFueInpactado, informe);
+    }
+
+    private void LanzarExcepcionSiElJuegoNoHaIniciado()
+    {
+        if (!_juegoIniciado)
+            throw new InvalidOperationException("No se puede disparar si el juego no ha iniciado");
     }
 
 
@@ -114,20 +127,7 @@ public class BatallaNaval
         return _jugadores.ToDictionary(jugador => jugador.Key, jugador => jugador.Value.ObtenerInforme());
     }
 
-
-    private void InicializarTableroVacio()
-    {
-        for (int i = 0; i < _tableroVacio.GetLength(1); i++)
-        {
-            for (int j = 0; j < _tableroVacio.GetLength(0); j++)
-            {
-                _tableroVacio[i, j] = ' ';
-            }
-        }
-    }
-
-
-    private char[,] ObtenerTableroJugador(int jugador)
+    private Tablero ObtenerTableroJugador(int jugador)
     {
         return _jugadores.GetValueOrDefault(jugador)!.Tablero;
     }
@@ -143,7 +143,7 @@ public class BatallaNaval
     }
 
 
-    private void AgregarBarcoJugador(int jugador, Barco barco)
+    private void AsignarBarcoAJugador(int jugador, Barco barco)
     {
         ObtenerJugador(jugador).RegistrarBarco(barco);
     }
@@ -159,10 +159,9 @@ public class BatallaNaval
 
     private static void ModificarTableroAlDestruirBarco(Jugador JugadorAtacado)
     {
-        
         foreach (var parte in JugadorAtacado.ObtenerBarcos().SelectMany(p => p.ObtenerPartes().Where(p => p.Undida)))
         {
-            JugadorAtacado.Tablero[parte.Coordenada.Columna, parte.Coordenada.Fila] = 'X';
+            JugadorAtacado.Tablero.AsignarCaracterEnTablero(parte.Coordenada, 'X');
         }
     }
 
@@ -182,10 +181,22 @@ public class BatallaNaval
 
         informe.IncrementarDisparosRecibidosTotales();
     }
-    
+
     private void LanzarExcepcionSiHayMenosDeDosJugadores()
     {
         if (_jugadores.Count < 2)
             throw new InvalidOperationException("El juego no puede iniciar sin almenos dos jugadores");
+    }
+
+    private void LanzaExcepcionSiSeColocaBarcoEnCoordenadaNoValida(int columna, int fila)
+    {
+        if (fila > _dimensionFilasTablero || columna > _dimensionColumnasTablero)
+            throw new InvalidOperationException("No se puede colocar barco en coordenadas");
+    }
+
+    private void LanzarExcepcionSiElJugadorNoExiste(int jugador)
+    {
+        if (!_jugadores.ContainsKey(jugador))
+            throw new InvalidOperationException("No se puede colocar barco en tablero de jugador inexistente");
     }
 }
