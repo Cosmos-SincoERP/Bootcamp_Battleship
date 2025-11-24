@@ -7,10 +7,9 @@ public class Jugador(string nombre)
     private int _cantidadDisparos;
     private int _cantidadDisparosFallidos;
     private int _cantidadDisparosAcertados;
-
+    private List<Barco> _barcos = [];
     public string Nombre { get; } = nombre;
     public Tablero Tablero { get; } = new(10);
-    public List<Barco> Barcos { get; } = [];
 
     public void AgregarDisparo(bool esAcertado)
     {
@@ -25,30 +24,39 @@ public class Jugador(string nombre)
     {
         ValidarSiHayCoordenadaPorFueraDelLimite(flotaBarcos, Nombre);
         ValidarsSiExisteUnBarcoEnLaCoordenada(flotaBarcos, Nombre);
-
         ValidarFlotaCañoneros(flotaBarcos);
         ValidarFlotaDestructores(flotaBarcos);
         ValidarFlotaPortaAviones(flotaBarcos);
 
-        Barcos.AddRange(flotaBarcos);
+        _barcos.AddRange(flotaBarcos);
     }
 
     public string ObtenerInformacionDeDisparos() =>
-        $"Total de disparos: {_cantidadDisparos} \n Disparos fallidos: {_cantidadDisparosFallidos} \n Disparos acertados: {_cantidadDisparosAcertados}";
+        $"Total de disparos: {_cantidadDisparos} \nDisparos fallidos: {_cantidadDisparosFallidos} \nDisparos acertados: {_cantidadDisparosAcertados}\n";
 
-    public Barco? BuscarBarco(Coordenada coordenada) => Barcos.FirstOrDefault(barco => barco.EstaEnLaCoordenada(coordenada));
-    public bool TodosLosBarcosEstanHundidos() => Barcos.All(barco => barco.SeHundio());
+    public Barco? BuscarBarco(Coordenada coordenada) => _barcos.FirstOrDefault(barco => barco.EstaEnLaCoordenada(coordenada));
+    public bool TodosLosBarcosEstanHundidos() => _barcos.All(barco => barco.SeHundio());
 
     public string ObtenerInformacionDeBarcosHundidos()
     {
         var mensaje = string.Empty;
-        Barcos.Where(barco => barco.SeHundio())
+        _barcos.Where(barco => barco.SeHundio())
             .ToList()
             .ForEach(barco => mensaje += $"{barco.GetType().Name}: ({barco.Coordenada.X},{barco.Coordenada.Y}) \n");
         
         return mensaje;
     } 
-        
+    
+    public void MarcarEnElTableroLasCasillasDeLosBarcosAflote()
+    {
+        _barcos.ForEach(barco =>
+        {
+            foreach (var coordenada in barco.CoordenadasDeLaPosicion.Where(coordenada => !Tablero.HayUnaMarca(coordenada)))
+            {
+                Tablero.MarcarRepresentacionEnElTablero(coordenada, 'c');
+            }
+        });
+    }
 
     private void ValidarFlotaCañoneros(List<Barco> flotaCañoneros)
     {
@@ -97,4 +105,5 @@ public class Jugador(string nombre)
         if (coordenadasRepetidas.Any())
             throw new Exception($"El jugador {nombre} ha enviado barcos que existen en la coordenada:" + string.Join(", ", coordenadasRepetidas));
     }
+
 }
