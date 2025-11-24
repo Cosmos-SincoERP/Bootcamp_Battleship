@@ -11,8 +11,8 @@ public class JuegoAcorazadosTestBorde
         var tablero = new char[10, 10];
         tablero[0, 0] = 'o';
         var tableroEsperado = Mocks.TableroEsperado(tablero);
-        var juegoAcorazado = () => Mocks.MockIniciarJuegoConBarcoEnCoordenadaInvalida();
+        var juegoAcorazado = () => Mocks.MockIniciarJuegoConBarcoEnCoordenadaXMayorA10Invalida();
 
-        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("La coordenada no es valida");
+        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1, ha enviado un barco con coordenadas invalidas (11,1)");
     }
 }

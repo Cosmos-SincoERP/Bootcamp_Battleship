@@ -79,30 +79,18 @@ public class Mocks
         return tableroEsperado;
     }
 
-    public static Juego MockIniciarJuegoConBarcoEnCoordenadaInvalida(bool disparos = false)
+    public static Juego MockIniciarJuegoConBarcoEnCoordenadaXMayorA10Invalida(bool disparos = false)
     {
         var juegoAcorazado = new Juego();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
         var barcosJugador1 = new List<Barco>
         {
-            new Cañonero(new(11, 1)),
-            new Cañonero(new(1, 3)),
-            new Cañonero(new(5, 2)),
-            new Cañonero(new(7, 6)),
-            new Destructor(new(1, 5), OrientacionBarco.Horizontal),
-            new Destructor(new(7, 2), OrientacionBarco.Vertical),
-            new PortaAviones(new(2, 7), OrientacionBarco.Horizontal)
+            new Cañonero(new(11, 1))
         };
         var barcosJugador2 = new List<Barco>
         {
-            new Cañonero(new(1, 8)),
-            new Cañonero(new(1, 3)),
-            new Cañonero(new(2, 5)),
-            new Cañonero(new(4, 5)),
-            new Destructor(new(7, 4), OrientacionBarco.Horizontal),
-            new Destructor(new(4, 7), OrientacionBarco.Vertical),
-            new PortaAviones(new(4, 0), OrientacionBarco.Vertical)
+            new Cañonero(new(1, 8))
         };
 
         juegoAcorazado.Iniciar([(0, barcosJugador1), (1, barcosJugador2)]);

@@ -23,9 +23,12 @@ public class Jugador(string nombre)
 
     public void AgregarFlotaDeBarcos(List<Barco> flotaBarcos)
     {
+        ValidarCoordenadas(flotaBarcos, _nombre);
+
         ValidarFlotaCañoneros(flotaBarcos);
         ValidarFlotaDestructores(flotaBarcos);
         ValidarFlotaPortaAviones(flotaBarcos);
+
 
         Barcos.AddRange(flotaBarcos);
     }
@@ -51,5 +54,16 @@ public class Jugador(string nombre)
     {
         if (flotaPortaviones.Count(barco => barco.GetType().Name == nameof(FlotaBarcos.PortaAviones)) < (int)FlotaBarcos.PortaAviones)
             throw new Exception($"El jugador {_nombre}, no ha enviado todos los portaviones para posicionar");
+    }
+
+    private static void ValidarCoordenadas(List<Barco> barcos, string nombreJugador)
+    {
+        barcos.Where(barco => barco.Coordenada.X > 9)
+            .ToList()
+            .ForEach(barco =>
+            {
+                throw new Exception($"El jugador {nombreJugador}, ha enviado un barco con coordenadas invalidas ({barco.Coordenada.X},{barco.Coordenada.Y})");
+            });
+
     }
 }
