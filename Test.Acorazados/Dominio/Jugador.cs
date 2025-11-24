@@ -24,8 +24,8 @@ public class Jugador(string nombre)
 
     public void AgregarFlotaDeBarcos(List<Barco> flotaBarcos)
     {
-        ValidarCoordenadas(flotaBarcos, _nombre);
-        ValidarCoordenadasPosicionadas(flotaBarcos, _nombre);
+        ValidarSiHayCoordenadaPorFueraDelLimite(flotaBarcos, _nombre);
+        ValidarsSiHayCoordenadasPosicionadasRepetidas(flotaBarcos, _nombre);
 
         ValidarFlotaCañoneros(flotaBarcos);
         ValidarFlotaDestructores(flotaBarcos);
@@ -60,7 +60,7 @@ public class Jugador(string nombre)
             throw new Exception($"El jugador {_nombre}, no ha enviado todos los portaviones para posicionar");
     }
 
-    private static void ValidarCoordenadas(List<Barco> barcos, string nombreJugador)
+    private static void ValidarSiHayCoordenadaPorFueraDelLimite(List<Barco> barcos, string nombreJugador)
     {
         List<string> coordenadaNoValida = new List<string>();
         barcos.Where(barco => barco.Coordenada.X > _tamañoLimite.tamañoMaximo ||
@@ -77,7 +77,7 @@ public class Jugador(string nombre)
             throw new Exception($"El jugador {nombreJugador} ha enviado un barco con coordenadas invalidas, " + string.Join(", ", coordenadaNoValida));
     }
 
-    private void ValidarCoordenadasPosicionadas(List<Barco> flotaBarcos, string nombre)
+    private void ValidarsSiHayCoordenadasPosicionadasRepetidas(List<Barco> flotaBarcos, string nombre)
     {
         var coordenadasRepetidas = flotaBarcos
             .SelectMany(barco => barco.CoordenadasDeLaPosicion)
