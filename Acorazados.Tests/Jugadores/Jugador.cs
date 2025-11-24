@@ -116,12 +116,8 @@ public class Jugador
         return carriersListos && destroyersListos && gunshipsListos;
     }
 
-    public bool TodasLasNavesHundidas()
-    {
-        if (_naves.Count == 0)
-            return false;
-        return _naves.All(nave => EsNaveHundida(nave));
-    }
+
+    public bool TodasLasNavesHundidas() => _naves.Count != 0 && _naves.All(EsNaveHundida);
 
     private void AumentarFallos() => Fallos++;
 
@@ -141,14 +137,26 @@ public class Jugador
         foreach (var posicion in nave.Posiciones)
         {
             Tablero[posicion.fila, posicion.columna] = ResultadoDisparo.Hundido.ValorDisparo();
-            if ((string)nave.TipoNave == new GunShip().Valor)
-                NaveHundida.GunShips.Add(new ValueTuple<int, int>(posicion.fila, posicion.columna));
-            else if (nave.Posiciones[0].fila == posicion.fila && nave.Posiciones[0].columna == posicion.columna)
-                NaveHundida.Destroyer.Add(new ValueTuple<int, int>(posicion.fila, posicion.columna));
+            var primeraCoordenadaNave = new ValueTuple<int, int>(posicion.fila, posicion.columna);
+
+            if (EsTipoNave(nave, new GunShip()))
+                NaveHundida.GunShips.Add(primeraCoordenadaNave);
+            else if (EsTipoNave(nave, new Destroyer()) && CoincideCoordenadaConPrimeaCoordenadaDeNave(nave, posicion))
+                NaveHundida.Destroyer.Add(primeraCoordenadaNave);
+            else if (EsTipoNave(nave, new Carrier()) && CoincideCoordenadaConPrimeaCoordenadaDeNave(nave, posicion))
+                NaveHundida.Carrier.Add(primeraCoordenadaNave);
         }
 
         return true;
     }
+
+    private bool CoincideCoordenadaConPrimeaCoordenadaDeNave(NavePosicionada nave,
+        (int fila, int columna) posicion)
+    {
+        return nave.Posiciones[0].fila == posicion.fila && nave.Posiciones[0].columna == posicion.columna;
+    }
+
+    private bool EsTipoNave(NavePosicionada nave, Nave tipoNave) => (string)nave.TipoNave == tipoNave.Valor;
 
     private bool EsNaveHundida(NavePosicionada nave)
     {

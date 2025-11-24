@@ -53,18 +53,16 @@ public class Acorazados
 
     public void Disparar(int fila, int columna)
     {
-        if (Estado != EstadoJuego.EnCurso)
-        {
+        if (JuegoNoHaComenzado())
             throw new InvalidOperationException("El juego no ha comenzado.");
-        }
 
         JugadorActual.DispararA(Oponente, fila, columna);
         VerificarVictoria();
         if (Estado != EstadoJuego.Finalizado)
-        {
             TerminarTurno();
-        }
     }
+
+    private bool JuegoNoHaComenzado() => Estado != EstadoJuego.EnCurso;
 
     private bool JugadorNoHaPosicionadoTodasLasNaves() =>
         _jugadores.Any(jugador => !jugador.HaPosicionadoTodasLasNaves());
