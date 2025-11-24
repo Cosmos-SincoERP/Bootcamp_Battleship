@@ -80,7 +80,7 @@ public class Battleship
             throw new ApplicationException("El juego requiere de dos jugadores para iniciar");
         if(navesJugador1.Count>0)
             if(!EsUnaCoordenadaValida(navesJugador1[0].FilaInicial,  navesJugador1[0].ColumnaInicial))
-                throw new ApplicationException("Las coordenadas dadas para pintar el Canonero estan fuera del limite del tablero");
+                throw new ApplicationException("Las coordenadas dadas para pintar la nave estan fuera del limite del tablero");
         
         _enJuego = true;
         
