@@ -2,36 +2,35 @@
 
 public class Jugador
 {
-    private int _longitudColumnas;
-    private int _longitudFilas;
-    private int _cantidadCarriers;
-    private int _cantidadDestroyers;
-    private int _cantidadGunships;
-
     public string Alias { get; private set; }
-    public string[,] Tablero { get; init; }
-    public int DisparosTotales { get; private set; }
     public int Aciertos { get; private set; }
+    public int DisparosTotales { get; private set; }
+    public string[,] Tablero { get; init; }
     public int Fallos { get; set; }
-    public BarcosHundidos NaveHundida { get; init; } = new();
-
-
-    private List<NavePosicionada> _naves = new();
+    public NavesHundidas NaveHundida { get; init; } = new();
 
     public Jugador(string alias)
     {
         Alias = alias;
     }
 
+    private int _longitudColumnas;
+    private int _longitudFilas;
+    private int _cantidadCarriers;
+    private int _cantidadDestroyers;
+    private int _cantidadGunships;
+    private readonly List<NavePosicionada> _naves = [];
+
     public void DispararA(Jugador oponente, int fila, int columna)
     {
-        DisparosTotales++;
+        AumentarDisparos();
         var resultado = oponente.RecibirDisparo(fila, columna);
         if (resultado is ResultadoDisparo.Tocado or ResultadoDisparo.Hundido)
-            Aciertos++;
+            AumentarAciertos();
         if (resultado == ResultadoDisparo.Agua)
-            Fallos++;
+            AumentarFallos();
     }
+
 
     public string ObtenerElemento(int fila, int columna) => Tablero[fila, columna];
 
@@ -88,15 +87,15 @@ public class Jugador
         return tablero;
     }
 
-    public ResultadoDisparo RecibirDisparo(int x, int y)
+    public ResultadoDisparo RecibirDisparo(int fila, int columna)
     {
-        if (EstaCasillaConDisparo(x, y))
+        if (EstaCasillaConDisparo(fila, columna))
             LanzarExcepcionNoSePuedeDispararALaMismaCoordenada();
-        var casilla = ObtenerElemento(x, y);
+        var casilla = ObtenerElemento(fila, columna);
         if (casilla is "d" or "c" or "g")
         {
-            Tablero[x, y] = ResultadoDisparo.Tocado.ValorDisparo();
-            if (MarcaNaveHundida(x, y))
+            Tablero[fila, columna] = ResultadoDisparo.Tocado.ValorDisparo();
+            if (MarcaNaveHundida(fila, columna))
             {
                 return ResultadoDisparo.Hundido;
             }
@@ -104,7 +103,7 @@ public class Jugador
             return ResultadoDisparo.Tocado;
         }
 
-        Tablero[x, y] = ResultadoDisparo.Agua.ValorDisparo();
+        Tablero[fila, columna] = ResultadoDisparo.Agua.ValorDisparo();
         return ResultadoDisparo.Agua;
     }
 
@@ -123,6 +122,12 @@ public class Jugador
             return false;
         return _naves.All(nave => EsNaveHundida(nave));
     }
+
+    private void AumentarFallos() => Fallos++;
+
+    private void AumentarAciertos() => Aciertos++;
+
+    private void AumentarDisparos() => DisparosTotales++;
 
     private bool MarcaNaveHundida(int fila, int columna)
     {
@@ -181,7 +186,7 @@ public class Jugador
 
         _naves.Add(new NavePosicionada
         {
-            Tipo = nave.Valor,
+            TipoNave = nave.Valor,
             Posiciones = posiciones
         });
     }
@@ -265,9 +270,4 @@ public class Jugador
         tablero += "\r\n";
         return tablero;
     }
-}
-
-public class BarcosHundidos
-{
-    public List<(int fila, int columna)> GunShips { get; } = [];
 }

@@ -46,6 +46,10 @@ public sealed class GunShip : Nave
 
 public class NavePosicionada
 {
-    public object Tipo { get; set; }
+    public object TipoNave { get; set; }
     public List<(int fila, int columna)> Posiciones { get; set; }
+}
+public class NavesHundidas
+{
+    public List<(int fila, int columna)> GunShips { get; } = [];
 }

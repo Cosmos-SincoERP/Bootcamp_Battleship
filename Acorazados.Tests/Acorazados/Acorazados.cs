@@ -2,12 +2,21 @@
 
 public class Acorazados
 {
-    public readonly Jugador[] Jugadores = new Jugador[2];
+    public bool EsTurnoJugador1 { get; private set; } = true;
+    public string Ganador { get; set; }
+    public EstadoJuego Estado { get; private set; } = EstadoJuego.Posicionamiento;
+    public Acorazados() => _tablero = new string[_fila, _columna];
+
+    private readonly Jugador[] _jugadores = new Jugador[2];
+    private int _contadorJugadores;
+    private Jugador Oponente => EsTurnoJugador1 ? _jugadores[1] : _jugadores[0];
+    private Jugador JugadorActual => EsTurnoJugador1 ? _jugadores[0] : _jugadores[1];
+    private readonly string[,] _tablero;
+    private readonly int _fila = 10;
+    private readonly int _columna = 10;
 
     public Jugador BuscarJugador(string aliasJugador) =>
-        Jugadores.First(jugador => jugador.Alias == aliasJugador);
-
-    public bool EsTurnoJugador1 { get; private set; } = true;
+        _jugadores.First(jugador => jugador.Alias == aliasJugador);
 
     public bool TieneDimensiones(int fila, int columna) =>
         EsCantidadFilasIgualA(fila) && EsCantidadColumnasIgualA(columna);
@@ -18,11 +27,21 @@ public class Acorazados
         {
             Tablero = new string[_fila, _columna]
         };
-        Jugadores[_contadorJugadores] = jugador;
+        _jugadores[_contadorJugadores] = jugador;
         _contadorJugadores++;
     }
 
-    public Acorazados() => _tablero = new string[_fila, _columna];
+    public void IniciarJuego()
+    {
+        if (JugadorNoHaPosicionadoTodasLasNaves())
+        {
+            throw new InvalidOperationException(
+                "No se puede iniciar el juego hasta que todos los jugadores hayan posicionado su flota completa");
+        }
+
+        Estado = EstadoJuego.EnCurso;
+    }
+
 
     public string ObtenerElemento(string aliasJugador, int fila, int columna)
     {
@@ -47,15 +66,8 @@ public class Acorazados
         }
     }
 
-    private int _contadorJugadores;
-    private Jugador Oponente => EsTurnoJugador1 ? Jugadores[1] : Jugadores[0];
-    public EstadoJuego Estado { get; private set; } = EstadoJuego.Posicionamiento;
-    private Jugador JugadorActual => EsTurnoJugador1 ? Jugadores[0] : Jugadores[1];
-    public string Ganador { get; set; }
-
-    private readonly string[,] _tablero;
-    private readonly int _fila = 10;
-    private readonly int _columna = 10;
+    private bool JugadorNoHaPosicionadoTodasLasNaves() =>
+        _jugadores.Any(jugador => !jugador.HaPosicionadoTodasLasNaves());
 
     private bool EsCantidadColumnasIgualA(int columna) => _tablero.GetLength(1) == columna;
     private bool EsCantidadFilasIgualA(int fila) => _tablero.GetLength(0) == fila;
@@ -69,14 +81,5 @@ public class Acorazados
             Ganador = JugadorActual.Alias;
             Estado = EstadoJuego.Finalizado;
         }
-    }
-
-    public void IniciarJuego()
-    {
-        if (Jugadores.Any(jugador => !jugador.HaPosicionadoTodasLasNaves()))
-            throw new InvalidOperationException(
-                "No se puede iniciar el juego hasta que todos los jugadores hayan posicionado su flota completa");
-
-        Estado = EstadoJuego.EnCurso;
     }
 }
