@@ -53,7 +53,7 @@ public class Jugador(string nombre)
         {
             foreach (var coordenada in barco.CoordenadasDeLaPosicion.Where(coordenada => !Tablero.HayUnaMarca(coordenada)))
             {
-                Tablero.MarcarRepresentacionEnElTablero(coordenada, 'c');
+                Tablero.MarcarRepresentacionEnElTablero(coordenada, barco.Representacion);
             }
         });
     }

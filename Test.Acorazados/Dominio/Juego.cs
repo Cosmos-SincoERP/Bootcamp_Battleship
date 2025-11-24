@@ -29,31 +29,9 @@ public class Juego
     public string Disparar(Coordenada coordenada)
     {
         ValidarSiJugadorYaDisparo();
-
-        var jugadorActivo = ObtenerJugadorActivo();
-        var jugadorEnemigo = ObtenerJugadorEnemigo();
-
-        var disparoAcertado = false;
-        var mensaje = string.Empty;
-        var barco = jugadorEnemigo.BuscarBarco(coordenada);
-        var tablero = jugadorEnemigo.Tablero;
-
-        if (barco != null)
-        {
-            disparoAcertado = true;
-            barco.MarcarImpacto();
-            if (barco.SeHundio())
-                mensaje = MarcarBarcoHundido(barco, tablero);
-            else
-                tablero.MarcarRepresentacionEnElTablero(coordenada, 'x');
-        }
-        else
-            tablero.MarcarRepresentacionEnElTablero(coordenada, 'o');
-
-        jugadorActivo.AgregarDisparo(disparoAcertado);
+        var ataque = AtaqueDelJugador(coordenada);
         MarcarDisparoRealizadoEnTurno();
-
-        return mensaje;
+        return ataque;
     }
 
     public void FinalizarTurno()
@@ -83,15 +61,16 @@ public class Juego
     private string InformeBatalla()
     {
         var informe = "------- Informe de batalla -------- \n";
-        
         informe += $"Ganador: Jugador {ObtenerJugadorActivo().Nombre} \n";
+        informe += "---------------------------------- \n";
 
         foreach (var jugador in _jugadores)
         {
+            jugador.MarcarEnElTableroLasCasillasDeLosBarcosAflote();
             informe += $"Jugador {jugador.Nombre}  \n";
             informe += $"{jugador.ObtenerInformacionDeDisparos()} \n";
             informe += $"Barcos Hundidos: {jugador.ObtenerInformacionDeBarcosHundidos()} \n";
-            
+            informe += jugador.Tablero.Visualizar();
         }
         return informe;
     }
@@ -110,6 +89,29 @@ public class Juego
     private void CambiarJugadorEnemigo() => _jugadorEnemigo = _jugadorEnemigo == 0 ? 1 : 0;
     private Jugador ObtenerJugadorActivo() => _jugadores[_jugadorActivo];
     private Jugador ObtenerJugadorEnemigo() => _jugadores[_jugadorEnemigo];
+    
+    private string AtaqueDelJugador(Coordenada coordenada)
+    {
+        var mensaje = string.Empty;
+        var disparoAcertado = false;
+        var jugadorActivo = ObtenerJugadorActivo();
+        var jugadorEnemigo = ObtenerJugadorEnemigo();
+        var barco = jugadorEnemigo.BuscarBarco(coordenada);
+        if (barco != null)
+        {
+            disparoAcertado = true;
+            barco.MarcarImpacto();
+            if (barco.SeHundio())
+                mensaje = MarcarBarcoHundido(barco, jugadorEnemigo.Tablero);
+            else
+                jugadorEnemigo.Tablero.MarcarRepresentacionEnElTablero(coordenada, 'x');
+        }
+        else
+            jugadorEnemigo.Tablero.MarcarRepresentacionEnElTablero(coordenada, 'o');
+        
+        jugadorActivo.AgregarDisparo(disparoAcertado);
+        return mensaje;
+    }
     private string MarcarBarcoHundido(Barco barco, Tablero tablero)
     {
         foreach (var coordenada in barco.CoordenadasDeLaPosicion)
@@ -124,5 +126,4 @@ public class Juego
         if (_disparoYaSeRealizoEnTurno)
             throw new Exception("El jugador ya ha realizado un disparo en este turno");
     }
-
 }

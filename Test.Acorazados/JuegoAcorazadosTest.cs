@@ -421,4 +421,12 @@ public class JuegoAcorazadosTest
 
         juegoAcorazado.Imprimir().Should().Contain(" d ");
     }
+    
+    [Fact]
+    public void Si_Eljugador1NoHundeElPortaAvion_Debe_MostrarEnElInformeDeBatallaLasCasillasDelCañoneroQueNoFueImpactada()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+
+        juegoAcorazado.Imprimir().Should().Contain(" g ");
+    }
 }

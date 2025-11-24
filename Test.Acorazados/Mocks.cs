@@ -12,6 +12,23 @@ public class Mocks
         { "PortaAviones", 4 },
     };
 
+    public static string TableroEsperado(char[,] tablero)
+    {
+        var tableroEsperado = string.Empty;
+        for (var x = 0; x < tablero.GetLength(0); x++)
+        {
+            for (var y = 0; y < tablero.GetLength(1); y++)
+            {
+                var valorAMostar = tablero[x, y] == '\0' ? ' ' : tablero[x, y];
+                tableroEsperado +=  $" {valorAMostar} ";
+            }
+
+            tableroEsperado += '\n';
+        }
+
+        return tableroEsperado;
+    }
+    
     public static Juego MockIniciarJuego(bool disparos = false)
     {
         var juegoAcorazado = new Juego();
@@ -51,10 +68,9 @@ public class Mocks
                 juegoAcorazado.Disparar(new Coordenada(0 + new Random().Next(0, 10), 0 + new Random().Next(0, 10)));
                 juegoAcorazado.FinalizarTurno();
 
-                if (barcos.Orientacion == OrientacionBarco.Horizontal)
-                    juegoAcorazado.Disparar(new Coordenada(barcos.Coordenada.X + i, barcos.Coordenada.Y));
-                else
-                    juegoAcorazado.Disparar(new Coordenada(barcos.Coordenada.X, barcos.Coordenada.Y + i));
+                juegoAcorazado.Disparar(barcos.Orientacion == OrientacionBarco.Horizontal
+                    ? new Coordenada(barcos.Coordenada.X + i, barcos.Coordenada.Y)
+                    : new Coordenada(barcos.Coordenada.X, barcos.Coordenada.Y + i));
 
                 juegoAcorazado.FinalizarTurno();
             }
@@ -63,23 +79,7 @@ public class Mocks
         return juegoAcorazado;
     }
 
-    public static string TableroEsperado(char[,] tablero)
-    {
-        var tableroEsperado = string.Empty;
-        for (var x = 0; x < tablero.GetLength(0); x++)
-        {
-            for (int y = 0; y < tablero.GetLength(1); y++)
-            {
-                tableroEsperado += tablero[x, y];
-            }
-
-            tableroEsperado += '\n';
-        }
-
-        return tableroEsperado;
-    }
-
-    public static Juego MockIniciarJuegoConBarcoEnCoordenadaXMayorA10(bool disparos = false)
+    public static Juego MockIniciarJuegoConBarcoEnCoordenadaXMayorA10()
     {
         var juegoAcorazado = new Juego();
         juegoAcorazado.AgregarJugador();
@@ -98,7 +98,7 @@ public class Mocks
         return juegoAcorazado;
     }
 
-    public static Juego MockIniciarJuegoConBarcoEnCoordenadaXMenorA0(bool disparos = false)
+    public static Juego MockIniciarJuegoConBarcoEnCoordenadaXMenorA0()
     {
         var juegoAcorazado = new Juego();
         juegoAcorazado.AgregarJugador();
@@ -117,7 +117,7 @@ public class Mocks
         return juegoAcorazado;
     }
 
-    public static Juego MockIniciarJuegoConBarcoEnCoordenadaYMayorA10(bool disparos = false)
+    public static Juego MockIniciarJuegoConBarcoEnCoordenadaYMayorA10()
     {
         var juegoAcorazado = new Juego();
         juegoAcorazado.AgregarJugador();
@@ -136,7 +136,7 @@ public class Mocks
         return juegoAcorazado;
     }
 
-    public static object MockIniciarJuegoConBarcoEnCoordenadaYMenorA0()
+    public static Juego MockIniciarJuegoConBarcoEnCoordenadaYMenorA0()
     {
         var juegoAcorazado = new Juego();
         juegoAcorazado.AgregarJugador();
@@ -155,7 +155,7 @@ public class Mocks
         return juegoAcorazado;
     }
 
-    internal static object MockIniciarJuegoConBarcoEnCoordenadaNoValidas()
+    public static Juego MockIniciarJuegoConBarcoEnCoordenadaNoValidas()
     {
         var juegoAcorazado = new Juego();
         juegoAcorazado.AgregarJugador();
@@ -210,8 +210,7 @@ public class Mocks
 
         return juegoAcorazado;
     }
-
-
+    
     public static Juego MockIniciarJuegoConBarcoDeDiferentesTipoEnPosicionesOcupadas()
     {
         var juegoAcorazado = new Juego();
