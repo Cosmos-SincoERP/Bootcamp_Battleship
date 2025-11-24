@@ -341,4 +341,12 @@ public class JuegoAcorazadosTest
 
         juegoAcorazado.Imprimir().Should().Contain("Disparos acertados: 14");
     }
+    
+    [Fact]
+    public void Si_Eljugador2HundeTodosLosBarcos_Debe_MostrarInformeDeBatallaQueEsElGanador()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego(true);
+
+        juegoAcorazado.Imprimir().Should().Contain("Ganador: Jugador 2");
+    }
 }
