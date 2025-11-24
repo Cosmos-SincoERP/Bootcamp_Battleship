@@ -43,16 +43,38 @@ public class Acorazados
     public string ImprimirReporte()
     {
         LanzarExcepcionSiJuegoNoHaSidoFinalizado();
-        var reporteCompleto = string.Empty;
+        return DibujarReporteDelJuego();
+    }
 
+    private string DibujarReporteDelJuego()
+    {
+        var reporte = DibujarInformacionDetalladaJugadores();
+        return reporte;
+    }
+
+    private string DibujarInformacionDetalladaJugadores()
+    {
+        var reporteJugadores = string.Empty;
         foreach (var jugador in Jugadores)
         {
-            reporteCompleto += jugador.ImprimirReporte();
+            if (!string.IsNullOrEmpty(reporteJugadores))
+            {
+                reporteJugadores = AgregarLineasDeSeparacion(reporteJugadores);
+            }
+            reporteJugadores += jugador.ImprimirReporte();
         }
-        
+
+        return reporteJugadores;
+    }
+
+    private static string AgregarLineasDeSeparacion(string reporteCompleto)
+    {
+        reporteCompleto += "\n";
+        reporteCompleto += "---------------------------------------------------";
+        reporteCompleto += "\n";
         return reporteCompleto;
     }
-    
+
     private Jugador ObtenerJugadorOponente()
         => ObtenerJugador(_indiceJugadorOponente);
 

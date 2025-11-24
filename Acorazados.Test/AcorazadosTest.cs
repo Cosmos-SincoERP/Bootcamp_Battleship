@@ -604,36 +604,6 @@ public class AcorazadosTest
     [Fact]
     public void Si_SeJuegaUnaPartidaCompletaConMultiplesBarcosYDisparos_Debe_ImprimirReporteYTableroFinal()
     {
-        var tableroEsperadoJugador1 =
-            "  Jugador: David\n" +
-            "  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n" +
-            "0 |   |   |   |   |   |   |   |   |   |   |\n" +
-            "1 | o | X |   |   |   |   |   |   |   |   |\n" +
-            "2 | o |   |   |   |   |   |   |   |   |   |\n" +
-            "3 |   |   |   | X |   |   |   |   |   |   |\n" +
-            "4 |   |   |   |   |   |   |   |   |   |   |\n" +
-            "5 |   |   |   |   |   | X | X | X |   |   |\n" +
-            "6 |   |   |   |   |   |   |   |   |   |   |\n" +
-            "7 |   |   |   |   |   |   |   | x | o | o |\n" +
-            "8 |   |   |   |   |   |   |   | d |   |   |\n" +
-            "9 |   |   |   |   |   |   |   | d |   | o |";
-
-
-        var tableroEsperadoJugador2 =
-            "  Jugador: Diego\n" +
-            "  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n" +
-            "0 | X | X | X | X |   |   |   |   |   |   |\n" +
-            "1 |   |   |   |   |   |   |   |   |   |   |\n" +
-            "2 |   |   | X |   |   |   |   |   |   |   |\n" +
-            "3 |   |   |   |   |   |   |   |   |   |   |\n" +
-            "4 |   |   |   |   | X | o | o |   |   |   |\n" +
-            "5 |   |   |   |   | X |   |   |   |   |   |\n" +
-            "6 |   |   |   |   | X |   |   |   |   |   |\n" +
-            "7 |   |   |   |   |   |   |   |   |   |   |\n" +
-            "8 |   |   |   |   |   |   |   |   | X |   |\n" +
-            "9 |   |   |   |   |   |   |   |   |   | o |";
-
-
         var acorazados = _acorazadosBuilder
             .ConstruirJugadorUno("David", tablero =>
             {
@@ -650,10 +620,7 @@ public class AcorazadosTest
                 tablero.AgregarBarco(Barcos.Portaaviones, 0, 0, Orientacion.Horizontal);
             })
             .Construir();
-
         acorazados.Iniciar();
-
-
         acorazados.Disparar(2, 2);
         acorazados.Disparar(9, 9);
         acorazados.Disparar(9, 9);
@@ -678,34 +645,49 @@ public class AcorazadosTest
         acorazados.Disparar(0, 2);
         acorazados.Disparar(4, 6);
 
-        acorazados.EstadoJuego.Should().Be(EstadoJuego.Finalizado);
+        var reporte = acorazados.ImprimirReporte();
 
-
-        var reporteJugador1 = acorazados.ObtenerJugador(0).ImprimirReporte();
-        var tableroJugador1 = acorazados.ObtenerJugador(0).ImprimirTablero();
-
-        var reporteJugador2 = acorazados.ObtenerJugador(1).ImprimirReporte();
-        var tableroJugador2 = acorazados.ObtenerJugador(1).ImprimirTablero();
-
-        reporteJugador1.Should().Contain("Disparos totales: 11");
-        reporteJugador1.Should().Contain("Exitosos: 6");
-        reporteJugador1.Should().Contain("Fallidos: 5");
-
-        reporteJugador2.Should().Contain("Disparos totales: 12");
-        reporteJugador2.Should().Contain("Exitosos: 9");
-        reporteJugador2.Should().Contain("Fallidos: 3");
-
-
-        reporteJugador2.Should().Contain("cañonero: (2,2)");
-        reporteJugador2.Should().Contain("destructor: (4,4)");
-        reporteJugador2.Should().Contain("portaaviones: (0,0)");
-
-        reporteJugador1.Should().Contain("cañonero: (1,1)");
-        reporteJugador1.Should().Contain("cañonero: (3,3)");
-        reporteJugador1.Should().Contain("destructor: (5,5)");
-
-
-        tableroJugador1.Should().Be(tableroEsperadoJugador1);
-        tableroJugador2.Should().Be(tableroEsperadoJugador2);
+        //Estadísticas del jugador 1
+        reporte.Should().Contain("  Jugador: David\n" +
+                                 "Disparos totales: 11 \n" +
+                                 " Fallidos: 5\n" +
+                                 " Exitosos: 6\n" +
+                                 " Barcos hundidos: [ " +
+                                 "cañonero: (1,1)," +
+                                 "cañonero: (3,3)," +
+                                 "destructor: (5,5) ]\n" +
+                                 "  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n" +
+                                 "0 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                 "1 | o | X |   |   |   |   |   |   |   |   |\n" +
+                                 "2 | o |   |   |   |   |   |   |   |   |   |\n" +
+                                 "3 |   |   |   | X |   |   |   |   |   |   |\n" +
+                                 "4 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                 "5 |   |   |   |   |   | X | X | X |   |   |\n" +
+                                 "6 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                 "7 |   |   |   |   |   |   |   | x | o | o |\n" +
+                                 "8 |   |   |   |   |   |   |   | d |   |   |\n" +
+                                 "9 |   |   |   |   |   |   |   | d |   | o |");
+        
+        //Estadísticas del jugador 2
+        reporte.Should().Contain("  Jugador: Diego\n" +
+                                 "Disparos totales: 12 \n" +
+                                 " Fallidos: 3\n" +
+                                 " Exitosos: 9\n" +
+                                 " Barcos hundidos: [ " +
+                                 "cañonero: (2,2)," +
+                                 "cañonero: (8,8)," +
+                                 "destructor: (4,4)," +
+                                 "portaaviones: (0,0) ]\n" +
+                                 "  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n" +
+                                 "0 | X | X | X | X |   |   |   |   |   |   |\n" +
+                                 "1 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                 "2 |   |   | X |   |   |   |   |   |   |   |\n" +
+                                 "3 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                 "4 |   |   |   |   | X | o | o |   |   |   |\n" +
+                                 "5 |   |   |   |   | X |   |   |   |   |   |\n" +
+                                 "6 |   |   |   |   | X |   |   |   |   |   |\n" +
+                                 "7 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                 "8 |   |   |   |   |   |   |   |   | X |   |\n" +
+                                 "9 |   |   |   |   |   |   |   |   |   | o |");
     }
 }

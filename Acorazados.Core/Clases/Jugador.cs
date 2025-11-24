@@ -12,7 +12,8 @@ public class Jugador(string nombre)
         AgregarLineaDisparosTotales() +
         AgregarLineaDisparosFallidos() +
         AgregarLineaDisparosExitosos() +
-        AgregarLineasBarcosHundidos();
+        AgregarLineasBarcosHundidos() + '\n' +
+        AgregarDibujoTablero();
 
     public string ImprimirTablero() =>
         AgregarLineaJugador() +
