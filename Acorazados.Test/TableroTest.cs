@@ -239,4 +239,17 @@ public class TableroTest
         respuesta.Should().ThrowExactly<InvalidOperationException>()
             .WithMessage("La coordenada excede el limite del tablero");
     }
+
+    [Fact]
+    public void Si_RecibeUnSegundoDisparoEnUnaMismaCoordenada_Debe_LanzarExcepcion()
+    {
+        var tablero = new Tablero();
+        tablero.RecibirDisparo(1, 1);
+        
+        Action respuesta = () => tablero.RecibirDisparo(1, 1);
+        
+        respuesta.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("Este coordenada ya recibio disparo");
+        
+    }
 }
