@@ -131,7 +131,6 @@ public class JuegoAcorazadosTestBorde
 
         var disparar = () => juegoAcorazado.Disparar(new(0, 0));
 
-
         disparar.Should().ThrowExactly<Exception>().WithMessage("El juego no ha sido iniciado");
     }
 
@@ -142,7 +141,6 @@ public class JuegoAcorazadosTestBorde
 
         var disparar = () => juegoAcorazado.Imprimir();
 
-
         disparar.Should().ThrowExactly<Exception>().WithMessage("El juego no ha sido iniciado");
     }
 
@@ -152,7 +150,6 @@ public class JuegoAcorazadosTestBorde
         var juegoAcorazado = new Juego();
 
         var disparar = () => juegoAcorazado.FinalizarTurno();
-
 
         disparar.Should().ThrowExactly<Exception>().WithMessage("El juego no ha sido iniciado");
     }

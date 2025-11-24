@@ -81,6 +81,8 @@ public class Juego
 
     public void FinalizarTurno()
     {
+        ValidarEstadoJuego();
+
         if (ListaBarcosJugadorEnemigo().All(barco => barco.SeHundio()))
             _juegoTerminado = true;
 
