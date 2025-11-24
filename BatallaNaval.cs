@@ -22,6 +22,7 @@ public class BatallaNaval
     public void ColocarBarco(int jugador, int columna, int fila, TipoBarco tipo, TipoOrientacion? orientacion = null)
     {
         LanzarExcepcionSiElJugadorNoExiste(jugador);
+        LanzaExcepcionSiSeColocaBarcoEnCoordenadaNoValida(columna, fila);
         
         var longitudDelBarco = CalcularLogitudBarco(tipo);
         char[,] tableroActual = ObtenerTableroJugador(jugador);
@@ -41,9 +42,15 @@ public class BatallaNaval
         AgregarBarcoJugador(jugador, barco);
     }
 
+    private void LanzaExcepcionSiSeColocaBarcoEnCoordenadaNoValida(int columna, int fila)
+    {
+        if (fila > _tableroVacio.GetLength(0) || columna > _tableroVacio.GetLength(1))
+            throw new InvalidOperationException("No se puede colocar barco en coordenadas");
+    }
+
     private void LanzarExcepcionSiElJugadorNoExiste(int jugador)
     {
-        if (_jugadores.ContainsKey(jugador))
+        if (!_jugadores.ContainsKey(jugador))
             throw new InvalidOperationException("No se puede colocar barco en tablero de jugador inexistente");
     }
 

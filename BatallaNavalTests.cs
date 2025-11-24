@@ -812,17 +812,19 @@ public class BattleshipsTest
         //Assert 
         action.Should().ThrowExactly<InvalidOperationException>().WithMessage("No se puede colocar barco en tablero de jugador inexistente");
     }
-
-}
-
-public class Coordenada
-{
-    public int Fila { get; set; }
-    public int Columna { get; set; }
-
-    public Coordenada(int fila, int columna)
+    [Fact]
+    public void
+        Si_SeColocaBarcoEnCoordenada3_3YLasDimensionesDelTableroSon2x2_DebeLanzarExcepcion()
     {
-        Fila = fila;
-        Columna = columna;
+        //Arrange
+        var batallaNaval = new BatallaNaval(filasTablero:2,columnasTablero:2);
+        batallaNaval.AddPlayer();
+        
+        //Act
+        Action action = () => batallaNaval.ColocarBarco(jugador: 1, fila: 3, columna: 3, tipo: TipoBarco.Cañonero);
+        
+        //Assert 
+        action.Should().ThrowExactly<InvalidOperationException>().WithMessage("No se puede colocar barco en coordenadas");
     }
+
 }
