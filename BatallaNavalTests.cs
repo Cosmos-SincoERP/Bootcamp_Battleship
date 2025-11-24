@@ -415,16 +415,18 @@ public class BattleshipsTest
                                  " 9 |   |   |   |   |   |   |   |   |   |   |\n";
         tablero.Should().Be(tableroEsperado);
     }
-    
+
     [Fact]
-    public void Si_AlIniciarLaPartidaElPrimerJugadorAtacaLasPosicion1_1_y_1_2Y_FinalizaElTurno_Y_SegundoJugadorTieneUnDestructorEnPosicion_1_1_Debe_MostrarEnElTableroDelJugador2LaPosicion_1_1_y_1_2ComoLaUnicaImpactada_x()
+    public void
+        Si_AlIniciarLaPartidaElPrimerJugadorAtacaLasPosicion1_1_y_1_2Y_FinalizaElTurno_Y_SegundoJugadorTieneUnDestructorEnPosicion_1_1_Debe_MostrarEnElTableroDelJugador2LaPosicion_1_1_y_1_2ComoLaUnicaImpactada_x()
     {
         //Arrange
         var batallaNaval = new BatallaNaval();
         batallaNaval.AddPlayer();
         batallaNaval.AddPlayer();
         batallaNaval.ColocarBarco(jugador: 1, fila: 3, columna: 3, tipo: TipoBarco.Cañonero);
-        batallaNaval.ColocarBarco(jugador: 2, fila: 1, columna: 1, tipo: TipoBarco.Destructor, orientacion: TipoOrientacion.Horizontal);
+        batallaNaval.ColocarBarco(jugador: 2, fila: 1, columna: 1, tipo: TipoBarco.Destructor,
+            orientacion: TipoOrientacion.Horizontal);
         batallaNaval.Start();
 
         //Act
@@ -448,7 +450,8 @@ public class BattleshipsTest
     }
 
     [Fact]
-    public void Si_ElJugador1ColocoUnaCañoneraEnPosicion3_3YElJugador2ColocoUnaCañoneraEnPosicion1_1YUnicamenteElJugador1RealizaUnAtaqueEnPosicion_1_1E_Impacta_Debe_ElInformeGeneralDelJugador1Tener0DisparosRecibidos0DisparosAsertadosEnemigo0DisparosFalladosEnemigoYEnTableroConPosicion3_3UnaCañonera()
+    public void
+        Si_ElJugador1ColocoUnaCañoneraEnPosicion3_3YElJugador2ColocoUnaCañoneraEnPosicion1_1YUnicamenteElJugador1RealizaUnAtaqueEnPosicion_1_1E_Impacta_Debe_ElInformeGeneralDelJugador1Tener0DisparosRecibidos0DisparosAsertadosEnemigo0DisparosFalladosEnemigoYEnTableroConPosicion3_3UnaCañonera()
     {
         //Arrange
         var batallaNaval = new BatallaNaval();
@@ -483,9 +486,10 @@ public class BattleshipsTest
         disparosFalladosEnemigo.Should().Be(0);
         disparosRecibidos.Should().Be(0);
     }
-    
+
     [Fact]
-    public void Si_ElJugador1ColocoUnaCañoneraEnPosicion3_3YElJugador2ColocoUnaCañoneraEnPosicion1_1YElJugador1RealizaUnAtaqueEnPosicion_2_2YElJugador1RealizaUnAtaqueEnPosicion_0_0YElJugador1RealizaUnAtaqueEnPosicion_1_1_Debe_ElInformeGeneralDelJugador1Tener1DisparosRecibidos0DisparosAsertadosEnemigo1DisparosFalladosEnemigoYEnTableroConPosicion3_3UnaCañonera()
+    public void
+        Si_ElJugador1ColocoUnaCañoneraEnPosicion3_3YElJugador2ColocoUnaCañoneraEnPosicion1_1YElJugador1RealizaUnAtaqueEnPosicion_2_2YElJugador1RealizaUnAtaqueEnPosicion_0_0YElJugador1RealizaUnAtaqueEnPosicion_1_1_Debe_ElInformeGeneralDelJugador1Tener1DisparosRecibidos0DisparosAsertadosEnemigo1DisparosFalladosEnemigoYEnTableroConPosicion3_3UnaCañonera()
     {
         //Arrange
         var batallaNaval = new BatallaNaval();
@@ -525,10 +529,11 @@ public class BattleshipsTest
         disparosFalladosEnemigo.Should().Be(1);
     }
 
-[Fact]
-    public void Si_ElSeSolicitaElInformeGeneralDelJuegoYExistenDosJugadoresElInforme_Debe_MostrarLaRepresentacionDelTableroDeLosDosJugadores()
+    [Fact]
+    public void
+        Si_ElSeSolicitaElInformeGeneralDelJuegoYExistenDosJugadoresElInforme_Debe_MostrarLaRepresentacionDelTableroDeLosDosJugadores()
     {
-       //Arrange
+        //Arrange
         var batallaNaval = new BatallaNaval();
         batallaNaval.AddPlayer();
         batallaNaval.AddPlayer();
@@ -574,11 +579,12 @@ public class BattleshipsTest
         tableroJugador1.Should().Be(tableroEsperadoJugador1);
         tableroJugador2.Should().Be(tableroEsperadoJugador2);
     }
-    
+
     [Fact]
-    public void Si_SeSolicitaLosBarcosUndidosDelJugador2YElJugador2TieneUnCañoneroUndidoEnLaPosicion1_1ElInforme_Debe_MostrarUnCañoneroUnidoEnLaPosicion1_1()
+    public void
+        Si_SeSolicitaLosBarcosUndidosDelJugador2YElJugador2TieneUnCañoneroUndidoEnLaPosicion1_1ElInforme_Debe_MostrarUnCañoneroUnidoEnLaPosicion1_1()
     {
-       //Arrange
+        //Arrange
         var batallaNaval = new BatallaNaval();
         batallaNaval.AddPlayer();
         batallaNaval.AddPlayer();
@@ -592,8 +598,6 @@ public class BattleshipsTest
         batallaNaval.Fire(fila: 1, columna: 1);
 
 
- 
- 
         //Act
         var informe = batallaNaval.InformeGeneral()[2];
         var tableroJugador2 = informe.RepresentacionTablero;
@@ -611,16 +615,17 @@ public class BattleshipsTest
                                          " 7 |   |   |   |   |   |   |   |   |   |   |\n" +
                                          " 8 |   |   |   |   |   |   |   |   |   |   |\n" +
                                          " 9 |   |   |   |   |   |   |   |   |   |   |\n";
-        
+
         tableroJugador2.Should().Be(tableroEsperadoJugador2);
         barcosUndidos.Should().HaveCount(1);
         barcosUndidos[0].Should().BeEquivalentTo((TipoBarco.Cañonero, new Coordenada(1, 1)));
     }
-    
+
     [Fact]
-    public void Si_SeSolicitaLosBarcosUndidosDelJugador2YElJugador2TieneUnCañoneroUndidoEnLaPosicion5_5ElInforme_Debe_MostrarUnCañoneroUnidoEnLaPosicion1_1()
+    public void
+        Si_SeSolicitaLosBarcosUndidosDelJugador2YElJugador2TieneUnCañoneroUndidoEnLaPosicion5_5ElInforme_Debe_MostrarUnCañoneroUnidoEnLaPosicion1_1()
     {
-       //Arrange
+        //Arrange
         var batallaNaval = new BatallaNaval();
         batallaNaval.AddPlayer();
         batallaNaval.AddPlayer();
@@ -632,8 +637,8 @@ public class BattleshipsTest
         batallaNaval.Fire(fila: 0, columna: 0);
         batallaNaval.EndTurn();
         batallaNaval.Fire(fila: 5, columna: 5);
-        
-        
+
+
         //Act
         var informe = batallaNaval.InformeGeneral()[2];
         var tableroJugador2 = informe.RepresentacionTablero;
@@ -651,28 +656,30 @@ public class BattleshipsTest
                                          " 7 |   |   |   |   |   |   |   |   |   |   |\n" +
                                          " 8 |   |   |   |   |   |   |   |   |   |   |\n" +
                                          " 9 |   |   |   |   |   |   |   |   |   |   |\n";
-        
+
         tableroJugador2.Should().Be(tableroEsperadoJugador2);
         barcosUndidos.Should().HaveCount(1);
-        
+
         barcosUndidos[0].Should().BeEquivalentTo((TipoBarco.Cañonero, new Coordenada(5, 5)));
     }
-    
-        [Fact]
-    public void Si_ElJugadorDosColocaUnDestructorConPosicionHorizontalEnLaCoordenada5_5YElJugadorUnoLoUnde_Debe_ElTableroDelJugadorDosRepresentarElDestructorIndidoConX()
+
+    [Fact]
+    public void
+        Si_ElJugadorDosColocaUnDestructorConPosicionHorizontalEnLaCoordenada5_5YElJugadorUnoLoUnde_Debe_ElTableroDelJugadorDosRepresentarElDestructorIndidoConX()
     {
-       //Arrange
+        //Arrange
         var batallaNaval = new BatallaNaval();
         batallaNaval.AddPlayer();
         batallaNaval.AddPlayer();
         batallaNaval.ColocarBarco(jugador: 1, fila: 3, columna: 3, tipo: TipoBarco.Cañonero);
-        batallaNaval.ColocarBarco(jugador: 2, fila: 5, columna: 5, tipo: TipoBarco.Destructor, orientacion: TipoOrientacion.Horizontal);
+        batallaNaval.ColocarBarco(jugador: 2, fila: 5, columna: 5, tipo: TipoBarco.Destructor,
+            orientacion: TipoOrientacion.Horizontal);
         batallaNaval.Start();
         batallaNaval.Fire(fila: 5, columna: 5);
         batallaNaval.Fire(fila: 6, columna: 5);
         batallaNaval.Fire(fila: 7, columna: 5);
         batallaNaval.EndTurn();
-        
+
         //Act
         var tableroJugador2 = batallaNaval.Print(2);
 
@@ -688,25 +695,27 @@ public class BattleshipsTest
                                          " 7 |   |   |   |   |   |   |   |   |   |   |\n" +
                                          " 8 |   |   |   |   |   |   |   |   |   |   |\n" +
                                          " 9 |   |   |   |   |   |   |   |   |   |   |\n";
-        
+
         tableroJugador2.Should().Be(tableroEsperadoJugador2);
     }
-    
+
     [Fact]
-    public void Si_ElJugadorDosColocaUnDestructorConPosicionHorizontalEnLaCoordenada5_5YElJugadorUnoLoUnde_Debe_EllInformeDelJugadorDosMostrarlDestructorUndidoConPosicion5_5()
+    public void
+        Si_ElJugadorDosColocaUnDestructorConPosicionHorizontalEnLaCoordenada5_5YElJugadorUnoLoUnde_Debe_EllInformeDelJugadorDosMostrarlDestructorUndidoConPosicion5_5()
     {
         //Arrange
         var batallaNaval = new BatallaNaval();
         batallaNaval.AddPlayer();
         batallaNaval.AddPlayer();
         batallaNaval.ColocarBarco(jugador: 1, fila: 3, columna: 3, tipo: TipoBarco.Cañonero);
-        batallaNaval.ColocarBarco(jugador: 2, fila: 5, columna: 5, tipo: TipoBarco.Destructor, orientacion: TipoOrientacion.Horizontal);
+        batallaNaval.ColocarBarco(jugador: 2, fila: 5, columna: 5, tipo: TipoBarco.Destructor,
+            orientacion: TipoOrientacion.Horizontal);
         batallaNaval.Start();
         batallaNaval.Fire(fila: 6, columna: 5);
         batallaNaval.Fire(fila: 5, columna: 5);
         batallaNaval.Fire(fila: 7, columna: 5);
         batallaNaval.EndTurn();
-        
+
         //Act
         var informe = batallaNaval.InformeGeneral()[2];
         var tableroJugador2 = informe.RepresentacionTablero;
@@ -724,11 +733,56 @@ public class BattleshipsTest
                                          " 7 |   |   |   |   |   |   |   |   |   |   |\n" +
                                          " 8 |   |   |   |   |   |   |   |   |   |   |\n" +
                                          " 9 |   |   |   |   |   |   |   |   |   |   |\n";
-        
+
         tableroJugador2.Should().Be(tableroEsperadoJugador2);
         barcosUndidos.Should().HaveCount(1);
-        
+
         barcosUndidos[0].Should().BeEquivalentTo((TipoBarco.Destructor, new Coordenada(5, 5)));
+    }
+
+    [Fact]
+    public void
+        Si_ElJugadorDosColocaUnPortaAvionYUnCanoneroYElJugadorUnoLosUnde_Debe_EllInformeDelJugadorDosMostrarElPortaAvionYElCanoneroUndidosConSusPosicionesIniciales()
+    {
+        //Arrange
+        var batallaNaval = new BatallaNaval();
+        batallaNaval.AddPlayer();
+        batallaNaval.AddPlayer();
+        batallaNaval.ColocarBarco(jugador: 1, fila: 3, columna: 3, tipo: TipoBarco.Cañonero);
+        batallaNaval.ColocarBarco(jugador: 2, fila: 5, columna: 5, tipo: TipoBarco.PortaAviones,
+            orientacion: TipoOrientacion.Horizontal);
+        batallaNaval.ColocarBarco(jugador: 2, fila: 1, columna: 1, tipo: TipoBarco.Cañonero);
+        batallaNaval.Start();
+        batallaNaval.Fire(fila: 6, columna: 5);
+        batallaNaval.Fire(fila: 5, columna: 5);
+        batallaNaval.Fire(fila: 7, columna: 5);
+        batallaNaval.Fire(fila: 8, columna: 5);
+        batallaNaval.Fire(fila: 1, columna: 1);
+        batallaNaval.EndTurn();
+
+        //Act
+        var informe = batallaNaval.InformeGeneral()[2];
+        var tableroJugador2 = informe.RepresentacionTablero;
+        var barcosUndidos = informe.ObtenerBarcosUndidos();
+
+        //Assert 
+        string tableroEsperadoJugador2 = "   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n" +
+                                         " 0 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 1 |   | X |   |   |   |   |   |   |   |   |\n" +
+                                         " 2 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 3 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 4 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 5 |   |   |   |   |   | X | X | X | X |   |\n" +
+                                         " 6 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 7 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 8 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 9 |   |   |   |   |   |   |   |   |   |   |\n";
+
+        tableroJugador2.Should().Be(tableroEsperadoJugador2);
+        barcosUndidos.Should().HaveCount(2);
+
+        barcosUndidos[0].Should().BeEquivalentTo((TipoBarco.PortaAviones, new Coordenada(5, 5)));
+        barcosUndidos[1].Should().BeEquivalentTo((TipoBarco.Cañonero, new Coordenada(1, 1)));
     }
 }
 
@@ -737,7 +791,7 @@ public class Coordenada
     public int Fila { get; set; }
     public int Columna { get; set; }
 
-    public Coordenada(int fila,int columna)
+    public Coordenada(int fila, int columna)
     {
         Fila = fila;
         Columna = columna;

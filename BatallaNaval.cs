@@ -64,7 +64,7 @@ public class BatallaNaval
             if (posicionAtacada is (char)TipoBarco.PortaAviones or (char)TipoBarco.Destructor)
             {
                 JugadorAtacado.Tablero[columna, fila] = 'x';
-                var barco = JugadorAtacado.ObtenerBarco();
+                var barco = JugadorAtacado.ObtenerBarcoPorCoordenada(new(fila,columna));
                 barco.UndirParte(new(fila, columna));
 
                 if (barco.EstaDestruido())
@@ -143,7 +143,8 @@ public class BatallaNaval
 
     private static void ModificarTableroAlDestruirBarco(Jugador JugadorAtacado)
     {
-        foreach (var parte in JugadorAtacado.ObtenerBarco().ObtenerPartes())
+        
+        foreach (var parte in JugadorAtacado.ObtenerBarcos().SelectMany(p => p.ObtenerPartes().Where(p => p.Undida)))
         {
             JugadorAtacado.Tablero[parte.Coordenada.Columna, parte.Coordenada.Fila] = 'X';
         }

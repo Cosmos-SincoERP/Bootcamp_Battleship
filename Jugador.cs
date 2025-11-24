@@ -6,7 +6,7 @@ public class Jugador
 {
     public char[,] Tablero { get; set; }
     private readonly Informe _Informe = new();
-    private Barco _barcoAsignado;
+    private List<Barco> _barcosAsignados = new();
 
     public Jugador(char[,] tableroInicial)
     {
@@ -21,8 +21,15 @@ public class Jugador
 
     public void RegistrarBarco(Barco barco)
     {
-        _barcoAsignado = barco;
+        _barcosAsignados.Add(barco);
     }
 
-    public Barco ObtenerBarco() => _barcoAsignado;
+    public List<Barco> ObtenerBarcos() => _barcosAsignados;
+
+    public Barco ObtenerBarcoPorCoordenada(Coordenada coordenada)
+    {
+        return _barcosAsignados.First(b =>
+            b.ObtenerPartes().Any(p =>  p.Coordenada.Columna == coordenada.Columna && p.Coordenada.Fila == coordenada.Fila)
+        );
+    }
 }
