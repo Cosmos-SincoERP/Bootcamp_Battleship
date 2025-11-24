@@ -797,6 +797,22 @@ public class BattleshipsTest
         //Assert 
         action.Should().ThrowExactly<InvalidOperationException>().WithMessage("El juego no puede iniciar sin almenos dos jugadores");
     }
+    
+    [Fact]
+    public void
+        Si_SoloHayUnJugadorYSeColocaBarcoEnTableroDeJugador2_Debe_LanzarExcepcion()
+    {
+        //Arrange
+        var batallaNaval = new BatallaNaval();
+        batallaNaval.AddPlayer();
+        
+        //Act
+        Action action = () => batallaNaval.ColocarBarco(jugador: 2, fila: 1, columna: 1, tipo: TipoBarco.Cañonero);;
+        
+        //Assert 
+        action.Should().ThrowExactly<InvalidOperationException>().WithMessage("No se puede colocar barco en tablero de jugador inexistente");
+    }
+
 }
 
 public class Coordenada

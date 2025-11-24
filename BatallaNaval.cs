@@ -21,6 +21,8 @@ public class BatallaNaval
 
     public void ColocarBarco(int jugador, int columna, int fila, TipoBarco tipo, TipoOrientacion? orientacion = null)
     {
+        LanzarExcepcionSiElJugadorNoExiste(jugador);
+        
         var longitudDelBarco = CalcularLogitudBarco(tipo);
         char[,] tableroActual = ObtenerTableroJugador(jugador);
         Barco barco = new (new(fila,columna));
@@ -39,6 +41,12 @@ public class BatallaNaval
         AgregarBarcoJugador(jugador, barco);
     }
 
+    private void LanzarExcepcionSiElJugadorNoExiste(int jugador)
+    {
+        if (_jugadores.ContainsKey(jugador))
+            throw new InvalidOperationException("No se puede colocar barco en tablero de jugador inexistente");
+    }
+
 
     public string Print(int jugador = 1)
     {
@@ -49,12 +57,6 @@ public class BatallaNaval
     {
         LanzarExcepcionSiHayMenosDeDosJugadores();
         _jugadorActual = 1;
-    }
-
-    private void LanzarExcepcionSiHayMenosDeDosJugadores()
-    {
-        if (_jugadores.Count < 2)
-            throw new InvalidOperationException("El juego no puede iniciar sin almenos dos jugadores");
     }
 
     public void Fire(int fila, int columna)
@@ -172,5 +174,11 @@ public class BatallaNaval
             informe.IncrementarDisparosFallados();
 
         informe.IncrementarDisparosRecibidosTotales();
+    }
+    
+    private void LanzarExcepcionSiHayMenosDeDosJugadores()
+    {
+        if (_jugadores.Count < 2)
+            throw new InvalidOperationException("El juego no puede iniciar sin almenos dos jugadores");
     }
 }
