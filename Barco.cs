@@ -5,6 +5,12 @@ namespace BattleshipsTDD;
 public class Barco
 {
     private List<ParteBarco> _partes = new();
+    public Coordenada CoordenadaInicial { get; }
+
+    public Barco(Coordenada coordenadaInicial)
+    {
+        CoordenadaInicial = coordenadaInicial;
+    }
 
     public void AgregarParte(Coordenada coordenada)
     {
@@ -25,7 +31,7 @@ public class Barco
             p.Coordenada.Columna == coordenada.Columna && p.Coordenada.Fila == coordenada.Fila);
     }
 
-    public bool EstaElBarcoDestruido() => _partes.All(p => p.Undida);
+    public bool EstaDestruido() => _partes.All(p => p.Undida);
 
     public ReadOnlyCollection<ParteBarco> ObtenerPartes()
     {

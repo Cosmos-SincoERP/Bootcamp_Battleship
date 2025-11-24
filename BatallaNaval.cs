@@ -23,7 +23,7 @@ public class BatallaNaval
     {
         var longitudDelBarco = CalcularLogitudBarco(tipo);
         char[,] tableroActual = ObtenerTableroJugador(jugador);
-        var barco = new Barco();
+        Barco barco = new (new(fila,columna));
 
         while (longitudDelBarco is not 0)
         {
@@ -67,8 +67,9 @@ public class BatallaNaval
                 var barco = JugadorAtacado.ObtenerBarco();
                 barco.UndirParte(new(fila, columna));
 
-                if (barco.EstaElBarcoDestruido())
+                if (barco.EstaDestruido())
                 {
+                    informe.RegistrarBarcoUndido((TipoBarco)posicionAtacada, barco.CoordenadaInicial);
                     ModificarTableroAlDestruirBarco(JugadorAtacado);
                 }
             }

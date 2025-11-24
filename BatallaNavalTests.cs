@@ -692,8 +692,44 @@ public class BattleshipsTest
         tableroJugador2.Should().Be(tableroEsperadoJugador2);
     }
     
-    
-    
+    [Fact]
+    public void Si_ElJugadorDosColocaUnDestructorConPosicionHorizontalEnLaCoordenada5_5YElJugadorUnoLoUnde_Debe_EllInformeDelJugadorDosMostrarlDestructorUndidoConPosicion5_5()
+    {
+        //Arrange
+        var batallaNaval = new BatallaNaval();
+        batallaNaval.AddPlayer();
+        batallaNaval.AddPlayer();
+        batallaNaval.ColocarBarco(jugador: 1, fila: 3, columna: 3, tipo: TipoBarco.Cañonero);
+        batallaNaval.ColocarBarco(jugador: 2, fila: 5, columna: 5, tipo: TipoBarco.Destructor, orientacion: TipoOrientacion.Horizontal);
+        batallaNaval.Start();
+        batallaNaval.Fire(fila: 6, columna: 5);
+        batallaNaval.Fire(fila: 5, columna: 5);
+        batallaNaval.Fire(fila: 7, columna: 5);
+        batallaNaval.EndTurn();
+        
+        //Act
+        var informe = batallaNaval.InformeGeneral()[2];
+        var tableroJugador2 = informe.RepresentacionTablero;
+        var barcosUndidos = informe.ObtenerBarcosUndidos();
+
+        //Assert 
+        string tableroEsperadoJugador2 = "   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n" +
+                                         " 0 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 1 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 2 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 3 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 4 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 5 |   |   |   |   |   | X | X | X |   |   |\n" +
+                                         " 6 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 7 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 8 |   |   |   |   |   |   |   |   |   |   |\n" +
+                                         " 9 |   |   |   |   |   |   |   |   |   |   |\n";
+        
+        tableroJugador2.Should().Be(tableroEsperadoJugador2);
+        barcosUndidos.Should().HaveCount(1);
+        
+        barcosUndidos[0].Should().BeEquivalentTo((TipoBarco.Destructor, new Coordenada(5, 5)));
+    }
 }
 
 public class Coordenada
