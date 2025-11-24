@@ -542,7 +542,7 @@ public class BattleShipTests
     }
 
     [Fact]
-    public void Si_ElPrimerJugadorDisparaAlSegundoYNoDaANingunBarco_Debe_MarcarUna_o_EnElTablero()
+    public void Si_ElPrimerJugadorDisparaAl_0_0_YNoDaANingunBarco_Debe_MarcarUna_o_EnElTablero()
     {
         _battleship.AddPlayer(_defaultFleetWithValidPositions);
         _battleship.AddPlayer(new Fleet([
@@ -564,6 +564,41 @@ public class BattleShipTests
             "  0 1 2 3 4 5 6 7 8 9 ",
             "0 o | | | | | | | | g ",
             "1 | | | | | | | | | g ",
+            "2 | | | | | | | | | g ",
+            "3 | | | | | | | | | g ",
+            "4 | | | | | | | d d d ",
+            "5 | | | | | | | d d d ",
+            "6 | | | | | | c c c c ",
+            "7 | | | | | | | | | | ",
+            "8 | | | | | | | | | | ",
+            "9 | | | | | | | | | | ",
+        });
+        board.Should().Be(expectedBoard);
+    }
+    
+    [Fact]
+    public void Si_ElPrimerJugadorDisparaAl_1_0_YNoDaANingunBarco_Debe_MarcarUna_o_EnElTablero()
+    {
+        _battleship.AddPlayer(_defaultFleetWithValidPositions);
+        _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0,9)),
+            Gunboat.Create(new Coord(1,9)),
+            Gunboat.Create(new Coord(2,9)),
+            Gunboat.Create(new Coord(3,9)),
+            Destroyer.Create(new Coord(4,7), new Coord(4,8), new Coord(4,9)),
+            Destroyer.Create(new Coord(5,7), new Coord(5,8), new Coord(5,9)),
+            AircraftCarrier.Create(new Coord(6,6), new Coord(6,7), new Coord(6,8), new Coord(6,9))
+        ]));
+        _battleship.Start();
+        _battleship.Fire(new Coord(1, 0));
+        
+        var board = _battleship.Print();
+        
+        var expectedBoard = string.Join(Environment.NewLine, new[]
+        {
+            "  0 1 2 3 4 5 6 7 8 9 ",
+            "0 | | | | | | | | | g ",
+            "1 o | | | | | | | | g ",
             "2 | | | | | | | | | g ",
             "3 | | | | | | | | | g ",
             "4 | | | | | | | d d d ",

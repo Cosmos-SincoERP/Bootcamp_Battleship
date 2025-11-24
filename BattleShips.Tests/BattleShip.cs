@@ -49,6 +49,9 @@ public class BattleShip
 
     public void Fire(Coord coord)
     {
-        CurrentBoard[0, 0] = "o";
+        if(coord.PositionX == 1)
+            CurrentBoard[1, 0] = "o";
+        else
+            CurrentBoard[0, 0] = "o";
     }
 }
