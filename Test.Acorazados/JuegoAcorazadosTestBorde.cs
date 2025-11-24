@@ -123,4 +123,16 @@ public class JuegoAcorazadosTestBorde
 
         barcoHundido.Should().ThrowExactly<Exception>().WithMessage("El jugador ya lanzo un disparo en la coordenada (7,4)");
     }
+
+    [Fact]
+    public void Si_JuegoNoEstaIniciadoYSeDispara_Debe_LanzarExcepcion()
+    {
+        var juegoAcorazado = new Juego();
+
+        var disparar = () => juegoAcorazado.Disparar(new(0, 0));
+
+
+        disparar.Should().ThrowExactly<Exception>().WithMessage("El juego no ha sido iniciado");
+
+    }
 }
