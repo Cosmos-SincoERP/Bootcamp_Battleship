@@ -26,7 +26,6 @@ public class Tablero(int tamaño)
             }
             visualizar += '\n';
         }
-
         return visualizar;
     }
 }

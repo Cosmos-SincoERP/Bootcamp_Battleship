@@ -11,15 +11,6 @@ public class Jugador(string nombre)
     public string Nombre { get; } = nombre;
     public Tablero Tablero { get; } = new(10);
 
-    public void AgregarDisparoRealizado(bool esAcertado)
-    {
-        _cantidadDisparos++;
-        if (esAcertado)
-            _cantidadDisparosAcertados++;
-        else
-            _cantidadDisparosFallidos++;
-    }
-
     public void AgregarFlotaDeBarcos(List<Barco> flotaBarcos)
     {
         ValidarSiHayCoordenadaPorFueraDelLimite(flotaBarcos, Nombre);
@@ -30,14 +21,22 @@ public class Jugador(string nombre)
 
         _barcos.AddRange(flotaBarcos);
     }
-
+    
+    public void AgregarDisparoRealizado(bool esAcertado)
+    {
+        _cantidadDisparos++;
+        if (esAcertado)
+            _cantidadDisparosAcertados++;
+        else
+            _cantidadDisparosFallidos++;
+    }
+    
     public string ObtenerInformacionDeDisparos() =>
         $"Total de disparos: {_cantidadDisparos} \nDisparos fallidos: {_cantidadDisparosFallidos} \nDisparos acertados: {_cantidadDisparosAcertados}\n";
 
     public (bool, string) AtaqueDelJugadorEnemigo(Coordenada coordenada)
     {
         ValidarSiTableroYaTieneUnDisparoEnCoordenada(coordenada);
-
         var barco = BuscarBarco(coordenada);
         return MarcarDisparo(coordenada, barco);
     }

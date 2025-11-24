@@ -20,7 +20,6 @@ public class Juego
     public void Iniciar(List<(int indexJugador, List<Barco> barcos)> flotas)
     {
         InicializarEstadoJuego();
-
         ValidarCantidadDeJugadores();
 
         foreach (var (indexJugador, barcos) in flotas)
@@ -29,21 +28,13 @@ public class Juego
         }
     }
 
-
     public string Disparar(Coordenada coordenada)
     {
         ValidarEstadoJuego();
-
         ValidarSiJugadorYaDisparo();
         var ataque = AtaqueDelJugador(coordenada);
         MarcarDisparoRealizadoEnTurno();
         return ataque;
-    }
-
-    private void ValidarEstadoJuego()
-    {
-        if (!_juegoInicializo)
-            throw new Exception("El juego no ha sido iniciado");
     }
 
     public void FinalizarTurno()
@@ -95,6 +86,8 @@ public class Juego
         return informe;
     }
     
+    private void InicializarEstadoJuego() => _juegoInicializo = true;
+    
     private string AsignarNombreJugadorPredeterminado() => _jugadores.Count == 1 ? "2" : "1";
     
     private void CambiarJugadorActivo() => _jugadorActivo = _jugadorActivo == 0 ? 1 : 0;
@@ -108,6 +101,12 @@ public class Juego
     private void MarcarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = true;
     
     private void LimpiarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = false;
+    
+    private void ValidarEstadoJuego()
+    {
+        if (!_juegoInicializo)
+            throw new Exception("El juego no ha sido iniciado");
+    }
     
     private void ValidacionesParaAgregarJugador()
     {
@@ -135,6 +134,4 @@ public class Juego
         jugadorActivo.AgregarDisparoRealizado(resultado.Item1);
         return resultado.Item2;
     }
-    
-    private void InicializarEstadoJuego() => _juegoInicializo = true;
 }
