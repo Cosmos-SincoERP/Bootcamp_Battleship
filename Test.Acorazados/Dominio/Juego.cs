@@ -60,10 +60,12 @@ public class Juego
     {
         if (ListaBarcosJugadorEnemigo().All(barco => barco.SeHundio()))
             _juegoTerminado = true;
-
-        CambiarJugadorActivo();
-        CambiarJugadorEnemigo();
-        LimpiarDisparoRealizadoEnTurno();
+        else
+        {
+            CambiarJugadorActivo();
+            CambiarJugadorEnemigo();
+            LimpiarDisparoRealizadoEnTurno();
+        }
     }
 
     public string Imprimir()
@@ -71,25 +73,26 @@ public class Juego
         var informacion = string.Empty;
 
         if (_juegoTerminado)
-            informacion = ReporteBatalla();
+            informacion = InformeBatalla();
         else
             informacion += ObtenerJugadorEnemigo().Tablero.Visualizar();
 
         return informacion;
     }
 
-    private string ReporteBatalla()
+    private string InformeBatalla()
     {
-        var reporte = string.Empty;
-        foreach (var jugador in _jugadores)
-        {
-            reporte += jugador.ObtenerInformacionDeDisparos();
-            reporte += jugador.Tablero.Visualizar();
-        }
+        var informe = "------- Informe de batalla -------- \n";
+        var jugadorGanador = ObtenerJugadorActivo();
+        var jugadorPerdedor = ObtenerJugadorEnemigo();
+        
+        informe += $"Ganador: Jugador {jugadorGanador.Nombre}  \n";
+        informe += $"{jugadorGanador.ObtenerInformacionDeDisparos()} \n";
+        
+        
 
-        return reporte;
+        return informe;
     }
-
     private void ValidacionesParaAgregarJugador()
     {
         if (_jugadores.Count == 2)
