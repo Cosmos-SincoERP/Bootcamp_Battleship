@@ -52,4 +52,5 @@ public class NavePosicionada
 public class NavesHundidas
 {
     public List<(int fila, int columna)> GunShips { get; } = [];
+    public List<(int fila, int columna)> Destroyer { get; set; }
 }
