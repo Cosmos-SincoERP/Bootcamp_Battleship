@@ -427,6 +427,16 @@
         "build": {
           "build/net6.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "Acorazados.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Acorazados.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Acorazados.Core.dll": {}
+        }
       }
     }
   },
@@ -997,10 +1007,16 @@
         "xunit.runner.visualstudio.2.8.2.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "Acorazados.Core/1.0.0": {
+      "type": "project",
+      "path": "../Acorazados.Core/Acorazados.Core.csproj",
+      "msbuildProject": "../Acorazados.Core/Acorazados.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Acorazados.Core >= 1.0.0",
       "AwesomeAssertions >= 9.3.0",
       "FontAwesome >= 4.7.0",
       "Microsoft.NET.Test.Sdk >= 17.12.0",
@@ -1040,7 +1056,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\DAVID.CUBIDES\\RiderProjects\\KataAcorazados\\Acorazados.Core\\Acorazados.Core.csproj": {
+              "projectPath": "C:\\Users\\DAVID.CUBIDES\\RiderProjects\\KataAcorazados\\Acorazados.Core\\Acorazados.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

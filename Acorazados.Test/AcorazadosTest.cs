@@ -742,7 +742,7 @@ public void Si_SeJuegaUnaPartidaCompletaConMultiplesBarcosYDisparos_Debe_Imprimi
         "8 |   |   |   |   |   |   |   | d |   |   |\n" +
         "9 |   |   |   |   |   |   |   | d |   | o |";
 
-   
+    
     var tableroEsperadoJugador2 =
         "  Jugador: Diego\n" +
         "  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n" +
@@ -750,7 +750,7 @@ public void Si_SeJuegaUnaPartidaCompletaConMultiplesBarcosYDisparos_Debe_Imprimi
         "1 |   |   |   |   |   |   |   |   |   |   |\n" +
         "2 |   |   | X |   |   |   |   |   |   |   |\n" +
         "3 |   |   |   |   |   |   |   |   |   |   |\n" +
-        "4 |   |   |   |   | X |   |   |   |   |   |\n" +
+        "4 |   |   |   |   | X | o | o |   |   |   |\n" +
         "5 |   |   |   |   | X |   |   |   |   |   |\n" +
         "6 |   |   |   |   | X |   |   |   |   |   |\n" +
         "7 |   |   |   |   |   |   |   |   |   |   |\n" +
