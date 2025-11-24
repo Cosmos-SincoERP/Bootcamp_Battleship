@@ -8,7 +8,7 @@ public class Juego
     private int _jugadorActivo;
     private int _jugadorEnemigo = 1;
     private bool _juegoTerminado;
-    private bool _disparoEnCurso = false;
+    private bool _disparoYaSeRealizoEnTurno = false;
 
     public void AgregarJugador()
     {
@@ -28,12 +28,10 @@ public class Juego
 
     public string Disparar(Coordenada coordenada)
     {
+        ValidarSiJugadorYaDisparo();
+
         var jugadorActivo = ObtenerJugadorActivo();
         var jugadorEnemigo = ObtenerJugadorEnemigo();
-
-        if (_disparoEnCurso)
-            throw new Exception("El jugador ya ha realizado un disparo en este turno");
-
 
         var disparoAcertado = false;
         var mensaje = string.Empty;
@@ -53,8 +51,7 @@ public class Juego
             tablero.MarcarRepresentacionEnElTablero(coordenada, 'o');
 
         jugadorActivo.AgregarDisparo(disparoAcertado);
-
-        _disparoEnCurso = true;
+        MarcarDisparoRealizadoEnTurno();
 
         return mensaje;
     }
@@ -66,7 +63,7 @@ public class Juego
 
         CambiarJugadorActivo();
         CambiarJugadorEnemigo();
-        _disparoEnCurso = false;
+        LimpiarDisparoRealizadoEnTurno();
     }
 
     public string Imprimir()
@@ -117,4 +114,14 @@ public class Juego
 
         return $"Se hundio un barco en la coordenada ({barco.Coordenada.X},{barco.Coordenada.Y})";
     }
+
+    private void MarcarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = true;
+    private void LimpiarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = false;
+
+    private void ValidarSiJugadorYaDisparo()
+    {
+        if (_disparoYaSeRealizoEnTurno)
+            throw new Exception("El jugador ya ha realizado un disparo en este turno");
+    }
+
 }
