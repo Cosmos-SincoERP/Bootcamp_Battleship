@@ -18,12 +18,12 @@
 * ✅ Para agregar un jugador sus destructores no deben tener coordenadas separadas.
 * ✅ Para agregar un jugador sus portaaviones no deben tener coordenadas separadas.
 * ✅ Para agregar un jugador sus barcos no pueden coincidir en sus coordenadas.
-* Para agregar un jugador sus barcos deben estar en vertical o horizontal.
+* ✅ Para agregar un jugador sus barcos deben estar en vertical o horizontal.
 * ✅ Si imprimen el tablero sin iniciar no debe haber nada.
 * ✅ Si inicia el juego deben estar los aviones en las posiciones indicadas por todos los jugadores.
-* ✅Si inicia el juego y se imprime el tablero debe mostrar el del segundo jugador (porque el primero inicia disparando).
-* ✅Si inicia el juego, el jugador uno pasa de turno y se imprima el tablero debe mostrar el del primer jugador.
-* ✅Si inicia el juego, ambos jugadores pasan turno y se imprime el tablero debe mostrar el del segundo jugador.
+* ✅ Si inicia el juego y se imprime el tablero debe mostrar el del segundo jugador (porque el primero inicia disparando).
+* ✅ Si inicia el juego, el jugador uno pasa de turno y se imprima el tablero debe mostrar el del primer jugador.
+* ✅ Si inicia el juego, ambos jugadores pasan turno y se imprime el tablero debe mostrar el del segundo jugador.
 * Un jugador puede disparar al tablero de otro, si no da a ningun barco debe marcarse una "o" en esa posicion.
 * Un jugador que dispare al tablero del otro y acierte a un barco deberá marcarse esa posición con "x"
 * Un jugador que dispare al tablero del otro y acierte podrá seguir disparando

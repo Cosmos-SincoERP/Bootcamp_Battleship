@@ -10,6 +10,7 @@ public class AircraftCarrier(List<Coord> coords) : Ship(coords)
     {
         ThrowExcepcionIfCoordsCountIsDifferentOfFour(coords);
         ThrowExceptionIfCoordsAreNotSequential(coords);
+        ThrowExceptionIfCoordsIsInDiagonal(coords);
         
         return new AircraftCarrier(coords);
     }
@@ -27,6 +28,14 @@ public class AircraftCarrier(List<Coord> coords) : Ship(coords)
                 ? newest
                 : throw new ArgumentException(LosPortaavionesDebenTenerSusCoordenadasSecuenciales)
         );
+    }
+    
+    private static void ThrowExceptionIfCoordsIsInDiagonal(List<Coord> coords)
+    {
+        coords.Aggregate((old, newest) => 
+            newest.IsNeighbourInDiagonal(old)
+                ? throw new ArgumentException("Los barcos solo pueden posicionarse en vertical o horizontal") 
+                : newest);
     }
 
 }

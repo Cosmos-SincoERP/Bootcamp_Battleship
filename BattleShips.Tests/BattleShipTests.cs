@@ -346,6 +346,23 @@ public class BattleShipTests
         action.Should().ThrowExactly<ArgumentException>()
             .WithMessage("Los barcos solo pueden posicionarse en vertical o horizontal");
     }
+
+    [Fact]
+    public void Si_AgregoUnJugadorConPortaavionesEnDiagonal_Debe_ArrojarExcepcion()
+    {
+        var action = () => _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(0, 0)),
+            Gunboat.Create(new Coord(1, 0)),
+            Gunboat.Create(new Coord(2, 0)),
+            Gunboat.Create(new Coord(3, 0)),
+            Destroyer.Create([new Coord(4, 0), new Coord(4, 1), new Coord(4, 2)]),
+            Destroyer.Create([new Coord(5, 0), new Coord(5, 1), new Coord(5, 2)]),
+            AircraftCarrier.Create([new Coord(9, 0), new Coord(8, 1), new Coord(7, 2), new Coord(6, 3)])
+        ]));
+
+        action.Should().ThrowExactly<ArgumentException>()
+            .WithMessage("Los barcos solo pueden posicionarse en vertical o horizontal");
+    }
     
     [Fact]
     public void Si_InicioElJuegoSinJugadores_Debe_ArrojarException()
