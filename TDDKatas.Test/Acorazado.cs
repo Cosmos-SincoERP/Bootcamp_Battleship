@@ -3,7 +3,7 @@
 public class Acorazado
 {
     private List<string> _jugadores = [];
-    private Dictionary<string, List<Despliegue>> _estrategia = new();
+    private Dictionary<string, Estrategia> _estrategia = new();
     private Dictionary<string?, List<Coordenada>> _disparos = new();
     private string _turnoActivo;
 
@@ -55,12 +55,11 @@ public class Acorazado
         {
             var navesDelOponente = _estrategia[_turnoActivo];
 
-            if (AciertoDisparo(disparosOponente[i].PosicionX, disparosOponente[i].PosicionY, navesDelOponente))
+            if (AciertoDisparo(disparosOponente[i].PosicionX, disparosOponente[i].PosicionY, navesDelOponente.ObtenerNaves().ToList()))
             {
                 var naveImpactada =
-                    navesDelOponente.First(x =>
-                        x.CoordenadasNave().Contains(new Coordenada(disparosOponente[i].PosicionX,
-                            disparosOponente[i].PosicionY)));
+                    navesDelOponente.ObtenerDespliegueEnCoordenada(new Coordenada(disparosOponente[i].PosicionX, disparosOponente[i].PosicionY));
+                
                 if (naveImpactada.EstaHundida)
                     tableroJugador.Add((new Coordenada(disparosOponente[i].PosicionX, disparosOponente[i].PosicionY), "X"));
                 else
@@ -78,22 +77,19 @@ public class Acorazado
     {
         var tableroJugador = new List<(Coordenada, string)>();
 
-        for (int indiceNave = 0; indiceNave < _estrategia[_turnoActivo].Count; indiceNave++) 
-            tableroJugador.AddRange(_estrategia[_turnoActivo][indiceNave].RevelarPosicion());
-
+        for (int indiceNave = 0; indiceNave < _estrategia[_turnoActivo].CantidadNaves(); indiceNave++) 
+            tableroJugador.AddRange(_estrategia[_turnoActivo].ObtenerNave(indiceNave).RevelarPosicion());
+        
         return tableroJugador;
     }
 
     public void PosicionarNave(int posicionX, int posicionY, TiposNave tipoNave, Orientacion orientacion)
     {
         var nave = Nave.Crear(tipoNave);
-        if (_estrategia[_jugadores.LastOrDefault()].Count(despliegue => despliegue.Nave.Tipo == nave.Tipo) ==
-            nave.CantidadPermitida &&
-            tipoNave == nave.Tipo)
-            throw new InvalidOperationException(
-                $"No es posible agregar mas de {nave.CantidadPermitida} nave(s) de tipo {nave.Descripcion}");
+        if (_estrategia[_jugadores.LastOrDefault()].CantidadNavesPorTipo(tipoNave) == nave.CantidadPermitida && tipoNave == nave.Tipo)
+            throw new InvalidOperationException($"No es posible agregar mas de {nave.CantidadPermitida} nave(s) de tipo {nave.Descripcion}");
 
-        _estrategia[_jugadores.LastOrDefault()].Add(new Despliegue(nave, posicionX, posicionY, orientacion));
+        _estrategia[_jugadores.LastOrDefault()].AgregarDespliegue(new Despliegue(nave, posicionX, posicionY, orientacion));
     }
 
     public string Iniciar()
@@ -111,9 +107,9 @@ public class Acorazado
     private bool EstaLaEstrategiaCompletada()
     {
         var estrategia = _estrategia.ToList().Last();
-        return estrategia.Value.Count(despliegue => despliegue.Nave.Tipo == TiposNave.Canionero) == 4 &&
-               estrategia.Value.Count(despliegue => despliegue.Nave.Tipo == TiposNave.Destructor) == 2 &&
-               estrategia.Value.Count(despliegue => despliegue.Nave.Tipo == TiposNave.Portaviones) == 1;
+        return estrategia.Value.CantidadNavesPorTipo(TiposNave.Canionero) == 4 &&
+               estrategia.Value.CantidadNavesPorTipo(TiposNave.Destructor) == 2 &&
+               estrategia.Value.CantidadNavesPorTipo(TiposNave.Portaviones) == 1;
     }
 
     public void AgregarJugador(string player)
@@ -123,7 +119,7 @@ public class Acorazado
 
         _jugadores.Add(player);
         _turnoActivo = player;
-        _estrategia.Add(player, []);
+        _estrategia.Add(player, new Estrategia([]));
         _disparos.Add(player, []);
     }
 
@@ -159,7 +155,7 @@ public class Acorazado
 
     private List<Despliegue> ObtenerNavesDelOponente()
     {
-        return _estrategia.First(x => x.Key != _turnoActivo).Value;
+        return _estrategia.First(x => x.Key != _turnoActivo).Value.ObtenerNaves().ToList();
     }
 
     public string CambiarTurno()

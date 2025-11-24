@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💙Si_TerminoTurnoJugadorUnoYAcerto3DisparoAlDestructorImprimir_Debe_MostrarTableroJugadorCon3DestructorHundidoXXX">
+    <list default="true" id="3d4c725b-8918-48d0-b001-cb76cc7c88e9" name="Changes" comment="💙refactor">
+      <change afterPath="$PROJECT_DIR$/TDDKatas.Test/Estrategia.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TDDKatas/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Acorazado.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TDDKatas.Test/Despliegue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TDDKatas.Test/Despliegue.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +46,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f9878f643c2ecf1b4ce73234de56c9754a451c835620eae85ca8babbcb5889c4/LateBoundTestFramework.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TDDKatas.Test/AcorazadosTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TDDKatas.Test/Despliegue.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TDDKatas.Test/Estrategia.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TDDKatas.Test/Nave.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -85,15 +86,7 @@
       <workItem from="1763165952569" duration="12691000" />
       <workItem from="1763563174982" duration="12396000" />
       <workItem from="1763575727124" duration="15679000" />
-      <workItem from="1763648957965" duration="23620000" />
-    </task>
-    <task id="LOCAL-00076" summary="❤️Si_InicioJuegoAgrego1JugadorYPosiciono3Destructores_Debe_LanzarExcepcion">
-      <option name="closed" value="true" />
-      <created>1763571458400</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1763571458400</updated>
+      <workItem from="1763648957965" duration="25531000" />
     </task>
     <task id="LOCAL-00077" summary="❤️Si_InicioJuegoAgrego1JugadorYPosiciono2PortaAviones_Debe_LanzarExcepcion">
       <option name="closed" value="true" />
@@ -479,7 +472,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763675562037</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="💙refactor">
+      <option name="closed" value="true" />
+      <created>1763677786076</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1763677786076</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx" />
     <MESSAGE value="❤️Si_ElJugadorUnoDisparaA2CoordenadasDe1NaveDestructor_Debe_Retornarx" />
     <MESSAGE value=" Si_ElJugadorUnoDisparaAUnaCoordenadaDondeHayNaveDestructor_Debe_Retornarx" />
     <MESSAGE value=" Si_ElJugadorUnoDisparaA2CoordenadasDe1NaveDestructor_Debe_Retornarx" />
@@ -524,7 +524,8 @@
     <MESSAGE value="Si_TerminoTurnoJugadorUnoYAcertoDisparoAlCanioneroImprimir_Debe_MostrarTableroJugadorDosConUnTiroAcertado" />
     <MESSAGE value="❤️Si_TerminoTurnoJugadorUnoYAcerto3DisparoAlDestructorImprimir_Debe_MostrarTableroJugadorCon3DestructorHundidoXXX" />
     <MESSAGE value="Si_TerminoTurnoJugadorUnoYAcerto3DisparoAlDestructorImprimir_Debe_MostrarTableroJugadorCon3DestructorHundidoXXX" />
-    <option name="LAST_COMMIT_MESSAGE" value="Si_TerminoTurnoJugadorUnoYAcerto3DisparoAlDestructorImprimir_Debe_MostrarTableroJugadorCon3DestructorHundidoXXX" />
+    <MESSAGE value="refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
