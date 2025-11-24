@@ -50,7 +50,7 @@ public class JuegoAcorazadosTestBorde
 
     [Fact]
     public void
-    Si_Eljugador1PosionaUnBarcoCañoneroDondeYaPosicionanorOtroBarcoEnLaMismaPosicion_Debe_LanzarExcepcion()
+    Si_Eljugador1PosionaUnBarcoDondeYaPosicionanorOtroBarcoEnLaMismaPosicion_Debe_LanzarExcepcion()
     {
         var tablero = new char[10, 10];
         tablero[0, 0] = 'o';
@@ -59,19 +59,17 @@ public class JuegoAcorazadosTestBorde
 
 
 
-        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado un barco Cañonero en la posicion (2,2) que ya esta ocupada");
+        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado barcos con las siguientes posiciones repetidas:(2,2)");
     }
 
     [Fact]
-    public void Si_Eljugador1PosionaDosBarcoCañoneroDondeYaPosicionanorOtroBarcoEnLaMismaPosicion_Debe_LanzarExcepcion()
+    public void Si_Eljugador1PosionaDosBarcoDondeYaPosicionanorOtrosBarcoEnLaMismaPosicion_Debe_LanzarExcepcion()
     {
         var tablero = new char[10, 10];
         tablero[0, 0] = 'o';
         var tableroEsperado = Mocks.TableroEsperado(tablero);
         var juegoAcorazado = () => Mocks.MockIniciarJuegoConBarcoDeDiferentesTipoEnPosicionesOcupadas();
 
-
-
-        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado un barco en una posicion que ya esta ocupada, Cañonero (2,2) ");
+        juegoAcorazado.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado barcos con las siguientes posiciones repetidas:(2,2), (1,5)");
     }
 }

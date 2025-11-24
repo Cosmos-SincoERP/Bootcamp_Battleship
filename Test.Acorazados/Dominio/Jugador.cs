@@ -79,13 +79,14 @@ public class Jugador(string nombre)
 
     private void ValidarCoordenadasPosicionadas(List<Barco> flotaBarcos, string nombre)
     {
-        var hayRepetidas = flotaBarcos
+        var coordenadasRepetidas = flotaBarcos
             .SelectMany(barco => barco.CoordenadasDeLaPosicion)
-            .GroupBy(coordenada => new { coordenada.X, coordenada.Y })
-            .Any(grupo => grupo.Count() > 1);
+            .GroupBy(coordenada => coordenada)
+            .Where(grupo => grupo.Count() > 1)
+            .Select(grupo => $"({grupo.Key.X},{grupo.Key.Y})")
+            .ToList();
 
-
-        if (hayRepetidas)
-            throw new Exception($"El jugador {nombre} ha enviado un barco Cañonero en la posicion (2,2) que ya esta ocupada");
+        if (coordenadasRepetidas.Any())
+            throw new Exception($"El jugador {nombre} ha enviado barcos con las siguientes posiciones repetidas:" + string.Join(", ", coordenadasRepetidas));
     }
 }
