@@ -12,9 +12,9 @@ public class Mocks
         { "PortaAviones", 4 },
     };
 
-    public static JuegoAcorazados MockIniciarJuego(bool disparos = false)
+    public static Juego MockIniciarJuego(bool disparos = false)
     {
-        var juegoAcorazado = new JuegoAcorazados();
+        var juegoAcorazado = new Juego();
         juegoAcorazado.AgregarJugador();
         juegoAcorazado.AgregarJugador();
         var barcosJugador1 = new List<Barco>
@@ -48,13 +48,13 @@ public class Mocks
             var tamaño = _tamañoBarcos[barcos.GetType().Name];
             for (var i = 0; i < tamaño; i++)
             {
-                juegoAcorazado.Disparar(0 + new Random().Next(0, 10), 0 + new Random().Next(0, 10));
+                juegoAcorazado.Disparar(new Coordenada(0 + new Random().Next(0, 10), 0 + new Random().Next(0, 10)));
                 juegoAcorazado.FinalizarTurno();
 
                 if (barcos.Orientacion == OrientacionBarco.Horizontal)
-                    juegoAcorazado.Disparar(barcos.Coordenada.X + i, barcos.Coordenada.Y);
+                    juegoAcorazado.Disparar(new Coordenada(barcos.Coordenada.X + i, barcos.Coordenada.Y));
                 else
-                    juegoAcorazado.Disparar(barcos.Coordenada.X, barcos.Coordenada.Y + i);
+                    juegoAcorazado.Disparar(new Coordenada(barcos.Coordenada.X, barcos.Coordenada.Y + i));
 
                 juegoAcorazado.FinalizarTurno();
             }

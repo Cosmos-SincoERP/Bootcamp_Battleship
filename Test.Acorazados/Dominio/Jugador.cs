@@ -5,10 +5,11 @@ namespace Test.BattleShip.Dominio;
 public class Jugador(string nombre)
 {
     private string _nombre = nombre;
-    public char[,] Tablero { get; } = new char[10, 10];
     private int _cantidadDisparos;
     private int _cantidadDisparosFallidos;
     private int _cantidadDisparosAcertados;
+
+    public Tablero Tablero { get; } = new(10);
     public List<Barco> Barcos { get; } = [];
 
     public void AgregarDisparo(bool esAcertado)
@@ -20,18 +21,19 @@ public class Jugador(string nombre)
             _cantidadDisparosFallidos++;
     }
 
-    public void FlotaDeBarcos(List<Barco> flotaBarcos)
+    public void AgregarFlotaDeBarcos(List<Barco> flotaBarcos)
     {
         ValidarFlotaCañoneros(flotaBarcos);
-        ValidateFlotaDestructores(flotaBarcos);
+        ValidarFlotaDestructores(flotaBarcos);
         ValidarFlotaPortaAviones(flotaBarcos);
-        
+
         Barcos.AddRange(flotaBarcos);
     }
-    
-    public string ObtenerTotalDisparos() => $"Total de disparos: {_cantidadDisparos}";
-    public string ObtenerTotalDisparosFallidos() => $"Disparos fallidos: {_cantidadDisparosFallidos}";
-    public string ObtenerTotalDisparosAcertados() => $"Disparos acertados: {_cantidadDisparosAcertados}";
+
+    public string ObtenerInformacionDeDisparos() =>
+        $"Total de disparos: {_cantidadDisparos} \n Disparos fallidos: {_cantidadDisparosFallidos} \n Disparos acertados: {_cantidadDisparosAcertados}";
+
+    public Barco? BuscarBarco(Coordenada coordenada) => Barcos.FirstOrDefault(barco => barco.EstaEnLaCoordenada(coordenada));
 
     private void ValidarFlotaCañoneros(List<Barco> flotaCañoneros)
     {
@@ -39,7 +41,7 @@ public class Jugador(string nombre)
             throw new Exception($"El jugador {_nombre}, no ha enviado todos los cañoneros para posicionar");
     }
 
-    private void ValidateFlotaDestructores(List<Barco> flotaDestructores)
+    private void ValidarFlotaDestructores(List<Barco> flotaDestructores)
     {
         if (flotaDestructores.Count(barco => barco.GetType().Name == nameof(FlotaBarcos.Destructor)) < (int)FlotaBarcos.Destructor)
             throw new Exception($"El jugador {_nombre}, no ha enviado todos los destructores para posicionar");
