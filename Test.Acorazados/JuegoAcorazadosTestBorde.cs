@@ -163,4 +163,15 @@ public class JuegoAcorazadosTestBorde
 
         disparar.Should().ThrowExactly<Exception>().WithMessage("No se puede finalizar el turno si no se ha realizado un disparo");
     }
+
+
+    [Fact]
+    public void Si_Eljugador1DisparaEnUnaPosicionQueNoExiste_Debe_LanzarExcepcion()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego();
+
+        var barcoHundido = () => juegoAcorazado.Disparar(new Coordenada(18, 5));
+
+        barcoHundido.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado un disparo en una coordenada que invalida (18,5)");
+    }
 }
