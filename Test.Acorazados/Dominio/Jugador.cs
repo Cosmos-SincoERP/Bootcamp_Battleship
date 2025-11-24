@@ -8,6 +8,7 @@ public class Jugador(string nombre)
     private int _cantidadDisparos;
     private int _cantidadDisparosFallidos;
     private int _cantidadDisparosAcertados;
+    private static readonly (int tamañoMinimo, int tamañoMaximo) _tamañoLimite = (0, 9);
 
     public Tablero Tablero { get; } = new(10);
     public List<Barco> Barcos { get; } = [];
@@ -58,7 +59,11 @@ public class Jugador(string nombre)
 
     private static void ValidarCoordenadas(List<Barco> barcos, string nombreJugador)
     {
-        barcos.Where(barco => barco.Coordenada.X > 9 || barco.Coordenada.X < 0 || barco.Coordenada.Y > 9 || barco.Coordenada.Y < 0)
+        List<string> coordenadaNoValida = new List<string>();
+        barcos.Where(barco => barco.Coordenada.X > _tamañoLimite.tamañoMaximo ||
+                                barco.Coordenada.X < _tamañoLimite.tamañoMinimo ||
+                                barco.Coordenada.Y > _tamañoLimite.tamañoMaximo ||
+                                barco.Coordenada.Y < _tamañoLimite.tamañoMinimo)
             .ToList()
             .ForEach(barco =>
             {
