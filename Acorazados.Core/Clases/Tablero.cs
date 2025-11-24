@@ -44,6 +44,11 @@ public class Tablero
     {
         LanzarExcepcionSiCoordenadaEstaFueraDeLimiteDelTablero(x,y);
         
+        if (!string.IsNullOrWhiteSpace(Cuadro[x, y]) && (Cuadro[x, y] == MarcaTiroAlAgua || Cuadro[x, y] == MarcaBarcoHundido || Cuadro[x, y] == MarcaTiroExitoso))
+        {
+            throw new InvalidOperationException("Este coordenada ya recibio disparo");
+        }
+
         if (EsTiroExitoso(x, y))
         {
             var barco = ConsultarBarcoPorCoordenada(x, y);
