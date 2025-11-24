@@ -711,4 +711,26 @@ public class AcorazadosTest
 
         reporte.Should().Contain("El jugador ganador es: David");
     }
+    
+    [Fact]
+    public void Si_AlFInalizarElJuegoGanoElJugador2_Debe_MostrarEnElInformeQueJugador2FueElGanador()
+    {
+        var acorazados = _acorazadosBuilder
+            .ConstruirJugadorUno("David", tablero =>
+            {
+                tablero.AgregarBarco(Barcos.Canonero, 1, 1, Orientacion.Horizontal);
+            })
+            .ConstruirJugadorDos("Diego", tablero =>
+            {
+                tablero.AgregarBarco(Barcos.Canonero, 2, 2, Orientacion.Horizontal);
+            })
+            .Construir();
+        acorazados.Iniciar();
+        acorazados.Disparar(3, 4);
+        acorazados.Disparar(1, 1);
+        
+        var reporte = acorazados.ImprimirReporte();
+
+        reporte.Should().Contain("El jugador ganador es: Diego");
+    }
 }
