@@ -735,7 +735,7 @@ public class BattleShipTests
         _battleship.Start();
         var shotMessage = _battleship.Fire(new Coord(0,9));
 
-        shotMessage.Should().Be("¡SHIP SUNKEN!");
+        shotMessage.Should().Be("¡SUNKEN SHIP!");
     }
     
     [Fact]
@@ -933,7 +933,7 @@ public class BattleShipTests
         _battleship.Fire(new Coord(0,8));
         var shotMessage = _battleship.Fire(new Coord(0,9));
 
-        shotMessage.Should().Be("¡SHIP SUNKEN!");
+        shotMessage.Should().Be("¡SUNKEN SHIP!");
     }
     
     [Fact]
@@ -1009,5 +1009,28 @@ public class BattleShipTests
             "9 | | | | | | | | | | ",
         });
         board.Should().Be(expectedBoard);
+    }
+    
+    [Fact]
+    public void
+        Si_ElPrimerJugadorDisparaAl_1_7__1_8_Y_1_9_YAciertaAUnBarcoDestructor_Debe_ElMensajeDeTiroSerBarcoHundido()
+    {
+        _battleship.AddPlayer(_defaultFleetWithValidPositions);
+        _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(6,9)),
+            Gunboat.Create(new Coord(5,9)),
+            Gunboat.Create(new Coord(4,9)),
+            Gunboat.Create(new Coord(3,9)),
+            Destroyer.Create(new Coord(2,7), new Coord(2,8), new Coord(2,9)),
+            Destroyer.Create(new Coord(1,7), new Coord(1,8), new Coord(1,9)),
+            AircraftCarrier.Create(new Coord(0,6), new Coord(0,7), new Coord(0,8), new Coord(0,9))
+        ]));
+        _battleship.Start();
+        _battleship.Fire(new Coord(1,7));
+        _battleship.Fire(new Coord(1,8));
+        
+        var shotMessage = _battleship.Fire(new Coord(1,9));
+        
+        shotMessage.Should().Be("¡SUNKEN SHIP!");
     }
 }

@@ -25,8 +25,8 @@
 * ✅ Si inicia el juego, el jugador uno pasa de turno y se imprima el tablero debe mostrar el del primer jugador.
 * ✅ Si inicia el juego, ambos jugadores pasan turno y se imprime el tablero debe mostrar el del segundo jugador.
 * ✅ Un jugador puede disparar al tablero de otro, si no da a ningun barco debe marcarse una "o" en esa posicion.
-* Un jugador que dispare al tablero del otro y acierte a un barco deberá marcarse esa posición con "x"
-* Un jugador que dispare al tablero del otro y acierte podrá seguir disparando
+* ✅ Un jugador que dispare al tablero del otro y acierte a un barco deberá marcarse esa posición con "x"
+* ✅ Un jugador que dispare al tablero del otro y acierte podrá seguir disparando
 * Un jugador que dispare al tablero de otro y no acierte no deberá poder seguir disparando.
 * Un jugador que dispare al tablero de otro y acierte a un barco en la totalidad de su tamaño deberá marcarse todas las posiciones del barco con "X" 
 * Un jugador que dispara al tablero de otro y hunda un barco tendrá que ser informado del hundimiento del barco. 

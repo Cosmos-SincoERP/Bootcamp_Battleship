@@ -66,7 +66,7 @@ public class Fleet
         if (!shipImpacted.IsSunken) return string.Empty;
 
         shipImpacted.MarkAsSunken(board);
-        return "¡SHIP SUNKEN!";
+        return "¡SUNKEN SHIP!";
     }
 
     private static void MarkWaterShotInBoard(string[,] board, Coord coord)
