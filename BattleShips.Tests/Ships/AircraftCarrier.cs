@@ -5,7 +5,6 @@ public class AircraftCarrier(List<Coord> coords) : Ship(coords)
     private const string UnPortaavionDebeTener4Coordenadas = "Un portaavion debe tener 4 coordenadas.";
     private const string LosPortaavionesDebenTenerSusCoordenadasSecuenciales = "Los portaaviones deben tener sus coordenadas secuenciales.";
     private protected override char Abbreviation => 'c';
-    private readonly List<Coord> _recievedShots = []; 
     public override bool IsSunken { get; protected set; }
     
     public static Ship Create(params List<Coord> coords)

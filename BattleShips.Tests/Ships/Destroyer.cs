@@ -5,7 +5,6 @@ public class Destroyer(List<Coord> coords) : Ship(coords)
     private const string LosDestructoresDebenTener3Coordenadas = "Los destructores deben tener 3 coordenadas.";
     private const string LosDestructoresDebenTenerSusCoordenadasSecuenciales = "Los destructores deben tener sus coordenadas secuenciales.";
     private protected override char Abbreviation => 'd';
-    private readonly List<Coord> _recievedShots = []; 
     
     public override bool IsSunken { get; protected set; }
 
