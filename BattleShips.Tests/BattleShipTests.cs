@@ -972,4 +972,42 @@ public class BattleShipTests
         });
         board.Should().Be(expectedBoard);
     }
+    
+    [Fact]
+    public void
+        Si_ElPrimerJugadorDisparaAl_1_7__1_8_Y_1_9_YAciertaAUnBarcoDestructor_Debe_MarcarUna_X_EnLasPosiciones()
+    {
+        _battleship.AddPlayer(_defaultFleetWithValidPositions);
+        _battleship.AddPlayer(new Fleet([
+            Gunboat.Create(new Coord(6,9)),
+            Gunboat.Create(new Coord(5,9)),
+            Gunboat.Create(new Coord(4,9)),
+            Gunboat.Create(new Coord(3,9)),
+            Destroyer.Create(new Coord(2,7), new Coord(2,8), new Coord(2,9)),
+            Destroyer.Create(new Coord(1,7), new Coord(1,8), new Coord(1,9)),
+            AircraftCarrier.Create(new Coord(0,6), new Coord(0,7), new Coord(0,8), new Coord(0,9))
+        ]));
+        _battleship.Start();
+        _battleship.Fire(new Coord(1,7));
+        _battleship.Fire(new Coord(1,8));
+        _battleship.Fire(new Coord(1,9));
+    
+        var board = _battleship.Print();
+        
+        var expectedBoard = string.Join(Environment.NewLine, new[]
+        {
+            "  0 1 2 3 4 5 6 7 8 9 ",
+            "0 | | | | | | c c c c ",
+            "1 | | | | | | | X X X ",
+            "2 | | | | | | | d d d ",
+            "3 | | | | | | | | | g ",
+            "4 | | | | | | | | | g ",
+            "5 | | | | | | | | | g ",
+            "6 | | | | | | | | | g ",
+            "7 | | | | | | | | | | ",
+            "8 | | | | | | | | | | ",
+            "9 | | | | | | | | | | ",
+        });
+        board.Should().Be(expectedBoard);
+    }
 }

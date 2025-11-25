@@ -6,7 +6,7 @@ public class AircraftCarrier(List<Coord> coords) : Ship(coords)
     private const string LosPortaavionesDebenTenerSusCoordenadasSecuenciales = "Los portaaviones deben tener sus coordenadas secuenciales.";
     private protected override char Abbreviation => 'c';
     private readonly List<Coord> _recievedShots = []; 
-    public override bool IsSunken { get; set; }
+    public override bool IsSunken { get; protected set; }
     
     public static Ship Create(params List<Coord> coords)
     {
@@ -38,16 +38,5 @@ public class AircraftCarrier(List<Coord> coords) : Ship(coords)
             newest.IsNeighbourInDiagonal(old)
                 ? throw new ArgumentException("Los barcos solo pueden posicionarse en vertical o horizontal") 
                 : newest);
-    }
-
-    public override bool IsShotAt(Coord coordEvaluate)
-    {
-        var isCoordInShipPosition = Coords.Any(coord => coord == coordEvaluate);
-        if(isCoordInShipPosition)
-            _recievedShots.Add(coordEvaluate);
-
-        if (_recievedShots.Count == 4)
-            IsSunken = true;
-        return isCoordInShipPosition;
     }
 }

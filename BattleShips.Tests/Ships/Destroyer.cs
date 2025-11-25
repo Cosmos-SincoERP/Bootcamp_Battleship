@@ -5,7 +5,9 @@ public class Destroyer(List<Coord> coords) : Ship(coords)
     private const string LosDestructoresDebenTener3Coordenadas = "Los destructores deben tener 3 coordenadas.";
     private const string LosDestructoresDebenTenerSusCoordenadasSecuenciales = "Los destructores deben tener sus coordenadas secuenciales.";
     private protected override char Abbreviation => 'd';
-    public override bool IsSunken { get; set; }
+    private readonly List<Coord> _recievedShots = []; 
+    
+    public override bool IsSunken { get; protected set; }
 
     public static Ship Create(params List<Coord> coords)
     {
@@ -38,6 +40,4 @@ public class Destroyer(List<Coord> coords) : Ship(coords)
                 ? throw new ArgumentException("Los barcos solo pueden posicionarse en vertical o horizontal") 
                 : newest);
     }
-
-    public override bool IsShotAt(Coord coordEvaluate) => coords.Any(coord => coord == coordEvaluate);
 }
