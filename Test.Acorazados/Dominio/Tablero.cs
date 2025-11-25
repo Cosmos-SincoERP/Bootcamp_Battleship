@@ -16,16 +16,39 @@ public class Tablero(int tamaño)
 
     public string Visualizar()
     {
+        // var visualizar = string.Empty;
+        // for (var x = 0; x < _plataforma.GetLength(0); x++)
+        // {
+        //     for (var y = 0; y < _plataforma.GetLength(1); y++)
+        //     {
+        //         var valorAMostar = _plataforma[x, y] == '\0' ? ' ' : _plataforma[x, y];
+        //         visualizar += $" {valorAMostar} ";
+        //     }
+        //     visualizar += '\n';
+        // }
+        // return visualizar;
+        
         var visualizar = string.Empty;
-        for (var x = 0; x < _plataforma.GetLength(0); x++)
-        {
-            for (var y = 0; y < _plataforma.GetLength(1); y++)
-            {
-                var valorAMostar = _plataforma[x, y] == '\0' ? ' ' : _plataforma[x, y];
-                visualizar += $" {valorAMostar} ";
-            }
-            visualizar += '\n';
-        }
-        return visualizar;
+        visualizar += "   |";
+         for (int i = 0; i < _plataforma.GetLength(1); i++)
+         {
+             visualizar += $" {i} |";
+         }
+         visualizar += " \n";
+
+         visualizar += "-------------------------------------------| \n";
+
+         for (var x = 0; x < _plataforma.GetLength(0); x++)
+         {
+             visualizar += $" {x} |";
+             for (int y = 0; y < _plataforma.GetLength(1); y++)
+             {
+                 char valorAMostar = _plataforma[x, y] == '\0' ? ' ' : _plataforma[x, y];
+                 visualizar += $" {valorAMostar} |";
+             }
+             visualizar += " \n";
+         }
+
+         return visualizar;
     }
 }

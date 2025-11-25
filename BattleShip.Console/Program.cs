@@ -39,12 +39,7 @@ class Program
                 System.Console.WriteLine($"  TURNO DEL JUGADOR {jugadorActual}");
                 System.Console.WriteLine($"===================================");
                 System.Console.WriteLine();
-
-                // Mostrar el tablero del enemigo
-                System.Console.WriteLine("Tablero del enemigo:");
-                System.Console.WriteLine(juego.Imprimir());
-                System.Console.WriteLine();
-
+                
                 // Pedir coordenadas por consola
                 System.Console.Write("Ingrese coordenada X (0-9): ");
                 var x = int.Parse(System.Console.ReadLine() ?? "0");
@@ -58,16 +53,16 @@ class Program
                 var resultado = juego.Disparar(coordenada);
 
                 System.Console.WriteLine();
-                if (!string.IsNullOrEmpty(resultado))
-                {
-                    System.Console.WriteLine($"¡IMPACTO! {resultado}");
-                }
-                else
-                {
-                    System.Console.WriteLine($"Disparo en ({x},{y})");
-                }
+                System.Console.WriteLine(!string.IsNullOrEmpty(resultado)
+                    ? $"¡Barco Hundido! {resultado}"
+                    : $"Disparo en ({x},{y})");
                 System.Console.WriteLine();
-
+                
+                // Mostrar el tablero del enemigo
+                System.Console.WriteLine("Tablero del enemigo:");
+                System.Console.WriteLine(juego.Imprimir());
+                System.Console.WriteLine();
+                
                 // Finalizar turno
                 juego.FinalizarTurno();
 
@@ -93,6 +88,11 @@ class Program
             {
                 System.Console.WriteLine($"Error: {ex.Message}");
                 System.Console.WriteLine("Intente nuevamente.");
+                System.Console.WriteLine();
+                
+                // Mostrar el tablero del enemigo
+                System.Console.WriteLine("Tablero del enemigo:");
+                System.Console.WriteLine(juego.Imprimir());
                 System.Console.WriteLine();
             }
         }
