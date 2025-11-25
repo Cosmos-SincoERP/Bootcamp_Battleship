@@ -87,7 +87,9 @@ class Program
             catch (Exception ex)
             {
                 System.Console.WriteLine($"Error: {ex.Message}");
-                System.Console.WriteLine("Intente nuevamente.");
+                System.Console.WriteLine("===================================");
+                System.Console.WriteLine("Intente nuevamente !!!");
+                System.Console.WriteLine("===================================");
                 System.Console.WriteLine();
                 
                 // Mostrar el tablero del enemigo

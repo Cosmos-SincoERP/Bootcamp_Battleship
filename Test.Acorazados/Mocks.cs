@@ -14,20 +14,6 @@ public class Mocks
 
     public static string TableroEsperado(char[,] tablero)
     {
-        // var tableroEsperado = string.Empty;
-        // for (var x = 0; x < tablero.GetLength(0); x++)
-        // {
-        //     for (var y = 0; y < tablero.GetLength(1); y++)
-        //     {
-        //         var valorAMostar = tablero[x, y] == '\0' ? ' ' : tablero[x, y];
-        //         tableroEsperado +=  $" {valorAMostar} ";
-        //     }
-        //
-        //     tableroEsperado += '\n';
-        // }
-        //
-        // return tableroEsperado;
-        
         var tableroEsperado = string.Empty;
         tableroEsperado += "   |";
         for (int i = 0; i < tablero.GetLength(1); i++)
