@@ -95,6 +95,7 @@ public class Battleship
 
         _navesJugador1 = navesJugador1;
         _navesJugador2 = navesJugador2;
+        
     }
 
     private static void ValidarPosicionInicialNavesYTipo(List<Nave> navesJugador)
