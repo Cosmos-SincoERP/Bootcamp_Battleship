@@ -5,6 +5,7 @@ public class Destroyer(List<Coord> coords) : Ship(coords)
     private const string LosDestructoresDebenTener3Coordenadas = "Los destructores deben tener 3 coordenadas.";
     private const string LosDestructoresDebenTenerSusCoordenadasSecuenciales = "Los destructores deben tener sus coordenadas secuenciales.";
     private protected override char Abbreviation => 'd';
+    public override bool IsSunken { get; set; }
 
     public static Ship Create(params List<Coord> coords)
     {
@@ -38,7 +39,7 @@ public class Destroyer(List<Coord> coords) : Ship(coords)
                 : newest);
     }
     
-    public override bool IsShotAt(Coord coord)
+    public override bool IsShotAt(Coord coordEvaluate)
     {
         return false;
     }

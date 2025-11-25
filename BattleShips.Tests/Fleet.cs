@@ -42,22 +42,30 @@ public class Fleet
             throw new ArgumentException(DebenSer4CañonerosPorJugador);
     }
 
-    public void LocateFleets(string[,] currentBoard) =>
-        _ships.ForEach(ship => ship.LocateInBoard(currentBoard));
+    public void LocateFleets(string[,] board) =>
+        _ships.ForEach(ship => ship.LocateInBoard(board));
 
-    public string RecieveShot(Coord coord)
+    public void ReceiveShot(string[,] board, Coord coord)
     {
-        foreach (var ship in _ships)
+        var shipImpacted = _ships.FirstOrDefault(ship => ship.IsShotAt(coord));
+        if (shipImpacted != null)
         {
-            var shotInShip = ship.IsShotAt(coord);
-            if (shotInShip)
-                switch (ship)
-                {
-                    case Gunboat: return "X";
-                    case AircraftCarrier: return "x";
-                }
-        }
+            switch (shipImpacted)
+            {
+                case Gunboat: 
+                    board[coord.X, coord.Y] = "X";
+                    break;
+                case AircraftCarrier:
+                    board[coord.X, coord.Y] = "x";
+                    break;
+            }
 
-        return "o";
+            if (shipImpacted.IsSunken)
+                shipImpacted.MarkAsSunken(board);
+        }
+        else
+        {
+            board[coord.X, coord.Y] = "o";
+        }
     }
 }

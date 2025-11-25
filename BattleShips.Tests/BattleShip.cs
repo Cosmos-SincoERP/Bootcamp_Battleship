@@ -49,7 +49,7 @@ public class BattleShip
 
     public string Fire(Coord coord)
     {
-        _players[_attackedPlayerPosition].RecieveShot(coord);
+        _players[_attackedPlayerPosition].ReceiveShot(coord);
         return String.Empty;
     }
 }

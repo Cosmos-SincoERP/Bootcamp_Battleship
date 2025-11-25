@@ -5,7 +5,9 @@ public class AircraftCarrier(List<Coord> coords) : Ship(coords)
     private const string UnPortaavionDebeTener4Coordenadas = "Un portaavion debe tener 4 coordenadas.";
     private const string LosPortaavionesDebenTenerSusCoordenadasSecuenciales = "Los portaaviones deben tener sus coordenadas secuenciales.";
     private protected override char Abbreviation => 'c';
-
+    private readonly List<Coord> _recievedShots = []; 
+    public override bool IsSunken { get; set; }
+    
     public static Ship Create(params List<Coord> coords)
     {
         ThrowExcepcionIfCoordsCountIsDifferentOfFour(coords);
@@ -38,14 +40,14 @@ public class AircraftCarrier(List<Coord> coords) : Ship(coords)
                 : newest);
     }
 
-    public override bool IsShotAt(Coord coord)
+    public override bool IsShotAt(Coord coordEvaluate)
     {
-        if (coord.PositionX == 0 && coord.PositionY == 9)
-            return true;
-        else if (coord.PositionX == 0 && coord.PositionY == 8)
-            return true;
-        else if (coord.PositionX == 0 && coord.PositionY == 7)
-            return true;
-        return false;
+        var isCoordInShipPosition = Coords.Any(coord => coord == coordEvaluate);
+        if(isCoordInShipPosition)
+            _recievedShots.Add(coordEvaluate);
+
+        if (_recievedShots.Count == 4)
+            IsSunken = true;
+        return isCoordInShipPosition;
     }
 }
