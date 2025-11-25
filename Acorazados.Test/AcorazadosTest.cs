@@ -1480,4 +1480,20 @@ public class AcorazadosTest
         act.Should().Throw<ApplicationException>("Las coordenadas dadas para pintar la nave estan fuera del limite del tablero");
         
     }
+    
+    [Fact]
+    public void Si_InicioEIntentoCrearUnNaveYEstaenlasMismasCoordenadas_Debe_LanzarExcepcion()
+    {
+        var acorazados = new Battleship();
+        acorazados.AddPlayer("Alejandra");
+        acorazados.AddPlayer("Paula");
+        
+        var canonero = new Nave(9, 9, 9, 9, "g");
+        var canonero2 = new Nave(2, 8, 2, 11, "d");
+        
+        var act = () => acorazados.Iniciar([canonero,canonero], []);
+        
+        act.Should().Throw<ApplicationException>("Ya existe una nave en las coordenadas indicadas.");
+        
+    }
 }
