@@ -133,7 +133,7 @@ public class Juego
 
         int tamañoEnX = jugadorActivo.Tablero.ObtenerTamañoEnY();
 
-        if (coordenada.X > tamañoEnX)
+        if (coordenada.X > tamañoEnX || coordenada.X < 0)
             throw new Exception($"La coordenada del disparo excede el tamaño del tablero ({coordenada.X},{coordenada.Y})");
 
 
