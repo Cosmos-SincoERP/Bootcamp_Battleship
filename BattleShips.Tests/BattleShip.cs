@@ -53,6 +53,8 @@ public class BattleShip
         CurrentBoard[coord.PositionX, coord.PositionY] = "o";
         if (coord.PositionX == 0 && coord.PositionY == 9)
             CurrentBoard[0, 9] = "X";
+        else if (coord.PositionX == 1 && coord.PositionY == 9)
+            CurrentBoard[1, 9] = "X";
         return String.Empty;
     }
 }

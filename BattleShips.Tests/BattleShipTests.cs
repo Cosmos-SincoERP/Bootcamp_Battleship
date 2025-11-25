@@ -725,4 +725,32 @@ public class BattleShipTests
         });
         board.Should().Be(expectedBoard);
     }
+    
+    [Fact]
+    public void
+        Si_ElPrimerJugadorDisparaAl_1_9_YAciertaAUnBarcoCañonero_Debe_MarcarUna_X_EnElTablero()
+    {
+        _battleship.AddPlayer(_defaultFleetWithValidPositions);
+        _battleship.AddPlayer(_fleetWithShipsInTheLastColumns);
+        _battleship.Start();
+        _battleship.Fire(new Coord(1,9));
+
+        var board = _battleship.Print();
+        
+        var expectedBoard = string.Join(Environment.NewLine, new[]
+        {
+            "  0 1 2 3 4 5 6 7 8 9 ",
+            "0 | | | | | | | | | g ",
+            "1 | | | | | | | | | X ",
+            "2 | | | | | | | | | g ",
+            "3 | | | | | | | | | g ",
+            "4 | | | | | | | d d d ",
+            "5 | | | | | | | d d d ",
+            "6 | | | | | | c c c c ",
+            "7 | | | | | | | | | | ",
+            "8 | | | | | | | | | | ",
+            "9 | | | | | | | | | | ",
+        });
+        board.Should().Be(expectedBoard);
+    }
 }
