@@ -695,7 +695,7 @@ public class BattleShipTests
         
         var shotMessage = _battleship.Fire(new Coord(5, 0));
         
-        shotMessage.Should().Be("");
+        shotMessage.Should().Be("¡WATER SHOT!");
     }
     
     [Fact]
@@ -1032,5 +1032,33 @@ public class BattleShipTests
         var shotMessage = _battleship.Fire(new Coord(1,9));
         
         shotMessage.Should().Be("¡SUNKEN SHIP!");
+    }
+
+    [Fact]
+    public void Si_UnJugadorDisparaAl_0_0_YSuTiroFueAlAgua_NoDebe_PoderSeguirDisparando()
+    {
+        _battleship.AddPlayer(_defaultFleetWithValidPositions);
+        _battleship.AddPlayer(_fleetWithShipsInTheLastColumns);
+        _battleship.Start();
+        _battleship.Fire(new Coord(0, 0));
+
+        var action = () => _battleship.Fire(new Coord(0, 1));
+
+        action.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("No puede seguir disparando porque su ultimo disparo fue al agua.");
+    }
+    
+    [Fact]
+    public void Si_UnJugadorDisparaAl_0_1_YSuTiroFueAlAgua_NoDebe_PoderSeguirDisparando()
+    {
+        _battleship.AddPlayer(_defaultFleetWithValidPositions);
+        _battleship.AddPlayer(_fleetWithShipsInTheLastColumns);
+        _battleship.Start();
+        _battleship.Fire(new Coord(0, 1));
+
+        var action = () => _battleship.Fire(new Coord(1, 0));
+
+        action.Should().ThrowExactly<InvalidOperationException>()
+            .WithMessage("No puede seguir disparando porque su ultimo disparo fue al agua.");
     }
 }

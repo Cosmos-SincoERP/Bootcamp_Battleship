@@ -51,7 +51,7 @@ public class Fleet
         if (shipImpacted == null)
         {
             MarkWaterShotInBoard(board, coord);
-            return string.Empty;
+            return "¡WATER SHOT!";
         }
 
         MarkShotInShip(board, coord);

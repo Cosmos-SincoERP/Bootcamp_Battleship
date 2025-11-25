@@ -40,6 +40,8 @@ public class Player(Fleet fleet)
         
         return boardPrint.Append(' ').ToString();
     }
+
+    public bool IsCoordHowWaterShot(Coord coord) => _board[coord.X, coord.Y] == "o";
     public string ReceiveShot(Coord coord) => fleet.ReceiveShot(_board, coord);
     
 }

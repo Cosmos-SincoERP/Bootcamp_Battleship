@@ -28,6 +28,7 @@ public abstract class Ship(List<Coord> coords)
 
     private void MarkAsSunkenIfShotCountsIsEqualsToCoordsCount()
     {
+        //TODO: Hacer un test que haga tres tiros a la misma coordenada de un destructor.
         if (_receivedShots.Count == coords.Count)
             IsSunken = true;
     }
