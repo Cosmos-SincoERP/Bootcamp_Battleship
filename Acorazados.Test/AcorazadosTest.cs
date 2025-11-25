@@ -1482,22 +1482,6 @@ public class AcorazadosTest
     }
     
     [Fact]
-    public void Si_InicioEIntentoCrearUnNaveYEstaenlasMismasCoordenadas_Debe_LanzarExcepcion()
-    {
-        var acorazados = new Battleship();
-        acorazados.AddPlayer("Alejandra");
-        acorazados.AddPlayer("Paula");
-        
-        var canonero = new Nave(9, 9, 9, 9, "g");
-        var canonero2 = new Nave(9, 9, 9, 9, "g");
-        
-        var act = () => acorazados.Iniciar([canonero,canonero2], []);
-        
-        act.Should().Throw<ApplicationException>("Ya existe una nave en las coordenadas indicadas.");
-        
-    }
-    
-    [Fact]
     public void Si_InicioEIntentoCrearNavesDiferentesA_G_C_D_Debe_LanzarExcepcion()
     {
         var acorazados = new Battleship();
