@@ -18,6 +18,16 @@ public class BattleShipTests
         AircraftCarrier.Create([new Coord(6, 0), new Coord(6, 1), new Coord(6, 2), new Coord(6, 3)])
     ]);
 
+    private readonly Fleet _fleetWithShipsInTheLastColumns = new([
+        Gunboat.Create(new Coord(0,9)),
+        Gunboat.Create(new Coord(1,9)),
+        Gunboat.Create(new Coord(2,9)),
+        Gunboat.Create(new Coord(3,9)),
+        Destroyer.Create(new Coord(4,7), new Coord(4,8), new Coord(4,9)),
+        Destroyer.Create(new Coord(5,7), new Coord(5,8), new Coord(5,9)),
+        AircraftCarrier.Create(new Coord(6,6), new Coord(6,7), new Coord(6,8), new Coord(6,9))
+    ]);
+
     [Fact]
     public void Si_AgregoUnJugador_NoDebe_ArrojarException()
     {
@@ -545,15 +555,7 @@ public class BattleShipTests
     public void Si_ElPrimerJugadorDisparaAl_0_0_YNoDaANingunBarco_Debe_MarcarUna_o_EnElTablero()
     {
         _battleship.AddPlayer(_defaultFleetWithValidPositions);
-        _battleship.AddPlayer(new Fleet([
-            Gunboat.Create(new Coord(0,9)),
-            Gunboat.Create(new Coord(1,9)),
-            Gunboat.Create(new Coord(2,9)),
-            Gunboat.Create(new Coord(3,9)),
-            Destroyer.Create(new Coord(4,7), new Coord(4,8), new Coord(4,9)),
-            Destroyer.Create(new Coord(5,7), new Coord(5,8), new Coord(5,9)),
-            AircraftCarrier.Create(new Coord(6,6), new Coord(6,7), new Coord(6,8), new Coord(6,9))
-        ]));
+        _battleship.AddPlayer(_fleetWithShipsInTheLastColumns);
         _battleship.Start();
         _battleship.Fire(new Coord(0, 0));
         
@@ -580,15 +582,7 @@ public class BattleShipTests
     public void Si_ElPrimerJugadorDisparaAl_1_0_YNoDaANingunBarco_Debe_MarcarUna_o_EnElTablero()
     {
         _battleship.AddPlayer(_defaultFleetWithValidPositions);
-        _battleship.AddPlayer(new Fleet([
-            Gunboat.Create(new Coord(0,9)),
-            Gunboat.Create(new Coord(1,9)),
-            Gunboat.Create(new Coord(2,9)),
-            Gunboat.Create(new Coord(3,9)),
-            Destroyer.Create(new Coord(4,7), new Coord(4,8), new Coord(4,9)),
-            Destroyer.Create(new Coord(5,7), new Coord(5,8), new Coord(5,9)),
-            AircraftCarrier.Create(new Coord(6,6), new Coord(6,7), new Coord(6,8), new Coord(6,9))
-        ]));
+        _battleship.AddPlayer(_fleetWithShipsInTheLastColumns);
         _battleship.Start();
         _battleship.Fire(new Coord(1, 0));
         
@@ -615,15 +609,7 @@ public class BattleShipTests
     public void Si_ElPrimerJugadorDisparaAl_1_5_YNoDaANingunBarco_Debe_MarcarUna_o_EnElTablero()
     {
         _battleship.AddPlayer(_defaultFleetWithValidPositions);
-        _battleship.AddPlayer(new Fleet([
-            Gunboat.Create(new Coord(0,9)),
-            Gunboat.Create(new Coord(1,9)),
-            Gunboat.Create(new Coord(2,9)),
-            Gunboat.Create(new Coord(3,9)),
-            Destroyer.Create(new Coord(4,7), new Coord(4,8), new Coord(4,9)),
-            Destroyer.Create(new Coord(5,7), new Coord(5,8), new Coord(5,9)),
-            AircraftCarrier.Create(new Coord(6,6), new Coord(6,7), new Coord(6,8), new Coord(6,9))
-        ]));
+        _battleship.AddPlayer(_fleetWithShipsInTheLastColumns);
         _battleship.Start();
         _battleship.Fire(new Coord(1, 5));
         
@@ -650,15 +636,7 @@ public class BattleShipTests
     public void Si_ElPrimerJugadorDisparaAl_2_1_YNoDaANingunBarco_Debe_MarcarUna_o_EnElTablero()
     {
         _battleship.AddPlayer(_defaultFleetWithValidPositions);
-        _battleship.AddPlayer(new Fleet([
-            Gunboat.Create(new Coord(0,9)),
-            Gunboat.Create(new Coord(1,9)),
-            Gunboat.Create(new Coord(2,9)),
-            Gunboat.Create(new Coord(3,9)),
-            Destroyer.Create(new Coord(4,7), new Coord(4,8), new Coord(4,9)),
-            Destroyer.Create(new Coord(5,7), new Coord(5,8), new Coord(5,9)),
-            AircraftCarrier.Create(new Coord(6,6), new Coord(6,7), new Coord(6,8), new Coord(6,9))
-        ]));
+        _battleship.AddPlayer(_fleetWithShipsInTheLastColumns);
         _battleship.Start();
         _battleship.Fire(new Coord(2, 1));
         
@@ -685,15 +663,7 @@ public class BattleShipTests
     public void Si_ElPrimerJugadorDisparaAl_2_5_YNoDaANingunBarco_Debe_MarcarUna_o_EnElTablero()
     {
         _battleship.AddPlayer(_defaultFleetWithValidPositions);
-        _battleship.AddPlayer(new Fleet([
-            Gunboat.Create(new Coord(0,9)),
-            Gunboat.Create(new Coord(1,9)),
-            Gunboat.Create(new Coord(2,9)),
-            Gunboat.Create(new Coord(3,9)),
-            Destroyer.Create(new Coord(4,7), new Coord(4,8), new Coord(4,9)),
-            Destroyer.Create(new Coord(5,7), new Coord(5,8), new Coord(5,9)),
-            AircraftCarrier.Create(new Coord(6,6), new Coord(6,7), new Coord(6,8), new Coord(6,9))
-        ]));
+        _battleship.AddPlayer(_fleetWithShipsInTheLastColumns);
         _battleship.Start();
         _battleship.Fire(new Coord(2, 5));
         
