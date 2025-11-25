@@ -50,22 +50,30 @@ public class Fleet
         var shipImpacted = _ships.FirstOrDefault(ship => ship.IsShotAt(coord));
         if (shipImpacted != null)
         {
-            switch (shipImpacted)
-            {
-                case Gunboat: 
-                    board[coord.X, coord.Y] = "X";
-                    break;
-                case AircraftCarrier:
-                    board[coord.X, coord.Y] = "x";
-                    break;
-            }
-
-            if (shipImpacted.IsSunken)
-                shipImpacted.MarkAsSunken(board);
+            MarkShotInShip(board, coord, shipImpacted);
+            MarkShipSunkenInBoardIfIsSunken(board, shipImpacted);
         }
         else
-        {
-            board[coord.X, coord.Y] = "o";
-        }
+            MarkWaterShotInBoard(board, coord);
+    }
+
+    private static void MarkShotInShip(string[,] board, Coord coord, Ship shipImpacted)
+    {
+        if(shipImpacted is Gunboat)
+            board[coord.X, coord.Y] = "X";
+        if(shipImpacted is AircraftCarrier)
+            board[coord.X, coord.Y] = "x";
+    }
+
+
+    private static void MarkShipSunkenInBoardIfIsSunken(string[,] board, Ship shipImpacted)
+    {
+        if (shipImpacted.IsSunken)
+            shipImpacted.MarkAsSunken(board);
+    }
+    
+    private static void MarkWaterShotInBoard(string[,] board, Coord coord)
+    {
+        board[coord.X, coord.Y] = "o";
     }
 }
