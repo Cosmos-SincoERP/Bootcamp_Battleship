@@ -8,6 +8,8 @@ public class BattleShip
     private int _numberOfPlayers;
     private int _attackedPlayerPosition = 1;
     private Coord _lastShotCoord;
+    private Player CurrentPlayer => _players[_attackedPlayerPosition];
+
     public void AddPlayer(Fleet fleet)
     {
         if (_numberOfPlayers == 2)
@@ -24,7 +26,7 @@ public class BattleShip
         _players.ForEach(player => player.Init());
     }
 
-    public string Print() => _players[_attackedPlayerPosition].PrintBoard();
+    public string Print() => CurrentPlayer.PrintBoard();
 
     public void EndTurn()
     {
@@ -33,9 +35,9 @@ public class BattleShip
 
     public string Fire(Coord coord)
     {
-        if(_players[_attackedPlayerPosition].IsCoordHowWaterShot(_lastShotCoord))
+        if(CurrentPlayer.IsWaterShotIn(_lastShotCoord))
             throw new InvalidOperationException("No puede seguir disparando porque su ultimo disparo fue al agua.");
         _lastShotCoord = coord;
-        return _players[_attackedPlayerPosition].ReceiveShot(coord);
+        return CurrentPlayer.ReceiveShot(coord);
     }
 }
