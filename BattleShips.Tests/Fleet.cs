@@ -53,28 +53,22 @@ public class Fleet
             MarkWaterShotInBoard(board, coord);
             return string.Empty;
         }
-        
-        MarkShotInShip(board, coord, shipImpacted);
+
+        MarkShotInShip(board, coord);
         return MarkShipSunkenInBoardIfIsSunken(board, shipImpacted);
     }
 
-    private static void MarkShotInShip(string[,] board, Coord coord, Ship shipImpacted)
-    {
-        if(shipImpacted is Gunboat)
-            board[coord.X, coord.Y] = "X";
-        if(shipImpacted is AircraftCarrier)
-            board[coord.X, coord.Y] = "x";
-    }
-
+    private static void MarkShotInShip(string[,] board, Coord coord) 
+        => board[coord.X, coord.Y] = "x";
 
     private static string MarkShipSunkenInBoardIfIsSunken(string[,] board, Ship shipImpacted)
     {
         if (!shipImpacted.IsSunken) return string.Empty;
-        
+
         shipImpacted.MarkAsSunken(board);
         return "¡SHIP SUNKEN!";
     }
-    
+
     private static void MarkWaterShotInBoard(string[,] board, Coord coord)
     {
         board[coord.X, coord.Y] = "o";
