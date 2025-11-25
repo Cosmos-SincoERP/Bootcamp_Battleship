@@ -79,14 +79,15 @@ public class Battleship
         if (string.IsNullOrEmpty(_jugador1) || string.IsNullOrEmpty(_jugador2))
             throw new ApplicationException("El juego requiere de dos jugadores para iniciar");
 
-        ValidarPosicionInicialNaves(navesJugador1);
-        
-        ValidarPosicionInicialNaves(navesJugador2);
-
-
         _enJuego = true;
 
         if (navesJugador1.Count == 0 && navesJugador2.Count == 0) return;
+
+        if (navesJugador1.Count > 0)
+            ValidarPosicionInicialNaves(navesJugador1);
+
+        if (navesJugador2.Count > 0)
+            ValidarPosicionInicialNaves(navesJugador2);
 
         UbicarNavesEnTablero(navesJugador1, _tableroJugador1);
 
@@ -98,19 +99,18 @@ public class Battleship
 
     private static void ValidarPosicionInicialNaves(List<Nave> navesJugador)
     {
-        if (navesJugador.Count > 0)
+        if (navesJugador.Any(nave =>
+              nave.FilaInicial < 0 || nave.FilaFinal > 9 || nave.ColumnaInicial < 0 || nave.ColumnaFinal > 9))
         {
-            if (navesJugador.Any(nave => nave.FilaInicial < 0 || nave.FilaFinal > 9 || nave.ColumnaInicial < 0 || nave.ColumnaFinal > 9))
-            {
-                throw new ApplicationException(
-                    "Las coordenadas dadas para pintar la nave estan fuera del limite del tablero");
-            }
+            throw new ApplicationException(
+                "Las coordenadas dadas para pintar la nave estan fuera del limite del tablero");
         }
-        
     }
 
-    private static void UbicarNavesEnTablero(List<Nave> naves, List<string> tablero) =>
+    private static void UbicarNavesEnTablero(List<Nave> naves, List<string> tablero)
+    {
         naves.ForEach(nave => UbicarNave(nave, tablero));
+    }
 
     private static void UbicarNave(Nave nave, List<string> tablero)
     {
