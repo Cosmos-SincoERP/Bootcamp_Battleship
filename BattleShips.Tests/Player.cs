@@ -1,8 +1,10 @@
+using System.Text;
+
 namespace BattleShips.Tests;
 
 public class Player(Fleet fleet)
 {
-    public readonly string[,] Board = InitializeBoard();
+    private readonly string[,] _board = InitializeBoard();
 
     private static string[,] InitializeBoard()
     {
@@ -20,11 +22,24 @@ public class Player(Fleet fleet)
 
     public void Init()
     {
-        fleet.LocateFleets(Board);
+        fleet.LocateFleets(_board);
     }
 
-    public void ReceiveShot(Coord coord)
+    public string PrintBoard()
     {
-        fleet.ReceiveShot(Board, coord);
+        var boardPrint = new StringBuilder("  0 1 2 3 4 5 6 7 8 9");
+        for (int row = 0; row < _board.GetLength(0); row++)
+        {
+            boardPrint.AppendLine(" ");
+            boardPrint.Append(row);
+            for (int column = 0; column < _board.GetLength(1); column++)
+            {
+                boardPrint.Append($" {_board[row, column]}"); 
+            }
+        }
+        
+        return boardPrint.Append(' ').ToString();
     }
+    public string ReceiveShot(Coord coord) => fleet.ReceiveShot(_board, coord);
+    
 }

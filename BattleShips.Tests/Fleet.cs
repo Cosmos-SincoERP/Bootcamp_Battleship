@@ -45,16 +45,17 @@ public class Fleet
     public void LocateFleets(string[,] board) =>
         _ships.ForEach(ship => ship.LocateInBoard(board));
 
-    public void ReceiveShot(string[,] board, Coord coord)
+    public string ReceiveShot(string[,] board, Coord coord)
     {
         var shipImpacted = _ships.FirstOrDefault(ship => ship.IsShotAt(coord));
-        if (shipImpacted != null)
+        if (shipImpacted == null)
         {
-            MarkShotInShip(board, coord, shipImpacted);
-            MarkShipSunkenInBoardIfIsSunken(board, shipImpacted);
-        }
-        else
             MarkWaterShotInBoard(board, coord);
+            return string.Empty;
+        }
+        
+        MarkShotInShip(board, coord, shipImpacted);
+        return MarkShipSunkenInBoardIfIsSunken(board, shipImpacted);
     }
 
     private static void MarkShotInShip(string[,] board, Coord coord, Ship shipImpacted)
@@ -66,10 +67,15 @@ public class Fleet
     }
 
 
-    private static void MarkShipSunkenInBoardIfIsSunken(string[,] board, Ship shipImpacted)
+    private static string MarkShipSunkenInBoardIfIsSunken(string[,] board, Ship shipImpacted)
     {
         if (shipImpacted.IsSunken)
+        {
             shipImpacted.MarkAsSunken(board);
+            return "¡SHIP SUNKEN!";
+        }
+        return string.Empty;
+
     }
     
     private static void MarkWaterShotInBoard(string[,] board, Coord coord)
