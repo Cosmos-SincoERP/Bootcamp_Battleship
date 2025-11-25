@@ -85,51 +85,58 @@ public class Juego
         }
         return informe;
     }
-    
+
     private void InicializarEstadoJuego() => _juegoInicializo = true;
-    
+
     private string AsignarNombreJugadorPredeterminado() => _jugadores.Count == 1 ? "2" : "1";
-    
+
     private void CambiarJugadorActivo() => _jugadorActivo = _jugadorActivo == 0 ? 1 : 0;
-    
+
     private void CambiarJugadorEnemigo() => _jugadorEnemigo = _jugadorEnemigo == 0 ? 1 : 0;
-    
+
     private Jugador ObtenerJugadorActivo() => _jugadores[_jugadorActivo];
-    
+
     private Jugador ObtenerJugadorEnemigo() => _jugadores[_jugadorEnemigo];
-   
+
     private void MarcarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = true;
-    
+
     private void LimpiarDisparoRealizadoEnTurno() => _disparoYaSeRealizoEnTurno = false;
-    
+
     private void ValidarEstadoJuego()
     {
         if (!_juegoInicializo)
             throw new Exception("El juego no ha sido iniciado");
     }
-    
+
     private void ValidacionesParaAgregarJugador()
     {
         if (_jugadores.Count == 2)
             throw new Exception("No se permite agregar mas jugadores al juego");
     }
-   
+
     private void ValidarCantidadDeJugadores()
     {
         if (_jugadores.Count != 2)
             throw new Exception("No se puede iniciar el juego, debe haber al menos 2 jugadores");
     }
-    
+
     private void ValidarSiJugadorYaDisparo()
     {
         if (_disparoYaSeRealizoEnTurno)
             throw new Exception("El jugador ya ha realizado un disparo en este turno");
     }
-    
+
     private string AtaqueDelJugador(Coordenada coordenada)
     {
         var jugadorActivo = ObtenerJugadorActivo();
         var jugadorEnemigo = ObtenerJugadorEnemigo();
+
+        int tamañoEnX = jugadorActivo.Tablero.ObtenerTamañoEnY();
+
+        if (coordenada.X > tamañoEnX)
+            throw new Exception($"La coordenada del disparo excede el tamaño del tablero ({coordenada.X},{coordenada.Y})");
+
+
         var resultado = jugadorEnemigo.AtaqueDelJugadorEnemigo(coordenada);
         jugadorActivo.AgregarDisparoRealizado(resultado.Item1);
         return resultado.Item2;

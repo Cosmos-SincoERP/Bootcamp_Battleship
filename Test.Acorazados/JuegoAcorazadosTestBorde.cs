@@ -172,6 +172,6 @@ public class JuegoAcorazadosTestBorde
 
         var barcoHundido = () => juegoAcorazado.Disparar(new Coordenada(18, 5));
 
-        barcoHundido.Should().ThrowExactly<Exception>().WithMessage("El jugador 1 ha enviado un disparo en una coordenada que invalida (18,5)");
+        barcoHundido.Should().ThrowExactly<Exception>().WithMessage("La coordenada del disparo excede el tamaño del tablero (18,5)");
     }
 }
