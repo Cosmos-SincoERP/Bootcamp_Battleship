@@ -5,7 +5,7 @@ namespace Test.BattleShip.Dominio;
 public class Juego
 {
     private readonly List<Jugador> _jugadores = [];
-    private int _jugadorActivo;
+    private int _jugadorAtacante;
     private int _jugadorEnemigo = 1;
     private bool _juegoTerminado;
     private bool _disparoYaSeRealizoEnTurno;
@@ -47,7 +47,7 @@ public class Juego
             _juegoTerminado = true;
         else
         {
-            CambiarJugadorActivo();
+            CambiarJugadorAtacante();
             CambiarJugadorEnemigo();
             LimpiarDisparoRealizadoEnTurno();
         }
@@ -70,7 +70,7 @@ public class Juego
     private string InformeBatalla()
     {
         var informe = "------- Informe de batalla -------- \n";
-        informe += $"Ganador: Jugador {ObtenerJugadorActivo().Nombre} \n";
+        informe += $"Ganador: Jugador {ObtenerJugadorAtacante().Nombre} \n";
         informe += "---------------------------------- \n";
 
         foreach (var jugador in _jugadores)
@@ -90,11 +90,11 @@ public class Juego
 
     private string AsignarNombreJugadorPredeterminado() => _jugadores.Count == 1 ? "2" : "1";
 
-    private void CambiarJugadorActivo() => _jugadorActivo = _jugadorActivo == 0 ? 1 : 0;
+    private void CambiarJugadorAtacante() => _jugadorAtacante = _jugadorAtacante == 0 ? 1 : 0;
 
     private void CambiarJugadorEnemigo() => _jugadorEnemigo = _jugadorEnemigo == 0 ? 1 : 0;
 
-    private Jugador ObtenerJugadorActivo() => _jugadores[_jugadorActivo];
+    private Jugador ObtenerJugadorAtacante() => _jugadores[_jugadorAtacante];
 
     private Jugador ObtenerJugadorEnemigo() => _jugadores[_jugadorEnemigo];
 
@@ -128,13 +128,13 @@ public class Juego
 
     private string AtaqueDelJugador(Coordenada coordenada)
     {
-        var jugadorActivo = ObtenerJugadorActivo();
+        var jugadorAtacante = ObtenerJugadorAtacante();
         var jugadorEnemigo = ObtenerJugadorEnemigo();
 
-        ValidarCoordenadaEstaEnLimiteDelTablero(coordenada, jugadorActivo);
+        ValidarCoordenadaEstaEnLimiteDelTablero(coordenada, jugadorAtacante);
 
         var resultado = jugadorEnemigo.AtaqueDelJugadorEnemigo(coordenada);
-        jugadorActivo.AgregarDisparoRealizado(resultado.Item1);
+        jugadorAtacante.AgregarDisparoRealizado(resultado.Item1);
         return resultado.mensaje;
     }
 
