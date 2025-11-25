@@ -34,7 +34,7 @@ public class Jugador(string nombre)
     public string ObtenerInformacionDeDisparos() =>
         $"Total de disparos: {_cantidadDisparos} \nDisparos fallidos: {_cantidadDisparosFallidos} \nDisparos acertados: {_cantidadDisparosAcertados}\n";
 
-    public (bool, string) AtaqueDelJugadorEnemigo(Coordenada coordenada)
+    public (bool, string mensaje) AtaqueDelJugadorEnemigo(Coordenada coordenada)
     {
         ValidarSiTableroYaTieneUnDisparoEnCoordenada(coordenada);
         var barco = BuscarBarco(coordenada);

@@ -131,15 +131,22 @@ public class Juego
         var jugadorActivo = ObtenerJugadorActivo();
         var jugadorEnemigo = ObtenerJugadorEnemigo();
 
-        int tamañoEnX = jugadorActivo.Tablero.ObtenerTamañoEnX();
-        int tamañoEnY = jugadorActivo.Tablero.ObtenerTamañoEnY();
-
-        if (coordenada.X > tamañoEnX || coordenada.X < 0 || coordenada.Y > tamañoEnY || coordenada.Y < 0)
-            throw new Exception($"La coordenada del disparo excede el tamaño del tablero ({coordenada.X},{coordenada.Y})");
-
+        ValidarCoordenadaEstaEnLimiteDelTablero(coordenada, jugadorActivo);
 
         var resultado = jugadorEnemigo.AtaqueDelJugadorEnemigo(coordenada);
         jugadorActivo.AgregarDisparoRealizado(resultado.Item1);
-        return resultado.Item2;
+        return resultado.mensaje;
+    }
+
+    private static void ValidarCoordenadaEstaEnLimiteDelTablero(Coordenada coordenada, Jugador jugadorActivo)
+    {
+        int tamañoEnX = jugadorActivo.Tablero.ObtenerTamañoEnX();
+        int tamañoEnY = jugadorActivo.Tablero.ObtenerTamañoEnY();
+
+        if (coordenada.X > tamañoEnX ||
+            coordenada.X < 0 ||
+            coordenada.Y > tamañoEnY ||
+            coordenada.Y < 0)
+            throw new Exception($"La coordenada del disparo excede el tamaño del tablero ({coordenada.X},{coordenada.Y})");
     }
 }
