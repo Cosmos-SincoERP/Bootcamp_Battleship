@@ -1,4 +1,4 @@
-﻿namespace Acorazados.Test;
+﻿namespace Acorazados.Domain;
 
 public class BatallaNavalBuilder
 {
@@ -19,6 +19,12 @@ public class BatallaNavalBuilder
     {
         var jugador = new Jugador(apodo);
         
+        _batallaNaval.AgregarJugador(jugador);
+        return this;
+    }
+    
+    public BatallaNavalBuilder AgregarJugador(Jugador jugador)
+    {
         _batallaNaval.AgregarJugador(jugador);
         return this;
     }

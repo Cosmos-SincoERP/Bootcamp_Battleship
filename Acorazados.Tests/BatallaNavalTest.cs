@@ -1,9 +1,21 @@
-﻿using FluentAssertions;
+﻿using Acorazados.Domain;
+using FluentAssertions;
 
 namespace Acorazados.Test;
 
 public class BatallaNavalTest
 {
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    public void SiAgregoJugadorConApodoNuloOVacio_Debe_LanzarExcepcion(string? apodo)
+    {
+        Action action = () => new Jugador(apodo);
+
+        action.Should().Throw<ArgumentException>()
+            .WithMessage("El apodo es requerido."); 
+    }
+    
     [Fact]
     public void Si_AgregoJugador3_Debe_LanzarExcepcion()
     {
@@ -14,7 +26,7 @@ public class BatallaNavalTest
         batallaNaval.AgregarJugador(jugador2);
         var jugador3 = new Jugador("perro");
 
-        var action = () => batallaNaval.AgregarJugador(jugador3);
+        Action action = () => batallaNaval.AgregarJugador(jugador3);
 
         action.Should().Throw<ArgumentException>()
             .WithMessage("Solo se permiten 2 jugadores.");
@@ -282,6 +294,26 @@ public class BatallaNavalTest
             .WithMessage("El barco se encuentra fuera del tablero.");
     }
 
+    [Fact]
+    public void Si_AgregoCarrierHorizontalEnPosicion8_0_Debe_LanzarExcepcion()
+    {
+        Action action = () => new BatallaNavalBuilder()
+            .AgregarJugador("Pollo", [Barco.Carrier(Posicion.Horizontal(8, 0))]);
+   
+        action.Should().Throw<ArgumentException>()
+            .WithMessage("El barco se encuentra fuera del tablero.");
+    }
+    
+    [Fact]
+    public void Si_AgregoCarrierHorizontalEnPosicion0_8_Debe_LanzarExcepcion()
+    {
+        Action action = () => new BatallaNavalBuilder()
+            .AgregarJugador("Pollo", [Barco.Carrier(Posicion.Vertical(0,8))]);
+   
+        action.Should().Throw<ArgumentException>()
+            .WithMessage("El barco se encuentra fuera del tablero.");
+    }
+    
     [Fact]
     public void Si_InicioJuego_Debe_CadaJugadorDebeTener7BarcosAsignado()
     {
@@ -1232,7 +1264,8 @@ public class BatallaNavalTest
                                          "-------------------------------------------| \n" +
                                          "\n";
 
-        string informeEsperado = reporteEsperadoJugador1 +
+        string informeEsperado = "Jugador ganador: Pollo.\n" +
+                                 reporteEsperadoJugador1 +
                                  tableroEsperadoJugador1 +
                                  reporteEsperadoJugador2 +
                                  tableroEsperadoJugador2;

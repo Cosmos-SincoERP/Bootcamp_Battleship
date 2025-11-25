@@ -1,4 +1,4 @@
-﻿namespace Acorazados.Test;
+﻿namespace Acorazados.Domain;
 
 public class Jugador
 {
@@ -8,7 +8,8 @@ public class Jugador
     private const char MarcaBarcoHundido = 'X';
     private const char MarcaTiroAcertado = 'x';
     private const char MarcaTiroFallido = 'o';
-    
+    private const string? ElApodoEsRequerido = "El apodo es requerido.";
+
     private EstadoDisparo _disparo;
     private readonly char[,] _tablero;
     private readonly char[,] _tableroDisparos;
@@ -19,17 +20,25 @@ public class Jugador
 
     public string Apodo { get; private set; }
     
-    public Jugador(string apodo)
+    public Jugador(string? apodo)
     {
-        Apodo = apodo;
+        ValidarQueElApodoSeaRequerido(apodo);
+        
+        Apodo = apodo!;
         _barcosAsignados = [];
         _tablero = new char[CasillaMaxima, CasillaMaxima];
         _tableroDisparos = (char[,])_tablero.Clone();
     }
-    
+
+    private static void ValidarQueElApodoSeaRequerido(string? apodo)
+    {
+        if (string.IsNullOrEmpty(apodo))
+            throw new ArgumentException(ElApodoEsRequerido);
+    }
+
     public void AgregarBarco(Barco barco)
     {
-        ValidarBordesDelTablero(barco.Posicion);
+        ValidarBordesDelTablero(barco);
         ValidarSobreposicionDeBarcos(barco.Posicion);
         ValidarCantidadDeBarcosAsignadosPorTipo(barco);
 
@@ -42,13 +51,24 @@ public class Jugador
             throw new ArgumentException(JugadorMensajes.FaltaBarcosPorAsignar);
     }
     
-    private static void ValidarBordesDelTablero(Posicion posicion)
+    private static void ValidarBordesDelTablero(Barco barco)
     {
-        if (posicion.EjeX >= CasillaMaxima ||
-            posicion.EjeY >= CasillaMaxima ||
-            posicion.EjeX < 0 ||
-            posicion.EjeY < 0)
+        if (barco.Posicion.EjeX < 0 ||
+            barco.Posicion.EjeY < 0)
             throw new ArgumentException(JugadorMensajes.ElBarcoSeEncuentraFueraDelTablero);
+        
+        if (barco.Posicion.EsVertical)
+        {
+            if (barco.Posicion.EjeX >= CasillaMaxima || 
+                barco.Posicion.EjeY + barco.Tamanio > CasillaMaxima)
+                throw new ArgumentException(JugadorMensajes.ElBarcoSeEncuentraFueraDelTablero);
+        }
+        else
+        {
+            if (barco.Posicion.EjeX + barco.Tamanio > CasillaMaxima || 
+                barco.Posicion.EjeY >= CasillaMaxima)
+                throw new ArgumentException(JugadorMensajes.ElBarcoSeEncuentraFueraDelTablero);
+        }
     }
 
     public EstadoDisparo ObtenerEstadoDisparo() => _disparo;
@@ -79,22 +99,24 @@ public class Jugador
         for (int indice = 0; indice < barco.Tamanio; indice++)
         {
             if (barco.Posicion.EsVertical)
-                _tablero[barco.Posicion.EjeX, barco.Posicion.EjeY + indice] = barco.Inicial;
+                _tablero[barco.Posicion.EjeX, barco.Posicion.EjeY + indice] = barco.Letra;
             else
-                _tablero[barco.Posicion.EjeX + indice, barco.Posicion.EjeY] = barco.Inicial;
+                _tablero[barco.Posicion.EjeX + indice, barco.Posicion.EjeY] = barco.Letra;
         }
         
         _barcosAsignados.Add(barco);
     }
 
-    public char RecibirDisparo(int x, int y)
+    public (char, Barco?) RecibirDisparo(int x, int y)
     {
+        Barco? barco = ObtenerBarco(x, y);
+        
         if (ExisteBarcoEn(x, y))
         {
             _cantidadDisparosAcertados++;
 
             _tablero[x, y] = MarcaTiroAcertado;
-            Barco? barco = ObtenerBarco(x, y);
+            
             barco?.Golpear();
             _disparo = EstadoDisparo.DisparoAcertado;
 
@@ -102,7 +124,7 @@ public class Jugador
             {
                 _disparo = EstadoDisparo.BarcoHundido;
 
-                foreach (var coordenada in barco.Coordenadas)
+                foreach (var coordenada in barco.PosicionesBarco) 
                     _tablero[coordenada.x, coordenada.y] = MarcaBarcoHundido;
             }
         }
@@ -113,19 +135,25 @@ public class Jugador
             _disparo = EstadoDisparo.DisparoFallido;
         }
 
-        return _tablero[x, y];
+        return (_tablero[x, y], barco);
     }
 
     public Barco? ObtenerBarco(int x, int y)
     {
         return _barcosAsignados.FirstOrDefault(barco =>
-            barco.ObtenerCoordenadas().Contains((x, y)));
+            barco.ObtenerPosicionesBarco().Contains((x, y)));
     }
 
 
-    public char RegistrarDisparo(int x, int y, char disparo) =>
+    public void RegistrarDisparo(int x, int y, char disparo, Barco? barco)
+    {
         _tableroDisparos[x, y] = disparo;
-    
+        
+        if(barco != null &&  barco.EsDerribado())
+            foreach (var coordenada in barco.PosicionesBarco) 
+                _tableroDisparos[coordenada.x, coordenada.y] = MarcaBarcoHundido;
+    }
+
     public bool TieneTodosLosBarcosDerribados()
     {
         int barcosDerribados = _barcosAsignados
@@ -144,17 +172,20 @@ public class Jugador
     
     public string Imprimir(bool esReporte = false)
     {
-        List<Barco> barcosDerribados = ObtenerBarcosDerribados();
-        
-        var reporte = new Reporte(_tablero, 
-            _cantidadDisparosAcertados, 
-            _cantidaDisparosFallidos,
-            barcosDerribados);
-
         if (esReporte) 
-            return reporte.ImprimirReporte();
+            return new ReporteEstadistico(_cantidadDisparosAcertados, 
+                _cantidaDisparosFallidos,
+                ObtenerBarcosDerribados())
+                .Imprimir();
 
-        return reporte.ImprimirTablero();
+        return new ReporteTablero(_tablero)
+            .Imprimir();
+    }
+
+    public string ImprimirTableroDeDisparos()
+    {
+        return new ReporteTablero(_tableroDisparos)
+            .Imprimir();
     }
 
     private List<Barco> ObtenerBarcosDerribados()

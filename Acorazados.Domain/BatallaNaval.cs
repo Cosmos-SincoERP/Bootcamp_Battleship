@@ -1,18 +1,21 @@
-﻿namespace Acorazados.Test;
+﻿namespace Acorazados.Domain;
 
 public class BatallaNaval
 {
     private readonly List<Jugador> _jugadores = [];
-    private bool _esTurnoPrincipal = true;
     private bool _juegoIniciado;
-    private bool _juegoFinalizado;
+    private string? _jugadorGanador;
     
+    public bool HaFinalizado;
+    public bool EsTurnoPrincipal = true;
+
     public void AgregarJugador(Jugador jugador)
     {
         ValidarQueNoPuedaAgregarMasDeDosJugadores();
 
         _jugadores.Add(jugador);
     }
+    
     public void Iniciar()
     {
         ValidarQueExistanDosJugadores();
@@ -31,8 +34,8 @@ public class BatallaNaval
         if (ObtenerJugadorActual().TieneDisparo(x, y))
             throw new ArgumentException(BatallaNavalMensajes.NoPuedeDispararEnUnaMismaPosición);
 
-        char disparo = ObtenerJugadorOponente().RecibirDisparo(x, y);
-        ObtenerJugadorActual().RegistrarDisparo(x, y, disparo);
+        (char disparo, Barco? barco) disparo = ObtenerJugadorOponente().RecibirDisparo(x, y);
+        ObtenerJugadorActual().RegistrarDisparo(x, y, disparo.disparo, disparo.barco);
 
         EstadoDisparo estadoDisparo = ObtenerJugadorOponente().ObtenerEstadoDisparo();
 
@@ -47,22 +50,34 @@ public class BatallaNaval
     public void FinalizarTurno()
     {
         if (ObtenerJugadorOponente().TieneTodosLosBarcosDerribados())
-            _juegoFinalizado = true;
-        
-        _esTurnoPrincipal = !_esTurnoPrincipal;
+        {
+            HaFinalizado = true;
+            _jugadorGanador = ObtenerJugadorActual().Apodo;
+        }
+
+        EsTurnoPrincipal = !EsTurnoPrincipal;
     }
+    
     public string Imprimir(bool esReporte = false)
     {
-        if (_juegoFinalizado)
-            return ObtenerJugadorActual().Imprimir(esReporte: true) +
-                   ObtenerJugadorActual().Imprimir(esReporte: false) +
-                   ObtenerJugadorOponente().Imprimir(esReporte: true) +
-                   ObtenerJugadorOponente().Imprimir(esReporte: false);
+        if (HaFinalizado)
+            return  MostrarJugadorGanador() + 
+                    ObtenerJugadorActual().Imprimir(esReporte: true) +
+                    ObtenerJugadorActual().Imprimir(esReporte: false) +
+                    ObtenerJugadorOponente().Imprimir(esReporte: true) +
+                    ObtenerJugadorOponente().Imprimir(esReporte: false);
         
         return ObtenerJugadorActual().Imprimir(esReporte);
     }
+
+    public string ImprimirTableroDeDisparos() => 
+        ObtenerJugadorActual().ImprimirTableroDeDisparos();
+
+    public string ApodoJugadorActual => ObtenerJugadorActual().Apodo;
     
-    
+    public string MostrarJugadorGanador() => 
+        string.Format(BatallaNavalMensajes.MensajeJugadorGanador, _jugadorGanador);
+
     private void ValidarQueExistanDosJugadores()
     {
         if (_jugadores.Count < 2)
@@ -73,8 +88,8 @@ public class BatallaNaval
         if (_jugadores.Count == 2)
             throw new ArgumentException(BatallaNavalMensajes.SoloSePermitenJugadores);
     }
-    private Jugador ObtenerJugadorActual() => _esTurnoPrincipal ? _jugadores[0] : _jugadores[1];
-    private Jugador ObtenerJugadorOponente() => _esTurnoPrincipal ? _jugadores[1] : _jugadores[0];
+    private Jugador ObtenerJugadorActual() => EsTurnoPrincipal ? _jugadores[0] : _jugadores[1];
+    private Jugador ObtenerJugadorOponente() => EsTurnoPrincipal ? _jugadores[1] : _jugadores[0];
     private string MostrarMensajeBarcoDerribado(int x, int y, EstadoDisparo estadoDisparo)
     {
         if (estadoDisparo == EstadoDisparo.BarcoHundido)

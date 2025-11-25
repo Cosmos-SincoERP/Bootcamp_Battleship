@@ -1,0 +1,41 @@
+﻿namespace Acorazados.Domain;
+
+public class ReporteTablero(char [,] tablero) : IReporte
+{
+    private const char SaltoDeLinea = '\n';
+    private const string Separador = "-------------------------------------------|";
+    private readonly string _tablaEncabezado = 
+        SaltoDeLinea + "   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | " + SaltoDeLinea +
+        Separador + " " + 
+        SaltoDeLinea;
+    
+    private readonly string _tablaPieDePagina = 
+        Separador + " \n" + SaltoDeLinea;
+
+    public string Imprimir()
+    {
+        int columnas = 10;
+        int filas = 10;
+        
+        string respuesta = _tablaEncabezado;
+
+        for (int columna = 0; columna < columnas; columna++)
+        {
+            respuesta += $" {columna} |";
+            
+            for (int fila = 0; fila < filas; fila++)
+            {
+                var casilla = tablero[fila, columna] == '\0' 
+                    ? ' ' : tablero[fila, columna];
+                
+                respuesta += $" {casilla} |";
+            }
+
+            respuesta += " " + SaltoDeLinea;
+        }
+        
+        respuesta += _tablaPieDePagina;
+
+        return respuesta;
+    }
+}

@@ -1,4 +1,4 @@
-﻿namespace Acorazados.Test;
+﻿namespace Acorazados.Domain;
 
 public record Posicion
 {
