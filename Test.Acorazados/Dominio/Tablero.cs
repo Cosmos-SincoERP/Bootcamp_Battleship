@@ -39,4 +39,14 @@ public class Tablero(int tamaño)
 
          return visualizar;
     }
+    
+    public void ValidarCoordenadaEstaEnLimiteDelTablero(Coordenada coordenada)
+    {
+
+        if (coordenada.X > ObtenerTamañoEnX() ||
+            coordenada.X < 0 ||
+            coordenada.Y > ObtenerTamañoEnY() ||
+            coordenada.Y < 0)
+            throw new Exception($"La coordenada del disparo excede el tamaño del tablero ({coordenada.X},{coordenada.Y})");
+    }
 }

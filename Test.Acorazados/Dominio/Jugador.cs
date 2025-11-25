@@ -36,6 +36,7 @@ public class Jugador(string nombre)
 
     public (bool, string mensaje) AtaqueDelJugadorEnemigo(Coordenada coordenada)
     {
+        
         ValidarSiTableroYaTieneUnDisparoEnCoordenada(coordenada);
         var barco = BuscarBarco(coordenada);
         return MarcarDisparo(coordenada, barco);
@@ -150,6 +151,7 @@ public class Jugador(string nombre)
 
     private void ValidarSiTableroYaTieneUnDisparoEnCoordenada(Coordenada coordenada)
     {
+        Tablero.ValidarCoordenadaEstaEnLimiteDelTablero(coordenada);
         if (Tablero.HayUnaMarca(coordenada))
             throw new Exception($"El jugador ya lanzo un disparo en la coordenada ({coordenada.X},{coordenada.Y})");
     }
