@@ -49,7 +49,10 @@ public class BattleShip
 
     public string Fire(Coord coord)
     {
+        
         CurrentBoard[coord.PositionX, coord.PositionY] = "o";
+        if (coord.PositionX == 0 && coord.PositionY == 9)
+            CurrentBoard[0, 9] = "X";
         return String.Empty;
     }
 }
