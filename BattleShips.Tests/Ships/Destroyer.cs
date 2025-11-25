@@ -37,4 +37,9 @@ public class Destroyer(List<Coord> coords) : Ship(coords)
                 ? throw new ArgumentException("Los barcos solo pueden posicionarse en vertical o horizontal") 
                 : newest);
     }
+    
+    public override bool IsShotAt(Coord coord)
+    {
+        return false;
+    }
 }

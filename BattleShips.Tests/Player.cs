@@ -22,4 +22,10 @@ public class Player(Fleet fleet)
     {
         fleet.LocateFleets(Board);
     }
+
+    public void RecieveShot(Coord coord)
+    {
+        var simbolOfShoot = fleet.RecieveShot(coord);
+        Board[coord.PositionX, coord.PositionY] = simbolOfShoot;
+    }
 }

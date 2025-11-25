@@ -11,4 +11,6 @@ public abstract class Ship(List<Coord> coords)
             board[coord.PositionX, coord.PositionY] = Abbreviation.ToString();
         }
     }
+
+    public abstract bool IsShotAt(Coord coord);
 }

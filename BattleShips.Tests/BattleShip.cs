@@ -6,8 +6,8 @@ public class BattleShip
 {
     private readonly List<Player> _players = [];
     private int _numberOfPlayers;
-    private int _attackedPlayer = 2;
-    private string[,] CurrentBoard => _players[_attackedPlayer - 1].Board;
+    private int _attackedPlayerPosition = 1;
+    private string[,] CurrentBoard => _players[_attackedPlayerPosition].Board;
 
     public void AddPlayer(Fleet fleet)
     {
@@ -44,17 +44,12 @@ public class BattleShip
 
     public void EndTurn()
     {
-        _attackedPlayer = _attackedPlayer == 1 ? 2 : 1;
+        _attackedPlayerPosition = _attackedPlayerPosition == 0 ? 1 : 0;
     }
 
     public string Fire(Coord coord)
     {
-        
-        CurrentBoard[coord.PositionX, coord.PositionY] = "o";
-        if (coord.PositionX == 0 && coord.PositionY == 9)
-            CurrentBoard[0, 9] = "X";
-        else if (coord.PositionX == 1 && coord.PositionY == 9)
-            CurrentBoard[1, 9] = "X";
+        _players[_attackedPlayerPosition].RecieveShot(coord);
         return String.Empty;
     }
 }

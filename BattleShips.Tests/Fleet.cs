@@ -8,6 +8,7 @@ public class Fleet
     private const string DebenSer2DestructoresPorJugador = "Deben ser 2 destructores por jugador.";
     private const string DebenSer4CañonerosPorJugador = "Deben ser 4 cañoneros por jugador.";
     private readonly List<Ship> _ships;
+
     public Fleet(List<Ship> ships)
     {
         ThrowIfGunboatsCountIsDifferentOfFour(ships);
@@ -41,6 +42,22 @@ public class Fleet
             throw new ArgumentException(DebenSer4CañonerosPorJugador);
     }
 
-    public void LocateFleets(string[,] currentBoard) => 
+    public void LocateFleets(string[,] currentBoard) =>
         _ships.ForEach(ship => ship.LocateInBoard(currentBoard));
+
+    public string RecieveShot(Coord coord)
+    {
+        foreach (var ship in _ships)
+        {
+            var shotInShip = ship.IsShotAt(coord);
+            if (shotInShip)
+                switch (ship)
+                {
+                    case Gunboat: return "X";
+                    case AircraftCarrier: return "x";
+                }
+        }
+
+        return "o";
+    }
 }
