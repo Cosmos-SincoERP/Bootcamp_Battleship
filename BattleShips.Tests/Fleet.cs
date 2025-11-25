@@ -69,13 +69,10 @@ public class Fleet
 
     private static string MarkShipSunkenInBoardIfIsSunken(string[,] board, Ship shipImpacted)
     {
-        if (shipImpacted.IsSunken)
-        {
-            shipImpacted.MarkAsSunken(board);
-            return "¡SHIP SUNKEN!";
-        }
-        return string.Empty;
-
+        if (!shipImpacted.IsSunken) return string.Empty;
+        
+        shipImpacted.MarkAsSunken(board);
+        return "¡SHIP SUNKEN!";
     }
     
     private static void MarkWaterShotInBoard(string[,] board, Coord coord)

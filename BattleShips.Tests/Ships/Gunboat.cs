@@ -15,5 +15,10 @@ public class Gunboat(List<Coord> coords) : Ship(coords)
         return new Gunboat(coords);
     }
 
-    public override bool IsShotAt(Coord coordEvaluate) => coordEvaluate.X == GunboatCoord.X && coordEvaluate.Y == GunboatCoord.Y;
+    public override bool IsShotAt(Coord coordEvaluate)
+    {
+        var isShotInSameCoordOfGunboat = coordEvaluate.X == GunboatCoord.X && coordEvaluate.Y == GunboatCoord.Y;
+        IsSunken = isShotInSameCoordOfGunboat;
+        return isShotInSameCoordOfGunboat;
+    }
 }

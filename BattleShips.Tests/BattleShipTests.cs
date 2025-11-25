@@ -728,6 +728,18 @@ public class BattleShipTests
     
     [Fact]
     public void
+        Si_ElPrimerJugadorDisparaAl_0_9_YAciertaAUnBarcoCañonero_Debe_ElMensajeDeDisparoSerBarcoHundido()
+    {
+        _battleship.AddPlayer(_defaultFleetWithValidPositions);
+        _battleship.AddPlayer(_fleetWithShipsInTheLastColumns);
+        _battleship.Start();
+        var shotMessage = _battleship.Fire(new Coord(0,9));
+
+        shotMessage.Should().Be("¡SHIP SUNKEN!");
+    }
+    
+    [Fact]
+    public void
         Si_ElPrimerJugadorDisparaAl_1_9_YAciertaAUnBarcoCañonero_Debe_MarcarUna_X_EnElTablero()
     {
         _battleship.AddPlayer(_defaultFleetWithValidPositions);
