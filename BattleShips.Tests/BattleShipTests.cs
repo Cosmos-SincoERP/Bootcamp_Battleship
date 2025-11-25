@@ -685,4 +685,16 @@ public class BattleShipTests
         });
         board.Should().Be(expectedBoard);
     }
+    
+    [Fact]
+    public void Si_ElPrimerJugadorDisparaAl_5_0_YNoDaANingunBarco_Debe_SerElMensajeDelDisparoVacio()
+    {
+        _battleship.AddPlayer(_defaultFleetWithValidPositions);
+        _battleship.AddPlayer(_fleetWithShipsInTheLastColumns);
+        _battleship.Start();
+        
+        var shotMessage = _battleship.Fire(new Coord(5, 0));
+        
+        shotMessage.Should().Be("");
+    }
 }

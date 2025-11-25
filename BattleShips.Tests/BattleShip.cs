@@ -47,8 +47,9 @@ public class BattleShip
         _attackedPlayer = _attackedPlayer == 1 ? 2 : 1;
     }
 
-    public void Fire(Coord coord)
+    public string Fire(Coord coord)
     {
         CurrentBoard[coord.PositionX, coord.PositionY] = "o";
+        return String.Empty;
     }
 }
