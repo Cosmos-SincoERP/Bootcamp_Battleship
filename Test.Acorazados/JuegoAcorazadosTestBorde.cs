@@ -166,12 +166,22 @@ public class JuegoAcorazadosTestBorde
 
 
     [Fact]
-    public void Si_Eljugador1DisparaEnUnaPosicionQueNoExiste_Debe_LanzarExcepcion()
+    public void Si_Eljugador1DisparaEnUnaPosicionEnX_18_Debe_LanzarExcepcion()
     {
         var juegoAcorazado = Mocks.MockIniciarJuego();
 
         var barcoHundido = () => juegoAcorazado.Disparar(new Coordenada(18, 5));
 
         barcoHundido.Should().ThrowExactly<Exception>().WithMessage("La coordenada del disparo excede el tamaño del tablero (18,5)");
+    }
+
+    [Fact]
+    public void Si_Eljugador1DisparaEnUnaPosicionEnX_Menos_1_Debe_LanzarExcepcion()
+    {
+        var juegoAcorazado = Mocks.MockIniciarJuego();
+
+        var barcoHundido = () => juegoAcorazado.Disparar(new Coordenada(-1, 5));
+
+        barcoHundido.Should().ThrowExactly<Exception>().WithMessage("La coordenada del disparo excede el tamaño del tablero (-1,5)");
     }
 }
