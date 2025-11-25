@@ -51,6 +51,8 @@ public class BattleShip
     {
         if(coord.PositionX == 1)
             CurrentBoard[1, 0] = "o";
+        else if (coord.PositionX == 2)
+            CurrentBoard[2, 1] = "o";
         else
             CurrentBoard[0, 0] = "o";
     }
