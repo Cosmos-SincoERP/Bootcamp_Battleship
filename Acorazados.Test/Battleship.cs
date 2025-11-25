@@ -5,9 +5,9 @@ namespace Acorazados.Test;
 public class Battleship
 {
     private bool _enJuego;
-    
+
     private bool _turnoJugador1 = true;
-    
+
     private bool _jugador1Gano;
 
     private bool _jugador2Gano;
@@ -17,11 +17,11 @@ public class Battleship
     private string _jugador2 = "";
 
     private int _conteoDisparosJugador1;
-    
+
     private int _conteoDisparosJugador2;
-    
+
     private int _conteoDisparosAcertadosJugador1;
-    
+
     private int _conteoDisparosAcertadosJugador2;
 
     private readonly List<string> _tableroJugador1 =
@@ -55,15 +55,15 @@ public class Battleship
     ];
 
     private List<Nave> _navesJugador1 = new();
-    
+
     private List<Nave> _navesJugador2 = new();
 
     private List<Nave> _navesHundidasJugador1 = new();
-    
+
     private List<Nave> _navesHundidasJugador2 = new();
-    
+
     private HashSet<(int fila, int columna)> _disparosRealizados = new();
-        
+
     public void AddPlayer(string name)
     {
         if (_jugador1 == "")
@@ -78,14 +78,33 @@ public class Battleship
     {
         if (string.IsNullOrEmpty(_jugador1) || string.IsNullOrEmpty(_jugador2))
             throw new ApplicationException("El juego requiere de dos jugadores para iniciar");
-        if(navesJugador1.Count>0)
-            if(!EsUnaCoordenadaValida(navesJugador1[0].FilaInicial,  navesJugador1[0].ColumnaInicial))
-                throw new ApplicationException("Las coordenadas dadas para pintar la nave estan fuera del limite del tablero");
+
+        if (navesJugador1.Count > 0)
+        {
+            foreach (var nave in navesJugador1)
+            {
+                if(nave.FilaInicial < 0 || nave.FilaFinal > 9 || nave.ColumnaInicial < 0 || nave.ColumnaFinal > 9)
+                    throw new ApplicationException(
+                        "Las coordenadas dadas para pintar la nave estan fuera del limite del tablero");
+            }
+        }
         
+        if (navesJugador2.Count > 0)
+        {
+            foreach (var nave in navesJugador2)
+            {
+                if(nave.FilaInicial < 0 || nave.FilaInicial > 9 || nave.ColumnaInicial < 0 || nave.ColumnaFinal > 9)
+                    throw new ApplicationException(
+                        "Las coordenadas dadas para pintar la nave estan fuera del limite del tablero");
+            }
+        }
+
+        
+
         _enJuego = true;
-        
+
         if (navesJugador1.Count == 0 && navesJugador2.Count == 0) return;
-        
+
         UbicarNavesEnTablero(navesJugador1, _tableroJugador1);
 
         UbicarNavesEnTablero(navesJugador2, _tableroJugador2);
@@ -134,46 +153,47 @@ public class Battleship
     public string? Disparar(int fila, int columna)
     {
         ValidarDisparo(fila, columna);
-        
+
         _disparosRealizados.Add((fila, columna));
-        
+
         var (tableroObjetivo, navesObjetivo) = ObtenerTableroYNavesObjetivo();
-    
+
         Nave? naveImpactada = UbicarDisparosEnTablero(fila, columna, tableroObjetivo, navesObjetivo);
-    
+
         ActualizarEstadisticasDisparo(naveImpactada);
-    
+
         if (NaveHundida(naveImpactada))
         {
             AgregarNaveHundida(naveImpactada);
         }
-    
+
         VerificarGanadores();
-    
+
         return NaveHundida(naveImpactada) ? "Barco hundido" : string.Empty;
     }
 
     private void ValidarDisparo(int fila, int columna)
     {
-        if(_jugador1Gano || _jugador2Gano)
+        if (_jugador1Gano || _jugador2Gano)
             throw new ApplicationException("No puede disparar cuando el juego ya acabó");
-        
-        if(!_enJuego)
+
+        if (!_enJuego)
             throw new ApplicationException("No puede disparar cuando el juego no ha comenzado");
 
         if (!EsUnaCoordenadaValida(fila, columna))
             throw new ApplicationException("Las coordenadas dadas para el disparo estan fuera del limite del tablero");
-        
+
         if (_disparosRealizados.Contains((fila, columna)))
             throw new ApplicationException("Ya disparaste en esa coordenada");
     }
 
-    private static bool EsUnaCoordenadaValida(int fila, int columna) => fila >= 0 && fila <= 9 && columna >= 0 && columna <= 9;
+    private static bool EsUnaCoordenadaValida(int fila, int columna) =>
+        fila >= 0 && fila <= 9 && columna >= 0 && columna <= 9;
 
     private (List<string> tablero, List<Nave> naves) ObtenerTableroYNavesObjetivo()
     {
-        return _turnoJugador1 
-            ? (_tableroJugador2, _navesJugador2) 
+        return _turnoJugador1
+            ? (_tableroJugador2, _navesJugador2)
             : (_tableroJugador1, _navesJugador1);
     }
 
@@ -218,14 +238,14 @@ public class Battleship
     }
 
     private bool TodasLasNavesHundidas(List<Nave> naves) =>
-        naves.Count > 0 && 
+        naves.Count > 0 &&
         naves.All(nave => nave.CantidadDisparosRecibidos == nave.ObtenerTamano());
 
     private Nave? UbicarDisparosEnTablero(int fila, int columna, List<string> tablero, List<Nave> navesJugador)
     {
         var columnas = tablero[fila + 1].Split("|");
         var nave = navesJugador.FirstOrDefault(nave => nave.EstoyEnCoordenada(fila, columna));
-       
+
         if (nave == null)
         {
             columnas[columna + 1] = " o ";
@@ -248,68 +268,68 @@ public class Battleship
 
     public void TerminarTurno()
     {
-        if(_jugador1Gano || _jugador2Gano)
+        if (_jugador1Gano || _jugador2Gano)
             throw new ApplicationException("No puede terminar turno cuando el juego ya acabó");
-        
-        if(!_enJuego)
+
+        if (!_enJuego)
             throw new ApplicationException("No puede terminar turno cuando el juego no ha comenzado");
-        
+
         _turnoJugador1 = !_turnoJugador1;
     }
 
     public string Imprimir()
     {
-        if(!_enJuego)
+        if (!_enJuego)
             throw new ApplicationException("No puede disparar cuando el juego no ha comenzado");
-        
+
         if (_jugador1Gano)
         {
             return ImprimirReporteVictoria(
-                _jugador1, 
-                _conteoDisparosJugador1, 
-                _conteoDisparosAcertadosJugador1, 
-                _navesHundidasJugador1, 
+                _jugador1,
+                _conteoDisparosJugador1,
+                _conteoDisparosAcertadosJugador1,
+                _navesHundidasJugador1,
                 _tableroJugador2
             );
         }
-    
+
         if (_jugador2Gano)
         {
             return ImprimirReporteVictoria(
-                _jugador2, 
-                _conteoDisparosJugador2, 
-                _conteoDisparosAcertadosJugador2, 
-                _navesHundidasJugador2, 
+                _jugador2,
+                _conteoDisparosJugador2,
+                _conteoDisparosAcertadosJugador2,
+                _navesHundidasJugador2,
                 _tableroJugador1
             );
         }
-    
+
         return ImprimirTablero(_turnoJugador1 ? _tableroJugador1 : _tableroJugador2);
     }
 
     private string ImprimirReporteVictoria(
-        string nombreJugador, 
-        int totalDisparos, 
-        int disparosAcertados, 
-        List<Nave> navesHundidas, 
+        string nombreJugador,
+        int totalDisparos,
+        int disparosAcertados,
+        List<Nave> navesHundidas,
         List<string> tableroOponente)
     {
         var sb = new StringBuilder();
-    
+
         sb.AppendLine($"[ {nombreJugador}");
         sb.AppendLine($"    Total shots: {totalDisparos}");
         sb.AppendLine($"    Misses: {totalDisparos - disparosAcertados}");
         sb.AppendLine($"    Hits: {disparosAcertados}");
         sb.AppendLine("    Ships Sunk: [");
-    
+
         foreach (var nave in navesHundidas)
         {
             sb.AppendLine($"        {nave.ObtenerNombre()}: ({nave.FilaInicial},{nave.ColumnaInicial})");
         }
-    
+
         sb.Append("    ]");
         sb.Append(ImprimirTablero(tableroOponente));
-    
+
         return sb.ToString();
     }
 
