@@ -44,6 +44,8 @@ public class AircraftCarrier(List<Coord> coords) : Ship(coords)
             return true;
         else if (coord.PositionX == 0 && coord.PositionY == 8)
             return true;
+        else if (coord.PositionX == 0 && coord.PositionY == 7)
+            return true;
         return false;
     }
 }
